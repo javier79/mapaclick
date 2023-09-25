@@ -13,6 +13,11 @@
 		8D00A3192ABCA56F00566008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A3172ABCA56F00566008 /* Main.storyboard */; };
 		8D00A31B2ABCA57100566008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31A2ABCA57100566008 /* Assets.xcassets */; };
 		8D00A31E2ABCA57100566008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31C2ABCA57100566008 /* LaunchScreen.storyboard */; };
+		8DAC25B52AC2094E000C6C04 /* Guiton Sketch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */; };
+		8DAC25B72AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */; };
+		8DAC25B92AC2097B000C6C04 /* predited.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B82AC2097B000C6C04 /* predited.mp3 */; };
+		8DAC25BB2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25BA2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 */; };
+		8DAC25BD2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		8D00A31A2ABCA57100566008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D00A31D2ABCA57100566008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D00A31F2ABCA57100566008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Guiton Sketch.mp3"; path = "../../test_grounds/test_grounds/Guiton Sketch.mp3"; sourceTree = "<group>"; };
+		8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "cartoon_success_fanfair 1.mp3"; path = "../../test_grounds/test_grounds/cartoon_success_fanfair 1.mp3"; sourceTree = "<group>"; };
+		8DAC25B82AC2097B000C6C04 /* predited.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = predited.mp3; path = ../../test_grounds/test_grounds/predited.mp3; sourceTree = "<group>"; };
+		8DAC25BA2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "351566__bertrof__game-sound-correct-organic-violin.mp3"; path = "../../test_grounds/test_grounds/351566__bertrof__game-sound-correct-organic-violin.mp3"; sourceTree = "<group>"; };
+		8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "351565__bertrof__game-sound-incorrect-organic-violin.mp3"; path = "../../test_grounds/test_grounds/351565__bertrof__game-sound-incorrect-organic-violin.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +73,11 @@
 				8D00A31A2ABCA57100566008 /* Assets.xcassets */,
 				8D00A31C2ABCA57100566008 /* LaunchScreen.storyboard */,
 				8D00A31F2ABCA57100566008 /* Info.plist */,
+				8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */,
+				8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */,
+				8DAC25B82AC2097B000C6C04 /* predited.mp3 */,
+				8DAC25BA2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 */,
+				8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */,
 			);
 			path = mapaclick;
 			sourceTree = "<group>";
@@ -128,6 +143,11 @@
 				8D00A31E2ABCA57100566008 /* LaunchScreen.storyboard in Resources */,
 				8D00A31B2ABCA57100566008 /* Assets.xcassets in Resources */,
 				8D00A3192ABCA56F00566008 /* Main.storyboard in Resources */,
+				8DAC25BD2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 in Resources */,
+				8DAC25BB2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 in Resources */,
+				8DAC25B72AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 in Resources */,
+				8DAC25B52AC2094E000C6C04 /* Guiton Sketch.mp3 in Resources */,
+				8DAC25B92AC2097B000C6C04 /* predited.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
