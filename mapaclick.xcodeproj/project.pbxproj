@@ -18,6 +18,8 @@
 		8DAC25B92AC2097B000C6C04 /* predited.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B82AC2097B000C6C04 /* predited.mp3 */; };
 		8DAC25BB2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25BA2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 */; };
 		8DAC25BD2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */; };
+		8DAC25C12AC20D89000C6C04 /* StartMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25C02AC20D89000C6C04 /* StartMenuScene.swift */; };
+		8DAC25C32AC20E2F000C6C04 /* StartMenuMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25C22AC20E2F000C6C04 /* StartMenuMethods.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		8DAC25B82AC2097B000C6C04 /* predited.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = predited.mp3; path = ../../test_grounds/test_grounds/predited.mp3; sourceTree = "<group>"; };
 		8DAC25BA2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "351566__bertrof__game-sound-correct-organic-violin.mp3"; path = "../../test_grounds/test_grounds/351566__bertrof__game-sound-correct-organic-violin.mp3"; sourceTree = "<group>"; };
 		8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "351565__bertrof__game-sound-incorrect-organic-violin.mp3"; path = "../../test_grounds/test_grounds/351565__bertrof__game-sound-incorrect-organic-violin.mp3"; sourceTree = "<group>"; };
+		8DAC25C02AC20D89000C6C04 /* StartMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuScene.swift; sourceTree = "<group>"; };
+		8DAC25C22AC20E2F000C6C04 /* StartMenuMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuMethods.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,8 @@
 				8DAC25B82AC2097B000C6C04 /* predited.mp3 */,
 				8DAC25BA2AC20988000C6C04 /* 351566__bertrof__game-sound-correct-organic-violin.mp3 */,
 				8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */,
+				8DAC25C02AC20D89000C6C04 /* StartMenuScene.swift */,
+				8DAC25C22AC20E2F000C6C04 /* StartMenuMethods.swift */,
 			);
 			path = mapaclick;
 			sourceTree = "<group>";
@@ -158,6 +164,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DAC25C12AC20D89000C6C04 /* StartMenuScene.swift in Sources */,
+				8DAC25C32AC20E2F000C6C04 /* StartMenuMethods.swift in Sources */,
 				8D00A3162ABCA56F00566008 /* ViewController.swift in Sources */,
 				8D00A3122ABCA56F00566008 /* AppDelegate.swift in Sources */,
 				8D00A3142ABCA56F00566008 /* SceneDelegate.swift in Sources */,
