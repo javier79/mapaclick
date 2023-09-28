@@ -13,6 +13,7 @@
 		8D00A3192ABCA56F00566008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A3172ABCA56F00566008 /* Main.storyboard */; };
 		8D00A31B2ABCA57100566008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31A2ABCA57100566008 /* Assets.xcassets */; };
 		8D00A31E2ABCA57100566008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31C2ABCA57100566008 /* LaunchScreen.storyboard */; };
+		8D1620262AC3480300823B5E /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D1620252AC3480300823B5E /* Icons.xcassets */; };
 		8DAC25B52AC2094E000C6C04 /* Guiton Sketch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */; };
 		8DAC25B72AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */; };
 		8DAC25B92AC2097B000C6C04 /* predited.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B82AC2097B000C6C04 /* predited.mp3 */; };
@@ -20,6 +21,15 @@
 		8DAC25BD2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */; };
 		8DAC25C12AC20D89000C6C04 /* StartMenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25C02AC20D89000C6C04 /* StartMenuScene.swift */; };
 		8DAC25C32AC20E2F000C6C04 /* StartMenuMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25C22AC20E2F000C6C04 /* StartMenuMethods.swift */; };
+		8DAC25C72AC21750000C6C04 /* AlphabeticGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25C62AC21750000C6C04 /* AlphabeticGameScene.swift */; };
+		8DAC25C92AC21BCB000C6C04 /* GameSceneObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25C82AC21BCB000C6C04 /* GameSceneObjects.swift */; };
+		8DAC25CB2AC21E9E000C6C04 /* BezierPathsForMapNodesAndRectangles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25CA2AC21E9E000C6C04 /* BezierPathsForMapNodesAndRectangles.swift */; };
+		8DAC25CD2AC228BE000C6C04 /* InitSetMapNodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25CC2AC228BE000C6C04 /* InitSetMapNodes.swift */; };
+		8DAC25CF2AC230F7000C6C04 /* GameOverScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25CE2AC230F7000C6C04 /* GameOverScene.swift */; };
+		8DAC25D12AC231D6000C6C04 /* GameOverObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25D02AC231D6000C6C04 /* GameOverObjects.swift */; };
+		8DAC25D32AC3261C000C6C04 /* RandomGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25D22AC3261C000C6C04 /* RandomGameScene.swift */; };
+		8DAC25D52AC32888000C6C04 /* PracticeAlphabeticGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25D42AC32888000C6C04 /* PracticeAlphabeticGameScene.swift */; };
+		8DAC25D72AC32AB8000C6C04 /* PracticeRandomGameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAC25D62AC32AB8000C6C04 /* PracticeRandomGameScene.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +41,7 @@
 		8D00A31A2ABCA57100566008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D00A31D2ABCA57100566008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D00A31F2ABCA57100566008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1620252AC3480300823B5E /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = ../../test_grounds/test_grounds/Icons.xcassets; sourceTree = "<group>"; };
 		8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Guiton Sketch.mp3"; path = "../../test_grounds/test_grounds/Guiton Sketch.mp3"; sourceTree = "<group>"; };
 		8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "cartoon_success_fanfair 1.mp3"; path = "../../test_grounds/test_grounds/cartoon_success_fanfair 1.mp3"; sourceTree = "<group>"; };
 		8DAC25B82AC2097B000C6C04 /* predited.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = predited.mp3; path = ../../test_grounds/test_grounds/predited.mp3; sourceTree = "<group>"; };
@@ -38,6 +49,15 @@
 		8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "351565__bertrof__game-sound-incorrect-organic-violin.mp3"; path = "../../test_grounds/test_grounds/351565__bertrof__game-sound-incorrect-organic-violin.mp3"; sourceTree = "<group>"; };
 		8DAC25C02AC20D89000C6C04 /* StartMenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuScene.swift; sourceTree = "<group>"; };
 		8DAC25C22AC20E2F000C6C04 /* StartMenuMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuMethods.swift; sourceTree = "<group>"; };
+		8DAC25C62AC21750000C6C04 /* AlphabeticGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphabeticGameScene.swift; sourceTree = "<group>"; };
+		8DAC25C82AC21BCB000C6C04 /* GameSceneObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSceneObjects.swift; sourceTree = "<group>"; };
+		8DAC25CA2AC21E9E000C6C04 /* BezierPathsForMapNodesAndRectangles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPathsForMapNodesAndRectangles.swift; sourceTree = "<group>"; };
+		8DAC25CC2AC228BE000C6C04 /* InitSetMapNodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitSetMapNodes.swift; sourceTree = "<group>"; };
+		8DAC25CE2AC230F7000C6C04 /* GameOverScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverScene.swift; sourceTree = "<group>"; };
+		8DAC25D02AC231D6000C6C04 /* GameOverObjects.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverObjects.swift; sourceTree = "<group>"; };
+		8DAC25D22AC3261C000C6C04 /* RandomGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomGameScene.swift; sourceTree = "<group>"; };
+		8DAC25D42AC32888000C6C04 /* PracticeAlphabeticGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeAlphabeticGameScene.swift; sourceTree = "<group>"; };
+		8DAC25D62AC32AB8000C6C04 /* PracticeRandomGameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeRandomGameScene.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +104,16 @@
 				8DAC25BC2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 */,
 				8DAC25C02AC20D89000C6C04 /* StartMenuScene.swift */,
 				8DAC25C22AC20E2F000C6C04 /* StartMenuMethods.swift */,
+				8DAC25C62AC21750000C6C04 /* AlphabeticGameScene.swift */,
+				8DAC25C82AC21BCB000C6C04 /* GameSceneObjects.swift */,
+				8DAC25CA2AC21E9E000C6C04 /* BezierPathsForMapNodesAndRectangles.swift */,
+				8DAC25CC2AC228BE000C6C04 /* InitSetMapNodes.swift */,
+				8DAC25CE2AC230F7000C6C04 /* GameOverScene.swift */,
+				8DAC25D02AC231D6000C6C04 /* GameOverObjects.swift */,
+				8DAC25D22AC3261C000C6C04 /* RandomGameScene.swift */,
+				8DAC25D42AC32888000C6C04 /* PracticeAlphabeticGameScene.swift */,
+				8DAC25D62AC32AB8000C6C04 /* PracticeRandomGameScene.swift */,
+				8D1620252AC3480300823B5E /* Icons.xcassets */,
 			);
 			path = mapaclick;
 			sourceTree = "<group>";
@@ -147,6 +177,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D00A31E2ABCA57100566008 /* LaunchScreen.storyboard in Resources */,
+				8D1620262AC3480300823B5E /* Icons.xcassets in Resources */,
 				8D00A31B2ABCA57100566008 /* Assets.xcassets in Resources */,
 				8D00A3192ABCA56F00566008 /* Main.storyboard in Resources */,
 				8DAC25BD2AC2099B000C6C04 /* 351565__bertrof__game-sound-incorrect-organic-violin.mp3 in Resources */,
@@ -164,10 +195,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DAC25D72AC32AB8000C6C04 /* PracticeRandomGameScene.swift in Sources */,
+				8DAC25CF2AC230F7000C6C04 /* GameOverScene.swift in Sources */,
 				8DAC25C12AC20D89000C6C04 /* StartMenuScene.swift in Sources */,
 				8DAC25C32AC20E2F000C6C04 /* StartMenuMethods.swift in Sources */,
+				8DAC25C92AC21BCB000C6C04 /* GameSceneObjects.swift in Sources */,
 				8D00A3162ABCA56F00566008 /* ViewController.swift in Sources */,
+				8DAC25D32AC3261C000C6C04 /* RandomGameScene.swift in Sources */,
+				8DAC25D52AC32888000C6C04 /* PracticeAlphabeticGameScene.swift in Sources */,
+				8DAC25C72AC21750000C6C04 /* AlphabeticGameScene.swift in Sources */,
 				8D00A3122ABCA56F00566008 /* AppDelegate.swift in Sources */,
+				8DAC25D12AC231D6000C6C04 /* GameOverObjects.swift in Sources */,
+				8DAC25CD2AC228BE000C6C04 /* InitSetMapNodes.swift in Sources */,
+				8DAC25CB2AC21E9E000C6C04 /* BezierPathsForMapNodesAndRectangles.swift in Sources */,
 				8D00A3142ABCA56F00566008 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -318,6 +358,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M8F4MCKD3M;
@@ -326,8 +367,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -346,6 +387,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = M8F4MCKD3M;
@@ -354,8 +396,8 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

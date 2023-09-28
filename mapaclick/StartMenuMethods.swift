@@ -220,7 +220,7 @@ class StartMenuMethods{
     
     func bestTimesRectangleBezierPathToSKSpriteNode()-> SKSpriteNode{//Big island frame properties
            
-        let shapeNode = SKShapeNode(path:TestClass().createRectangle().cgPath)
+        let shapeNode = SKShapeNode(path:BezierPathsForMapNodesAndRectangles().createRectangle().cgPath)
         shapeNode.strokeColor = UIColor.init(red: 0.2, green: 1, blue: 0.8745, alpha: 1.0)//UIColor.init(red: 0.5686, green: 1, blue: 0.8745, alpha: 1.0)
         shapeNode.lineWidth = 2.0
         let view = SKView(frame: UIScreen.main.bounds)

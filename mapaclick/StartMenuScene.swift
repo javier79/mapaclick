@@ -11,7 +11,7 @@ import Foundation
 import SpriteKit
 import AVFoundation
 
-class StartMenu: SKScene {
+class StartMenuScene: SKScene {
     /*ATTENTION IT MIGHT HAPPEN THAT AN OBJECT VAR NAME MAY REFERENCE A COLOR(An error of mine when i code the game EX:redButtonOne) AND SUCH OBJECT MAY HAVE ANOTHER COLOR DUE ESTETIC,
     THIS WAS A MISTAKE ON MY PART TO REFERENCE COLORS AS PART OF OBJECTS/VAR NAMES, BELOW IN COMMENTS I DETAIL OBJECTS WHICH NAMES HAVE CHANGED*/
     let buttonGreen:SKSpriteNode = StartMenuMethods().setGreenButton()//green button on main menu
@@ -113,7 +113,7 @@ class StartMenu: SKScene {
     
         
         /*If statement allows default music to play OR prevents music from being added if user select not to play background music*/
-        if StartMenu.backgroundMusicOn == true{
+        if StartMenuScene.backgroundMusicOn == true{
             initMusic()
         }
         //Adding to the scene the main background oldPaperBorderTexture(Parent) and on top of it elMorro picture and the mapaClickBanner
@@ -1079,7 +1079,7 @@ class StartMenu: SKScene {
                 }
             
             case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
-                print("Entering setCreditsPositioningAndScaling: iPhone 8plus, XR, 11, XSMax, 11ProMax")
+                //print("Entering setCreditsPositioningAndScaling: iPhone 8plus, XR, 11, XSMax, 11ProMax")
                 if (screenSize.width == 1242.0 && screenSize.height == 2208.0){
                     setCreditsPositioningForMediumLargeLessWideScreenSizes()
                     //print("Entering setCreditsPositioningAndScaling for: MediumLargeLessWideScreenSizes")
@@ -1619,7 +1619,7 @@ class StartMenu: SKScene {
             //initialization of mapOrder secondary objects, this line will execute once as you don't need your variables to be reinitialized everytime the button is touched.
             if mapOrderObjectsNotInitSet == true{
                 initSetSecondaryMapOrderObjects()
-                print("inicializando mapOrderObject")//programmer use
+                //print("inicializando mapOrderObject")//programmer use
                 mapOrderObjectsNotInitSet = false//line change value to false preventing the execution from reentering and reinitialize the objects again
             }
             scaleAndRepositionMapaclickBanner()
@@ -1638,7 +1638,7 @@ class StartMenu: SKScene {
             }*/
             if returnVolverRedButton.parent == nil{/*returnVolver button is not initialized until needed(if Mejores tiempos, Instrucciones or Opciones are pressed) also this prevent it from being reinitialized on memory each time bestTimes button is pressed **/
                 setReturnVolverRedButtonObject()
-                print("outside")
+                //print("outside")
             }
             scaleAndRepositionMapaclickBanner()
             addChildSKSPriteNodeToself(children: bestTimesRectangle)
@@ -1653,7 +1653,7 @@ class StartMenu: SKScene {
             
             if returnVolverRedButton.parent == nil{/*returnVolver button is not initialized until needed(if Mejores tiempos, Instrucciones or Opciones are pressed) also this prevent it from being reinitialized on memory each time bestTimes button is pressed **/
                setReturnVolverRedButtonObject()
-                print("inside")
+                //print("inside")
             }
             addChildSKLabelNodeToself(children: instructionsEspanolLabel)
             addChildSKSPriteNodeToself(children: returnVolverRedButton)
@@ -1673,15 +1673,15 @@ class StartMenu: SKScene {
             /*returnVolver button is not initialized until needed(if Mejores tiempos, Instrucciones or Opciones are pressed) also this prevent it from being reinitialized on memory each time opciones button is pressed **/
             if returnVolverRedButton.parent == nil{
                 setReturnVolverRedButtonObject()
-                print("wisin y yandel")//programmer use
+                //print("wisin y yandel")//programmer use
             }
             /*Due StartMenu.backgroundMusicOn is a static variable it will hold it's value even between transitions of scenes. So that we are able to keep StartMenu.backgroundMusicOn default value(true/background music enabled) in between scenes transitions or to keep user changes to defaults in between scenes transitions. In this instance StartMenu.backgroundMusicOn is evaluated in order for the scene to acknowledge if it must render the checkmark or not.**/
-            if StartMenu.backgroundMusicOn == true{
+            if StartMenuScene.backgroundMusicOn == true{
                 addChildSKSpriteNodeToParentSKSPriteNode(parent:opcionesCheckbox,children:opcionesCheckmark)
                 //opcionesCheckbox.addChild(opcionesCheckmark)
             }
             /*Due StartMenu.gamePlaySoundOn is a static variable it will hold it's value even between transitions of scenes. So that we are able to keep StartMenu.gamePlaySoundOn default value(true/background music enabled) in between scenes transitions or to keep user changes to defaults in between scenes transitions. In this instance StartMenu.gamePlaySoundOn is evaluated in order to acknowledge if it must render the checkmark or not.**/
-            if StartMenu.gamePlaySoundOn == true{
+            if StartMenuScene.gamePlaySoundOn == true{
                 addChildSKSpriteNodeToParentSKSPriteNode(parent:opcionesCheckboxTwo,children:opcionesCheckmarkTwo)
                 //opcionesCheckboxTwo.addChild(opcionesCheckmarkTwo)
             }
@@ -1904,7 +1904,7 @@ class StartMenu: SKScene {
              
             /**The following statement adds to drop down menu (mapOrderCountryDropDownMenu) mapOrderCountryDropDownMenuYellowBG(yellow background) and dropDownMenuLabelPR(text:"Puerto Rico") . The statements :&& mapOrderCountryDropDownMenuYellowBG.parent == nil && dropDownMenuLabelPR.parent == nil prevents mapOrderCountryDropDownMenuYellowBG and dropDownMenuLabelPR from being re-added to parent if they have already been added previously */
              if dropDownArrowLabel.text == dropDownMenuLabelPR.text && mapOrderCountryDropDownMenuYellowBG.parent == nil && dropDownMenuLabelPR.parent == nil{
-                 print("entre")
+                 //print("entre")
                  addChildSKSpriteNodeToParentSKSPriteNode(parent: mapOrderCountryDropDownMenu, children: mapOrderCountryDropDownMenuYellowBG)
                  //mapOrderCountryDropDownMenu.addChild(mapOrderCountryDropDownMenuYellowBG)
                  addChildSKLabelNodeToParentSKSPriteNode(parent: mapOrderCountryDropDownMenu, children: dropDownMenuLabelPR)
@@ -2064,13 +2064,13 @@ class StartMenu: SKScene {
         /**gameModeSelectionGreenButton navigate the user to alphabetic game or random game based on the previous selections on mapOrder view*/
         if (gameModeSelectionGreenButton.name == nodeTouched.node?.name){
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Alfabético (Alphabetic)"{
-                let startScene = StartScene(size: self.size)
+                let alphabeticGameScene = AlphabeticGameScene(size: self.size)
                 //self.removeAllActions()
                 //self.removeAllChildren()
-                self.view?.presentScene(startScene)
+                self.view?.presentScene(alphabeticGameScene)
             }
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Al Azar (Random)"{
-                let randomGame = RandomGame(size: self.size)
+                let randomGame = RandomGameScene(size: self.size)
                 //self.removeAllActions()
                 //self.removeFromParent()
                 self.view?.presentScene(randomGame)
@@ -2081,16 +2081,16 @@ class StartMenu: SKScene {
         else if (gameModeSelectionBlueButton.name == nodeTouched.node?.name){
             /**Selection for practiceAlphabeticGame*/
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Alfabético (Alphabetic)"{
-                StartMenu.playPracticeAlphabeticGame = true
-                let practiceAlphabeticGame = PracticeAlphabeticGame(size: self.size)
+                StartMenuScene.playPracticeAlphabeticGame = true
+                let practiceAlphabeticGame = PracticeAlphabeticGameScene(size: self.size)
                 //self.removeAllActions()
                 //self.removeFromParent()
                 self.view?.presentScene(practiceAlphabeticGame)
             }
             /**Selection for practiceRandomGame*/
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Al Azar (Random)"{
-                StartMenu.playPracticeRandomGame = true
-                let practiceRandomGame = PracticeRandomGame(size: self.size)
+                StartMenuScene.playPracticeRandomGame = true
+                let practiceRandomGame = PracticeRandomGameScene(size: self.size)
                 //self.removeAllActions()
                 //self.removeFromParent()
                 self.view?.presentScene(practiceRandomGame)
@@ -2108,7 +2108,7 @@ class StartMenu: SKScene {
         /**manage top checkbox/checkmark to disable music*/
         if (opcionesCheckbox.name == nodeTouched.node?.name && opcionesCheckmark.parent != nil){
             opcionesCheckmark.removeFromParent()
-            StartMenu.backgroundMusicOn = false
+            StartMenuScene.backgroundMusicOn = false
             //startMenuMusic.removeFromParent()
             musicPlayer.stop()
         }
@@ -2116,19 +2116,19 @@ class StartMenu: SKScene {
         else if (opcionesCheckbox.name == nodeTouched.node?.name && opcionesCheckmark.parent == nil){
             addChildSKSpriteNodeToParentSKSPriteNode(parent:opcionesCheckbox,children:opcionesCheckmark)
             //opcionesCheckbox.addChild(opcionesCheckmark)
-            StartMenu.backgroundMusicOn = true
+            StartMenuScene.backgroundMusicOn = true
             //self.addChild(startMenuMusic)
             initMusic()
         }
         /**The following two else ifs manage if sound is enabled or disabled*/
         else if (opcionesCheckboxTwo.name == nodeTouched.node?.name && opcionesCheckmarkTwo.parent != nil){
             opcionesCheckmarkTwo.removeFromParent()
-            StartMenu.gamePlaySoundOn = false
+            StartMenuScene.gamePlaySoundOn = false
         }
         else if (opcionesCheckboxTwo.name == nodeTouched.node?.name && opcionesCheckmarkTwo.parent == nil){
             addChildSKSpriteNodeToParentSKSPriteNode(parent:opcionesCheckboxTwo,children:opcionesCheckmarkTwo)
             //opcionesCheckboxTwo.addChild(opcionesCheckmarkTwo)
-            StartMenu.gamePlaySoundOn = true
+            StartMenuScene.gamePlaySoundOn = true
         }
         /**creditosButton when pressed wil navigate the user to creditos screen(view)*/
         else if (creditosButton.name == nodeTouched.node?.name){
