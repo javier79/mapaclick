@@ -11,6 +11,8 @@ import SpriteKit
 class GameSceneObjects{
     
     func mapRectangleGestureMGMTBezierPathToSKSpriteNode(bpRectangle: UIBezierPath)-> SKSpriteNode{
+        
+        
            
         let shapeNode = SKShapeNode(path:bpRectangle.cgPath)
         //Following if statement evaluates if current game have finished in order to color rectangle blue(to make the impression that the rectangle was removed from the scene)

@@ -89,6 +89,7 @@ class StartMenuScene: SKScene {
     static var playPracticeAlphabeticGame = false
     static var playPracticeRandomGame = false
     
+    //var musicPlayer: AVAudioPlayer!
     var musicPlayer = AVAudioPlayer()//music player object for background music
     //var musicURL:URL? //music file address on game file
     let musicURL:URL? = Bundle.main.url(forResource:"Guiton Sketch", withExtension:"mp3")//reference to PR Himn

@@ -84,7 +84,7 @@ class PracticeAlphabeticGameScene: SKScene{
         //controlPanelSKSpriteNode.position = CGPoint(x:self.size.width / 2, y:self.size.height / 16.5/*25*/)
         
         //Set scaling and positioning(for game play objects) attributes are set accordingly with screen size
-        //print("Screen size: \(screenSize)")
+        print("Screen size: \(screenSize)")
         switch (screenSize.width, screenSize.height) {
             
             case (2048.0, 2732.0):

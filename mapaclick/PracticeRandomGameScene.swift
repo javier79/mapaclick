@@ -89,7 +89,7 @@ class PracticeRandomGameScene: SKScene{
         //municipioNameLabel = labelForMunicipioNamesRandomGame(NameMunicipioLabel: municipioNameLabel)
         
         //The following block reads device screen size in points, based on screen size a function will execute to asign scaling and positioning attributes
-        //print("Screen size: \(screenSize)")
+        print("Screen size: \(screenSize)")
         switch (screenSize.width, screenSize.height) {
             
             case (2048.0, 2732.0):
