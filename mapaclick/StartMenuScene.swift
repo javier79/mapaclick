@@ -45,6 +45,8 @@ class StartMenuScene: SKScene {
     //let mapOrderOldPaperbackground:SKSpriteNode = StartMenuMethods().mapOrderOldPaperDropdownBG()//on map/order selection view is the view parent, centered rectangle where user interacts
     let mapOrderBackgroundRectangle:SKSpriteNode = StartMenuMethods().bestTimesRectangleBezierPathToSKSpriteNode()
     let mapOrderCountryDropDownMenu: SKSpriteNode =  StartMenuMethods().mapOrderCountryDropDownMenuSpriteNode()//dark grey rectangle rendered when label dropDownArrowLabel is pressed
+    let comingSoonLabel:SKLabelNode = StartMenuMethods().comingSoonLabel()//label stating the map coming soon when selecting map country at the time only Puerto Rico is being offered, this label will be positioned below "Puerto Rico" label
+    let comingSoonLabelTwo:SKLabelNode = StartMenuMethods().comingSoonLabelTwo()
     
     let orderDropDownMenu: SKSpriteNode = StartMenuMethods().mapOrderCountryDropDownMenuSpriteNodeTwo()/* dark grey rectangle rendered when label dropDownArrowLabelTwo(default text "Alfabetico(Alphabetic)") is pressed*/
     let mapOrderCountryDropDownMenuYellowBG: SKSpriteNode = StartMenuMethods().dropDownMenuLabelBackground()//yellow background that display on top of mapOrderCountryDropDownMenu
@@ -1159,7 +1161,7 @@ class StartMenuScene: SKScene {
         //Top Grey drop down tab.**IT DOES NOT HAVE PHYSICS BODY, THE TOUCH FUNCTION IS SET ON THE LABEL ON TOP OF IT**
         dropDownLabelBG.name = "dropDownLabelBG"
         dropDownLabelBG.position = CGPoint(x:100,y:50)
-        addChildSKSpriteNodeToParentSKSPriteNode(parent: mapOrderBackgroundRectangle, children: dropDownLabelBG)
+         addChildSKSpriteNodeToParentSKSPriteNode(parent: mapOrderBackgroundRectangle, children: dropDownLabelBG)
         //mapOrderOldPaperbackground.addChild(dropDownLabelBG)
         
         //Label "Puerto Rico"(default value) Lies on top of top grey drop down tab and contains the touch function
@@ -1174,6 +1176,7 @@ class StartMenuScene: SKScene {
         //Top drop down menu(dark gray)
         mapOrderCountryDropDownMenu.name = "mapOrderCountryDropDownMenu"
         mapOrderCountryDropDownMenu.position = CGPoint(x:100,y:25.3)
+        mapOrderCountryDropDownMenu.color = .red
         
         //Top yellow background that highlinght the selection on top of drop down menu(top dark gray)
         mapOrderCountryDropDownMenuYellowBG.name = "mapOrderCountryDropDownMenuYellowBG"
@@ -1186,6 +1189,14 @@ class StartMenuScene: SKScene {
         dropDownMenuLabelPR.text = "Puerto Rico"
         dropDownMenuLabelPR.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:179, height:9.5), center: CGPoint(x:56, y: 4.5))
         dropDownMenuLabelPR.physicsBody?.isDynamic = false
+        
+        comingSoonLabel.name = "comingSoonLabel"
+        comingSoonLabel.position = CGPoint(x:-0.5,y:-6.5)
+        comingSoonLabel.text = "Estados Unidos proximamente"
+                
+        comingSoonLabelTwo.name = "comingSoonLabelTwo"
+        comingSoonLabelTwo.position = CGPoint(x:-4.0,y:-14.5)
+        comingSoonLabelTwo.text = "(United States coming soon)"
         
         //Bottom gray drop down menu tab. **IT DOES NOT HAVE PHYSICS BODY, THE TOUCH FUNCTION IS SET ON THE LABEL ON TOP OF IT**
         dropDownLabelBGTwo.name = "dropDownLabelBGTwo"
@@ -1910,6 +1921,8 @@ class StartMenuScene: SKScene {
                  //mapOrderCountryDropDownMenu.addChild(mapOrderCountryDropDownMenuYellowBG)
                  addChildSKLabelNodeToParentSKSPriteNode(parent: mapOrderCountryDropDownMenu, children: dropDownMenuLabelPR)
                  //mapOrderCountryDropDownMenu.addChild(dropDownMenuLabelPR)
+                 addChildSKLabelNodeToParentSKSPriteNode(parent: mapOrderCountryDropDownMenu, children: comingSoonLabel)
+                 addChildSKLabelNodeToParentSKSPriteNode(parent: mapOrderCountryDropDownMenu, children: comingSoonLabelTwo)
              }
 
          }

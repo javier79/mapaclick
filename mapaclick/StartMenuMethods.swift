@@ -653,6 +653,26 @@ class StartMenuMethods{
             
     }
     
+    func comingSoonLabel()-> SKLabelNode{
+            let label = SKLabelNode()
+            label.fontName = "Palatino-BoldItalic"
+            label.fontSize = 8
+            label.fontColor = .white
+            //label.text = "Mapa de los Estados Unidos proximamente\nUnited States map coming soon"
+            //label.numberOfLines = 2
+            return label
+        }
+        
+        func comingSoonLabelTwo()-> SKLabelNode{
+            let label = SKLabelNode()
+            label.fontName = "Palatino-BoldItalic"
+            label.fontSize = 7.5
+            label.fontColor = .white
+            //label.text = "Mapa de los Estados Unidos proximamente\nUnited States map coming soon"
+            //label.numberOfLines = 2
+            return label
+        }
+    
     func mapOrderTwoLineLabelDefaults()->SKLabelNode{
       let label = SKLabelNode()
       label.fontName = "HelveticaNeue-Bold"//"GillSans-SemiBold"
