@@ -1168,7 +1168,7 @@ class StartMenuScene: SKScene {
         dropDownArrowLabel.name = "dropDownArrowLabel"
         dropDownArrowLabel.position = CGPoint(x:-55.0,y:-4.5)
         dropDownArrowLabel.text = "Puerto Rico"
-        dropDownArrowLabel.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:179, height:9.5), center: CGPoint(x:55, y: 4.5))
+        dropDownArrowLabel.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:215, height:16.5), center: CGPoint(x:72, y: 4.5))//(width:220, height:30.5), center: CGPoint(x:65, y: 4.5)) (base attributes, current attributes are a fine tunning from base attributes )
         dropDownArrowLabel.physicsBody?.isDynamic = false
         addChildSKLabelNodeToParentSKSPriteNode(parent: dropDownLabelBG, children: dropDownArrowLabel)
         //dropDownLabelBG.addChild(dropDownArrowLabel)
@@ -1206,7 +1206,7 @@ class StartMenuScene: SKScene {
         
         //Label "Alfabético (Alphabetic)"(default value) Lies on top of bottom grey drop down tab and contains the touch function
         dropDownArrowLabelTwo.name = "dropDownArrowLabelTwo"
-        dropDownArrowLabelTwo.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:179, height:9.5), center: CGPoint(x:26, y: 4.5))
+        dropDownArrowLabelTwo.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:215, height:16.5), center: CGPoint(x:43, y: 4.5))
         dropDownArrowLabelTwo.physicsBody?.isDynamic = false
         dropDownArrowLabelTwo.position = CGPoint(x:-26.0,y:-4.5)//posicionamiento con respecto al parent dropDownLabelBGTwo
         //dropDownArrowLabelTwo.preferredMaxLayoutWidth = 300
@@ -2181,7 +2181,7 @@ class StartMenuScene: SKScene {
         label.text = orderDropDownMenuLabelTwo.text
         /**When  label text attribute is passed to another label the text rendering result might not be as expected(maybe a glitch)  in this scenario when  text attribute("Al Azar(Random)" is passed to dropDownArrowLabelTwo, the text rendered more towards the center of the drop down tab, what requires the label to be repositioned to the left, as a result of this is necessary to also reposition the physics body (but due Physics bodies can't be repositioned) so Physics body is set to nil or removed and redifined with new position*/
          label.physicsBody = nil
-         label.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:179, height:9.5), center: CGPoint(x:40, y: 4.5))
+         label.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:215, height:16.5), center: CGPoint(x:57, y: 4.5))//CGSize(width:179, height:9.5), center: CGPoint(x:40, y: 4.5))
          label.physicsBody?.isDynamic = false
          label.position = CGPoint(x:-40.0,y:-4.5)//despues que escribimos el label hay reposicionarlo
          //dropDownLabelBGTwo.addChild(label)
@@ -2194,7 +2194,7 @@ class StartMenuScene: SKScene {
          label.text = orderDropDownMenuLabel.text
         /**When  label text attribute is passed to another label the text rendering result might not be as expected(maybe a glitch)  in this scenario when  text attribute("ALfabetico(ALphabetic)") is passed to dropDownArrowLabelTwo, the text rendered more towards the center of the drop down tab, what requires the label tobe repositioned to the left, as a result of this is necessary to also reposition the physics body (but due Physics bodies can't be repositioned) so Physics body is set to nil or removed and redifined with new position*/
          label.physicsBody = nil
-         label.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:179, height:9.5), center: CGPoint(x:26, y: 4.5))
+         label.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:215, height:16.5), center: CGPoint(x:43, y: 4.5))// CGSize(width:179, height:9.5), center: CGPoint(x:26, y: 4.5))
          label.physicsBody?.isDynamic = false
          label.position = CGPoint(x:-26.0,y:-4.5)
          //dropDownLabelBGTwo.addChild(label)
