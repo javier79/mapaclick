@@ -10,10 +10,16 @@ import SpriteKit
 
 class GameSceneObjects{
     
+    
+    func createSceneBackground(scene: SKScene) -> SKSpriteNode {
+        let backgroundNode = SKSpriteNode(color: UIColor(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0), size: scene.size)
+        backgroundNode.position = CGPoint(x: scene.size.width / 2, y: scene.size.height / 2)
+        backgroundNode.zPosition = -1
+        backgroundNode.name = "background"
+        return backgroundNode
+    }
+    
     func mapRectangleGestureMGMTBezierPathToSKSpriteNode(bpRectangle: UIBezierPath)-> SKSpriteNode{
-        
-        
-           
         let shapeNode = SKShapeNode(path:bpRectangle.cgPath)
         //Following if statement evaluates if current game have finished in order to color rectangle blue(to make the impression that the rectangle was removed from the scene)
         if AlphabeticGameScene.completedGame == true || RandomGameScene.completedGame == true || PracticeAlphabeticGameScene.completedGame == true || PracticeRandomGameScene.completedGame == true {
@@ -24,7 +30,30 @@ class GameSceneObjects{
             shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)//(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
         }
         //shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)//(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
+        //shapeNode.fillColor = UIColor .red
         shapeNode.lineWidth = 2.5
+        let view = SKView(frame: UIScreen.main.bounds)
+        let texture = view.texture(from: shapeNode)!
+        let rectangleNode = SKSpriteNode(texture: texture)
+        rectangleNode.position = CGPoint(x:280, y:190)
+        return  rectangleNode
+    }
+    
+    func mapRectangleBackground(bpRectangle: UIBezierPath)-> SKSpriteNode{
+        let shapeNode = SKShapeNode(path:bpRectangle.cgPath)
+        //Following if statement evaluates if current game have finished in order to color rectangle blue(to make the impression that the rectangle was removed from the scene)
+        /*if AlphabeticGameScene.completedGame == true || RandomGameScene.completedGame == true || PracticeAlphabeticGameScene.completedGame == true || PracticeRandomGameScene.completedGame == true {
+            shapeNode.strokeColor = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0)
+        }
+        //If none of the games have been completed means we are at the start of a game and rectangle color must be paint yellow
+        else{
+            shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)//(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
+        }*/
+        //shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)//(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
+        //shapeNode.fillColor = UIColor .red
+        shapeNode.lineWidth = 2.5
+        shapeNode.fillColor = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0)
+        shapeNode.strokeColor = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0)
         let view = SKView(frame: UIScreen.main.bounds)
         let texture = view.texture(from: shapeNode)!
         let rectangleNode = SKSpriteNode(texture: texture)

@@ -11,7 +11,14 @@ import SpriteKit
 import AVFoundation
 
 class AlphabeticGameScene: SKScene{
+    
+    let gameSceneObjects = GameSceneObjects()/*backgroundNode needs self properties for the size param, i need to call GameSceneObjects() class where initialization function for backgroundNode lives(this class hold all initialization parameters for all objects on the game scene).
+                                              The initialization of backgroundNode occurs on did move, as self and its properties are not available until run time*/
+    var backgroundNode: SKSpriteNode!//declared as var in order to be initialized on didMove when self is available(read comment for gameSceneObjects declaration up^
+    
     let mapRectangleGestureMGMT: SKSpriteNode = GameSceneObjects().mapRectangleGestureMGMTBezierPathToSKSpriteNode(bpRectangle: BezierPathsForMapNodesAndRectangles().createRectangle())//This Node is invisible, it works by parenting containeNode and applying handgestures as SKNode have no anchor point property which is needed to be set at 0.5 for the pinch gesture to be able to zoom and be centered
+    
+    let mapRectangleBackground: SKSpriteNode = GameSceneObjects().mapRectangleBackground(bpRectangle: BezierPathsForMapNodesAndRectangles().createRectangle())
     
     let controlPanelSKSpriteNode = GameSceneObjects().initControlPanel()
     let skipButton = GameSceneObjects().skipBlueButton()//used in more than one function
@@ -74,9 +81,10 @@ class AlphabeticGameScene: SKScene{
     
          
     override func didMove(to view: SKView){
+        backgroundNode = gameSceneObjects.createSceneBackground(scene: self)
         
-        
-        self.backgroundColor = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0) /* #42c2ff */ /* #1cb3c8 */ //UIColor.init(red: 0.5373, green: 0.8431, blue: 0.9294, alpha: 1.0)//blue background that resembles the ocean
+        //self.name = "alphabeticgame"
+        //self.backgroundColor = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0) /* #42c2ff */ /* #1cb3c8 */ //UIColor.init(red: 0.5373, green: 0.8431, blue: 0.9294, alpha: 1.0)//blue background that resembles the ocean
         
         /**The following  objects are the parent for all rendering objects, class positioning attributers are applied in order for objects to render the same independent of the screen size, In the case of containerNode it's positioning is set  based on its parent
         timerBackgroundTwo. The reason for not giving containerNode class positioning was due when class attributes were applied to containerNode it would render different in devices with smaller screen size(maybe something im not aware about, or a glitch of some kind).*/
@@ -84,17 +92,20 @@ class AlphabeticGameScene: SKScene{
         //Invisible Node see comment n its declaration at the top
         //mapRectangleGestureMGMT.zPosition = 0
         mapRectangleGestureMGMT.anchorPoint = CGPoint(x:0.5, y:0.5)
+        mapRectangleGestureMGMT.name = "mapRectangle"
         //mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)
         //mapRectangleGestureMGMT.setScale(1.33)//1.38
         
         //containerNode.zPosition = -1
         containerNode.position = CGPoint(x:-280, y:-190)//CGPoint(x:self.size.width/2 - 285, y:self.size.height/2 - 175) /*CGPoint(x:-275 , y:-75 /*15*/)*//**Sknode containing(children) map sprites, desecheo cover(node whose only job is to hid desecheo island, rectangular frames)*/
+        containerNode.name = "containerNode"
         
         //timerBackgroundTwo.setScale(1.20)
         //timerBackgroundTwo.position = CGPoint(x:self.size.width / 2/*333.5*/, y:self.size.height / 6.4)/**parent to labelTimer*/
         
         controlPanelSKSpriteNode.zPosition = 1//Set to one in order for the map to zoom and remain behind
         controlPanelSKSpriteNode.size = CGSize(width:self.size.width - 1, height:50) //50)
+        controlPanelSKSpriteNode.name = "controlPanelSKSpriteNode"
         //controlPanelSKSpriteNode.position = CGPoint(x:self.size.width / 2, y:self.size.height / 14.8) //14.8)
         
         //skipButton.setScale(1.50)
@@ -140,6 +151,12 @@ class AlphabeticGameScene: SKScene{
                setScaleAndIndepRenderingPositioningForSmallScreenSizes()//This line will catch any device which screen measure is none of the above
                 break
         }
+        
+        mapRectangleBackground.size = mapRectangleGestureMGMT.size
+        mapRectangleBackground.position = mapRectangleGestureMGMT.position
+        mapRectangleBackground.name = "mapRectangleBackground"
+                
+        
         //print("Screen size: \(screenSize)")
         
         /*if screenSize.width == 750 && screenSize.height == 1334 || screenSize.width == 1080 && screenSize.height == 2340 || screenSize.width == 1125 && screenSize.height == 2436{
@@ -174,6 +191,8 @@ class AlphabeticGameScene: SKScene{
         
         /**Following objects are related to goldBackground SKSPriteNode*/
         //addChildSKSpriteNodeToParentself(children:containerSKSPriteNode)
+        self.addChild(backgroundNode)
+        self.addChild(mapRectangleBackground)
         addChildSKLabelNodeToParentSKSpriteNode(parent: municipiosNameBackground, children: municipioNameLabel)
         addChildSKSpriteNodeToParentSKSpriteNode(parent: controlPanelSKSpriteNode, children: municipiosNameBackground)
         addChildSKLabelNodeToParentSKSpriteNode(parent: controlPanelSKSpriteNode, children: labelScores)
@@ -437,11 +456,194 @@ class AlphabeticGameScene: SKScene{
        
     }
     
-  
     
+    
+    /*@objc func handleTapFrom(_ sender: UITapGestureRecognizer) {
+        guard sender.state == .recognized else { return }
+
+        let touchLocation = sender.location(in: sender.view)
+        let location = self.convertPoint(fromView: touchLocation)
+
+        // Get the node at the touch location
+        let spriteNode = self.atPoint(location) as? SKSpriteNode
+
+        if let node = spriteNode {
+            print("Tapped node: \(node.name ?? "Unnamed")") // Debug info
+            if node.name == municipioNameLabel.text {
+                playCorrectSound()
+                paintNode(spriteNode: node)
+                setLabelForMunicipioNameAndAddToNode(nodeSprite: node)
+                removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
+                setNewMunicipioNameToLookUp()
+                addToScoreCountWriteToLabel()
+            }
+        } else {
+            print("No node detected at: \(location)") // Debug info
+        }
+    }*/
     
     
     @objc func handleTapFrom(_ sender: UITapGestureRecognizer){
+            
+            
+            if sender.state == .recognized {//execute code as soon as gesture is recognized
+                
+                let touchLocation = sender.location(in: sender.view)//convert UIView coordinates to SpriteKit
+                let location = self.convertPoint(fromView: touchLocation)//Defines the space where touch is taking effect, in this case StartScene
+                let touchedNode = self.physicsWorld.body(at:location)//Defines that touch will take effect when it gets in contact with an SKphysics body
+                
+                
+                                
+                if (touchedNode != nil){//This line controls the flow by evaluating if a SKphysics body was touch or not, touchNode will return nil when the screen is touched but no SKphysics body was touched
+                    if (municipioNameLabel.text == touchedNode?.node?.name){//Evaluates touch by matching the label text attribute with node's name attributes
+                        let spritenode = touchedNode?.node as! SKSpriteNode//pass touchedNode node attribute to spritenode, to apply changes
+                        //spritenode.physicsBody = nil LINE WAS COMMENTED DUE PHYSICS ARE NEEDED A LONG THE GAME TO CATCH THE WRONG ANSWERED NODES THAT HAVE BEEN ALREADY IDENTIFIED AS IN ANDROID GAME.
+                        playCorrectSound()
+                        setLabelForMunicipioNameAndAddToNode(nodeSprite: spritenode)
+                        //playCorrectSound()
+                        paintNode(spriteNode: spritenode)//color SKSpriteNode green
+                        /**Set labels and add them to map texture(node)*/
+                        //setLabelForMunicipioNameAndAddToNode(nodeSprite: spritenode)
+                        //playCorrectSound()
+                        /**Element identified is removed from names array, Evaluates for game complition and removal of Skip button*/
+                        removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
+                        /**set new municipio to look after*/
+                        setNewMunicipioNameToLookUp()
+                        /**add one to number of municipios located*/
+                        addToScoreCountWriteToLabel()
+                        print("Inside Physics")
+                        return
+                        
+                    }
+
+                    
+                    /*Skip button touch action**/
+                    else if (skipButton.name == touchedNode?.node?.name){//Es lo mismo que preguntar si el physics body tocado se llama (name) como skipButton, la condicion quiere saber si tocamos skipButton basicamente
+                        addOneTocurrentIndexSetNameToLookUp()
+                        return
+                    }
+                    /**Exit button touch action*/
+                    else if (exitRedButton.name == touchedNode?.node?.name){
+                        goToStartMenu()
+                        return
+                    }
+                   
+                    //else statement will execute whenever a wrong municipio node is touched
+                    else{
+                        playIncorrectSound()
+                        
+                        return fail = true//variable updates to apply 3 seconds penalty at timer function
+                    }
+                }
+                
+                
+                
+                
+                else if (touchedNode == nil){
+                  
+                    print("inside touchesNode == nil")
+                    
+                    
+                    
+                    
+                   /* if controlPanelSKSpriteNode.contains(location) {
+                            
+                                return
+                            }*/
+           
+                    //let touchLocation = sender.location(in: sender.view)
+                    //let location = self.convertPoint(fromView: touchLocation)
+
+                    //Get all nodes at the touch location
+                    
+                    let touchedNodes = self.nodes(at: location)
+                    
+                    
+                    
+                    //let touchedNode = self.atPoint(location) // Get the node at the touch location
+
+                    // Check if the touched node is an SKSpriteNode and if it matches the municipio name
+                    /*if let spriteNode = touchedNode as? SKSpriteNode, spriteNode.name == municipioNameLabel.text {
+                        // Proceed with actions on the spriteNode
+                        playCorrectSound()
+                        paintNode(spriteNode: spriteNode)
+                        setLabelForMunicipioNameAndAddToNode(nodeSprite: spriteNode)
+                        removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
+                        setNewMunicipioNameToLookUp()
+                        addToScoreCountWriteToLabel()
+                        return
+                    }*/
+                    //print(touchedNodes)
+                    
+                    
+                    /*if (touchedNodes.contains(where: { $0.name == controlPanelSKSpriteNode.name }))  {
+                        return // Ignore the touch if it's on the control panel or the background
+                    }*/
+                    
+
+                    if let spriteNode = touchedNodes.first(where: { $0.name == municipioNameLabel.text }) as? SKSpriteNode {
+                                //spriteNode.physicsBody = nil // Remove physics if needed
+                                playCorrectSound()
+                                paintNode(spriteNode: spriteNode)
+                                setLabelForMunicipioNameAndAddToNode(nodeSprite: spriteNode)
+                                removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
+                                setNewMunicipioNameToLookUp()
+                                addToScoreCountWriteToLabel()
+                                print("Inside Nodes")
+                                return
+                            }
+                    
+                    if ((touchedNodes.first(where: { $0.name != municipioNameLabel.text }) as? SKSpriteNode) != nil) && (touchedNodes.first(where: { $0.parent == containerNode }) != nil) || ((touchedNodes.first(where: { $0.name == mapRectangleBackground.name })) != nil){
+                        print("end")
+                        // Handle incorrect touch
+                        playIncorrectSound()
+                        fail = true // Apply penalty
+                        return
+                    }
+                    
+                    /*if ((touchedNodes.first(where: { $0.name == mapRectangleGestureMGMT.name }) as? SKSpriteNode) != nil) && ((touchedNodes.first(where: { $0.parent != containerNode })  as? SKSpriteNode) != nil) && ((touchedNodes.first(where: { $0.parent != mapRectangleGestureMGMT })  as? SKSpriteNode) != nil){
+                        print("test")
+                        // Handle incorrect touch
+                        playIncorrectSound()
+                        fail = true // Apply penalty
+                        return
+                    }*/
+                    
+                   /*if touchedNodes.contains(where: { $0.name == backgroundNode.name })  {
+                        print("BG2")
+                       return // Ignore the touch if it's on the control panel or the background
+                   }*/
+                    /*if ((touchedNodes.first(where: { $0.name == mapRectangleBackground.name })) != nil) {
+                        print("white background")
+                        return // Exit the function after handling the tap
+                    }*/
+                    
+                   
+                    if ((touchedNodes.first(where: { $0.name == backgroundNode.name })) != nil) {
+                        print("inside firt")
+                        return // Exit the function after handling the tap
+                    }
+                    
+                    if (touchedNodes.contains(where: { $0.name == controlPanelSKSpriteNode.name }))  {
+                        return // Ignore the touch if it's on the control panel or the background
+                    }
+                    
+                        
+                        /*print("second end")
+                        // Handle incorrect touch
+                        playIncorrectSound()
+                        fail = true // Apply penalty*/
+                    
+                }
+
+            }
+        }
+    
+    
+    
+    
+    
+    /*@objc func handleTapFrom(_ sender: UITapGestureRecognizer){
         
         
         if sender.state == .recognized {//execute code as soon as gesture is recognized
@@ -467,15 +669,18 @@ class AlphabeticGameScene: SKScene{
                     setNewMunicipioNameToLookUp()
                     /**add one to number of municipios located*/
                     addToScoreCountWriteToLabel()
+                    return
                 }
                 
                 /*Skip button touch action**/
                 else if (skipButton.name == touchedNode?.node?.name){//Es lo mismo que preguntar si el physics body tocado se llama (name) como skipButton, la condicion quiere saber si tocamos skipButton basicamente
                     addOneTocurrentIndexSetNameToLookUp()
+                   
                 }
                 /**Exit button touch action*/
                 else if (exitRedButton.name == touchedNode?.node?.name){
                     goToStartMenu()
+                    
                 }
                
                 //else statement will execute whenever a wrong municipio node is touched
@@ -486,7 +691,7 @@ class AlphabeticGameScene: SKScene{
                 }
             }
         }
-    }
+    }*/
     
 
     @objc func handlePinchFrom(_ sender: UIPinchGestureRecognizer) {
@@ -934,185 +1139,448 @@ class AlphabeticGameScene: SKScene{
            /**The execution will enter the case that corresponds with the String value of municipioNameLabel.text*/
            switch municipioNameLabel.text {
                    
-           case "Adjuntas", "Aguada", "Añasco", "Lajas", "Maricao", "Las Marías", "Moca", "Yauco", "Guánica", "Lares", "Arecibo", "Utuado", "Ponce", "Jayuya",
-               "Manatí", "Coamo", "Orocovis", "Villalba", "Comerío", "Toa Alta", "Caguas", "Cidra", "Salinas", "Culebra", "Naguabo", "Yabucoa" :
+           case "Maricao", "Moca", "Arecibo", "Coamo", "Yabucoa" :
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
               locationNameLabel.horizontalAlignmentMode = .center
               locationNameLabel.verticalAlignmentMode = .center
+               
+           case "Lares":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.5
+               locationNameLabel.position = CGPoint(x: -1.5, y: -3.0)
+               
+           case "Yauco":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 7.0
+               locationNameLabel.position = CGPoint(x: -0.6, y: 0.5)
+               
+           case "Aibonito":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 7.0
+               locationNameLabel.position = CGPoint(x: -0.5, y: -2.5)
+               
+           case "Utuado", "Lajas":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+               locationNameLabel.position = CGPoint(x: 0.5, y: 1.5)
+               
+           case "Salinas":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+               locationNameLabel.position = CGPoint(x: -3.0, y: -2.5)
+               
+               
+           case "Ponce":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+               locationNameLabel.position = CGPoint(x: -2.8, y: 3.5)
+
+               
+           case "Orocovis":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+               locationNameLabel.position = CGPoint(x: 3.5, y: -5.5)
+               
+           case "Jayuya" :
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.position = CGPoint(x: 1.0, y: -10.0)
+               
+           case "Adjuntas":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.position = CGPoint(x: 0.0, y: -3.5)
+               
+           case "Villalba":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.position = CGPoint(x: -0.6, y: -4.0)
+               
+           case "Morovis" :
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.2
+               locationNameLabel.position = CGPoint(x: 0.7, y: -3.5)
+               
+           case "Aguada":
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.fontSize = 6.3//4.7
+                locationNameLabel.position = CGPoint(x: 0.3, y: -5.0)
+               
+           case "Caguas":
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.fontSize = 6.3//4.7
+                locationNameLabel.position = CGPoint(x: 1.5, y: -5.0)
+               
+           case "Maunabo":
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.fontSize = 5.9//4.7
+                locationNameLabel.position = CGPoint(x: 4.1, y: -5.5)
+               
+           case  "Cidra":
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.fontSize = 6.5//4.7
+                locationNameLabel.position = CGPoint(x: 3.0, y: -5.5)
+               
+           case "Culebra" :
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.position = CGPoint(x: 5.0, y: -2.0)
+               
+           case "Añasco" :
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.fontSize = 6.8
+                locationNameLabel.position = CGPoint(x: 3.5, y: -1.0)
               
-          case "Camuy", "Aguadilla", "Juncos":
+           case "Camuy":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.0
-              locationNameLabel.position = CGPoint(x: -2.0, y: 0.0)
+              locationNameLabel.fontSize = 6.0
+              locationNameLabel.position = CGPoint(x: -2.5, y: -3.5)
+               
+           case "Comerío":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.3
+              locationNameLabel.position = CGPoint(x: -0.5, y: -3.5)
+               
+           case "Naguabo":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.0
+               locationNameLabel.position = CGPoint(x: 0.0, y: -5.5)
+               
+           case "Aguadilla":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.6
+               locationNameLabel.position = CGPoint(x: -1.0, y: 3.0)
+               
+          case "Juncos":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.0
+              locationNameLabel.position = CGPoint(x: -3.0, y: 1.5)
+               
+               
+          case "Manatí":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.4
+               locationNameLabel.position = CGPoint(x: 2.5, y: 0.5)
+               
+           case "Vieques":
+                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+                locationNameLabel.fontSize = 6.9
+                locationNameLabel.position = CGPoint(x: -2.5, y: -1.0)
+               
+               
+          case "Toa Alta":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.5
+              locationNameLabel.position = CGPoint(x: 2.0, y: -2.0)
+               
+               
+           case "Las Marías":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.5
+               locationNameLabel.position = CGPoint(x: 3.0, y: -4.5)
+               
 
           case "Cayey":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.position = CGPoint(x: -6.5, y: 3.0)
+              locationNameLabel.position = CGPoint(x: -8.5, y: -5.0)
 
               
-          case "Isabela", "Corozal", "Morovis", "Aibonito", "Gurabo", "Luquillo":
+          case "Luquillo":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.0
-              locationNameLabel.position = CGPoint(x: 0.5, y: 0.5)
+              locationNameLabel.fontSize = 6.1
+              locationNameLabel.position = CGPoint(x: -0.5, y: 2.0)
               //locationNameLabel.zPosition = 1
+               
+           case "Guánica":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.3
+               locationNameLabel.position = CGPoint(x: 1.5, y: -2.0)
+               
+           case "Gurabo":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.0
+               locationNameLabel.position = CGPoint(x: 2.0, y: 1.5)
+          
+
+               
+          case "Isabela":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.8
+              locationNameLabel.position = CGPoint(x: 1.5, y: -2.5)
+               
+          case "Corozal":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.7
+              locationNameLabel.position = CGPoint(x: -0.5, y: -3.0)
 
               
           case "Hormigueros":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-          locationNameLabel.fontSize = 3.9
-              locationNameLabel.zRotation = 10.0
-              locationNameLabel.position = CGPoint(x: -0.5, y: 2.5)
+              locationNameLabel.fontSize = 4.0
+               locationNameLabel.zRotation = -0.55
+              locationNameLabel.position = CGPoint(x: -1.5, y: -2.5)
        
-           case "Maunabo" :
-               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-               locationNameLabel.fontSize = 4.5
-               locationNameLabel.zRotation = 10.0
-          locationNameLabel.position = CGPoint(x: -1.5/*-0.5*/, y: 2.5)
-
-              
-          case "Rincón", "Canóvanas", "Arroyo", "Patillas" :
+           
+          case "Patillas" :
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.0
-              locationNameLabel.zRotation = 10.5
-              locationNameLabel.position = CGPoint(x: -4.5, y: 1.0)
+              locationNameLabel.fontSize = 7.3
+               locationNameLabel.zRotation = -0.85
+              locationNameLabel.position = CGPoint(x: -6.0, y: -5.0)
+               
+          case "Rincón" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.8
+               locationNameLabel.zRotation = -1.0
+               locationNameLabel.position = CGPoint(x: -5.5, y: -1.0)
+               
+         case "Arroyo" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.8
+              locationNameLabel.zRotation = -1.1
+              locationNameLabel.position = CGPoint(x: -3.0, y: -1.0)
+               
+         case "Canóvanas" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.9
+              locationNameLabel.zRotation = -1.43
+              locationNameLabel.position = CGPoint(x: -4.5, y: -1.0)
 
               
           case "Mayagüez":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.4
-              locationNameLabel.position = CGPoint(x: 42.0, y: 21.5)
+              locationNameLabel.fontSize = 6.7
+               locationNameLabel.position = CGPoint(x: 2.5, y: -4.5)
 
               
-          case "Quebradillas", "Hatillo", "Peñuelas", "Carolina":
+          case "Carolina":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.5
-              locationNameLabel.zRotation = 10.8
-              locationNameLabel.position = CGPoint(x: 1.5, y: -1.2)
+              locationNameLabel.fontSize = 6.9
+               locationNameLabel.zRotation = -1.1
+               locationNameLabel.position = CGPoint(x: 3.0, y: 0.5)
+               
+          case "Quebradillas":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 5.9
+              locationNameLabel.zRotation = -1.3
+              locationNameLabel.position = CGPoint(x: -0.5, y: 1.5)
+               
+          case "Peñuelas":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.8
+              locationNameLabel.zRotation = -1.0
+              locationNameLabel.position = CGPoint(x: -2.8, y: 0.5)
+               
+          case "Hatillo":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 8.0
+              locationNameLabel.zRotation = -1.0
+              locationNameLabel.position = CGPoint(x: -1.5, y: -2.5)
 
               
           case "Guayanilla" :
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.5
-              locationNameLabel.position = CGPoint(x: 2.5, y:12.5)
-              locationNameLabel.zRotation = 9.0
+              locationNameLabel.fontSize = 5.8
+              locationNameLabel.position = CGPoint(x: 2.7, y:-12.5)
+              locationNameLabel.zRotation = 0.5
           
           case "Guaynabo":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.0
-              locationNameLabel.zRotation = 1.6
-              locationNameLabel.position = CGPoint(x: 0.5, y: -1.2)
+              locationNameLabel.fontSize = 6.1
+               locationNameLabel.zRotation = 1.3
+              locationNameLabel.position = CGPoint(x: 2.0, y: -9.0)
 
           case  "Barceloneta":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 4.5
-              locationNameLabel.zRotation = 1.9
-              locationNameLabel.position = CGPoint(x: 0.5, y: -2.2)
+              locationNameLabel.fontSize = 5.3
+              locationNameLabel.zRotation = 1.15
+              locationNameLabel.position = CGPoint(x: 0.5, y: 0.5)
               
-          case  /*"Barceloneta",*/ "Bayamón", "Dorado"/*, "Guaynabo"*/:
+          case "Dorado":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 5.1
-              locationNameLabel.zRotation = 1.9
-              locationNameLabel.position = CGPoint(x: 0.5, y: -1.2)
+              locationNameLabel.fontSize = 6.6
+               locationNameLabel.zRotation = -1.0
+              locationNameLabel.position = CGPoint(x: -8.0, y: -2.5)
+               
+         case  "Bayamón":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.5
+              locationNameLabel.zRotation = 1.1
+              locationNameLabel.position = CGPoint(x: 1.5, y: 0.5)
 
               
           case "Florida" :
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 4.5
-              locationNameLabel.position = CGPoint(x: 0.5, y: 0.5)
+              locationNameLabel.fontSize = 6.3
+               locationNameLabel.zRotation = 1.1
+              locationNameLabel.position = CGPoint(x: 2.0, y: -2.0)
 
               
-          case  "Ciales", "Ceiba" :
+          case  "Ciales":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
               locationNameLabel.position = CGPoint(x: 5.5, y: 0.5)
+               
+          case  "Ceiba" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.5
+              locationNameLabel.position = CGPoint(x: 6.0, y: -3.0)
 
               
               
-          case "Naranjito", "Barranquitas", "Las Piedras", "Humacao" :
+          case "Naranjito" :
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 4.5
-              locationNameLabel.zRotation = 2.3
-              locationNameLabel.position = CGPoint(x: 3.5, y: 1.0)
+              locationNameLabel.fontSize = 6.6
+              locationNameLabel.zRotation = 0.9
+              locationNameLabel.position = CGPoint(x: 3.0, y: -3.0)
+               
+               
+           case "Las Piedras":
+               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.8
+               locationNameLabel.zRotation = 1.02
+               locationNameLabel.position = CGPoint(x: 3.0, y: -3.0)
+               
+               
+          case "Humacao" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+               locationNameLabel.fontSize = 6.6
+               locationNameLabel.zRotation = 0.51
+               locationNameLabel.position = CGPoint(x: -1.0, y:1.5)
+               
+         case "Barranquitas" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 5.71
+              locationNameLabel.zRotation = 0.65
+              locationNameLabel.position = CGPoint(x: -1.5, y: -0.5)
+        
 
               
           case "Cataño":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.fontSize = 3.6//4.0
-              locationNameLabel.position = CGPoint(x: 0.5, y: 1.5)
+               locationNameLabel.fontSize = 5.0//4.0
+              locationNameLabel.zRotation = 0.4
+              locationNameLabel.position = CGPoint(x: 0.5, y: -3.0)
 
               
           case "Loíza" :
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
               locationNameLabel.fontSize = 7.5
-              locationNameLabel.zRotation = 6.18
-              locationNameLabel.xScale = 1.0
-              locationNameLabel.position = CGPoint(x: 10.0, y: 0.5)
+              //locationNameLabel.zRotation = 6.18
+              //locationNameLabel.xScale = 1.0
+               locationNameLabel.position = CGPoint(x: 5.0, y: -1.0)
 
               
           case "Fajardo":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.position = CGPoint(x: -5.7, y: 8.5)
+              locationNameLabel.fontSize = 7.0
+              locationNameLabel.position = CGPoint(x: -6.5, y: -11.0)
 
               
           case "Guayama":
               setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.position = CGPoint(x: 0.5, y: 6.5)
+              locationNameLabel.fontSize = 7.5
+              locationNameLabel.position = CGPoint(x: -2.0, y: -10.0)
 
-              
-          case "Vieques":
-              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
-              locationNameLabel.position = CGPoint(x: -40.5, y: -8.5)
-
-                 
-              
-          case "Cabo Rojo", "San Germán", "San Sebastián", "Juana Díaz", "Vega Baja", "San Juan", "Santa Isabel", "Aguas Buenas", "Rio Grande" :
-              setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
-              firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
-              secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
-              secondLineLabel.verticalAlignmentMode = .top
+          
+               
+           case "Aguas Buenas" :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
+               firstLineLabel.fontSize = 6.4
+               secondLineLabel.fontSize = 6.4
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
+               firstLineLabel.position = CGPoint(x:-0.5, y:1.0)
+               secondLineLabel.position = CGPoint(x:0.5, y:-5.0)
+               
+           case "Rio Grande", "San Sebastián" :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
+               secondLineLabel.position = CGPoint(x:-0.5, y:-6.0)
+               
+           case "San Germán" :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
+               firstLineLabel.position = CGPoint(x:1.5, y:-0.5)
+               secondLineLabel.position = CGPoint(x:0.5, y:-7.5)
+           
+               
+           case "Cabo Rojo" :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+               firstLineLabel.position = CGPoint(x:0.5, y:3.0)
+               secondLineLabel.position = CGPoint(x:0.5, y:-4.2)
+               
+           case "Vega Baja" :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+               firstLineLabel.position = CGPoint(x:0.5, y:3.0)
+               secondLineLabel.position = CGPoint(x:0.6, y:-4.5)
+               
+               
+           case "Santa Isabel" :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+               firstLineLabel.position = CGPoint(x:1.5, y:3.0)
+               secondLineLabel.position = CGPoint(x:1.5, y:-3.0)
+               
+               
+           case "San Juan"  :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+               firstLineLabel.position = CGPoint(x:0.5, y:5.0)
+               secondLineLabel.position = CGPoint(x:0.5, y:-1.5)
+               
+               
+           case "Juana Díaz"  :
+               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+               firstLineLabel.position = CGPoint(x:2.5, y:-0.5)
+               secondLineLabel.position = CGPoint(x:2.5, y:-7.0)
 
               
           case "Sabana Grande" :
               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-              firstLineLabel.fontSize = 5.0
-              secondLineLabel.fontSize = 5.0
-              firstLineLabel.position = CGPoint(x:-4.0, y:5.5)
-              secondLineLabel.position = CGPoint(x:-3.5, y:13.0)
+              firstLineLabel.fontSize = 6.2
+              secondLineLabel.fontSize = 6.2
+              firstLineLabel.position = CGPoint(x:-2.0, y:-9.5)//CGPoint(x:-4.0, y:-1.5)
+              secondLineLabel.position = CGPoint(x:-1.0, y:-15.0)//CGPoint(x:-4.5, y:-7.0)
 
               
           case "Vega Alta":
               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+              firstLineLabel.fontSize = 6.0
+              secondLineLabel.fontSize = 6.0
               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-              firstLineLabel.position = CGPoint(x:2, y:0.5)
-              secondLineLabel.verticalAlignmentMode = .top
+              firstLineLabel.position = CGPoint(x:2.7, y:0.5)
+              secondLineLabel.position = CGPoint(x:1.2, y:-6.0)
 
               
           case "Toa Baja":
               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-              firstLineLabel.horizontalAlignmentMode = .right
-              secondLineLabel.verticalAlignmentMode = .top
-              secondLineLabel.horizontalAlignmentMode = .right
+              firstLineLabel.position = CGPoint(x:-7.5, y:-1.5)
+              secondLineLabel.position = CGPoint(x:-7.0, y:-7.5)
+              
 
               
           case "Trujillo Alto" :
               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-              firstLineLabel.fontSize = 5.5
-              secondLineLabel.fontSize = 5.5
-              firstLineLabel.position = CGPoint(x:-4.0, y:0.5)
-              secondLineLabel.position = CGPoint(x:-3.5, y:6.5)
+              firstLineLabel.fontSize = 6.5
+              secondLineLabel.fontSize = 6.5
+              firstLineLabel.position = CGPoint(x:-3.5, y:-2.5)
+              secondLineLabel.position = CGPoint(x:-4.5, y:-8.5)
 
               
           case "San Lorenzo"  :
               setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
               firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
               secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-              secondLineLabel.position = CGPoint(x:4.5, y:6.0)
+               firstLineLabel.position = CGPoint(x:3.5, y:0.5)
+               secondLineLabel.position = CGPoint(x:3.0, y:-5.0)
 
                
                    default:
@@ -1135,23 +1603,23 @@ class AlphabeticGameScene: SKScene{
         //Oneline.text = municipioNameLabel.text
         Oneline.fontName = "ArialMT"//"Helvetica"
         Oneline.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-        Oneline.xScale = -1.0
-        Oneline.zRotation = 9.44
-        Oneline.fontSize = 5.4
+        //Oneline.xScale = -1.0
+        //Oneline.zRotation = 9.44
+        Oneline.fontSize = 6.8//5.4
     }
     //sets attributes for labels to use with two word municipio names
     func setTwoLineMunicipioNameLabels(labelLineFirst:SKLabelNode, labelLineSecond:SKLabelNode){
         
         labelLineFirst.fontName = "ArialMT"//"Helvetica"
         labelLineSecond.fontName = "ArialMT"//"Helvetica"
-        labelLineFirst.fontSize = 5.4
-        labelLineSecond.fontSize = 5.4
+        labelLineFirst.fontSize = 6.9
+        labelLineSecond.fontSize = 6.9
         labelLineFirst.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
         labelLineSecond.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-        labelLineFirst.xScale = -1.0
-        labelLineSecond.xScale = -1.0
-        labelLineFirst.zRotation = 9.44
-        labelLineSecond.zRotation = 9.44
+        //labelLineFirst.xScale = -1.0
+        //labelLineSecond.xScale = -1.0
+        //labelLineFirst.zRotation = 9.44
+        //labelLineSecond.zRotation = 9.44
     }
     
     //The next two fucctions are identical with the difference that each return a different part of the text
