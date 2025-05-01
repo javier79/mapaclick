@@ -511,7 +511,8 @@ class AlphabeticGameScene: SKScene{
                         setNewMunicipioNameToLookUp()
                         /**add one to number of municipios located*/
                         addToScoreCountWriteToLabel()
-                        print("Inside Physics")
+                        print("Inside Physics Correct")
+                        print(spritenode.name!)
                         return
                         
                     }
@@ -531,8 +532,10 @@ class AlphabeticGameScene: SKScene{
                     //else statement will execute whenever a wrong municipio node is touched
                     else{
                         playIncorrectSound()
-                        
+                        print("Inside Physics Fail")
+                        print(touchedNode?.node?.name! as Any)
                         return fail = true//variable updates to apply 3 seconds penalty at timer function
+                        
                     }
                 }
                 
@@ -541,7 +544,7 @@ class AlphabeticGameScene: SKScene{
                 
                 else if (touchedNode == nil){
                   
-                    print("inside touchesNode == nil")
+                    //print("inside touchesNode == nil")
                     
                     
                     
@@ -589,14 +592,17 @@ class AlphabeticGameScene: SKScene{
                                 removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
                                 setNewMunicipioNameToLookUp()
                                 addToScoreCountWriteToLabel()
-                                print("Inside Nodes")
+                                print("Inside Nodes Correct")
+                               print("Tapped node: \(spriteNode.name ?? "Unnamed")") // Debug info
                                 return
                             }
                     
                     if ((touchedNodes.first(where: { $0.name != municipioNameLabel.text }) as? SKSpriteNode) != nil) && (touchedNodes.first(where: { $0.parent == containerNode }) != nil) || ((touchedNodes.first(where: { $0.name == mapRectangleBackground.name })) != nil){
-                        print("end")
+                        //print("end")
                         // Handle incorrect touch
                         playIncorrectSound()
+                        print("Inside Nodes Fail")
+                        print("Tapped node: \(touchedNodes.first?.name ?? "Unnamed")")
                         fail = true // Apply penalty
                         return
                     }
