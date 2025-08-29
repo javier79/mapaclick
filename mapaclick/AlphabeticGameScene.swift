@@ -131,20 +131,20 @@ class AlphabeticGameScene: SKScene{
                 //print("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setScaleAndIndepRenderingPositioningForIpadsMediumScreenSizes()
             
-            case (750.0, 1334), (1080, 2340 ),(1125, 2436 ) :
-                //print("iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO")
+        case (750.0, 1334), (1080, 2340 ),(1125.0, 2436.0 ) :
+                //print("iPhoneSE3, SE(second gen 18.5), SE(thirdf gen 18.5), 8, mini12, mini13, iPhone X, iPhone XS(18.5) ,11PRO") (Potencial para iPhone 16 Pro)
                 setScaleAndIndepRenderingPositioningForSmallScreenSizes()
             
             case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
-                //print("iPhone 8plus, XR, 11, XSMax, 11ProMax")
+                //print("iPhone 8plus, iPhone XR(18.5), 11, iPhoneXS Max(18.5), 11ProMax") (NO Potencial para iPhone 16 Pro)
                 setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes()
             
            case (1170.0, 2532.0), (1179.0, 2556.0):
-                //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
+                //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro") (Potencial para iPhone 16 Pro)
                 setScaleAndIndepRenderingPositioningForLargeScreenSizes()
             
            case (1284.0, 2778.0), (1290.0, 2796.0):
-                //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
+                //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax") (NO Potencial para iPhone 16 Pro)
                 setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes()
         
             default:
@@ -321,6 +321,7 @@ class AlphabeticGameScene: SKScene{
     func setScaleAndIndepRenderingPositioningForSmallScreenSizes(){
         //print("Set StartScene gamePlay objts scaling and positioning for: iPhone SE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO enter SmallScreenSizes scaling and positioning func")
         //print("iPhone small screen sizes")
+        
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.33)//1.38
         
@@ -541,7 +542,7 @@ class AlphabeticGameScene: SKScene{
                 
                 
                 
-                
+                //Fall back when physics bodies fail to catch a tap for a municipality and catch touchches inside gold rectangle, outside rectangle and control panel
                 else if (touchedNode == nil){
                   
                     //print("inside touchesNode == nil")
@@ -581,6 +582,21 @@ class AlphabeticGameScene: SKScene{
                     
                     /*if (touchedNodes.contains(where: { $0.name == controlPanelSKSpriteNode.name }))  {
                         return // Ignore the touch if it's on the control panel or the background
+                    }*/
+                    
+                    /*if touchedNodes.contains(where: { $0.name == municipioNameLabel.text }) {
+                        if let spriteNode = touchedNodes.first(where: { $0.name == municipioNameLabel.text }) as? SKSpriteNode {
+                            //spriteNode.physicsBody = nil // Remove physics if needed
+                            playCorrectSound()
+                            paintNode(spriteNode: spriteNode)
+                            setLabelForMunicipioNameAndAddToNode(nodeSprite: spriteNode)
+                            removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
+                            setNewMunicipioNameToLookUp()
+                            addToScoreCountWriteToLabel()
+                            print("Inside Nodes Correct")
+                            print("Tapped node: \(spriteNode.name ?? "Unnamed")") // Debug info
+                            return
+                        }
                     }*/
                     
 
@@ -645,6 +661,7 @@ class AlphabeticGameScene: SKScene{
             }
         }
     
+   
     
     
     
