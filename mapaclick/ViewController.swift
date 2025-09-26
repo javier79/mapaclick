@@ -15,7 +15,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
         //let practiceRandomGame = PracticeRandomGame(size: view.bounds.size)
         //let gameOverScene = GameOverScene(size: view.bounds.size)
-        //let practiceAlphabeticGame = PracticeAlphabeticGame(size: view.bounds.size)
+        //let practiceAlphabeticGame = PracticeAlphabeticGameScene(size: view.bounds.size)
         //let randomGame = RandomGameScene(size: view.bounds.size)
         //let startMenu = StartMenuScene(size: view.bounds.size)
         //let instructions = Instructions(size: view.bounds.size)
@@ -25,7 +25,7 @@ class ViewController: UIViewController {
          custom class the class SKView as we already do. Otherwise the app will crash.*/
         
         //skView.showsFPS = true//frame per seconds indicator
-        //skView.showsPhysics = true//enables the usage of SKPhysicsBody properties,without this SKPhysicsBody will not work
+        skView.showsPhysics = true//enables the usage of SKPhysicsBody properties,without this SKPhysicsBody will not work
         skView.showsNodeCount = true
         //skView.presentScene(startMenu)//present scene on a skView    }
         skView.presentScene(alphabeticGameScene)

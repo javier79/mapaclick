@@ -203,7 +203,7 @@ class StartMenuScene: SKScene {
                 setMainMenuObjectsScaleAndIndepRenderingPositioningForiPadsSmallAndMediumScreenSizes()
                 mapaClickBanner.setScale(1.42)//overriding for bigger device screen
             
-            case (750.0, 1334), (1080, 2340 ),(1125, 2436 ), (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0), (1170.0, 2532.0), (1179.0, 2556.0), (1284.0, 2778.0), (1290.0, 2796.0) :
+            case (750.0, 1334), (1080, 2340 ),(1125, 2436 ), (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0), (1170.0, 2532.0), (1179.0, 2556.0), (1284.0, 2778.0), (1290.0, 2796.0) ://PRORTIONS TESTED OK FOR (1242.0, 2208.0), (828.0, 1792.0),(1242.0, 2688.0)/iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5)
                 //print("Entering setMainMenuObjects For All iPhone screenSizes: iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS , 11PRO, 8plus, XR, 11, XSMax, 11ProMax, 12, 12Pro, 13, 13Pro, 14, 14Pro, 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
                 setMainMenuObjectsScaleAndIndepRenderingPositioningForiPhoneAllScreenSizes()
                 

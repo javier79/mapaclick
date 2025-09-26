@@ -72,21 +72,31 @@ class GameOverScene: SKScene{
                 //print("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setScaleAndIndepRenderingPositioningForIpadsMediumScreenSizes()
             
-            case (750.0, 1334), (1080, 2340 ),(1125, 2436 ) :
-                //print("iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO")
+            case (750.0, 1334), (1080, 2340 ),(1125, 2436) :
+            print("iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5)")
                 setScaleAndIndepRenderingPositioningForSmallScreenSizes()
             
-            case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
-                //print("iPhone 8plus, XR, 11, XSMax, 11ProMax")
-                setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes()
+            case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0) ://PROPORTIONS COULD BE BETTER(PROPORTION FIXED AS SEPT 10 2025)
+            print("iPhone 8plus, iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5)")
+                //setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes()
+                setScaleAndIndepRenderingPositioningForMediumLargeScreenSizesTwo()
             
            case (1170.0, 2532.0), (1179.0, 2556.0):
-                //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
-                setScaleAndIndepRenderingPositioningForLargeScreenSizes()
+            print("iPhone 12(18.5), iPhone 12Pro(18.5), iPhone 13(18.5), iPhone 13 Pro(18.5), iPhone 14(18.5), iPhone 14 Pro(18.5), iPhone 15(18.6), iPhone 15 Pro(18.6), iPhone 16(18.6), iPhone 16e(18.6)")
+            //setScaleAndIndepRenderingPositioningForLargeScreenSizes()
+            setScaleAndIndepRenderingPositioningForLargeScreenSizesTwo()
             
-           case (1284.0, 2778.0), (1290.0, 2796.0):
-                //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
-                setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes()
+            case (1284.0, 2778.0), (1290.0, 2796.0)://Possible template to edit for iPhone 16 Pro Max(PROPORTION FIXED AS SEPT 13 2025)
+             print("iPhone 12ProMax(18.5), iPhone 13 Pro Max(18.5), iPhone 14 plus(18.5), iPhone 14 ProMax(18.5), iPhone 15 plus(18.6), iPhone 15 ProMax(18.6), iPhone 16 Plus(18.6)")
+             setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes()
+            
+            case (1206.0, 2622.0)/*, (1320.0, 2868.0)*/:
+            print("iPhone 16 Pro(18.6), iPhone 17, iPhone 17 Pro")
+            setScaleAndIndepRenderingPositioningForiPhone16Pro()
+         
+            case  (1320.0, 2868.0):
+            print("iPhone 16 ProMAX(18.6), iPhone 17 ProMax")
+            setScaleAndIndepRenderingPositioningForiPhone16ProMax()
         
             default:
                setScaleAndIndepRenderingPositioningForSmallScreenSizes()//This line will catch any device which screen measure is none of the above
@@ -181,8 +191,7 @@ class GameOverScene: SKScene{
     
     //Execute attributes for scaling and positioning based on device screen size
     func setScaleAndIndepRenderingPositioningForSmallScreenSizes(){
-        //print("Set gameOverScene objts scaling and positioning for: iPhone SE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO enter SmallScreenSizes scaling and positioning func")
-        //print("iPhone small screen sizes")
+        print("iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) enter scaling and positioning func")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.33)//1.38
         
@@ -193,7 +202,7 @@ class GameOverScene: SKScene{
         resultadosButton.setScale(1.4)
     }
     
-    func setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes(){
+    /*func setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes(){
         //print("Set  gameOverScene objts scaling and positioning for: iPhone 8plus, XR, 11, XSMax, 11ProMax enter MediumLargeScreenSizes scaling and positioning func")
         //print("iPhone medium-large screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.906/*1.8*/)
@@ -204,10 +213,22 @@ class GameOverScene: SKScene{
         
         resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 152)
         resultadosButton.setScale(1.4)
+    }*/
+    
+    func setScaleAndIndepRenderingPositioningForMediumLargeScreenSizesTwo(){
+        print("iPhone 8plus, iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5) enters scaling and positioning func")
+        mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.716/*1.8*/)
+        mapRectangleGestureMGMT.setScale(1.45)//1.33
+        
+        endGameRectangle.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 18)
+        endGameRectangle.setScale(1.25)
+        
+        resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 152)
+        resultadosButton.setScale(1.4)
     }
     
     //Execute attributes for scaling and positioning based on device screen size
-    func setScaleAndIndepRenderingPositioningForLargeScreenSizes(){
+    /*func setScaleAndIndepRenderingPositioningForLargeScreenSizes(){
         //print("Set gameOverScene objts scaling and positioning for: iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro enter LargeScreenSizes scaling and positioning func")
         //print("iPhone large screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.811/*1.8*/)
@@ -218,9 +239,22 @@ class GameOverScene: SKScene{
         
         resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 142)
         resultadosButton.setScale(1.4)
+    }*/
+    
+    func setScaleAndIndepRenderingPositioningForLargeScreenSizesTwo(){
+        print("iPhone 12(18.5), iPhone 12Pro(18.5), iPhone 13(18.5), iPhone 13 Pro(18.5), iPhone 14(18.5), iPhone 14 Pro(18.5), iPhone 15(18.6), iPhone 15 Pro(18.6), iPhone 16(18.6), iPhone 16e enters scaling and positioning func")
+        mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.67/*1.8*/)
+        mapRectangleGestureMGMT.setScale(1.37)//1.38
+        
+        
+        endGameRectangle.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 18)
+        endGameRectangle.setScale(1.25)
+        
+        resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 142)
+        resultadosButton.setScale(1.4)
     }
     
-    func setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes(){
+    /*func setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes(){
         //print("Set gameOverScene objts scaling and positioning for: iPhone 12ProMax, 13ProMax, 14plus, 14ProMax enter XtraLargeScreenSizes scaling and positioning func ")
         //print("iPhone Xtralarge screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.975/*1.8*/)
@@ -230,6 +264,48 @@ class GameOverScene: SKScene{
         endGameRectangle.setScale(1.25)
         
         resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 158)
+        resultadosButton.setScale(1.4)
+    }*/
+    
+    func setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes(){
+        print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus enters scaling and positioning func")
+        mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)
+        mapRectangleGestureMGMT.setScale(1.5)//1.38
+        
+        
+        endGameRectangle.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 18)
+        endGameRectangle.setScale(1.25)
+        
+        resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 142)
+        resultadosButton.setScale(1.4)
+        
+        
+    }
+    
+    func setScaleAndIndepRenderingPositioningForiPhone16Pro(){
+        print("iPhone 16 PRO(18.6), iPhone 17, iPhone 17 PRO enters scaling and positioning func")
+        
+        mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)
+        mapRectangleGestureMGMT.setScale(1.37)//1.38
+        
+        endGameRectangle.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 18)
+        endGameRectangle.setScale(1.25)
+        
+        resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 142)
+        resultadosButton.setScale(1.4)
+        
+        
+    }
+    
+    func setScaleAndIndepRenderingPositioningForiPhone16ProMax(){
+        print("iPhone 16 PROMAX, iPhone 17 ProMax  enters scaling and positioning func")
+        mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.765/*1.8*/)
+        mapRectangleGestureMGMT.setScale(1.5)//1.38
+        
+        endGameRectangle.position = CGPoint(x: self.size.width/2, y: self.size.height/2 + 18)
+        endGameRectangle.setScale(1.25)
+        
+        resultadosButton.position = CGPoint(x: self.size.width/2, y: self.size.height/2 - 142)
         resultadosButton.setScale(1.4)
     }
     
@@ -307,6 +383,87 @@ class GameOverScene: SKScene{
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
         }
+        //Following block limit the scaling(zoom effect) from 1.45(default size) and not larger than 3.0 for devices iPhone Xr, 11, Xs Max, 11 Pro Max
+        else if screenSize.width == 1242.0 && screenSize.height == 2288.0 || screenSize.width == 828.0 && screenSize.height == 1792.0 || screenSize.width == 1242.0 && screenSize.height == 2688.0{
+            
+            if mapRectangleGestureMGMT.xScale * sender.scale < 1.45 {
+                sender.scale = 1.45 / mapRectangleGestureMGMT.xScale
+            } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
+                sender.scale = 3.0 / mapRectangleGestureMGMT.xScale
+            }
+
+            if mapRectangleGestureMGMT.yScale * sender.scale < 1.45 {
+               sender.scale = 1.45 / mapRectangleGestureMGMT.yScale
+            } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
+            sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
+            }
+            print("iPhone Xr, 11, Xs Max, 11 Pro Max is limited(GAMEOVERSCENE)")
+        }
+        
+        else if screenSize.width == 1170.0 && screenSize.height == 2532.0 || screenSize.width == 1179.0 && screenSize.height == 2556.0{
+            
+            if mapRectangleGestureMGMT.xScale * sender.scale < 1.37 {
+                sender.scale = 1.37 / mapRectangleGestureMGMT.xScale
+            } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
+                sender.scale = 3.0 / mapRectangleGestureMGMT.xScale
+            }
+
+            if mapRectangleGestureMGMT.yScale * sender.scale < 1.37 {
+               sender.scale = 1.37 / mapRectangleGestureMGMT.yScale
+            } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
+            sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
+            }
+            print("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16 is limited(GAMEOVERSCENE)")
+        }
+        
+        else if screenSize.width == 1284.0 && screenSize.height == 2778.0 || screenSize.width == 1290.0 && screenSize.height == 2796.0{
+            
+            if mapRectangleGestureMGMT.xScale * sender.scale < 1.5 {
+                sender.scale = 1.5 / mapRectangleGestureMGMT.xScale
+            } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
+                sender.scale = 3.0 / mapRectangleGestureMGMT.xScale
+            }
+
+            if mapRectangleGestureMGMT.yScale * sender.scale < 1.5 {
+               sender.scale = 1.5 / mapRectangleGestureMGMT.yScale
+            } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
+            sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
+            }
+            print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is limited(GAMEOVERSCENE)")
+        }
+        
+        else if screenSize.width == 1206.0 && screenSize.height == 2622.0 /*|| screenSize.width == 1179.0 && screenSize.height == 2556.0*/{
+            
+            if mapRectangleGestureMGMT.xScale * sender.scale < 1.37 {
+                sender.scale = 1.37 / mapRectangleGestureMGMT.xScale
+            } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
+                sender.scale = 3.0 / mapRectangleGestureMGMT.xScale
+            }
+
+            if mapRectangleGestureMGMT.yScale * sender.scale < 1.37 {
+               sender.scale = 1.37 / mapRectangleGestureMGMT.yScale
+            } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
+            sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
+            }
+            print("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is limited(GAMEOVERSCENE)")
+        }
+        
+        else if screenSize.width == 1320.0 && screenSize.height == 2868.0 {
+            
+            if mapRectangleGestureMGMT.xScale * sender.scale < 1.5 {
+                sender.scale = 1.5 / mapRectangleGestureMGMT.xScale
+            } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
+                sender.scale = 3.0 / mapRectangleGestureMGMT.xScale
+            }
+
+            if mapRectangleGestureMGMT.yScale * sender.scale < 1.5 {
+               sender.scale = 1.5 / mapRectangleGestureMGMT.yScale
+            } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
+            sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
+            }
+            print("iPhone 16 ProMAX, iPhone 17 ProMAX is limited(GAMEOVERSCENE)")
+        }
+        
         //The following block limits the scaling(Zoom effect) from 1.33(default size) and no larger than 3.0 for device
         else{
             //print("iPhone entering handlePinch func")
@@ -344,6 +501,42 @@ class GameOverScene: SKScene{
                     //print("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), 6Gen, Mini(5gen), Mini(6gen) (MEDIUM/SMALL Screen) scaled bigger")
                 }
             }
+            
+            else if screenSize.width == 1242.0 && screenSize.height == 2288.0 || screenSize.width == 828.0 && screenSize.height == 1792.0 || screenSize.width == 1242.0 && screenSize.height == 2688.0{
+                if mapRectangleGestureMGMT.xScale > 1.45 && mapRectangleGestureMGMT.yScale > 1.45{
+                    isScaled = true
+                    print("iPhone Xr, 11, Xs Max, 11 Pro Max is Scaled(GAMEOVERSCENE)")
+                }
+            }
+            
+            else if screenSize.width == 1170.0 && screenSize.height == 2532.0 || screenSize.width == 1179.0 && screenSize.height == 2556.0 {
+                if mapRectangleGestureMGMT.xScale > 1.37 && mapRectangleGestureMGMT.yScale > 1.37{
+                    isScaled = true
+                    print("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16 is Scaled(GAMEOVERSCENE)")
+                }
+            }
+            
+            else if screenSize.width == 1284.0 && screenSize.height == 2778.0 || screenSize.width == 1290.0 && screenSize.height == 2796.0 {
+                if mapRectangleGestureMGMT.xScale > 1.5 && mapRectangleGestureMGMT.yScale > 1.5{
+                    isScaled = true
+                    print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is Scaled(GAMEOVERSCENE)")
+                }
+            }
+            
+            else if screenSize.width == 1206.0 && screenSize.height == 2622.0 /*|| screenSize.width == 1179.0 && screenSize.height == 2556.0*/ {
+                if mapRectangleGestureMGMT.xScale > 1.37 && mapRectangleGestureMGMT.yScale > 1.37{
+                    isScaled = true
+                    print("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is Scaled(GAMEOVERSCENE)")
+                }
+            }
+            
+            else if screenSize.width == 1320.0 && screenSize.height == 2868.0 {
+                if mapRectangleGestureMGMT.xScale > 1.5 && mapRectangleGestureMGMT.yScale > 1.5{
+                    isScaled = true
+                    print("iPhone 16 ProMax, iPhone 17 ProMax is Scaled(GAMEOVERSCENE)")
+                }
+            }
+            
             else{
                 if mapRectangleGestureMGMT.xScale > 1.33 && mapRectangleGestureMGMT.yScale > 1.33 {
                     isScaled = true
@@ -381,29 +574,69 @@ class GameOverScene: SKScene{
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
                         //print("iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO scaled back to normal")
                     }
-                case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
+                /*case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
                     //print("iPhone 8plus, XR, 11, XSMax, 11ProMax")
                     if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                         isScaled = false
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.906/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
                         //print("iPhone 8plus, XR, 11, XSMax, 11ProMax scaled back to normal")
-                    }
+                    }*/
+                
+                case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
+                //print("iPhone 8plus, XR, 11, XSMax, 11ProMax")
+                if abs(mapRectangleGestureMGMT.xScale - 1.45) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.45) < tolerance {
+                    isScaled = false
+                    mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.716/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
+                    print("iPhone Xr, 11, Xs Max, 11 Pro Max is back to original position(GAMEOVERSCENE)")
+                }
                     
-                case (1170.0, 2532.0), (1179.0, 2556.0):
+                /*case (1170.0, 2532.0), (1179.0, 2556.0):
                      //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
                      if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                         isScaled = false
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.811/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
                         //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro scaled back to normal")
-                    }
+                    }*/
+                
+                case (1170.0, 2532.0), (1179.0, 2556.0):
+                 //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
+                 if abs(mapRectangleGestureMGMT.xScale - 1.37) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.37) < tolerance {
+                    isScaled = false
+                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.67/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
+                     print("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16 is back to original position(GAMEOVERSCENE)")
+                }
                     
-                case (1284.0, 2778.0), (1290.0, 2796.0):
+                /*case (1284.0, 2778.0), (1290.0, 2796.0):
                      //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
                      if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                         isScaled = false
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.975/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
                         //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax scaled back to normal")
-                    }
+                    }*/
+                
+                case (1284.0, 2778.0), (1290.0, 2796.0):
+                 //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
+                 if abs(mapRectangleGestureMGMT.xScale - 1.5) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.5) < tolerance {
+                    isScaled = false
+                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
+                    print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is back to original position(GAMEOVERSCENE)")
+                }
+                
+            case (1206.0, 2622.0):
+                 //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
+                 if abs(mapRectangleGestureMGMT.xScale - 1.37) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.37) < tolerance {
+                    isScaled = false
+                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
+                    print("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is back to original position(GAMEOVERSCENE)")
+                }
+                
+            case (1320.0, 2868.0):
+                 //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
+                 if abs(mapRectangleGestureMGMT.xScale - 1.5) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.5) < tolerance {
+                    isScaled = false
+                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.765/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
+                    print("iPhone 16 ProMax, iPhone 17 ProMax is back to original position(GAMEOVERSCENE)")
+                }
                     
                     
                 default:
