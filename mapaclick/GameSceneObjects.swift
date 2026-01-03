@@ -277,7 +277,7 @@ class GameSceneObjects{
         NameMunicipioLabel.fontName = "Helvetica"
         NameMunicipioLabel.fontSize = 17
         NameMunicipioLabel.fontColor = UIColor.white//(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0) //init(red: 0.9451, green: 0.9373, blue: 0.7255, alpha: 1.0)
-        NameMunicipioLabel.text = "Las Piedras"
+        NameMunicipioLabel.text = "Adjuntas"
         //municipiosNameBackground.size = NameMunicipioLabel.frame.size
         //NameMunicipioLabel.zPosition = 1
         return NameMunicipioLabel

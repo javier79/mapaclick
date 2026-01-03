@@ -992,29 +992,29 @@ class InitSetMapNodes{
      }
      
      
-     //sets attributes for label to use with one word municipio names
-     func setOneLineMunicipioNameLabel(Oneline:SKLabelNode){
-         //Oneline.text = municipioNameLabel.text
-         Oneline.fontName = "ArialMT"//"Helvetica"
-         Oneline.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-         //Oneline.xScale = -1.0
-         //Oneline.zRotation = 9.44
-         Oneline.fontSize = 5.4
-     }
-     //sets attributes for labels to use with two word municipio names
-     func setTwoLineMunicipioNameLabels(labelLineFirst:SKLabelNode, labelLineSecond:SKLabelNode){
-         
-         labelLineFirst.fontName = "ArialMT"//"Helvetica"
-         labelLineSecond.fontName = "ArialMT"//"Helvetica"
-         labelLineFirst.fontSize = 5.4
-         labelLineSecond.fontSize = 5.4
-         labelLineFirst.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-         labelLineSecond.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-         //labelLineFirst.xScale = -1.0
-         //labelLineSecond.xScale = -1.0
-         //labelLineFirst.zRotation = 9.44
-         //labelLineSecond.zRotation = 9.44
-     }
+    //sets attributes for label to use with one word municipio names
+    func setOneLineMunicipioNameLabel(Oneline:SKLabelNode){
+        //Oneline.text = municipioNameLabel.text
+        Oneline.fontName = "ArialMT"//"Helvetica"
+        Oneline.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
+        //Oneline.xScale = -1.0
+        //Oneline.zRotation = 9.44
+        Oneline.fontSize = 6.8//5.4
+    }
+    //sets attributes for labels to use with two word municipio names
+    func setTwoLineMunicipioNameLabels(labelLineFirst:SKLabelNode, labelLineSecond:SKLabelNode){
+        
+        labelLineFirst.fontName = "ArialMT"//"Helvetica"
+        labelLineSecond.fontName = "ArialMT"//"Helvetica"
+        labelLineFirst.fontSize = 6.9
+        labelLineSecond.fontSize = 6.9
+        labelLineFirst.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
+        labelLineSecond.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
+        //labelLineFirst.xScale = -1.0
+        //labelLineSecond.xScale = -1.0
+        //labelLineFirst.zRotation = 9.44
+        //labelLineSecond.zRotation = 9.44
+    }
 
 
      
