@@ -16,6 +16,10 @@ class AlphabeticGameScene: SKScene{
                                               The initialization of backgroundNode occurs on did move, as self and its properties are not available until run time*/
     var backgroundNode: SKSpriteNode!//declared as var in order to be initialized on didMove when self is available(read comment for gameSceneObjects declaration up^
     
+    var tutorialOverlay: TutorialOverlay?
+    
+    var isTutorialActive: Bool = false
+    
     let mapRectangleGestureMGMT: SKSpriteNode = GameSceneObjects().mapRectangleGestureMGMTBezierPathToSKSpriteNode(bpRectangle: BezierPathsForMapNodesAndRectangles().createRectangle())//This Node is invisible, it works by parenting containeNode and applying handgestures as SKNode have no anchor point property which is needed to be set at 0.5 for the pinch gesture to be able to zoom and be centered
     
     let mapRectangleBackground: SKSpriteNode = GameSceneObjects().mapRectangleBackground(bpRectangle: BezierPathsForMapNodesAndRectangles().createRectangle())
@@ -211,7 +215,14 @@ class AlphabeticGameScene: SKScene{
             //self.addChild(StartScene.backgroundMusic)
             initMusic()
         }
-        //sleep(1)
+        
+        // FOR TESTING ONLY - REMOVE BEFORE RELEASE
+                //TutorialManager.resetTutorialCount()
+                //print("Tutorial count reset for testing")
+        
+        if TutorialManager.shouldShowTutorial() {
+                    showTutorial()
+                }
     }
     //Execute attributes for scaling and positioning based on device screen size
     /*func setScaleAndIndepRenderingPositioningForIpadsLargeScreenSizes(){
@@ -568,6 +579,12 @@ class AlphabeticGameScene: SKScene{
     
     
     @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
+        
+        // Don't allow pan during tutorial
+            if tutorialOverlay != nil {
+                return
+            }
+        
         //Asses screen
         let screenSize = self.view?.bounds.size
         let screenWidth = screenSize?.width ?? 0
@@ -642,6 +659,12 @@ class AlphabeticGameScene: SKScene{
                 
                 let touchLocation = sender.location(in: sender.view)//convert UIView coordinates to SpriteKit
                 let location = self.convertPoint(fromView: touchLocation)//Defines the space where touch is taking effect, in this case StartScene
+                
+                if let tutorial = tutorialOverlay {
+                            tutorial.handleTouch(at: location)
+                            return
+                        }
+                
                 let touchedNode = self.physicsWorld.body(at:location)//Defines that touch will take effect when it gets in contact with an SKphysics body
                 
                 
@@ -870,6 +893,11 @@ class AlphabeticGameScene: SKScene{
     
 
     @objc func handlePinchFrom(_ sender: UIPinchGestureRecognizer) {
+        
+        // Don't allow pinch during tutorial
+        if tutorialOverlay != nil {
+                return
+            }
         
         
         //The following block limits the scaling(Zoom effect) from 2.4(default size) and no larger than 3.0 for devices Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5)
@@ -1274,10 +1302,33 @@ class AlphabeticGameScene: SKScene{
         musicPlayer.play()//
     }
     
+    func showTutorial() {
+        // Set tutorial as active to pause timer
+        isTutorialActive = true
+        
+        // Create tutorial overlay
+        tutorialOverlay = TutorialOverlay(scene: self, isPracticeMode: false)
+        
+        // Set completion callback
+        tutorialOverlay?.onComplete = { [weak self] in
+            print("Tutorial completed")
+            self?.isTutorialActive = false  // Resume timer
+            self?.tutorialOverlay = nil     // Clear the reference
+        }
+        
+        // Set skip callback
+        tutorialOverlay?.onSkip = { [weak self] in
+            print("Tutorial skipped")
+            self?.isTutorialActive = false  // Resume timer
+            self?.tutorialOverlay = nil     // Clear the reference
+        }
+        
+        // Show the tutorial
+        tutorialOverlay?.show()
+    }
     
-    
-
-    override public func update(_ currentTime: TimeInterval) {/*Function execute every second, for timer functionality*/
+//ORIGINAL WORKING FUNCTION BEFORE CLAUDE CHANGES
+    /*override public func update(_ currentTime: TimeInterval) {/*Function execute every second, for timer functionality*/
         
         
        if AlphabeticGameScene.completedGame == false{//Control variable to keep the timer running, once condition is true the timer is stopped
@@ -1304,6 +1355,50 @@ class AlphabeticGameScene: SKScene{
             }
             
         }
+        
+        
+        
+        /** This block  will execute when completedGame equals true(meaning all nodes were correctly identified), the function below will get gameOverScene. The reason to place here the game transition to gameOverScene is due Touch function needs "space" in order to perform without much lagging as scene transitioning and
+         Touch function both require a lot of resouces that can compromise the flow of the game(so basically thats why the scene transition is not placed on Touch function)*/
+        
+        if AlphabeticGameScene.completedGame == true{
+            goToGameOverScene()
+        }
+        
+    }*/
+    //CLAUDE EDITED FUNCTION TO STOP TIMER FOR ONBOARDING TUTORIAL
+    override public func update(_ currentTime: TimeInterval) {/*Function execute every second, for timer functionality*/
+        
+        // Don't run timer during tutorial
+        if isTutorialActive {
+            return
+        }
+        
+        if AlphabeticGameScene.completedGame == false{//Control variable to keep the timer running, once condition is true the timer is stopped
+            /* currentTime refers to the pc running clock and renderTime refers to the passing time while the game is running*/
+            if currentTime > renderTime {/**currentTime  value is bigger than renderTime only when a second is added, later on renderTime value updates to a future time measure bigger than currentTime, due currenTime is continuously running when it becomes bigger than renderTime value, the execution enters the next block to sum seconds and minutes*/
+            
+                /**following block is where seconds and minuteds are added*/
+                if renderTime > 0{/**In its first iteration renderTime value  is 0.0, so that the execution will go  to the next Else If statement, after the first iteration its value will always be bigger than 0*/
+                    timerManagement()
+                }
+                /**Next block will execute only when renderTime value is 0 and it just formats and render 00(timer) at the beginning of the game, it will only execute once as renderTime value keep increasing*/
+                else if renderTime == 0.0{
+                    formatCastZeroToStringAndWriteToLabel()
+                   
+                    //For dev use ONLY
+                     /**ATTENTION DUE THIS BLOCK EXECUTE ONCE(SECOND 00). I  PLACE HERE THE RESET FOR PERSISTENT MEMORY WHERE I STORE THE VALUES TO EVALUATE  TIME RECORDS ON GAMEOVERSCENE
+                     IN ORDER TO WIPE(reset) PERSISTEN MEMORY UNCOMMENT THE FOLLOWING STATEMENTS RUN THE GAME A FEW SECONDS STOP THE GAME, AND WHEN YOU LAUNCH THE GAME NEXT TIME  PERSISTENT MEMORY WILL BE
+                     CLEAN AS WHEN THE GAME IS PLAYED FOR THE FIRST TIME WHEN DOWNLOADED*/
+                    //UserDefaults.standard.removeObject(forKey: "secondsAlphabetic")
+                    //UserDefaults.standard.removeObject(forKey: "minutesAlphabetic")
+                }
+                
+                renderTime = currentTime + changeTime//updates renderTime value, when this happens renderTime value is bigger than currentTime
+            }
+            
+        }
+        
         /** This block  will execute when completedGame equals true(meaning all nodes were correctly identified), the function below will get gameOverScene. The reason to place here the game transition to gameOverScene is due Touch function needs "space" in order to perform without much lagging as scene transitioning and
          Touch function both require a lot of resouces that can compromise the flow of the game(so basically thats why the scene transition is not placed on Touch function)*/
         
@@ -1312,6 +1407,7 @@ class AlphabeticGameScene: SKScene{
         }
         
     }
+    
     //Function adds seconds and minute, also adds penalties when wrong node or skip button is pressed
     func timerManagement(){
             addSecond()

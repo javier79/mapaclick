@@ -15,6 +15,10 @@ class PracticeAlphabeticGameScene: SKScene{
                                               The initialization of backgroundNode occurs on did move, as self and its properties are not available until run time*/
     var backgroundNode: SKSpriteNode!//declared as var in order to be initialized on didMove when self is available(read comment for gameSceneObjects declaration up^
     
+    // Tutorial overlay
+    var tutorialOverlay: TutorialOverlay?
+    var isTutorialActive: Bool = false
+    
     let mapRectangleGestureMGMT: SKSpriteNode = GameSceneObjects().mapRectangleGestureMGMTBezierPathToSKSpriteNode(bpRectangle: BezierPathsForMapNodesAndRectangles().createRectangle())//This Node is invisible, it works by parenting containeNode and applying handgestures as SKNode have no anchor point property which is needed to be set at 0.5 for the pinch gesture to be able to zoom and be centered
     let mapRectangleBackground: SKSpriteNode = GameSceneObjects().mapRectangleBackground(bpRectangle: BezierPathsForMapNodesAndRectangles().createRectangle())
     
@@ -180,6 +184,16 @@ class PracticeAlphabeticGameScene: SKScene{
             //self.addChild(StartScene.backgroundMusic)
             initMusic()
         }
+        
+        // FOR TESTING ONLY - REMOVE BEFORE RELEASE
+                //TutorialManager.resetTutorialCount()
+                //print("Tutorial count reset for testing")
+        
+        // Show tutorial if needed
+        if TutorialManager.shouldShowTutorial() {
+            showTutorial()
+        }
+        
     }
     
     
@@ -511,6 +525,12 @@ class PracticeAlphabeticGameScene: SKScene{
     }
     
     @objc func handlePan(_ gesture: UIPanGestureRecognizer) {
+        
+        // Don't allow pan during tutorial
+        if tutorialOverlay != nil {
+            return
+        }
+        
         //Asses screen
         let screenSize = self.view?.bounds.size
         let screenWidth = screenSize?.width ?? 0
@@ -559,6 +579,13 @@ class PracticeAlphabeticGameScene: SKScene{
                 
                 let touchLocation = sender.location(in: sender.view)//convert UIView coordinates to SpriteKit
                 let location = self.convertPoint(fromView: touchLocation)//Defines the space where touch is taking effect, in this case StartScene
+                
+                // Check if tutorial is active
+                   if let tutorial = tutorialOverlay {
+                       tutorial.handleTouch(at: location)
+                       return
+                   }
+                
                 let touchedNode = self.physicsWorld.body(at:location)//Defines that touch will take effect when it gets in contact with an SKphysics body
                 
                 
@@ -787,6 +814,10 @@ class PracticeAlphabeticGameScene: SKScene{
     
     @objc func handlePinchFrom(_ sender: UIPinchGestureRecognizer) {
         
+        // Don't allow pinch during tutorial
+           if tutorialOverlay != nil {
+               return
+           }
         
         //The following block limits the scaling(Zoom effect) from 2.4(default size) and no larger than 3.0 for devices Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5)
         if screenSize.width == 2048.0 && screenSize.height == 2732.0{
@@ -1189,9 +1220,32 @@ class PracticeAlphabeticGameScene: SKScene{
         musicPlayer.prepareToPlay()//ready to play musicPlayer
         musicPlayer.play()//
     }
+    
+    func showTutorial() {
+        isTutorialActive = true
+        tutorialOverlay = TutorialOverlay(scene: self, isPracticeMode: true)  // Practice mode = true
+        
+        tutorialOverlay?.onComplete = { [weak self] in
+            print("Tutorial completed")
+            self?.isTutorialActive = false
+            self?.tutorialOverlay = nil
+        }
+        
+        tutorialOverlay?.onSkip = { [weak self] in
+            print("Tutorial skipped")
+            self?.isTutorialActive = false
+            self?.tutorialOverlay = nil
+        }
+        
+        tutorialOverlay?.show()
+    }
         
     override public func update(_ currentTime: TimeInterval) {/*Function execute every second, for timer functionality*/
         
+        // Don't run timer during tutorial
+        if isTutorialActive {
+            return
+        }
         
        if PracticeAlphabeticGameScene.completedGame == false{//Control variable to keep the timer running, once condition is true the timer is stopped
             /* currentTime refers to the pc running clock and renderTime refers to the passing time while the game is running*/
