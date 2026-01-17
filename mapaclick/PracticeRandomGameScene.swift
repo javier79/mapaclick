@@ -1100,7 +1100,7 @@ class PracticeRandomGameScene: SKScene{
     func getFirstRandomMunicipioNameToLookUp(){
         //setNewMunicipioNameToLookUp()
         // FOR TESTING ONLY - REMOVE AFTER
-        //randomIndex = municipios_names_array.firstIndex(of: "Barceloneta") ?? 0
+        //randomIndex = municipios_names_array.firstIndex(of: "Adjuntas") ?? 0
         randomIndex = Int.random(in:0...77)//gets random index for first municipio name to look up
         municipioNameLabel.text = municipios_names_array[randomIndex]//first municipio name to look up
         

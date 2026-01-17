@@ -1201,7 +1201,7 @@ class RandomGameScene: SKScene{
 
         //setNewMunicipioNameToLookUp()
         // FOR TESTING ONLY - REMOVE AFTER
-        //randomIndex = municipios_names_array.firstIndex(of: "Aguas Buenas") ?? 0
+        //randomIndex = municipios_names_array.firstIndex(of: "Trujillo Alto") ?? 0
          randomIndex = Int.random(in:0...77)
         //randomIndex = Int.random(in:0...77)//gets random index for first municipio name to look up
         municipioNameLabel.text = municipios_names_array[randomIndex]//first municipio name to look up

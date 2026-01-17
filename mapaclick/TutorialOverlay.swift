@@ -48,6 +48,36 @@ class TutorialOverlay {
                (screenSize.width == 1620.0 && screenSize.height == 2160.0) ||
                (screenSize.width == 1668.0 && screenSize.height == 2420.0)
     }()
+    
+    private let isSmallPhone: Bool = {
+        let screenSize = UIScreen.main.nativeBounds
+        return (screenSize.width == 750.0 && screenSize.height == 1334.0) ||
+               (screenSize.width == 1080.0 && screenSize.height == 2340.0) ||
+               (screenSize.width == 1125.0 && screenSize.height == 2436.0)
+    }()
+    
+    private let isMediumPhone: Bool = {
+        let screenSize = UIScreen.main.nativeBounds
+        return (screenSize.width == 828.0 && screenSize.height == 1792.0) ||
+               (screenSize.width == 1242.0 && screenSize.height == 2688.0) ||
+               (screenSize.width == 1242.0 && screenSize.height == 2208.0)
+    }()
+    
+    private let isLargePhone: Bool = {
+        let screenSize = UIScreen.main.nativeBounds
+        return (screenSize.width == 1170.0 && screenSize.height == 2532.0) ||
+               (screenSize.width == 1179.0 && screenSize.height == 2556.0)
+    }()
+    private let isXLargePhone: Bool = {
+        let screenSize = UIScreen.main.nativeBounds
+        return (screenSize.width == 1284.0 && screenSize.height == 2778.0) ||
+               (screenSize.width == 1290.0 && screenSize.height == 2796.0)
+    }()
+    private let isProPhone: Bool = {
+        let screenSize = UIScreen.main.nativeBounds
+        return (screenSize.width == 1206.0 && screenSize.height == 2622.0)
+    }()
+    
     private var instructionBackground: SKSpriteNode!
     private var nextButton: SKSpriteNode!
     private var nextButtonLabel: SKLabelNode!
@@ -169,28 +199,28 @@ class TutorialOverlay {
         
         // Background for instruction - narrower
         instructionBackground = createRoundedRectangle(
-            width: scene.size.width * (isLargeiPad ? 0.75 : isMediumiPad ? 0.78 : isSmallMediPad ? 0.80 : 0.82),
-            height: isLargeiPad ? 75 : isMediumiPad ? 60 : isSmallMediPad ? 55 : 45,
+            width: scene.size.width * (isLargeiPad ? 0.75 : isMediumiPad ? 0.78 : isSmallMediPad ? 0.80 : isSmallPhone ? 0.965 : isLargePhone ? 0.95 : 0.82),
+            height: isLargeiPad ? 75 : isMediumiPad ? 60 : isSmallMediPad ? 55 : isSmallPhone ? 38 : isMediumPhone ? 38 : isLargePhone ? 28 : isXLargePhone ? 35 : isProPhone ? 40 : 45,
             cornerRadius: 10
         )
-        instructionBackground.position = CGPoint(x: scene.size.width / 2, y: scene.size.height * (isLargeiPad ? 0.95 : 0.928))
+        instructionBackground.position = CGPoint(x: scene.size.width / 2, y: scene.size.height * (isLargeiPad ? 0.95 : isSmallPhone ? 0.935 : isMediumPhone ? 0.945 : isLargePhone ? 0.95 : isXLargePhone ? 0.94 : isProPhone ? 0.94 : 0.928))
         instructionBackground.zPosition = 3
         overlayNode.addChild(instructionBackground)
         
         // Instruction text - bigger font
         instructionLabel = SKLabelNode(fontNamed: "Helvetica-Bold")
-        instructionLabel.fontSize = isLargeiPad ? 24 : isMediumiPad ? 20 : isSmallMediPad ? 18 : 14
+        instructionLabel.fontSize = isLargeiPad ? 24 : isMediumiPad ? 20 : isSmallMediPad ? 18 : isLargePhone ? 12.4 : 14
         instructionLabel.fontColor = .white
         instructionLabel.numberOfLines = 2
-        instructionLabel.preferredMaxLayoutWidth = scene.size.width * 0.45
+        instructionLabel.preferredMaxLayoutWidth = scene.size.width * (isSmallPhone ? 0.58 : isLargePhone ? 0.75 : 0.45)
         instructionLabel.horizontalAlignmentMode = .left
         instructionLabel.verticalAlignmentMode = .center
-        instructionLabel.position = CGPoint(x: -scene.size.width * 0.37, y: 0)
+        instructionLabel.position = CGPoint(x: -scene.size.width * (isSmallPhone ? 0.45 : isLargePhone ? 0.46 : 0.37), y: 0)
         instructionLabel.zPosition = 1
         instructionBackground.addChild(instructionLabel)
         
         // Add light blue border to panel
-        let panelBorder = SKShapeNode(rectOf: CGSize(width: scene.size.width * (isLargeiPad ? 0.75 : isMediumiPad ? 0.78 : isSmallMediPad ? 0.80 : 0.82), height: isLargeiPad ? 75 : isMediumiPad ? 60 : isSmallMediPad ? 55 : 45), cornerRadius: 10)
+        let panelBorder = SKShapeNode(rectOf: CGSize(width: scene.size.width * (isLargeiPad ? 0.75 : isMediumiPad ? 0.78 : isSmallMediPad ? 0.80 : isSmallPhone ? 0.965 : isLargePhone ? 0.95 : 0.82), height: isLargeiPad ? 75 : isMediumiPad ? 60 : isSmallMediPad ? 55 : isSmallPhone ? 38 : isMediumPhone ? 38 : isLargePhone ? 28 : isXLargePhone ? 35 : isProPhone ? 40 : 45), cornerRadius: 10)
             panelBorder.strokeColor = UIColor(red: 0.6471, green: 0.8431, blue: 0.9098, alpha: 1.0)  // Light blue
             panelBorder.lineWidth = 2
             panelBorder.fillColor = .clear
@@ -205,13 +235,13 @@ class TutorialOverlay {
         
         // Skip tutorial button - white border, white text (subtle/secondary)
         skipTutorialButton = createStyledButton(
-            width: isLargeiPad ? 110 : isMediumiPad ? 95 : isSmallMediPad ? 90 : 75,
-            height: isLargeiPad ? 45 : isMediumiPad ? 38 : isSmallMediPad ? 36 : 30,
+            width: isLargeiPad ? 110 : isMediumiPad ? 95 : isSmallMediPad ? 90 : isLargePhone ? 65 : 75,
+            height: isLargeiPad ? 45 : isMediumiPad ? 38 : isSmallMediPad ? 36 : isLargePhone ? 26 : 30,
             fillColor: UIColor(red: 0.2392, green: 0.698, blue: 1, alpha: 0.6),
             strokeColor: UIColor.white,
             lineWidth: 1.5
         )
-        skipTutorialButton.position = CGPoint(x: scene.size.width * (isLargeiPad ? 0.20 : isSmallMediPad ? 0.23 : 0.24), y: 0)
+        skipTutorialButton.position = CGPoint(x: scene.size.width * (isLargeiPad ? 0.20 : isSmallMediPad ? 0.23 : isSmallPhone ? 0.22 : 0.24), y: 0)
         skipTutorialButton.zPosition = 4
         skipTutorialButton.name = "tutorialSkipButton"
         instructionBackground.addChild(skipTutorialButton)
@@ -227,19 +257,19 @@ class TutorialOverlay {
         
         // Next/Got it button - golden border with glow, golden text (primary)
         nextButton = createStyledButton(
-            width: isLargeiPad ? 125 : isMediumiPad ? 105 : isSmallMediPad ? 100 : 85,
-            height: isLargeiPad ? 45 : isMediumiPad ? 38 : isSmallMediPad ? 36 : 30,
+            width: isLargeiPad ? 125 : isMediumiPad ? 105 : isSmallMediPad ? 100 : isLargePhone ? 75 : 85,
+            height: isLargeiPad ? 45 : isMediumiPad ? 38 : isSmallMediPad ? 36 : isLargePhone ? 26 : 30,
             fillColor: UIColor(red: 0.2392, green: 0.698, blue: 1, alpha: 1.0),
             strokeColor: UIColor(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0),
             lineWidth: 2.0
         )
-        nextButton.position = CGPoint(x: scene.size.width * (isLargeiPad ? 0.32 : 0.34), y: 0)
+        nextButton.position = CGPoint(x: scene.size.width * (isLargeiPad ? 0.32 : isSmallPhone ? 0.37 : 0.34), y: 0)
         nextButton.zPosition = 4
         nextButton.name = "tutorialNextButton"
         instructionBackground.addChild(nextButton)
         
         // Add glow effect to next button
-        let glowNode = SKShapeNode(rectOf: CGSize(width: isLargeiPad ? 125 : isMediumiPad ? 105 : isSmallMediPad ? 100 : 85, height: isLargeiPad ? 45 : isMediumiPad ? 38 : isSmallMediPad ? 36 : 30), cornerRadius: 8)
+        let glowNode = SKShapeNode(rectOf: CGSize(width: isLargeiPad ? 125 : isMediumiPad ? 105 : isSmallMediPad ? 100 : isLargePhone ? 75 : 85, height: isLargeiPad ? 45 : isMediumiPad ? 38 : isSmallMediPad ? 36 : isLargePhone ? 26 : 30), cornerRadius: 8)
         glowNode.strokeColor = UIColor(red: 1, green: 0.8824, blue: 0.5804, alpha: 0.6)
         glowNode.lineWidth = 4
         glowNode.fillColor = .clear
@@ -340,8 +370,8 @@ class TutorialOverlay {
                 let path = UIBezierPath(rect: fullRect)
                 
                 // Skip button spotlight - cover borders fully
-                let horizontalPadding: CGFloat = isLargeiPad ? 24 : isMediumiPad ? 18 : isSmallMediPad ? 16 : 10
-                let verticalPadding: CGFloat = isLargeiPad ? 16 : isMediumiPad ? 12 : isSmallMediPad ? 10 : 6
+                let horizontalPadding: CGFloat = isLargeiPad ? 24 : isMediumiPad ? 18 : isSmallMediPad ? 16 : isSmallPhone ? 4 : 10
+                let verticalPadding: CGFloat = isLargeiPad ? 16 : isMediumiPad ? 12 : isSmallMediPad ? 10 : isSmallPhone ? 2 : 6
                 let skipRect = CGRect(
                     x: skipPosition.x - skip.frame.width / 2 - horizontalPadding,
                     y: skipPosition.y - skip.frame.height / 2 - verticalPadding,
@@ -615,6 +645,11 @@ class TutorialOverlay {
                     }
                     verticalPadding = 6
                     cornerRadius = 22
+                } else if isSmallPhone {
+                    //print("Inside isSmallPhne")
+                    horizontalPadding = 1
+                    verticalPadding = 0
+                    cornerRadius = 18
                 } else {
                     horizontalPadding = 17
                     verticalPadding = 4
