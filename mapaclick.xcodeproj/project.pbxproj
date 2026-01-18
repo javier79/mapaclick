@@ -13,6 +13,8 @@
 		8D00A3192ABCA56F00566008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A3172ABCA56F00566008 /* Main.storyboard */; };
 		8D00A31B2ABCA57100566008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31A2ABCA57100566008 /* Assets.xcassets */; };
 		8D00A31E2ABCA57100566008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31C2ABCA57100566008 /* LaunchScreen.storyboard */; };
+		8D1035332F0C392100BEB669 /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1035312F0C392100BEB669 /* TutorialManager.swift */; };
+		8D1035342F0C392100BEB669 /* TutorialOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1035322F0C392100BEB669 /* TutorialOverlay.swift */; };
 		8D1620262AC3480300823B5E /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D1620252AC3480300823B5E /* Icons.xcassets */; };
 		8DAC25B52AC2094E000C6C04 /* Guiton Sketch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */; };
 		8DAC25B72AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */; };
@@ -41,6 +43,8 @@
 		8D00A31A2ABCA57100566008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D00A31D2ABCA57100566008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D00A31F2ABCA57100566008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D1035312F0C392100BEB669 /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
+		8D1035322F0C392100BEB669 /* TutorialOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialOverlay.swift; sourceTree = "<group>"; };
 		8D1620252AC3480300823B5E /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Icons.xcassets; path = ../../test_grounds/test_grounds/Icons.xcassets; sourceTree = "<group>"; };
 		8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Guiton Sketch.mp3"; path = "../../test_grounds/test_grounds/Guiton Sketch.mp3"; sourceTree = "<group>"; };
 		8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "cartoon_success_fanfair 1.mp3"; path = "../../test_grounds/test_grounds/cartoon_success_fanfair 1.mp3"; sourceTree = "<group>"; };
@@ -90,6 +94,8 @@
 		8D00A3102ABCA56F00566008 /* mapaclick */ = {
 			isa = PBXGroup;
 			children = (
+				8D1035312F0C392100BEB669 /* TutorialManager.swift */,
+				8D1035322F0C392100BEB669 /* TutorialOverlay.swift */,
 				8D00A3112ABCA56F00566008 /* AppDelegate.swift */,
 				8D00A3132ABCA56F00566008 /* SceneDelegate.swift */,
 				8D00A3152ABCA56F00566008 /* ViewController.swift */,
@@ -199,6 +205,8 @@
 				8DAC25CF2AC230F7000C6C04 /* GameOverScene.swift in Sources */,
 				8DAC25C12AC20D89000C6C04 /* StartMenuScene.swift in Sources */,
 				8DAC25C32AC20E2F000C6C04 /* StartMenuMethods.swift in Sources */,
+				8D1035332F0C392100BEB669 /* TutorialManager.swift in Sources */,
+				8D1035342F0C392100BEB669 /* TutorialOverlay.swift in Sources */,
 				8DAC25C92AC21BCB000C6C04 /* GameSceneObjects.swift in Sources */,
 				8D00A3162ABCA56F00566008 /* ViewController.swift in Sources */,
 				8DAC25D32AC3261C000C6C04 /* RandomGameScene.swift in Sources */,

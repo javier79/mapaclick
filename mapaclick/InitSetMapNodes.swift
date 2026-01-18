@@ -12,7 +12,9 @@ class InitSetMapNodes{
     
      func initSetcontainerNodeAndChildren()->SKNode{
          let containerSKNode = SKNode()
-         let coverDesecheoIslandSKSpriteNode: SKSpriteNode = desecheoIslandCover()
+         //containerSKNode.yScale = -1.0
+         //containerSKNode.zRotation = 9.44
+         //let coverDesecheoIslandSKSpriteNode: SKSpriteNode = desecheoIslandCover()
          //let rectangularFrameSKSPriteNode: SKSpriteNode = CreateSetMapNodes().rectangleBezierPathToSKSpriteNode(bpRectangle: TestClass().createRectangle())
          let rectangularViequesFrameSKSPriteNode: SKSpriteNode = rectangleViequesBezierPathToSKSpriteNode(bpViequesRectangle: BezierPathsForMapNodesAndRectangles().createViequesRectangle())
          let rectangularCulebraFrameSKSPriteNode: SKSpriteNode = rectangleCulebraBezierPathToSKSpriteNode(bpCulebraRectangle: BezierPathsForMapNodesAndRectangles().createCulebraRectangle())
@@ -97,7 +99,7 @@ class InitSetMapNodes{
          let viequesSKSpriteNode:SKSpriteNode = viequesBezierPathToSKSpriteNode(bpVieques: BezierPathsForMapNodesAndRectangles().viequesDrawBezierPath())
          let culebraSKSpriteNode:SKSpriteNode = culebraBezierPathToSKSpriteNode(bpCulebra: BezierPathsForMapNodesAndRectangles().culebraDrawBezierPath())
         
-         addChildSKSpriteNodeToParentSKNode(parent: containerSKNode, children: coverDesecheoIslandSKSpriteNode)
+         //addChildSKSpriteNodeToParentSKNode(parent: containerSKNode, children: coverDesecheoIslandSKSpriteNode)
          //addChildSKSpriteNodeToParentSKNode(parent: containerSKNode, children: rectangularFrameSKSPriteNode)
          addChildSKSpriteNodeToParentSKNode(parent: containerSKNode, children: rectangularViequesFrameSKSPriteNode)
          addChildSKSpriteNodeToParentSKNode(parent: containerSKNode, children: rectangularCulebraFrameSKSPriteNode)
@@ -349,8 +351,451 @@ class InitSetMapNodes{
          /**The switch statement allows to set the label(that identifies each municipio in the map) with attributes necessary to acamodate text, set positioning and other attributes  exclusive to a group of nodes or individual nodes  */
          /**The execution will enter the case that corresponds with the String value of municipioNameLabel.text*/
          switch locationNameLabel.text {
+             
+         case "Maricao", "Moca", "Arecibo", "Coamo", "Yabucoa" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+            locationNameLabel.horizontalAlignmentMode = .center
+            locationNameLabel.verticalAlignmentMode = .center
+             
+         case "Lares":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.5
+             locationNameLabel.position = CGPoint(x: -1.5, y: -3.0)
+             
+         case "Yauco":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 7.0
+             locationNameLabel.position = CGPoint(x: -0.6, y: 0.5)
+             
+         case "Aibonito":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 7.0
+             locationNameLabel.position = CGPoint(x: -0.5, y: -2.5)
+             
+         case "Utuado", "Lajas":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+             locationNameLabel.position = CGPoint(x: 0.5, y: 1.5)
+             
+         case "Salinas":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+             locationNameLabel.position = CGPoint(x: -3.0, y: -2.5)
+             
+             
+         case "Ponce":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+             locationNameLabel.position = CGPoint(x: -2.8, y: 3.5)
+
+             
+         case "Orocovis":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
+             locationNameLabel.position = CGPoint(x: 3.5, y: -5.5)
+             
+         case "Jayuya" :
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.position = CGPoint(x: 1.0, y: -10.0)
+             
+         case "Adjuntas":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.position = CGPoint(x: 0.0, y: -3.5)
+             
+         case "Villalba":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.position = CGPoint(x: -0.6, y: -4.0)
+             
+         case "Morovis" :
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.2
+             locationNameLabel.position = CGPoint(x: 0.7, y: -3.5)
+             
+         case "Aguada":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.3//4.7
+              locationNameLabel.position = CGPoint(x: 0.3, y: -5.0)
+             
+         case "Caguas":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.3//4.7
+              locationNameLabel.position = CGPoint(x: 1.5, y: -5.0)
+             
+         case "Maunabo":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 5.9//4.7
+              locationNameLabel.position = CGPoint(x: 4.1, y: -5.5)
+             
+         case  "Cidra":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.5//4.7
+              locationNameLabel.position = CGPoint(x: 3.0, y: -5.5)
+             
+         case "Culebra" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.position = CGPoint(x: 5.0, y: -2.0)
+             
+         case "Añasco" :
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.8
+              locationNameLabel.position = CGPoint(x: 3.5, y: -1.0)
+            
+         case "Camuy":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.0
+            locationNameLabel.position = CGPoint(x: -2.5, y: -3.5)
+             
+         case "Comerío":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.3
+            locationNameLabel.position = CGPoint(x: -0.5, y: -3.5)
+             
+         case "Naguabo":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.0
+             locationNameLabel.position = CGPoint(x: 0.0, y: -5.5)
+             
+         case "Aguadilla":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.6
+             locationNameLabel.position = CGPoint(x: -1.0, y: 3.0)
+             
+        case "Juncos":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.0
+            locationNameLabel.position = CGPoint(x: -3.0, y: 1.5)
+             
+             
+        case "Manatí":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.4
+             locationNameLabel.position = CGPoint(x: 2.5, y: 0.5)
+             
+         case "Vieques":
+              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+              locationNameLabel.fontSize = 6.9
+              locationNameLabel.position = CGPoint(x: -2.5, y: -1.0)
+             
+             
+        case "Toa Alta":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.5
+            locationNameLabel.position = CGPoint(x: 2.0, y: -2.0)
+             
+             
+         case "Las Marías":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.5
+             locationNameLabel.position = CGPoint(x: 3.0, y: -4.5)
+             
+
+        case "Cayey":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.position = CGPoint(x: -8.5, y: -5.0)
+
+            
+        case "Luquillo":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.1
+            locationNameLabel.position = CGPoint(x: -0.5, y: 2.0)
+            //locationNameLabel.zPosition = 1
+             
+         case "Guánica":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.3
+             locationNameLabel.position = CGPoint(x: 1.5, y: -2.0)
+             
+         case "Gurabo":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.0
+             locationNameLabel.position = CGPoint(x: 2.0, y: 1.5)
+        
+
+             
+        case "Isabela":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.8
+            locationNameLabel.position = CGPoint(x: 1.5, y: -2.5)
+             
+        case "Corozal":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.7
+            locationNameLabel.position = CGPoint(x: -0.5, y: -3.0)
+
+            
+        case "Hormigueros":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 4.0
+             locationNameLabel.zRotation = -0.55
+            locationNameLabel.position = CGPoint(x: -1.5, y: -2.5)
+     
+         
+        case "Patillas" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 7.3
+             locationNameLabel.zRotation = -0.85
+            locationNameLabel.position = CGPoint(x: -6.0, y: -5.0)
+             
+        case "Rincón" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.8
+             locationNameLabel.zRotation = -1.0
+             locationNameLabel.position = CGPoint(x: -5.5, y: -1.0)
+             
+       case "Arroyo" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.8
+            locationNameLabel.zRotation = -1.1
+            locationNameLabel.position = CGPoint(x: -3.0, y: -1.0)
+             
+       case "Canóvanas" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.9
+            locationNameLabel.zRotation = -1.43
+            locationNameLabel.position = CGPoint(x: -4.5, y: -1.0)
+
+            
+        case "Mayagüez":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.7
+             locationNameLabel.position = CGPoint(x: 2.5, y: -4.5)
+
+            
+        case "Carolina":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.9
+             locationNameLabel.zRotation = -1.1
+             locationNameLabel.position = CGPoint(x: 3.0, y: 0.5)
+             
+        case "Quebradillas":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 5.9
+            locationNameLabel.zRotation = -1.3
+            locationNameLabel.position = CGPoint(x: -0.5, y: 1.5)
+             
+        case "Peñuelas":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.8
+            locationNameLabel.zRotation = -1.0
+            locationNameLabel.position = CGPoint(x: -2.8, y: 0.5)
+             
+        case "Hatillo":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 8.0
+            locationNameLabel.zRotation = -1.0
+            locationNameLabel.position = CGPoint(x: -1.5, y: -2.5)
+
+            
+        case "Guayanilla" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 5.8
+            locationNameLabel.position = CGPoint(x: 2.7, y:-12.5)
+            locationNameLabel.zRotation = 0.5
+        
+        case "Guaynabo":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.1
+             locationNameLabel.zRotation = 1.3
+            locationNameLabel.position = CGPoint(x: 2.0, y: -9.0)
+
+        case  "Barceloneta":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 5.3
+            locationNameLabel.zRotation = 1.15
+            locationNameLabel.position = CGPoint(x: 0.5, y: 0.5)
+            
+        case "Dorado":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.6
+             locationNameLabel.zRotation = -1.0
+            locationNameLabel.position = CGPoint(x: -8.0, y: -2.5)
+             
+       case  "Bayamón":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.5
+            locationNameLabel.zRotation = 1.1
+            locationNameLabel.position = CGPoint(x: 1.5, y: 0.5)
+
+            
+        case "Florida" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.3
+             locationNameLabel.zRotation = 1.1
+            locationNameLabel.position = CGPoint(x: 2.0, y: -2.0)
+
+            
+        case  "Ciales":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.position = CGPoint(x: 5.5, y: 0.5)
+             
+        case  "Ceiba" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.5
+            locationNameLabel.position = CGPoint(x: 6.0, y: -3.0)
+
+            
+            
+        case "Naranjito" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 6.6
+            locationNameLabel.zRotation = 0.9
+            locationNameLabel.position = CGPoint(x: 3.0, y: -3.0)
+             
+             
+         case "Las Piedras":
+             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.8
+             locationNameLabel.zRotation = 1.02
+             locationNameLabel.position = CGPoint(x: 3.0, y: -3.0)
+             
+             
+        case "Humacao" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 6.6
+             locationNameLabel.zRotation = 0.51
+             locationNameLabel.position = CGPoint(x: -1.0, y:1.5)
+             
+       case "Barranquitas" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 5.71
+            locationNameLabel.zRotation = 0.65
+            locationNameLabel.position = CGPoint(x: -1.5, y: -0.5)
+      
+
+            
+        case "Cataño":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+             locationNameLabel.fontSize = 5.0//4.0
+            locationNameLabel.zRotation = 0.4
+            locationNameLabel.position = CGPoint(x: 0.5, y: -3.0)
+
+            
+        case "Loíza" :
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 7.5
+            //locationNameLabel.zRotation = 6.18
+            //locationNameLabel.xScale = 1.0
+             locationNameLabel.position = CGPoint(x: 5.0, y: -1.0)
+
+            
+        case "Fajardo":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 7.0
+            locationNameLabel.position = CGPoint(x: -6.5, y: -11.0)
+
+            
+        case "Guayama":
+            setOneLineMunicipioNameLabel(Oneline:locationNameLabel)
+            locationNameLabel.fontSize = 7.5
+            locationNameLabel.position = CGPoint(x: -2.0, y: -10.0)
+
+        
+             
+         case "Aguas Buenas" :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
+             firstLineLabel.fontSize = 6.4
+             secondLineLabel.fontSize = 6.4
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
+             firstLineLabel.position = CGPoint(x:-0.5, y:1.0)
+             secondLineLabel.position = CGPoint(x:0.5, y:-5.0)
+             
+         case "Rio Grande", "San Sebastián" :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
+             secondLineLabel.position = CGPoint(x:-0.5, y:-6.0)
+             
+         case "San Germán" :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)//Attributes are set for label
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)//adds first part of text attribute(ex.Aguas)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)//adds second part of text attribute(ex.Buenas)
+             firstLineLabel.position = CGPoint(x:1.5, y:-0.5)
+             secondLineLabel.position = CGPoint(x:0.5, y:-7.5)
+         
+             
+         case "Cabo Rojo" :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+             firstLineLabel.position = CGPoint(x:0.5, y:3.0)
+             secondLineLabel.position = CGPoint(x:0.5, y:-4.2)
+             
+         case "Vega Baja" :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+             firstLineLabel.position = CGPoint(x:0.5, y:3.0)
+             secondLineLabel.position = CGPoint(x:0.6, y:-4.5)
+             
+             
+         case "Santa Isabel" :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+             firstLineLabel.position = CGPoint(x:1.5, y:3.0)
+             secondLineLabel.position = CGPoint(x:1.5, y:-3.0)
+             
+             
+         case "San Juan"  :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+             firstLineLabel.position = CGPoint(x:0.5, y:5.0)
+             secondLineLabel.position = CGPoint(x:0.5, y:-1.5)
+             
+             
+         case "Juana Díaz"  :
+             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+             firstLineLabel.position = CGPoint(x:2.5, y:-0.5)
+             secondLineLabel.position = CGPoint(x:2.5, y:-7.0)
+
+            
+        case "Sabana Grande" :
+            setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+            firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+            secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+            firstLineLabel.fontSize = 6.2
+            secondLineLabel.fontSize = 6.2
+            firstLineLabel.position = CGPoint(x:-2.0, y:-9.5)//CGPoint(x:-4.0, y:-1.5)
+            secondLineLabel.position = CGPoint(x:-1.0, y:-15.0)//CGPoint(x:-4.5, y:-7.0)
+
+            
+        case "Vega Alta":
+            setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+            firstLineLabel.fontSize = 6.0
+            secondLineLabel.fontSize = 6.0
+            firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+            secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+            firstLineLabel.position = CGPoint(x:2.7, y:0.5)
+            secondLineLabel.position = CGPoint(x:1.2, y:-6.0)
+
+            
+        case "Toa Baja":
+            setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+            firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+            secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+            firstLineLabel.position = CGPoint(x:-7.5, y:-1.5)
+            secondLineLabel.position = CGPoint(x:-7.0, y:-7.5)
+            
+
+            
+        case "Trujillo Alto" :
+            setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+            firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+            secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+            firstLineLabel.fontSize = 6.5
+            secondLineLabel.fontSize = 6.5
+            firstLineLabel.position = CGPoint(x:-3.5, y:-2.5)
+            secondLineLabel.position = CGPoint(x:-4.5, y:-8.5)
+
+            
+        case "San Lorenzo"  :
+            setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
+            firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
+            secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
+             firstLineLabel.position = CGPoint(x:3.5, y:0.5)
+             secondLineLabel.position = CGPoint(x:3.0, y:-5.0)
                  
-         case "Adjuntas", "Aguada", "Añasco", "Lajas", "Maricao", "Las Marías", "Moca", "Yauco", "Guánica", "Lares", "Arecibo", "Utuado", "Ponce", "Jayuya",
+         /*case "Adjuntas", "Aguada", "Añasco", "Lajas", "Maricao", "Las Marías", "Moca", "Yauco", "Guánica", "Lares", "Arecibo", "Utuado", "Ponce", "Jayuya",
              "Manatí", "Coamo", "Orocovis", "Villalba", "Comerío", "Toa Alta", "Caguas", "Cidra", "Salinas", "Culebra", "Naguabo", "Yabucoa" :
             setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
             locationNameLabel.horizontalAlignmentMode = .center
@@ -528,7 +973,7 @@ class InitSetMapNodes{
             setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
             firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
             secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-            secondLineLabel.position = CGPoint(x:4.5, y:6.0)
+            secondLineLabel.position = CGPoint(x:4.5, y:6.0)*/
 
              
                  default:
@@ -547,29 +992,29 @@ class InitSetMapNodes{
      }
      
      
-     //sets attributes for label to use with one word municipio names
-     func setOneLineMunicipioNameLabel(Oneline:SKLabelNode){
-         //Oneline.text = municipioNameLabel.text
-         Oneline.fontName = "ArialMT"//"Helvetica"
-         Oneline.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-         Oneline.xScale = -1.0
-         Oneline.zRotation = 9.44
-         Oneline.fontSize = 5.4
-     }
-     //sets attributes for labels to use with two word municipio names
-     func setTwoLineMunicipioNameLabels(labelLineFirst:SKLabelNode, labelLineSecond:SKLabelNode){
-         
-         labelLineFirst.fontName = "ArialMT"//"Helvetica"
-         labelLineSecond.fontName = "ArialMT"//"Helvetica"
-         labelLineFirst.fontSize = 5.4
-         labelLineSecond.fontSize = 5.4
-         labelLineFirst.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-         labelLineSecond.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
-         labelLineFirst.xScale = -1.0
-         labelLineSecond.xScale = -1.0
-         labelLineFirst.zRotation = 9.44
-         labelLineSecond.zRotation = 9.44
-     }
+    //sets attributes for label to use with one word municipio names
+    func setOneLineMunicipioNameLabel(Oneline:SKLabelNode){
+        //Oneline.text = municipioNameLabel.text
+        Oneline.fontName = "ArialMT"//"Helvetica"
+        Oneline.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
+        //Oneline.xScale = -1.0
+        //Oneline.zRotation = 9.44
+        Oneline.fontSize = 6.8//5.4
+    }
+    //sets attributes for labels to use with two word municipio names
+    func setTwoLineMunicipioNameLabels(labelLineFirst:SKLabelNode, labelLineSecond:SKLabelNode){
+        
+        labelLineFirst.fontName = "ArialMT"//"Helvetica"
+        labelLineSecond.fontName = "ArialMT"//"Helvetica"
+        labelLineFirst.fontSize = 6.9
+        labelLineSecond.fontSize = 6.9
+        labelLineFirst.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
+        labelLineSecond.fontColor = UIColor.init(red: 0.149, green: 0.149, blue: 0.149, alpha: 1.0)
+        //labelLineFirst.xScale = -1.0
+        //labelLineSecond.xScale = -1.0
+        //labelLineFirst.zRotation = 9.44
+        //labelLineSecond.zRotation = 9.44
+    }
 
 
      
@@ -596,8 +1041,8 @@ class InitSetMapNodes{
          }
      }
      
-
-     func desecheoIslandCover()-> SKSpriteNode {//properties for Desecheo island cover
+        //DESECHEO ISLAND WAS EDITED AND CUT OUT OF THE MAYAGUEZ BEZIERPATH.(JANUARY 24, 2025)
+     /*func desecheoIslandCover()-> SKSpriteNode {//properties for Desecheo island cover
          let desecheoCover = SKSpriteNode()
          desecheoCover.color = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0) /* #42c2ff *///(red: 0.5373, green: 0.8431, blue: 0.9294, alpha: 1.0)//color hex #89d7ed
          desecheoCover.size = CGSize(width: 10, height:10)
@@ -605,7 +1050,7 @@ class InitSetMapNodes{
          desecheoCover.position = CGPoint(x: -8, y: 239)
          desecheoCover.zPosition = 1
          return desecheoCover
-     }
+     }*/
      
 
      //function is called by the BezierPathToSKSpriteNode(caboRojoBezierPathToSKSpriteNode) function of each municipio node in order to apply some general attributes
@@ -616,1168 +1061,3361 @@ class InitSetMapNodes{
          let view = SKView(frame: UIScreen.main.bounds)
          let texture = view.texture(from: nodeShape)!
          let skSpriteNode = SKSpriteNode(texture: texture)
-         skSpriteNode.xScale = -1.0
-         skSpriteNode.zRotation = 9.44
+         //skSpriteNode.xScale = -1.0
+         //skSpriteNode.zRotation = 9.44
          
          return skSpriteNode
      }
+    
+    func createMapNode(from bezierPath: UIBezierPath, position: CGPoint, name: String) -> SKSpriteNode {
+        let bounds = bezierPath.bounds
+        let padding: CGFloat = 0.0 // Common padding for all municipalities
+        let size = CGSize(width: bounds.width + padding * 2, height: bounds.height + padding * 2)
+        let renderer = UIGraphicsImageRenderer(size: size)
+        
+        // Common colors for all municipalities
+        let fillColor = UIColor(red: 0.78, green: 0.91, blue: 0.81, alpha: 1.00)
+        let strokeColor = UIColor(red: 0.81, green: 1.00, blue: 0.81, alpha: 1.00)
+        
+        let image = renderer.image { context in
+            let cgContext = context.cgContext
+            // Flip only the Y-axis
+            cgContext.scaleBy(x: 1, y: -1)
+            // Adjust translation for Y-flip
+            cgContext.translateBy(x: -bounds.minX + padding, y: -bounds.maxY - padding)
+            cgContext.setFillColor(fillColor.cgColor)
+            cgContext.setStrokeColor(strokeColor.cgColor)
+            cgContext.addPath(bezierPath.cgPath)
+            cgContext.drawPath(using: .fillStroke)
+        }
+        
+        let texture = SKTexture(image: image)
+        let spriteNode = SKSpriteNode(texture: texture)
+        spriteNode.position = position
+        spriteNode.name = name
+        return spriteNode
+    }
+
+
      
 
-     func caboRojoBezierPathToSKSpriteNode(bpCaboRojo: UIBezierPath)-> SKSpriteNode{
+     /*func caboRojoBezierPathToSKSpriteNode(bpCaboRojo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpCaboRojo.cgPath)
          let caboRojoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
          caboRojoNode.position = CGPoint(x:80, y:143)
-         //caboRojoNode.zPosition = 1
-         //caboRojoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:caboRojoNode.size.width/2 * 1.5, height:caboRojoNode.size.height/2 * 1.15), center: CGPoint(x:1.5, y: 2.5))
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: caboRojoNode.size.width/2 * 0.55, center: CGPoint(x: -0.5, y: -7.0))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: caboRojoNode.size.width/2 * 0.55, center: CGPoint(x: -0.5, y: 1.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: caboRojoNode.size.width/2 * 0.55, center: CGPoint(x: -0.5, y: 13.5))//bottom
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: caboRojoNode.size.width/2 * 0.55, center: CGPoint(x: 0.5, y: 7.0))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: caboRojoNode.size.width/2 * 0.55, center: CGPoint(x: 0.5, y: -1.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: caboRojoNode.size.width/2 * 0.55, center: CGPoint(x: 0.5, y: -13.5))//bottom
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          caboRojoNode.physicsBody = compoundBody
          caboRojoNode.physicsBody?.isDynamic = false
+         //caboRojoNode.zPosition = 0
          caboRojoNode.name = "Cabo Rojo"
          return caboRojoNode
-     }
-
-
+     }*/
+    
+    /*func caboRojoBezierPathToSKSpriteNode(bpCaboRojo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 80, y: 143)
+        let name = "Cabo Rojo"
+        
+        let spriteNode = createMapNode(
+            from: bpCaboRojo,
+            position: position,
+            name: name
+        )
+        
+        // Add Cabo Rojo-specific physics body if needed
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: 7.0)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -1.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -13.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        return spriteNode
+    }*/
+    
+    func caboRojoBezierPathToSKSpriteNode(bpCaboRojo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 80, y: 143)
+        let name = "Cabo Rojo"
+        
+        let spriteNode = createMapNode(
+            from: bpCaboRojo,
+            position: position,
+            name: name
+        )
+        
+        // Compound circular physics bodies
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: 7.0)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -1.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -13.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width  , height: spriteNode.size.height/1.5 ), center: CGPoint(x: -4.0, y: -7.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width  , height: spriteNode.size.height/1.5 ), center: CGPoint(x: -4.0, y: -7.5)) // top physicsBody
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4  , height: spriteNode.size.height/6 ), center: CGPoint(x: -3.5, y: 25.5)) // middle
+        //let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -13.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
+    
+   
+    
      
-     func hormiguerosBezierPathToSKSpriteNode(bphormigueros: UIBezierPath)-> SKSpriteNode{
+     /*func hormiguerosBezierPathToSKSpriteNode(bphormigueros: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bphormigueros.cgPath)
          let hormiguerosNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
          hormiguerosNode.position = CGPoint(x:90.16, y:168.58)
-         //hormiguerosNode.zPosition = 1//FOR LABEL TO BE LEGIBLE
-         hormiguerosNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:hormiguerosNode.size.width/2 * 2.6, height:hormiguerosNode.size.height/2 * 1.62), center: CGPoint(x:5.5, y: -0.5))
-         //hormiguerosNode.physicsBody = SKPhysicsBody(circleOfRadius: hormiguerosNode.size.width/2 * 0.35, center: CGPoint(x:-0.7, y: -1.5))
-         hormiguerosNode.physicsBody?.isDynamic = false
+         //hormiguerosNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:hormiguerosNode.size.width/2 * 2.8, height:hormiguerosNode.size.height/2 * 1.7), center: CGPoint(x:-5.5, y: -0.5))
+         /*let physicsBody2 = SKPhysicsBody(circleOfRadius: hormiguerosNode.size.width/5 , center: CGPoint(x: -3.5, y: 2.5))
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: hormiguerosNode.size.width/5 , center: CGPoint(x: 3.5, y: 3.5))
+         let physicsBody4 = SKPhysicsBody(circleOfRadius: hormiguerosNode.size.width/5.5 , center: CGPoint(x: 5.0, y: -2.5))
+         let physicsBody5 = SKPhysicsBody(circleOfRadius: hormiguerosNode.size.width/5.5 , center: CGPoint(x: -1.0, y: -3.5))
+         let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+         hormiguerosNode.physicsBody = compoundBody*/
+         //hormiguerosNode.physicsBody?.isDynamic = false
+         //hormiguerosNode.zPosition = 0
          hormiguerosNode.name = "Hormigueros"
          return hormiguerosNode
 
-     }
+     }*/
+    
+    
+    /*func hormiguerosBezierPathToSKSpriteNode(bphormigueros: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 90.16, y: 168.58)
+        let name = "Hormigueros"
+        
+        let spriteNode = createMapNode(
+            from: bphormigueros,
+            position: position,
+            name: name
+        )
+        
+        // Add Hormigueros-specific physics body if needed
+        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 2.8, height: spriteNode.size.height/2 * 1.7), center: CGPoint(x: -5.5, y: -0.5))
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.7 , height: spriteNode.size.height/2 * 1.9), center: CGPoint(x: 1.0, y: 0.0))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        return spriteNode
+    }*/
+    
+    func hormiguerosBezierPathToSKSpriteNode(bphormigueros: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 90.16, y: 168.58)
+        let name = "Hormigueros"
+        
+        let spriteNode = createMapNode(
+            from: bphormigueros,
+            position: position,
+            name: name
+        )
+        
+        // Rectangular physics body
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.7 , height: spriteNode.size.height/2 * 1.9), center: CGPoint(x: 1.0, y: 0.0))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
+    
+    
+    
 
-     
-     func mayaguezBezierPathToSKSpriteNode(bpMayaguez: UIBezierPath)-> SKSpriteNode{
+     //Recordar que mayaguez tienes un BezierPath y posicionamiento diferente a lo original porque se edito desecheo(se elimino)
+     /*func mayaguezBezierPathToSKSpriteNode(bpMayaguez: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpMayaguez.cgPath)
          let mayaguezNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         mayaguezNode.position = CGPoint(x:53.84, y:207.63)
-         //mayaguezNode.zPosition = 1
-         mayaguezNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:mayaguezNode.size.width/4.3, height:mayaguezNode.size.height/3.3), center: CGPoint(x:-38.5, y: 17.0))
+         mayaguezNode.position = CGPoint(x:94.19, y:191.09)//(x:53.84, y:207.63)
+         mayaguezNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:mayaguezNode.size.width/1.50, height:mayaguezNode.size.height/1.8), center: CGPoint(x:-4.0, y:-0.5))
          mayaguezNode.physicsBody?.isDynamic = false
          mayaguezNode.name = "Mayagüez"
          return mayaguezNode
-     }
+     }*/
      
+    /*func mayaguezBezierPathToSKSpriteNode(bpMayaguez: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 94.19, y: 191.09)
+        let name = "Mayagüez"
+        
+        let spriteNode = createMapNode(
+            from: bpMayaguez,
+            position: position,
+            name: name
+        )
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.50, height: spriteNode.size.height/1.8), center: CGPoint(x: -4.0, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/7, center: CGPoint(x: 11.5, y: -3.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        // Add Mayagüez-specific physics body if needed
+        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.50, height: spriteNode.size.height/1.8), center: CGPoint(x: -4.0, y: -0.5))
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        return spriteNode
+    }*/
     
+    func mayaguezBezierPathToSKSpriteNode(bpMayaguez: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 94.19, y: 191.09)
+        let name = "Mayagüez"
+        
+        let spriteNode = createMapNode(
+            from: bpMayaguez,
+            position: position,
+            name: name
+        )
+        
+        // Rectangular physics body
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.2, height: spriteNode.size.height/1.6), center: CGPoint(x: -4.0, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.8), center: CGPoint(x: -4.0, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/3), center: CGPoint(x: 15.1, y: -3.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/7), center: CGPoint(x: 20.5, y: -5.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8, height: spriteNode.size.height/7), center: CGPoint(x: -15.5, y: 13.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/14), center: CGPoint(x: -8.0, y: -13.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func anascoBezierPathToSKSpriteNode(bpAnasco: UIBezierPath)-> SKSpriteNode{
+     /*func anascoBezierPathToSKSpriteNode(bpAnasco: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpAnasco.cgPath)
          let anascoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         anascoNode.position = CGPoint(x:86.57, y:211.47)
-         //anascoNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: anascoNode.size.width/2 * 0.28, center: CGPoint(x: 8.0, y: -2.5))//left
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: anascoNode.size.width/2 * 0.35, center: CGPoint(x:-7.5, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: anascoNode.size.width/2 * 0.20, center: CGPoint(x:-18, y: -0.5))//right
+         anascoNode.position = CGPoint(x:86.58, y:211.46)//CGPoint(x:86.57, y:211.47)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: anascoNode.size.width/2 * 0.28, center: CGPoint(x: -8.0, y: 2.5))//left
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: anascoNode.size.width/2 * 0.35, center: CGPoint(x:7.5, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: anascoNode.size.width/2 * 0.20, center: CGPoint(x:18, y: 0.5))//right
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          anascoNode.physicsBody = compoundBody
-         //anascoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:anascoNode.size.width/2 * 1.3, height:anascoNode.size.height/2 * 0.9), center: CGPoint(x:-3.0, y: -1.7))
          anascoNode.physicsBody?.isDynamic = false
          anascoNode.name = "Añasco"
          return anascoNode
-     }
+     }*/
+    
+    
+    func anascoBezierPathToSKSpriteNode(bpAnasco: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 86.58, y: 211.46)
+        let name = "Añasco"
+        
+        let spriteNode = createMapNode(
+            from: bpAnasco,
+            position: position,
+            name: name
+        )
+        
+        // Compound circular physics bodies
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -8.0, y: 2.5)) // left
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: 7.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: 18, y: 0.5)) // right
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: 2.5, y: 0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.08, height: spriteNode.size.height/2.6), center: CGPoint(x: 0.5, y: 1.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.9, height: spriteNode.size.height/12), center: CGPoint(x: 8.1, y: -5.2))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/8.5), center: CGPoint(x: 2.5, y: -8.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/12.5), center: CGPoint(x: 10.5, y: -8.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/6), center: CGPoint(x: -4.5, y: 7.8))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/7), center: CGPoint(x: -11.5, y: 7.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/6), center: CGPoint(x: 4.5, y: 8.0))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5, height: spriteNode.size.height/10.5), center: CGPoint(x: 14.0, y: 7.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
+    
+    /*func anascoBezierPathToSKSpriteNode(bpAnasco: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 86.58, y: 211.46)
+        let name = "Añasco"
+        
+        let spriteNode = createMapNode(
+            from: bpAnasco,
+            position: position,
+            name: name
+        )
+        
+        // Add Añasco-specific physics body if needed
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -8.0, y: 2.5)) // left
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: 7.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: 18, y: 0.5)) // right
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        return spriteNode
+    }*/
      
-     func rinconBezierPathToSKSpriteNode(bpRincon: UIBezierPath)-> SKSpriteNode{
+     /*func rinconBezierPathToSKSpriteNode(bpRincon: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpRincon.cgPath)
          let rinconNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         rinconNode.position = CGPoint(x:60.97, y:226.45)
-         //rinconNode.zPosition = 2
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: rinconNode.size.width/2 * 0.55, center: CGPoint(x: 9.5, y: -5.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: rinconNode.size.width/2 * 0.55, center: CGPoint(x: 5.5, y: 0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: rinconNode.size.width/2 * 0.55, center: CGPoint(x: 1.5, y: 5.5))//bottom
+         rinconNode.position = CGPoint(x:60.98, y:226.43)//CGPoint(x:60.97, y:226.45)
+         /*rinconNode.physicsBody = SKPhysicsBody(texture: rinconNode.texture ?? SKTexture(imageNamed: "default"),size: rinconNode.size)*/
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: rinconNode.size.width/3, center: CGPoint(x: -9.5, y: 5.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: rinconNode.size.width/3, center: CGPoint(x: -7.5, y: -0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: rinconNode.size.width/3, center: CGPoint(x: -4.0, y: -5.5))//bottom
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          rinconNode.physicsBody = compoundBody
-         //rinconNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:rinconNode.size.width , height:rinconNode.size.height/2 * 1.8), center: CGPoint(x:11.5, y: 0.5))
-         //rinconNode.physicsBody = SKPhysicsBody(circleOfRadius: rinconNode.size.width/2 * 0.3 , center: CGPoint(x:1.8, y: 0.5))
          rinconNode.physicsBody?.isDynamic = false
          rinconNode.name = "Rincón"
          return rinconNode
-     }
+     }*/
+    
+    /*func rinconBezierPathToSKSpriteNode(bpRincon: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 60.98, y: 226.43)
+        let name = "Rincón"
+        
+        let spriteNode = createMapNode(
+            from: bpRincon,
+            position: position,
+            name: name
+        )
+        
+        // Add Rincón-specific physics body if needed
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -9.5, y: 5.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -7.5, y: -0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -4.0, y: -5.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        /*spriteNode.physicsBody = SKPhysicsBody(texture: spriteNode.texture ?? SKTexture(imageNamed: "default"), size: spriteNode.size)*/
+        
+        return spriteNode
+    }*/
+    
+    func rinconBezierPathToSKSpriteNode(bpRincon: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 60.98, y: 226.43)
+        let name = "Rincón"
+        
+        let spriteNode = createMapNode(
+            from: bpRincon,
+            position: position,
+            name: name
+        )
+        
+        // Compound circular physics bodies
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -9.5, y: 5.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -7.5, y: -0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -4.0, y: -5.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/8, center: CGPoint(x: 5.0, y: -4.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.0, height: spriteNode.size.height/3.8), center: CGPoint(x:-3.5, y: -4.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/9.5), center: CGPoint(x: -6.5, y: 0.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/8), center: CGPoint(x: -8.0, y: -9.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/3.3), center: CGPoint(x: -8.5, y: 6.3))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-    func aguadaBezierPathToSKSpriteNode(bpAguada: UIBezierPath)-> SKSpriteNode{
+    /*func aguadaBezierPathToSKSpriteNode(bpAguada: UIBezierPath)-> SKSpriteNode{
              
         let shapeNode = SKShapeNode(path: bpAguada.cgPath)
         let aguadaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-        aguadaNode.position = CGPoint(x:72.27, y:234.45)
-        //aguadaNode.zPosition = 1
-        aguadaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aguadaNode.size.width * 0.68 , height:aguadaNode.size.height/2), center: CGPoint(x:-3.5, y: 0.5))
-        //aguadaNode.physicsBody = SKPhysicsBody(circleOfRadius: aguadaNode.size.width/2 * 0.58 , center: CGPoint(x:-3.5, y: 0.5))
+        aguadaNode.position = CGPoint(x:72.71, y:234.43)//CGPoint(x:72.27, y:234.45)
+        aguadaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aguadaNode.size.width * 0.68 , height:aguadaNode.size.height/2), center: CGPoint(x:3.5, y: -0.5))
+        aguadaNode.physicsBody?.isDynamic = false
+        //aguadaNode.physicsBody = SKPhysicsBody(circleOfRadius: aguadaNode.size.width/5.5, center: CGPoint(x: -5.2, y: 0.5))//top physicsBody
+        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: aguadaNode.size.width/6.0, center: CGPoint(x:-0.5, y: -3.0))//middle
+        //let physicsBody2 = SKPhysicsBody(circleOfRadius: aguadaNode.size.width/2 * 0.55, center: CGPoint(x: -1.5, y: -5.5))//bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, /*physicsBody2,*/ physicsBody3])
+        aguadaNode.physicsBody = compoundBody*/
         aguadaNode.physicsBody?.isDynamic = false
         aguadaNode.name = "Aguada"
         return aguadaNode
+    }*/
+    
+    /*func aguadaBezierPathToSKSpriteNode(bpAguada: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 72.71, y: 234.43)
+        let name = "Aguada"
+        
+        let spriteNode = createMapNode(
+            from: bpAguada,
+            position: position,
+            name: name
+        )
+        
+        // Add Aguada-specific physics bodies if needed
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: 3.5, y: -0.5))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*spriteNode.physicsBody = SKPhysicsBody(circleOfRadius: spriteNode.size.width/5.5, center: CGPoint(x: -5.2, y: 0.5)) // top physicsBody
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/5.5, center: CGPoint(x: -5.2, y: 0.5)) // top
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/6.0, center: CGPoint(x: -0.5, y: -3.0)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.5, y: -5.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        return spriteNode
+    }*/
+    
+    func aguadaBezierPathToSKSpriteNode(bpAguada: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 72.71, y: 234.43)
+        let name = "Aguada"
+        
+        let spriteNode = createMapNode(
+            from: bpAguada,
+            position: position,
+            name: name
+        )
+        
+        // Compound circular physics bodies
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.75, height: spriteNode.size.height/2), center: CGPoint(x: 3.0, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.70, height: spriteNode.size.height/2), center: CGPoint(x: 3.5, y: -0.5))//SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.65, height: spriteNode.size.height/2), center: CGPoint(x: 4.0, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.0, height: spriteNode.size.height/2.6), center: CGPoint(x: -9.6, y: 0.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/6.0), center: CGPoint(x: 2.0, y: 10.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/8.0), center: CGPoint(x: 2.5, y: -10.4))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 10.0, y: -10.4))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+       
+        
+        return spriteNode
     }
                     
-        func aguadillaBezierPathToSKSpriteNode(bpAguadilla: UIBezierPath)-> SKSpriteNode{
+        /*func aguadillaBezierPathToSKSpriteNode(bpAguadilla: UIBezierPath)-> SKSpriteNode{
             
         let shapeNode = SKShapeNode(path: bpAguadilla.cgPath)
         let aguadillaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-        aguadillaNode.position = CGPoint(x:91.24, y:258.84)
-        //aguadillaNode.zPosition = 1
-        aguadillaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aguadillaNode.size.width * 0.68 , height:aguadillaNode.size.height/2), center: CGPoint(x:2.8, y:-4.0))
-        //aguadillaNode.physicsBody = SKPhysicsBody(circleOfRadius: aguadillaNode.size.width/2 * 0.70 , center: CGPoint(x:2.8, y:-4.0))
+        aguadillaNode.position = CGPoint(x:91.68, y:258.82)//CGPoint(x:91.24, y:258.84)
+        aguadillaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aguadillaNode.size.width * 0.68 , height:aguadillaNode.size.height/2), center: CGPoint(x:-2.8, y:4.0))
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: aguadillaNode.size.width/7, center: CGPoint(x: 3.0, y: 11.5))//top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: aguadillaNode.size.width/7, center: CGPoint(x:5.0, y:0.5))//middle
+        //let physicsBody2 = SKPhysicsBody(circleOfRadius: aguadaNode.size.width/2 * 0.55, center: CGPoint(x: -1.5, y: -5.5))//bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, /*physicsBody2,*/ physicsBody3])
+        aguadillaNode.physicsBody = compoundBody*/
         aguadillaNode.physicsBody?.isDynamic = false
         aguadillaNode.name = "Aguadilla"
         return aguadillaNode
+    }*/
+    
+    /*func aguadillaBezierPathToSKSpriteNode(bpAguadilla: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 91.68, y: 258.82)
+        let name = "Aguadilla"
+        
+        let spriteNode = createMapNode(
+            from: bpAguadilla,
+            position: position,
+            name: name
+        )
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: -2.8, y: 4.0))
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/7, center: CGPoint(x: 10.0, y: 6.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        // Add Aguadilla-specific physics bodies if needed
+        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: -2.8, y: 4.0))
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/7, center: CGPoint(x: 3.0, y: 11.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/7, center: CGPoint(x: 5.0, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.5, y: -5.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        return spriteNode
+    }*/
+    
+    func aguadillaBezierPathToSKSpriteNode(bpAguadilla: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 91.68, y: 258.82)
+        let name = "Aguadilla"
+        
+        let spriteNode = createMapNode(
+            from: bpAguadilla,
+            position: position,
+            name: name
+        )
+        
+        // Compound circular physics bodies
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.74, height: spriteNode.size.height/1.5), center: CGPoint(x: -4.8, y: 7.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.74, height: spriteNode.size.height/1.5), center: CGPoint(x: -7.0, y: 7.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.0, height: spriteNode.size.height/7.0), center: CGPoint(x: -8.0, y: -13.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/17.0), center: CGPoint(x: -8.0, y: -9.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.0, height: spriteNode.size.height/25.0), center: CGPoint(x: -8.0, y: -6.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 12.0, y: 6.0))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.0, height: spriteNode.size.height/3.3), center: CGPoint(x: 8.0, y: 4.3))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.0, height: spriteNode.size.height/2.45), center: CGPoint(x: 5.8, y: 6.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
     }
      
-     func isabelaBezierPathToSKSpriteNode(bpIsabela: UIBezierPath)-> SKSpriteNode{
+     /*func isabelaBezierPathToSKSpriteNode(bpIsabela: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpIsabela.cgPath)
          let isabelaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         isabelaNode.position = CGPoint(x:118.33, y:257.58)
-         //isabelaNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.30, center: CGPoint(x:-0.5, y: -10.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.35, center: CGPoint(x: -2.5, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.30, center: CGPoint(x: -4.5, y: 8.5))//bottom
+         isabelaNode.position = CGPoint(x:118.77, y:257.57)//CGPoint(x:118.33, y:257.58)
+         //isabelaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:isabelaNode.size.width/3.5, height:isabelaNode.size.height/1.5), center: CGPoint(x:3.5, y: 0.5))
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.30, center: CGPoint(x:0.5, y: 10.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.35, center: CGPoint(x: 2.5, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.30, center: CGPoint(x: 4.5, y: -8.5))//bottom
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          isabelaNode.physicsBody = compoundBody
-         //isabelaNode.physicsBody = SKPhysicsBody(circleOfRadius: isabelaNode.size.width/2 * 0.35 , center: CGPoint(x:-2.0, y:0.0))
          isabelaNode.physicsBody?.isDynamic = false
          isabelaNode.name = "Isabela"
          return isabelaNode
-     }
+     }*/
+    
+    /*func isabelaBezierPathToSKSpriteNode(bpIsabela: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 118.77, y: 257.57)
+        let name = "Isabela"
+        
+        let spriteNode = createMapNode(
+            from: bpIsabela,
+            position: position,
+            name: name
+        )
+        
+        // Add Isabela-specific physics bodies if needed
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 0.5, y: 10.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: 2.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 4.5, y: -8.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/1.5), center: CGPoint(x: 3.5, y: 0.5))
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        return spriteNode
+    }*/
+    
+    func isabelaBezierPathToSKSpriteNode(bpIsabela: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 118.77, y: 257.57)
+        let name = "Isabela"
+        
+        let spriteNode = createMapNode(
+            from: bpIsabela,
+            position: position,
+            name: name
+        )
+        
+        // Add Isabela-specific physics bodies if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 0.5, y: 10.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: 2.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 4.5, y: -8.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/1.2), center: CGPoint(x: 4.5, y: 2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.2), center: CGPoint(x: 4.5, y: 2.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.0, height: spriteNode.size.height/1.5), center: CGPoint(x: -6.0, y: 5.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25.0, height: spriteNode.size.height/1.8), center: CGPoint(x: -9.0, y: 8.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/40.0, height: spriteNode.size.height/2.5), center: CGPoint(x: -11.5, y: 14.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/5.5), center: CGPoint(x: -16.0, y: 15.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5, height: spriteNode.size.height/9.0), center: CGPoint(x: 18.0, y: -16.3))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/35.0, height: spriteNode.size.height/2.5), center: CGPoint(x: 14.1, y: -9.0))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/35.0, height: spriteNode.size.height/3.5), center: CGPoint(x: 16.5, y: -7.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func mocaBezierPathToSKSpriteNode(bpMoca: UIBezierPath)-> SKSpriteNode{
+     /*func mocaBezierPathToSKSpriteNode(bpMoca: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpMoca.cgPath)
          let mocaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         mocaNode.position = CGPoint(x:99.85, y:239.98)
-         //mocaNode.zPosition = 2
-         mocaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:mocaNode.size.width/2 * 1.30, height:mocaNode.size.height/2 * 1.23), center: CGPoint(x:0.0, y:3.0))
-         //mocaNode.physicsBody = SKPhysicsBody(circleOfRadius: mocaNode.size.width/2 * 0.59 , center: CGPoint(x:1.0, y:2.0))
+         mocaNode.position = CGPoint(x:100.3, y:239.97)//CGPoint(x:99.85, y:239.98)
+         mocaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:mocaNode.size.width/2 * 1.30, height:mocaNode.size.height/2 * 1.23), center: CGPoint(x:0.0, y:-3.0))
          mocaNode.physicsBody?.isDynamic = false
          mocaNode.name = "Moca"
          return mocaNode
-     }
+     }*/
+    
+    func mocaBezierPathToSKSpriteNode(bpMoca: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 100.3, y: 239.97)
+        let name = "Moca"
+        
+        let spriteNode = createMapNode(
+            from: bpMoca,
+            position: position,
+            name: name
+        )
+        
+        // Add Moca-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.33, height: spriteNode.size.height/2 * 1.32), center: CGPoint(x: 0.0, y: -3.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/2 * 1.32), center: CGPoint(x: 0.5, y: -3.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 4.5, y: 16.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/10.5), center: CGPoint(x: -1.0, y: 14.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/1.9), center: CGPoint(x: -10.5, y: -5.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17, height: spriteNode.size.height/3.8), center: CGPoint(x: 11.0, y: 3.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/23.8), center: CGPoint(x: 4.5, y: -19.1))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/11), center: CGPoint(x: 10.2, y: -15))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func sanSebastianBezierPathToSKSpriteNode(bpSanSebastian: UIBezierPath)-> SKSpriteNode{
+     /*func sanSebastianBezierPathToSKSpriteNode(bpSanSebastian: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpSanSebastian.cgPath)
          let sanSebastianNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         sanSebastianNode.position = CGPoint(x:128.96, y:222.96)
-         //sanSebastianNode.zPosition = 2
-         sanSebastianNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanSebastianNode.size.width/2 * 1.20, height:sanSebastianNode.size.height/2 * 1.20), center: CGPoint(x:-0.5, y:-1.0))
-         //sanSebastianNode.physicsBody = SKPhysicsBody(circleOfRadius: sanSebastianNode.size.width/2 * 0.59 , center: CGPoint(x:-0.5, y:-1.0))
+         sanSebastianNode.position = CGPoint(x:129.41, y:222.95)//CGPoint(x:128.96, y:222.96)
+         sanSebastianNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanSebastianNode.size.width/2 * 1.20, height:sanSebastianNode.size.height/2 * 1.20), center: CGPoint(x:0.5, y:1.0))
          sanSebastianNode.physicsBody?.isDynamic = false
          sanSebastianNode.name = "San Sebastián"
          return sanSebastianNode
-     }
+     }*/
+    
+    func sanSebastianBezierPathToSKSpriteNode(bpSanSebastian: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 129.41, y: 222.95)
+        let name = "San Sebastián"
+        
+        let spriteNode = createMapNode(
+            from: bpSanSebastian,
+            position: position,
+            name: name
+        )
+        
+        // Add San Sebastián-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.25, height: spriteNode.size.height/1.5), center: CGPoint(x: -0.5, y: 1.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.25, height: spriteNode.size.height/1.6), center: CGPoint(x: -0.5, y: 1.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/14.5), center: CGPoint(x: -7.0, y: 16.4))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6, height: spriteNode.size.height/8.5), center: CGPoint(x: 13.0, y: -15.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/9.0), center: CGPoint(x: 12.3, y: 16.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/22, height: spriteNode.size.height/5.3), center: CGPoint(x: 18.5, y: 7.2))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func lasMariasBezierPathToSKSpriteNode(bpLasMarias: UIBezierPath)-> SKSpriteNode{
+     /*func lasMariasBezierPathToSKSpriteNode(bpLasMarias: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpLasMarias.cgPath)
          let lasMariasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         lasMariasNode.position = CGPoint(x:124.39, y:198.77)
-         //lasMariasNode.zPosition = 1
-         lasMariasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:lasMariasNode.size.width/2 * 1.20, height:lasMariasNode.size.height/2 * 1.20), center: CGPoint(x:-3.4, y: -0.5))
+         lasMariasNode.position = CGPoint(x:124.84, y:198.76)//CGPoint(x:124.39, y:198.77)
+         lasMariasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:lasMariasNode.size.width/2 * 1.20, height:lasMariasNode.size.height/2 * 1.20), center: CGPoint(x:3.4, y: 0.5))
          lasMariasNode.physicsBody?.isDynamic = false
          lasMariasNode.name = "Las Marías"
          return lasMariasNode
-     }
+     }*/
+    
+    func lasMariasBezierPathToSKSpriteNode(bpLasMarias: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 124.84, y: 198.76)
+        let name = "Las Marías"
+        
+        let spriteNode = createMapNode(
+            from: bpLasMarias,
+            position: position,
+            name: name
+        )
+        
+        // Add Las Marías-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.42, height: spriteNode.size.height/2 * 1.20), center: CGPoint(x: 4.4, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.55), center: CGPoint(x: -3.5, y: 1.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/2), center: CGPoint(x: 14.5, y: -2.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/9), center: CGPoint(x: -20.5, y: 4.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.5, height: spriteNode.size.height/2.5), center: CGPoint(x: -15.0, y: 2.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5, height: spriteNode.size.height/9.5), center: CGPoint(x: -4.7, y: -10.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/9.5), center: CGPoint(x: 10.0, y: 7.7))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/13.0), center: CGPoint(x: 20.0, y: -12.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6,physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func maricaoBezierPathToSKSpriteNode(bpMaricao: UIBezierPath)-> SKSpriteNode{
+     /*func maricaoBezierPathToSKSpriteNode(bpMaricao: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpMaricao.cgPath)
          let maricaoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         maricaoNode.position = CGPoint(x:136.67, y:180.17)
-         //maricaoNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: maricaoNode.size.width/2 * 0.28, center: CGPoint(x: 12.0, y: -0.5))//left
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: maricaoNode.size.width/2 * 0.28, center: CGPoint(x:-2.5, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: maricaoNode.size.width/2 * 0.23, center: CGPoint(x:-15.0, y: 2.0))//right
+         maricaoNode.position = CGPoint(x:137.12, y:180.16)//CGPoint(x:136.67, y:180.17)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: maricaoNode.size.width/2 * 0.28, center: CGPoint(x: -12.0, y: 0.5))//left
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: maricaoNode.size.width/2 * 0.28, center: CGPoint(x:2.5, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: maricaoNode.size.width/2 * 0.23, center: CGPoint(x:15.0, y: -2.0))//right
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          maricaoNode.physicsBody = compoundBody
-         //maricaoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:maricaoNode.size.width/2, height:maricaoNode.size.height/2), center: CGPoint(x:-1.5, y: 1.0))
          maricaoNode.physicsBody?.isDynamic = false
          maricaoNode.name = "Maricao"
          return maricaoNode
-     }
+     }*/
+    
+    func maricaoBezierPathToSKSpriteNode(bpMaricao: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 137.12, y: 180.16)
+        let name = "Maricao"
+        
+        let spriteNode = createMapNode(
+            from: bpMaricao,
+            position: position,
+            name: name
+        )
+        
+        // Add Maricao-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -12.0, y: 0.5)) // left
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: 2.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.23, center: CGPoint(x: 15.0, y: -2.0)) // right
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/1.33), center: CGPoint(x: -8.5, y: 0.68))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/2.8), center: CGPoint(x: -16.3, y: 1.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/5), center: CGPoint(x: -23.0, y: 1.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/1.6), center: CGPoint(x: 0.2, y: 0.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.0, height: spriteNode.size.height/2.1), center: CGPoint(x: 11.5, y: -0.8))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14, height: spriteNode.size.height/1.8), center: CGPoint(x: 20.5, y: -2.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody3, physicsBody1, physicsBody2, physicsBody4, physicsBody5, physicsBody6 ])
+        spriteNode.physicsBody = compoundBody
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7 , height: spriteNode.size.height/2.0), center: CGPoint(x: 3.0, y: -1.0))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func sanGermanBezierPathToSKSpriteNode(bpSanGerman: UIBezierPath)-> SKSpriteNode{
+     /*func sanGermanBezierPathToSKSpriteNode(bpSanGerman: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpSanGerman.cgPath)
          let sanGermanNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         sanGermanNode.position = CGPoint(x:110.93, y:163.23)
-         //sanGermanNode.zPosition = 0//1//FOR LABEL TO BE LEGIBLE(HORMIGUEROS)
-         sanGermanNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanGermanNode.size.width/2, height:sanGermanNode.size.height/2 * 1.15 ), center: CGPoint(x:-1.5, y:2.0))
-         //sanGermanNode.physicsBody =  SKPhysicsBody(circleOfRadius: sanGermanNode.size.width/2 * 0.45 , center: CGPoint(x:0.0, y:0.0))
+         sanGermanNode.position = CGPoint(x:111.39, y:163.22)//CGPoint(x:110.93, y:163.23)
+         sanGermanNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanGermanNode.size.width/2, height:sanGermanNode.size.height/2 * 1.15 ), center: CGPoint(x:1.5, y:-2.0))
          sanGermanNode.physicsBody?.isDynamic = false
          sanGermanNode.name = "San Germán"
          return sanGermanNode
-     }
+     }*/
+    
+    func sanGermanBezierPathToSKSpriteNode(bpSanGerman: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 111.39, y: 163.22)
+        let name = "San Germán"
+        
+        let spriteNode = createMapNode(
+            from: bpSanGerman,
+            position: position,
+            name: name
+        )
+        
+        // Add San Germán-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/1.5), center: CGPoint(x: 2.5, y: -2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/1.5), center: CGPoint(x: 2.5, y: -2.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/8.0), center: CGPoint(x: -3.0, y: 13.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/4.0), center: CGPoint(x: -13.0, y: -8.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/16.0), center: CGPoint(x: 8.0, y: 11.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3, physicsBody4 ])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func sabanaGrandeBezierPathToSKSpriteNode(bpSabanaGrande: UIBezierPath)-> SKSpriteNode{
+     /*func sabanaGrandeBezierPathToSKSpriteNode(bpSabanaGrande: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpSabanaGrande.cgPath)
          let sabanaGrandeNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         sabanaGrandeNode.position = CGPoint(x:139.25, y:155.85)
-         //sabanaGrandeNode.zPosition = 1
-         sabanaGrandeNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sabanaGrandeNode.size.width/2 * 1.20, height:sabanaGrandeNode.size.height/2 * 1.30 ), center: CGPoint(x:3.5, y:0.0))
-         //sabanaGrandeNode.physicsBody =  SKPhysicsBody(circleOfRadius: sabanaGrandeNode.size.width/2 * 0.50 , center: CGPoint(x:3.5, y:0.0))
+         sabanaGrandeNode.position = CGPoint(x:139.7, y:155.84)//CGPoint(x:139.25, y:155.85)
+         sabanaGrandeNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sabanaGrandeNode.size.width/2 * 1.20, height:sabanaGrandeNode.size.height/2 * 1.30 ), center: CGPoint(x:-3.5, y:0.0))
          sabanaGrandeNode.physicsBody?.isDynamic = false
          sabanaGrandeNode.name = "Sabana Grande"
          return sabanaGrandeNode
-     }
+     }*/
+    
+    func sabanaGrandeBezierPathToSKSpriteNode(bpSabanaGrande: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 139.7, y: 155.84)
+        let name = "Sabana Grande"
+        
+        let spriteNode = createMapNode(
+            from: bpSabanaGrande,
+            position: position,
+            name: name
+        )
+        
+        // Add Sabana Grande-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.05, height: spriteNode.size.height/1.3), center: CGPoint(x: -3.5, y: 1.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.05, height: spriteNode.size.height/1.3), center: CGPoint(x: -3.5, y: 1.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 6.0, y :-15.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/5.2), center: CGPoint(x: 6.4, y :-9.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3 ])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func yaucoBezierPathToSKSpriteNode(bpYauco: UIBezierPath)-> SKSpriteNode{
+     /*func yaucoBezierPathToSKSpriteNode(bpYauco: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpYauco.cgPath)
          let yaucoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-          yaucoNode.position = CGPoint(x:159.05, y:148.88)
-          //yaucoNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.60, center: CGPoint(x: -1.5, y: -10.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.50, center: CGPoint(x: -1.5, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.40, center: CGPoint(x: -2.5, y: 8.5))//bottom
-         let physicsBody4 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.21, center: CGPoint(x: -3.5, y: 17.5))
+          yaucoNode.position = CGPoint(x:159.5, y:148.87)//CGPoint(x:159.05, y:148.88)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.60, center: CGPoint(x: 1.5, y: 10.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.50, center: CGPoint(x: 1.5, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.40, center: CGPoint(x: 2.5, y: -8.5))//bottom
+         let physicsBody4 = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.21, center: CGPoint(x: 3.5, y: -17.5))
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
          yaucoNode.physicsBody = compoundBody
-          //yaucoNode.physicsBody = SKPhysicsBody(circleOfRadius: yaucoNode.size.width/2 * 0.52 , center: CGPoint(x:-0.4, y:0.0))
-          yaucoNode.physicsBody?.isDynamic = false
+         yaucoNode.physicsBody?.isDynamic = false
           yaucoNode.name = "Yauco"
          return  yaucoNode
-     }
+     }*/
+    
+    func yaucoBezierPathToSKSpriteNode(bpYauco: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 159.5, y: 148.87)
+        let name = "Yauco"
+        
+        let spriteNode = createMapNode(
+            from: bpYauco,
+            position: position,
+            name: name
+        )
+        
+        // Add Yauco-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 2.5, y: 10.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.57, center: CGPoint(x: 0.0, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 2.0, y: -8.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.21, center: CGPoint(x: 3.5, y: -17.5))
+        let physicsBody5 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 7.5, y: 18.5))
+        let physicsBody6 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.37, center: CGPoint(x: -7.5, y: 15.5))
+        let physicsBody7 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.21, center: CGPoint(x: -10.5, y: 5.5))
+        let physicsBody8 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.21, center: CGPoint(x: 2.5, y: -25.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
+        spriteNode.physicsBody = compoundBody*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.25, height: spriteNode.size.height/3.4), center: CGPoint(x: -0.5, y: 13.0)) // top physicsBody
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.1, height: spriteNode.size.height/4.5), center: CGPoint(x: 1.5, y: -4.0)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.8, height: spriteNode.size.height/4), center: CGPoint(x: 2.5, y: -19.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0, height: spriteNode.size.height/8.0), center: CGPoint(x: -9.5, y :-0.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/11.0), center: CGPoint(x: 6.5, y :25.8))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func lajasBezierPathToSKSpriteNode(bpLajas: UIBezierPath)-> SKSpriteNode{
+     /*func lajasBezierPathToSKSpriteNode(bpLajas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpLajas.cgPath)
          let lajasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         lajasNode.position = CGPoint(x:111.6, y:130.62)
-         //lajasNode.zPosition = 1
-         lajasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:lajasNode.size.width/2 * 1.5, height:lajasNode.size.height/2 ), center: CGPoint(x:0.5, y: -0.5))
+         lajasNode.position = CGPoint(x:112.06, y:130.6)//CGPoint(x:111.6, y:130.62)
+         lajasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:lajasNode.size.width/2 * 1.5, height:lajasNode.size.height/2 ), center: CGPoint(x:-0.5, y: 0.5))
          lajasNode.physicsBody?.isDynamic = false
          lajasNode.name = "Lajas"
          return lajasNode
-     }
+     }*/
+    
+    func lajasBezierPathToSKSpriteNode(bpLajas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 112.06, y: 130.6)
+        let name = "Lajas"
+        
+        let spriteNode = createMapNode(
+            from: bpLajas,
+            position: position,
+            name: name
+        )
+        
+        // Add Lajas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.5, y: 2.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.5, y: 2.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5, height: spriteNode.size.height/3.0), center: CGPoint(x: 18.0, y:4.0)) // middle
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func guanicaBezierPathToSKSpriteNode(bpGuanica: UIBezierPath)-> SKSpriteNode{
+     /*func guanicaBezierPathToSKSpriteNode(bpGuanica: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpGuanica.cgPath)
          let guanicaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-          guanicaNode.position = CGPoint(x:143.09, y:125.46)
-          //guanicaNode.zPosition = 1
-         guanicaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guanicaNode.size.width/2 * 1.19, height:guanicaNode.size.height/2 * 1.25), center: CGPoint(x:-1.5, y:0.0))
-          //guanicaNode.physicsBody = SKPhysicsBody(circleOfRadius: guanicaNode.size.width/2 * 0.5 , center: CGPoint(x:-1.5, y:0.0))
+          guanicaNode.position = CGPoint(x:143.54, y:125.45)//CGPoint(x:143.09, y:125.46)
+         guanicaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guanicaNode.size.width/2 * 1.19, height:guanicaNode.size.height/2 * 1.25), center: CGPoint(x:1.5, y:0.0))
           guanicaNode.physicsBody?.isDynamic = false
           guanicaNode.name = "Guánica"
          return  guanicaNode
-     }
+     }*/
+    
+    func guanicaBezierPathToSKSpriteNode(bpGuanica: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 143.54, y: 125.45)
+        let name = "Guánica"
+        
+        let spriteNode = createMapNode(
+            from: bpGuanica,
+            position: position,
+            name: name
+        )
+        
+        // Add Guánica-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.4), center: CGPoint(x: 0.5, y: 0.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/1.4), center: CGPoint(x: 1.5, y: -2.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5, height: spriteNode.size.height/4.0), center: CGPoint(x: -13.0, y:-7.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/9.4), center: CGPoint(x: 0.6, y:10.6))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func guayanillaBezierPathToSKSpriteNode(bpGuayanilla: UIBezierPath)-> SKSpriteNode{
+     /*func guayanillaBezierPathToSKSpriteNode(bpGuayanilla: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpGuayanilla.cgPath)
          let guayanillaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         guayanillaNode.position = CGPoint(x:177.44, y:143.36)
-         //guayanillaNode.zPosition = 1
-         guayanillaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guayanillaNode.size.width/2 * 0.65, height:guayanillaNode.size.height/2 * 1.60), center: CGPoint(x:-1.5, y: 0.5))
+         guayanillaNode.position = CGPoint(x:177.89, y:143.35)
+         guayanillaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guayanillaNode.size.width/2 * 0.65, height:guayanillaNode.size.height/2 * 1.60), center: CGPoint(x:1.5, y: -0.5))
          guayanillaNode.physicsBody?.isDynamic = false
          guayanillaNode.name = "Guayanilla"
          return guayanillaNode
-     }
+     }*/
+    
+    func guayanillaBezierPathToSKSpriteNode(bpGuayanilla: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 177.89, y: 143.35)
+        let name = "Guayanilla"
+        
+        let spriteNode = createMapNode(
+            from: bpGuayanilla,
+            position: position,
+            name: name
+        )
+        
+        // Add Guayanilla-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.65, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: 1.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.65, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: 1.5, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/3), center: CGPoint(x: -6.0, y: -3.5)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.4, height: spriteNode.size.height/4.8), center: CGPoint(x: -8.0, y: -19.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/15.8), center: CGPoint(x: 2.7, y: 23.2))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 11.0, y: -4.9))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-    func adjuntasBezierPathToSKSpriteNode(bpAdjuntas: UIBezierPath)-> SKSpriteNode{
+    /*func adjuntasBezierPathToSKSpriteNode(bpAdjuntas: UIBezierPath)-> SKSpriteNode{
              
         let shapeNode = SKShapeNode(path:bpAdjuntas.cgPath)
         let adjuntasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-        adjuntasNode.position = CGPoint(x:188.93, y:182.56)
-         //adjuntasNode.zPosition = 1
-        adjuntasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:adjuntasNode.size.width * 0.68 , height:adjuntasNode.size.height/2), center: CGPoint(x:-0.5, y:1.0))
-         //adjuntasNode.physicsBody = SKPhysicsBody(circleOfRadius: adjuntasNode.size.width/2 * 0.55/*0.43*/ , center: CGPoint(x:-0.5, y:1.0))
+        adjuntasNode.position = CGPoint(x:189.38, y:182.55)
+        //adjuntasNode.yScale = -1.0
+        //adjuntasNode.zRotation = 9.44
+        adjuntasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:adjuntasNode.size.width * 0.68 , height:adjuntasNode.size.height/2), center: CGPoint(x:0.5, y:-1.0))
         adjuntasNode.physicsBody?.isDynamic = false
         adjuntasNode.name = "Adjuntas"
         return  adjuntasNode
+    }*/
+    
+    func adjuntasBezierPathToSKSpriteNode(bpAdjuntas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 189.38, y: 182.55)
+        let name = "Adjuntas"
+        
+        let spriteNode = createMapNode(
+            from: bpAdjuntas,
+            position: position,
+            name: name
+        )
+        
+        // Add Adjuntas-specific properties if needed
+        /*spriteNode.yScale = -1.0
+        spriteNode.zRotation = 9.44*/
+        
+        // Add Adjuntas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: 0.5, y: -1.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: 0.5, y: -1.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/3.0), center: CGPoint(x: -19.0, y: 6.0)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5, height: spriteNode.size.height/5.5), center: CGPoint(x: -8.5, y: 13.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5, height: spriteNode.size.height/6.0), center: CGPoint(x: 2.5, y: -15.3))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/14.0), center: CGPoint(x: 14.0, y: -13.0))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.5, height: spriteNode.size.height/4.0), center: CGPoint(x: 18.5, y: -4.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.5, height: spriteNode.size.height/6.5), center: CGPoint(x: -18.0, y: -4.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
     }
+    
+   
      
-     func laresBezierPathToSKSpriteNode(bpLares: UIBezierPath)-> SKSpriteNode{
+     /*func laresBezierPathToSKSpriteNode(bpLares: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpLares.cgPath)
          let laresNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         laresNode.position = CGPoint(x:158.07, y:207.36)
-         //laresNode.zPosition = 1
-         laresNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:laresNode.size.width/2 * 1.30 , height:laresNode.size.height/2 * 1.40), center: CGPoint(x:0.5, y: 0.5))
+         laresNode.position = CGPoint(x:158.53, y:207.36)
+         laresNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:laresNode.size.width/2 * 1.30 , height:laresNode.size.height/2 * 1.40), center: CGPoint(x:-0.5, y: -0.5))
          laresNode.physicsBody?.isDynamic = false
          laresNode.name = "Lares"
          return laresNode
-     }
+     }*/
+    
+    func laresBezierPathToSKSpriteNode(bpLares: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 158.53, y: 207.36)
+        let name = "Lares"
+        
+        let spriteNode = createMapNode(
+            from: bpLares,
+            position: position,
+            name: name
+        )
+        
+        // Add Lares-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 1.40), center: CGPoint(x: -0.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: -0.5, y: 0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.2, height: spriteNode.size.height/11.5), center: CGPoint(x: 5.0, y: -25.3)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/2.0), center: CGPoint(x: -10.5, y:0.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func penuelasBezierPathToSKSpriteNode(bpPenuelas: UIBezierPath)-> SKSpriteNode{
+     /*func penuelasBezierPathToSKSpriteNode(bpPenuelas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpPenuelas.cgPath)
          let penuelasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         penuelasNode.position = CGPoint(x:196.06, y:145.2)
-         //penuelasNode.zPosition = 1
-         penuelasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:penuelasNode.size.width/2 , height:penuelasNode.size.height/2 * 1.45), center: CGPoint(x:-2.5, y: 0.5))
+         penuelasNode.position = CGPoint(x:196.5, y:145.2)
+         penuelasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:penuelasNode.size.width/2 , height:penuelasNode.size.height/2 * 1.45), center: CGPoint(x:2.5, y: -0.5))
          penuelasNode.physicsBody?.isDynamic = false
          penuelasNode.name = "Peñuelas"
          return penuelasNode
-     }
+     }*/
+    
+    func penuelasBezierPathToSKSpriteNode(bpPenuelas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 196.5, y: 145.2)
+        let name = "Peñuelas"
+        
+        let spriteNode = createMapNode(
+            from: bpPenuelas,
+            position: position,
+            name: name
+        )
+        
+        // Add Peñuelas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.45), center: CGPoint(x: 2.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.45), center: CGPoint(x: 2.5, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.9, height: spriteNode.size.height/3.5), center: CGPoint(x: -7.5, y: 9.5)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4, height: spriteNode.size.height/10.5), center: CGPoint(x: 4.8, y: 20.0)) // bottom
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/3.5), center: CGPoint(x: 10.5, y: 9.8))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4/*, physicsBody5, physicsBody6*/])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func ponceBezierPathToSKSpriteNode(bpPonce: UIBezierPath)-> SKSpriteNode{
+     /*func ponceBezierPathToSKSpriteNode(bpPonce: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpPonce.cgPath)
          let ponceNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-          ponceNode.position = CGPoint(x:228.35, y:138.86)
-          //ponceNode.zPosition = 1
-         ponceNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:ponceNode.size.width/2 * 1.15, height:ponceNode.size.height/2), center: CGPoint(x:3.5, y:-7.5))
-          //ponceNode.physicsBody = SKPhysicsBody(circleOfRadius: ponceNode.size.width/2 * 0.47 , center: CGPoint(x:2.5, y:-7.5))
+          ponceNode.position = CGPoint(x:228.8, y:138.85)
+         ponceNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:ponceNode.size.width/2 * 1.15, height:ponceNode.size.height/2), center: CGPoint(x:-3.5, y:7.5))
           ponceNode.physicsBody?.isDynamic = false
           ponceNode.name = "Ponce"
          return  ponceNode
-     }
+     }*/
+    
+    func ponceBezierPathToSKSpriteNode(bpPonce: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 228.8, y: 138.85)
+        let name = "Ponce"
+        
+        let spriteNode = createMapNode(
+            from: bpPonce,
+            position: position,
+            name: name
+        )
+        
+        // Add Ponce-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.15, height: spriteNode.size.height/2), center: CGPoint(x: -3.5, y: 7.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.65, height: spriteNode.size.height/1.8), center: CGPoint(x: -4.5, y: 6.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 14.0, y: 6.5)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/9.5), center: CGPoint(x: 3.5, y: 34.0)) // bottom
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8, height: spriteNode.size.height/17.5), center: CGPoint(x: -10.0, y: 32.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/34, height: spriteNode.size.height/4.0), center: CGPoint(x: -22.0, y: -5.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/5.0), center: CGPoint(x: 15.0, y: -10.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func utuadoBezierPathToSKSpriteNode(bpUtuado: UIBezierPath)-> SKSpriteNode{
+     /*func utuadoBezierPathToSKSpriteNode(bpUtuado: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpUtuado.cgPath)
          let utuadoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         utuadoNode.position = CGPoint(x:202.89, y:202.02)
-         //utuadoNode.zPosition = 1
-         utuadoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:utuadoNode.size.width/2, height:utuadoNode.size.height/2 * 0.80), center: CGPoint(x:0.5, y:-6.5))
-         //utuadoNode.physicsBody = SKPhysicsBody(circleOfRadius: utuadoNode.size.width/2 * 0.35, center: CGPoint(x:0.5, y:-4.5))
+         utuadoNode.position = CGPoint(x:203.34, y:202.02)
+         utuadoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:utuadoNode.size.width/2, height:utuadoNode.size.height/2 * 0.80), center: CGPoint(x:-0.5, y:6.5))
          utuadoNode.physicsBody?.isDynamic = false
          utuadoNode.name = "Utuado"
          return utuadoNode
-     }
+     }*/
+    
+    func utuadoBezierPathToSKSpriteNode(bpUtuado: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 203.34, y: 202.02)
+        let name = "Utuado"
+        
+        let spriteNode = createMapNode(
+            from: bpUtuado,
+            position: position,
+            name: name
+        )
+        
+        // Add Utuado-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 ), center: CGPoint(x: 1.5, y: 6.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2.2 ), center: CGPoint(x: 1.5, y: 6.5)) // top physicsBody
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/2.4), center: CGPoint(x: -31, y: 7.5)) // middle
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/3.0), center: CGPoint(x: -21.8, y: 10.0)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0, height: spriteNode.size.height/8), center: CGPoint(x: 10.0, y: -22.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7, height: spriteNode.size.height/6), center: CGPoint(x: 26.5, y: 14.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/7.5), center: CGPoint(x: 23.5, y: 5.0))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/13.5), center: CGPoint(x: -10.5, y: 23.7))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.8, height: spriteNode.size.height/8), center: CGPoint(x: 9.5, y: -14.5))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/25), center: CGPoint(x: 7.5, y: -8.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func jayuyaBezierPathToSKSpriteNode(bpJayuya: UIBezierPath)-> SKSpriteNode{
+     /*func jayuyaBezierPathToSKSpriteNode(bpJayuya: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpJayuya.cgPath)
          let jayuyaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-          jayuyaNode.position = CGPoint(x:231.73, y:194.79)
-          //jayuyaNode.zPosition = 1
-         jayuyaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:jayuyaNode.size.width/2, height:jayuyaNode.size.height/2 * 1.10), center: CGPoint(x:-0.5, y:3.5))
-          //jayuyaNode.physicsBody = SKPhysicsBody(circleOfRadius: jayuyaNode.size.width/2 * 0.45 , center: CGPoint(x:-2.5, y:5.0))
+          jayuyaNode.position = CGPoint(x:232.18, y:194.78)
+          jayuyaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:jayuyaNode.size.width/2, height:jayuyaNode.size.height/2 * 1.10), center: CGPoint(x:0.5, y:-3.5))
           jayuyaNode.physicsBody?.isDynamic = false
           jayuyaNode.name = "Jayuya"
           return  jayuyaNode
-     }
+     }*/
+    
+    func jayuyaBezierPathToSKSpriteNode(bpJayuya: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 232.18, y: 194.78)
+        let name = "Jayuya"
+        
+        let spriteNode = createMapNode(
+            from: bpJayuya,
+            position: position,
+            name: name
+        )
+        
+        // Add Jayuya-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/2 * 1.10), center: CGPoint(x: 0.5, y: -5.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/2 * 1.10), center: CGPoint(x: 0.5, y: -5.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5, height: spriteNode.size.height/2.4), center: CGPoint(x: 11.2, y:-11.0)) // middle
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.3, height: spriteNode.size.height/2.4), center: CGPoint(x: -9.5, y: -10.7)) // bottom
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0, height: spriteNode.size.height/5.0), center: CGPoint(x: -13.8, y: -16.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4, height: spriteNode.size.height/6), center: CGPoint(x: 3.5, y: 12.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/11.5), center: CGPoint(x: 6.5, y: 18.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2,physicsBody3, physicsBody4, physicsBody5, physicsBody6 ])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func juanaDiazBezierPathToSKSpriteNode(bpJuanaDiaz: UIBezierPath)-> SKSpriteNode{
+     /*func juanaDiazBezierPathToSKSpriteNode(bpJuanaDiaz: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpJuanaDiaz.cgPath)
          let juanaDiazNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-          juanaDiazNode.position = CGPoint(x:258.21, y:141.89)
-          //juanaDiazNode.zPosition = 1
-         juanaDiazNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:juanaDiazNode.size.width/2 * 1.26 , height:juanaDiazNode.size.height/2 * 0.75), center: CGPoint(x:-2.5, y:0.5))
-          //juanaDiazNode.physicsBody = SKPhysicsBody(circleOfRadius: juanaDiazNode.size.width/2 * 0.50 , center: CGPoint(x:-2.5, y:-0.5))
+          juanaDiazNode.position = CGPoint(x:258.66, y:141.89)
+          juanaDiazNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:juanaDiazNode.size.width/2 * 1.26 , height:juanaDiazNode.size.height/2 * 0.75), center: CGPoint(x:2.5, y:-0.5))
           juanaDiazNode.physicsBody?.isDynamic = false
           juanaDiazNode.name = "Juana Díaz"
           return  juanaDiazNode
-     }
+     }*/
+    
+    func juanaDiazBezierPathToSKSpriteNode(bpJuanaDiaz: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 258.66, y: 141.89)
+        let name = "Juana Díaz"
+        
+        let spriteNode = createMapNode(
+            from: bpJuanaDiaz,
+            position: position,
+            name: name
+        )
+        
+        // Add Juana Díaz-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.26, height: spriteNode.size.height/2 * 0.75), center: CGPoint(x: 2.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5 , height: spriteNode.size.height/2 * 0.75), center: CGPoint(x: 2.5, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/3.5), center: CGPoint(x: -13.0, y: 22.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5, height: spriteNode.size.height/20.5), center: CGPoint(x: 0.8, y: 14.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3 ])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func quebradillasBezierPathToSKSpriteNode(bpQuebradillas: UIBezierPath)-> SKSpriteNode{
+     /*func quebradillasBezierPathToSKSpriteNode(bpQuebradillas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpQuebradillas.cgPath)
          let quebradillasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         quebradillasNode.position = CGPoint(x:139.8, y:252.85)
-         //quebradillasNode.zPosition = 1
-         quebradillasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:quebradillasNode.size.width/2 * 1.30 , height:quebradillasNode.size.height/2 * 1.70), center: CGPoint(x:-1.0, y:-1.2))
+         quebradillasNode.position = CGPoint(x:140.25, y:252.84)
+         quebradillasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:quebradillasNode.size.width/2 * 1.30 , height:quebradillasNode.size.height/2 * 1.70), center: CGPoint(x:1.0, y:1.2))
          quebradillasNode.physicsBody?.isDynamic = false
          quebradillasNode.name = "Quebradillas"
          return quebradillasNode
-     }
+     }*/
+    
+    func quebradillasBezierPathToSKSpriteNode(bpQuebradillas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 140.25, y: 252.84)
+        let name = "Quebradillas"
+        
+        let spriteNode = createMapNode(
+            from: bpQuebradillas,
+            position: position,
+            name: name
+        )
+        
+        // Add Quebradillas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 1.70), center: CGPoint(x: 1.0, y: 1.2))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/1.5), center: CGPoint(x: 2.5, y: 4.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/6.0), center: CGPoint(x: 6.0, y: -12.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/3.0), center: CGPoint(x: -5.3, y: 10.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func camuyBezierPathToSKSpriteNode(bpCamuy: UIBezierPath)-> SKSpriteNode{
+     /*func camuyBezierPathToSKSpriteNode(bpCamuy: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCamuy.cgPath)
          let camuyNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         camuyNode.position = CGPoint(x:160.46, y:249.65)
-          //camuyNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.60, center: CGPoint(x: 3.5, y: -13.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.64, center: CGPoint(x: 1.5, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.68, center: CGPoint(x: -0.5, y: 8.5))//bottom
+         camuyNode.position = CGPoint(x:160.91, y:249.64)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.60, center: CGPoint(x: -3.5, y: 13.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.64, center: CGPoint(x: -1.5, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.68, center: CGPoint(x: 0.5, y: -8.5))//bottom
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          camuyNode.physicsBody = compoundBody
-          //camuyNode.physicsBody = SKPhysicsBody(circleOfRadius: camuyNode.size.width/2 * 0.55 , center: CGPoint(x:1.0, y:0.0))
           camuyNode.physicsBody?.isDynamic = false
           camuyNode.name = "Camuy"
           return  camuyNode
-     }
+     }*/
+    
+    func camuyBezierPathToSKSpriteNode(bpCamuy: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 160.91, y: 249.64)
+        let name = "Camuy"
+        
+        let spriteNode = createMapNode(
+            from: bpCamuy,
+            position: position,
+            name: name
+        )
+        
+        // Add Camuy-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: -3.5, y: 13.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.64, center: CGPoint(x: -1.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.68, center: CGPoint(x: 0.5, y: -8.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.1), center: CGPoint(x: -2.5, y:2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.1), center: CGPoint(x: -2.5, y:2.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/3.5), center: CGPoint(x: 8.5, y:-11.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func hatilloBezierPathToSKSpriteNode(bpHatillo: UIBezierPath)-> SKSpriteNode{
+     /*func hatilloBezierPathToSKSpriteNode(bpHatillo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpHatillo.cgPath)
          let hatilloNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         hatilloNode.position = CGPoint(x:175.03, y:246.63)
-         //hatilloNode.zPosition = 1
-         hatilloNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:hatilloNode.size.width/2 , height:hatilloNode.size.height/2 * 1.60), center: CGPoint(x:-2.5, y: 0.5))
+         hatilloNode.position = CGPoint(x:175.47, y:246.62)
+         hatilloNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:hatilloNode.size.width/2 , height:hatilloNode.size.height/2 * 1.60), center: CGPoint(x:2.5, y: -0.5))
          hatilloNode.physicsBody?.isDynamic = false
          hatilloNode.name = "Hatillo"
          return hatilloNode
-     }
+     }*/
+    
+    func hatilloBezierPathToSKSpriteNode(bpHatillo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 175.47, y: 246.62)
+        let name = "Hatillo"
+        
+        let spriteNode = createMapNode(
+            from: bpHatillo,
+            position: position,
+            name: name
+        )
+        
+        // Add Hatillo-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/1.1), center: CGPoint(x: 2.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/1.1), center: CGPoint(x: 2.5, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/2), center: CGPoint(x: -5.2, y:11.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func areciboBezierPathToSKSpriteNode(bpArecibo: UIBezierPath)-> SKSpriteNode{
+     /*func areciboBezierPathToSKSpriteNode(bpArecibo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpArecibo.cgPath)
          let areciboNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-          areciboNode.position = CGPoint(x:209.2, y:245.93)
-          //areciboNode.zPosition = 1
-         areciboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:areciboNode.size.width/2 * 1.4, height:areciboNode.size.height/2 * 1.3), center: CGPoint(x:0.5, y:0.5))
-          //areciboNode.physicsBody = SKPhysicsBody(circleOfRadius: areciboNode.size.width/2 * 0.55 , center: CGPoint(x:0.5, y:0.5))
+          areciboNode.position = CGPoint(x:209.65, y:245.92)
+          areciboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:areciboNode.size.width/2 * 1.4, height:areciboNode.size.height/2 * 1.3), center: CGPoint(x:-0.5, y:-0.5))
           areciboNode.physicsBody?.isDynamic = false
           areciboNode.name = "Arecibo"
          return  areciboNode
-     }
+     }*/
+    
+    func areciboBezierPathToSKSpriteNode(bpArecibo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 209.65, y: 245.92)
+        let name = "Arecibo"
+        
+        let spriteNode = createMapNode(
+            from: bpArecibo,
+            position: position,
+            name: name
+        )
+        
+        // Add Arecibo-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.2, height: spriteNode.size.height/2 * 1.3), center: CGPoint(x: -1.0, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.1, height: spriteNode.size.height/1.35), center: CGPoint(x: -1.0, y: 3.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/9.5), center: CGPoint(x: -3.0, y:-20.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5, height: spriteNode.size.height/13.0), center: CGPoint(x: 13.0, y:-19.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+       
+        
+        return spriteNode
+    }
      
-     func barcelonetaBezierPathToSKSpriteNode(bpBarceloneta: UIBezierPath)-> SKSpriteNode{
+     /*func barcelonetaBezierPathToSKSpriteNode(bpBarceloneta: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpBarceloneta.cgPath)
          let barcelonetaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         barcelonetaNode.position = CGPoint(x:240.41, y:255.91)
-         //barcelonetaNode.zPosition = 1//FOR LABEL TO BE LEGIBLE
-         //let physicsBody3 = SKPhysicsBody(circleOfRadius: barcelonetaNode.size.width/2 * 0.60, center: CGPoint(x: 0.0, y: -9.5))//top physicsBody
-         //let physicsBody1 = SKPhysicsBody(circleOfRadius: barcelonetaNode.size.width/2 * 0.50, center: CGPoint(x: 0.5, y: -3.0))//middle
-         //let physicsBody2 = SKPhysicsBody(circleOfRadius: barcelonetaNode.size.width/2 * 0.60, center: CGPoint(x: 0.0, y: 1.5))//bottom
-         //let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-         //barcelonetaNode.physicsBody = compoundBody
-         barcelonetaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:barcelonetaNode.size.width/2 * 1.40, height:barcelonetaNode.size.height/2 * 1.80), center: CGPoint(x:-0.5, y:-7.5))
+         barcelonetaNode.position = CGPoint(x:240.86, y:255.9)
+         barcelonetaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:barcelonetaNode.size.width/2 * 1.40, height:barcelonetaNode.size.height/2 * 1.80), center: CGPoint(x:0.5, y:7.5))
          barcelonetaNode.physicsBody?.isDynamic = false
          barcelonetaNode.name = "Barceloneta"
          return barcelonetaNode
-     }
+     }*/
+    
+    func barcelonetaBezierPathToSKSpriteNode(bpBarceloneta: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 240.86, y: 255.9)
+        let name = "Barceloneta"
+        
+        let spriteNode = createMapNode(
+            from: bpBarceloneta,
+            position: position,
+            name: name
+        )
+        
+        // Add Barceloneta-specific physics body if needed
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.40, height: spriteNode.size.height/2 * 1.80), center: CGPoint(x: 0.5, y: 7.5))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func floridaBezierPathToSKSpriteNode(bpFlorida: UIBezierPath)-> SKSpriteNode{
+     /*func floridaBezierPathToSKSpriteNode(bpFlorida: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpFlorida.cgPath)
          let floridaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         floridaNode.position = CGPoint(x:240.01, y:237.72)
-         //floridaNode.zPosition = 0//FOR LABEL TO BE LEGIBLE
-         //let physicsBody5 = SKPhysicsBody(circleOfRadius:floridaNode.size.width/2 * 0.43 , center: CGPoint(x:0.0,y:-4.5))//top physicsBody
-         //let physicsBody4 = SKPhysicsBody(circleOfRadius:floridaNode.size.width/2 * 0.44 , center: CGPoint(x:-3.5,y:-0.5))//top left
-         //let physicsBody3 = SKPhysicsBody(circleOfRadius:floridaNode.size.width/2 * 0.44 , center: CGPoint(x:2.5,y:-0.5))//top right
-         //let physicsBody1 = SKPhysicsBody(circleOfRadius:floridaNode.size.width/2 * 0.37 , center: CGPoint(x:-3.5,y:5.5))//bottom rght
-         //let physicsBody2 = SKPhysicsBody(circleOfRadius:floridaNode.size.width/2 * 0.44 , center: CGPoint(x:2.5,y:5.5))//bottom lft
-         //let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-         //floridaNode.physicsBody = compoundBody
-         floridaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:floridaNode.size.width/2 * 1.700, height:floridaNode.size.height/2 * 1.60), center: CGPoint(x:0.0, y:-0.8))
-         //floridaNode.physicsBody = SKPhysicsBody(circleOfRadius: floridaNode.size.width/2 * 0.50 , center: CGPoint(x:-0.5, y:0.5))
+         floridaNode.position = CGPoint(x:240.46, y:237.71)
+         floridaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:floridaNode.size.width/2 * 1.700, height:floridaNode.size.height/2 * 1.60), center: CGPoint(x:0.0, y:0.8))
          floridaNode.physicsBody?.isDynamic = false
          floridaNode.name = "Florida"
           return  floridaNode
-     }
+     }*/
+    
+    func floridaBezierPathToSKSpriteNode(bpFlorida: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 240.46, y: 237.71)
+        let name = "Florida"
+        
+        let spriteNode = createMapNode(
+            from: bpFlorida,
+            position: position,
+            name: name
+        )
+        
+        // Add Florida-specific physics body if needed
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.700, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: 0.0, y: 0.8))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
      
-     func manatiBezierPathToSKSpriteNode(bpManati: UIBezierPath)-> SKSpriteNode{
+     /*func manatiBezierPathToSKSpriteNode(bpManati: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpManati.cgPath)
          let manatiNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         manatiNode.position = CGPoint(x:258.84, y:249.77)
-         //manatiNode.zPosition = 1
-         manatiNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:manatiNode.size.width/2 * 1.25, height:manatiNode.size.height/2 * 1.25), center: CGPoint(x:-1.5, y:0.5))
-         //manatiNode.physicsBody = SKPhysicsBody(circleOfRadius: manatiNode.size.width/2 * 0.55 , center: CGPoint(x:-1.5, y:0.5))
+         manatiNode.position = CGPoint(x:259.29, y:249.75)
+         manatiNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:manatiNode.size.width/2 * 1.25, height:manatiNode.size.height/2 * 1.25), center: CGPoint(x:1.5, y:-0.5))
          manatiNode.physicsBody?.isDynamic = false
          manatiNode.name = "Manatí"
          return  manatiNode
-     }
+     }*/
+    
+    func manatiBezierPathToSKSpriteNode(bpManati: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 259.29, y: 249.75)
+        let name = "Manatí"
+        
+        let spriteNode = createMapNode(
+            from: bpManati,
+            position: position,
+            name: name
+        )
+        
+        // Add Manatí-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.25, height: spriteNode.size.height/2 * 1.25), center: CGPoint(x: 1.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.3), center: CGPoint(x: 1.0, y: 2.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/9.5), center: CGPoint(x: -9.5, y:-16.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
 
-     func vegaBajaBezierPathToSKSpriteNode(bpVegaBaja: UIBezierPath)-> SKSpriteNode{
+     /*func vegaBajaBezierPathToSKSpriteNode(bpVegaBaja: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpVegaBaja.cgPath)
          let vegaBajaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         vegaBajaNode.position = CGPoint(x:283.73, y:249.79)
-         //vegaBajaNode.zPosition = 1
-         vegaBajaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:vegaBajaNode.size.width/2 * 1.28, height:vegaBajaNode.size.height/2 * 1.30), center: CGPoint(x:0.5, y:-2.5))
-         //vegaBajaNode.physicsBody = SKPhysicsBody(circleOfRadius: vegaBajaNode.size.width/2 * 0.55, center: CGPoint(x:0.5, y:-2.5))
+         vegaBajaNode.position = CGPoint(x:284.18, y:249.78)
+         vegaBajaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:vegaBajaNode.size.width/2 * 1.28, height:vegaBajaNode.size.height/2 * 1.30), center: CGPoint(x:-0.5, y:2.5))
          vegaBajaNode.physicsBody?.isDynamic = false
          vegaBajaNode.name = "Vega Baja"
          return  vegaBajaNode
-         }
+         }*/
+    
+    func vegaBajaBezierPathToSKSpriteNode(bpVegaBaja: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 284.18, y: 249.78)
+        let name = "Vega Baja"
+        
+        let spriteNode = createMapNode(
+            from: bpVegaBaja,
+            position: position,
+            name: name
+        )
+        
+        // Add Vega Baja-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.28, height: spriteNode.size.height/2 * 1.30), center: CGPoint(x: -0.5, y: 2.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.5, y: 4.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.4, height: spriteNode.size.height/2.6), center: CGPoint(x: 10.4, y: 11.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/6.0), center: CGPoint(x: 4.6, y:-16.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func villalbaBezierPathToSKSpriteNode(bpVillalba: UIBezierPath)-> SKSpriteNode{
+     /*func villalbaBezierPathToSKSpriteNode(bpVillalba: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpVillalba.cgPath)
          let villalbaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         villalbaNode.position = CGPoint(x:263.2, y:167.86)
-         //villalbaNode.zPosition = 1
-         villalbaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:villalbaNode.size.width/2 * 1.25, height:villalbaNode.size.height/2 * 1.25), center: CGPoint(x:-0.5, y:0.5))
-         //villalbaNode.physicsBody = SKPhysicsBody(circleOfRadius:villalbaNode.size.width/2 * 0.5 , center: CGPoint(x:-1.5, y:0.5))
+         villalbaNode.position = CGPoint(x:263.65, y:167.85)
+         villalbaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:villalbaNode.size.width/2 * 1.25, height:villalbaNode.size.height/2 * 1.25), center: CGPoint(x:0.5, y:-0.5))
          villalbaNode.physicsBody?.isDynamic = false
          villalbaNode.name = "Villalba"
          return  villalbaNode
-     }
+     }*/
+    
+    func villalbaBezierPathToSKSpriteNode(bpVillalba: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 263.65, y: 167.85)
+        let name = "Villalba"
+        
+        let spriteNode = createMapNode(
+            from: bpVillalba,
+            position: position,
+            name: name
+        )
+        
+        // Add Villalba-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: 0.5, y: -2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.6, height: spriteNode.size.height/1.15), center: CGPoint(x: 6.0, y: 0.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.9, height: spriteNode.size.height/1.5), center: CGPoint(x: -4.7, y: 0.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/1.65), center: CGPoint(x: -11.6, y: -2.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func orocovisBezierPathToSKSpriteNode(bpOrocovis: UIBezierPath)-> SKSpriteNode{
+     /*func orocovisBezierPathToSKSpriteNode(bpOrocovis: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpOrocovis.cgPath)
          let orocovisNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         orocovisNode.position = CGPoint(x:270.23, y:193.72)
-         //orocovisNode.zPosition = 1
-         orocovisNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:orocovisNode.size.width/2 * 1.30 , height:orocovisNode.size.height/2), center: CGPoint(x:-4.0, y:2.0))
-         //orocovisNode.physicsBody = SKPhysicsBody(circleOfRadius:orocovisNode.size.width/2 * 0.35 , center: CGPoint(x:-6.0, y:0.5))
+         orocovisNode.position = CGPoint(x:270.68, y:193.72)
+         orocovisNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:orocovisNode.size.width/2 * 1.30 , height:orocovisNode.size.height/2), center: CGPoint(x:4.0, y:-2.0))
          orocovisNode.physicsBody?.isDynamic = false
          orocovisNode.name = "Orocovis"
          return  orocovisNode
-     }
+     }*/
+    
+    func orocovisBezierPathToSKSpriteNode(bpOrocovis: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 270.68, y: 193.72)
+        let name = "Orocovis"
+        
+        let spriteNode = createMapNode(
+            from: bpOrocovis,
+            position: position,
+            name: name
+        )
+        
+        // Add Orocovis-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2), center: CGPoint(x: 4.0, y: -2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.45, height: spriteNode.size.height/2.2), center: CGPoint(x: 2.4, y: -2.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.5, height: spriteNode.size.height/3.5), center: CGPoint(x: 24.0, y: 0.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6, height: spriteNode.size.height/9.9), center: CGPoint(x: 17.0, y:10.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/17.6), center: CGPoint(x:9.0, y:9.6))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.2, height: spriteNode.size.height/18), center: CGPoint(x:11.4, y:-14))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.1, height: spriteNode.size.height/18.5), center: CGPoint(x:-12.0, y:-13.9))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func cialesBezierPathToSKSpriteNode(bpCiales: UIBezierPath)-> SKSpriteNode{
+     /*func cialesBezierPathToSKSpriteNode(bpCiales: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCiales.cgPath)
          let cialesNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         cialesNode.position = CGPoint(x:247.6, y:206.12)
-         //cialesNode.zPosition = 1
-         cialesNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:cialesNode.size.width/2 , height:cialesNode.size.height/2 * 0.70), center: CGPoint(x:-5.5, y:-10.5))
-         //cialesNode.physicsBody = SKPhysicsBody(circleOfRadius:cialesNode.size.width/2 * 0.4 , center: CGPoint(x:-5.5, y:-10.5))
+         cialesNode.position = CGPoint(x:248.05, y:206.12)
+         cialesNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:cialesNode.size.width/2 , height:cialesNode.size.height/2 * 0.70), center: CGPoint(x:5.5, y:10.5))
          cialesNode.physicsBody?.isDynamic = false
          cialesNode.name = "Ciales"
          return  cialesNode
-     }
+     }*/
+    
+    func cialesBezierPathToSKSpriteNode(bpCiales: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 248.05, y: 206.12)
+        let name = "Ciales"
+        
+        let spriteNode = createMapNode(
+            from: bpCiales,
+            position: position,
+            name: name
+        )
+        
+        // Add Ciales-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 0.70), center: CGPoint(x: 5.5, y: 10.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/2 * 0.70), center: CGPoint(x: 6.0, y: 10.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/2.3), center: CGPoint(x:2.0, y: -15.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.0, height: spriteNode.size.height/5.5), center: CGPoint(x:-3.0, y: -6.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/20.0), center: CGPoint(x:18.0, y: -2.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/12.5), center: CGPoint(x:11.0, y: 24.6))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/15.5), center: CGPoint(x:-15.5, y: 18.6))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/7.0), center: CGPoint(x:-9.0, y: 16.5))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21, height: spriteNode.size.height/6.5), center: CGPoint(x:19.8, y: 15.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func morovisBezierPathToSKSpriteNode(bpMorovis: UIBezierPath)-> SKSpriteNode{
+     /*func morovisBezierPathToSKSpriteNode(bpMorovis: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpMorovis.cgPath)
          let morovisNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         morovisNode.position = CGPoint(x:279.3, y:221.04)
-         //morovisNode.zPosition = 1
-         morovisNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:morovisNode.size.width/2 * 1.55 , height:morovisNode.size.height/2 * 1.35), center: CGPoint(x:1.0, y:0.5))
-         //morovisNode.physicsBody = SKPhysicsBody(circleOfRadius:morovisNode.size.width/2 * 0.49 , center: CGPoint(x:0.0, y:0.5))
+         morovisNode.position = CGPoint(x:279.75, y:221.04)
+         morovisNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:morovisNode.size.width/2 * 1.55 , height:morovisNode.size.height/2 * 1.35), center: CGPoint(x:-1.0, y:-0.5))
          morovisNode.physicsBody?.isDynamic = false
          morovisNode.name = "Morovis"
          return  morovisNode
-     }
+     }*/
+    
+    func morovisBezierPathToSKSpriteNode(bpMorovis: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 279.75, y: 221.04)
+        let name = "Morovis"
+        
+        let spriteNode = createMapNode(
+            from: bpMorovis,
+            position: position,
+            name: name
+        )
+        
+        // Add Morovis-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.55, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: -1.0, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8 , height: spriteNode.size.height/1.3), center: CGPoint(x: -2.5, y: 0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/2.5), center: CGPoint(x:8.0, y: 0.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.0, height: spriteNode.size.height/6.5), center: CGPoint(x:-12, y: 11.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.5, height: spriteNode.size.height/6.0), center: CGPoint(x:-11.9, y: -8.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/15.7), center: CGPoint(x:-6.0, y: -14.8))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func corozalBezierPathToSKSpriteNode(bpCorozal: UIBezierPath)-> SKSpriteNode{
+     /*func corozalBezierPathToSKSpriteNode(bpCorozal: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCorozal.cgPath)
          let corozalNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         corozalNode.position = CGPoint(x:302.12, y:217.15)
-         //corozalNode.zPosition = 1
-         corozalNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:corozalNode.size.width/2 * 1.15 , height:corozalNode.size.height/2 * 1.2), center: CGPoint(x:-1.0, y:0.5))
+         corozalNode.position = CGPoint(x:302.57, y:217.15)
+         corozalNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:corozalNode.size.width/2 * 1.15 , height:corozalNode.size.height/2 * 1.2), center: CGPoint(x:1.0, y:-0.5))
          //corozalNode.physicsBody = SKPhysicsBody(circleOfRadius:corozalNode.size.width/2 * 0.55 , center: CGPoint(x:-1.0, y:0.5))
          corozalNode.physicsBody?.isDynamic = false
          corozalNode.name = "Corozal"
          return  corozalNode
-     }
+     }*/
+    
+    func corozalBezierPathToSKSpriteNode(bpCorozal: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 302.57, y: 217.15)
+        let name = "Corozal"
+        
+        let spriteNode = createMapNode(
+            from: bpCorozal,
+            position: position,
+            name: name
+        )
+        
+        // Add Corozal-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/2 * 1.2), center: CGPoint(x: 1.0, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/2.3), center: CGPoint(x: 1.0, y: -0.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/5.0), center: CGPoint(x:3.0, y: 12.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.3, height: spriteNode.size.height/5.5), center: CGPoint(x:-3.5, y: -13.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.2, height: spriteNode.size.height/8.5), center: CGPoint(x:4.5, y: -11.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/8.5), center: CGPoint(x:-12.0, y: -6.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func barranquitasBezierPathToSKSpriteNode(bpBarranquitas: UIBezierPath)-> SKSpriteNode{
+     /*func barranquitasBezierPathToSKSpriteNode(bpBarranquitas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpBarranquitas.cgPath)
          let barranquitasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         barranquitasNode.position = CGPoint(x:308.45, y:187.95)
-         //barranquitasNode.zPosition = 1//FOR LABEL TO BE LEGIBLE
-         barranquitasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:barranquitasNode.size.width/2 * 1.1 , height:barranquitasNode.size.height/2 * 1.2), center: CGPoint(x:0.5, y:-1.5))
+         barranquitasNode.position = CGPoint(x:308.91, y:187.95)
+         barranquitasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:barranquitasNode.size.width/2 * 1.1 , height:barranquitasNode.size.height/2 * 1.2), center: CGPoint(x:-0.5, y:1.5))
          //barranquitasNode.physicsBody = SKPhysicsBody(circleOfRadius:barranquitasNode.size.width/2 * 0.4 , center: CGPoint(x:0.5, y:-1.5))
          barranquitasNode.physicsBody?.isDynamic = false
          barranquitasNode.name = "Barranquitas"
          return  barranquitasNode
-     }
+     }*/
+    
+    func barranquitasBezierPathToSKSpriteNode(bpBarranquitas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 308.91, y: 187.95)
+        let name = "Barranquitas"
+        
+        let spriteNode = createMapNode(
+            from: bpBarranquitas,
+            position: position,
+            name: name
+        )
+        
+        // Add Barranquitas-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.1, height: spriteNode.size.height/2 * 1.2), center: CGPoint(x: -0.5, y: 1.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.1, height: spriteNode.size.height/1.5), center: CGPoint(x: -0.5, y: 1.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/4.0), center: CGPoint(x:-13.8, y: -5.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6, height: spriteNode.size.height/8.5), center: CGPoint(x:13.3, y: -6.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/9.5), center: CGPoint(x:-1.5, y: -10.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        
+        return spriteNode
+    }
      
-     func comerioBezierPathToSKSpriteNode(bpComerio: UIBezierPath)-> SKSpriteNode{
+     /*func comerioBezierPathToSKSpriteNode(bpComerio: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpComerio.cgPath)
          let comerioNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         comerioNode.position = CGPoint(x:331.91, y:194.87)
-         //comerioNode.zPosition = 0//FOR LABEL TO BE LEGIBLE(BARRANQUITAS)
-         //let physicsBody5 = SKPhysicsBody(circleOfRadius:comerioNode.size.width/2 * 0.33 , center: CGPoint(x:1.5,y:-6.5))//top physicsBody
-         //let physicsBody4 = SKPhysicsBody(circleOfRadius:comerioNode.size.width/2 * 0.33 , center: CGPoint(x:3.5,y:-0.5))//top left
-         //let physicsBody3 = SKPhysicsBody(circleOfRadius:comerioNode.size.width/2 * 0.33 , center: CGPoint(x:-3.5,y:-3.5))//top right
-         //let physicsBody1 = SKPhysicsBody(circleOfRadius:comerioNode.size.width/2 * 0.33 , center: CGPoint(x:3.5,y:3.5))//bottom left
-         //let physicsBody2 = SKPhysicsBody(circleOfRadius:comerioNode.size.width/2 * 0.33 , center: CGPoint(x:-3.5,y:1.5))//bottom right
-         //let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
-         //comerioNode.physicsBody = compoundBody
-         comerioNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:comerioNode.size.width/2 * 1.50 , height:comerioNode.size.height/2 * 0.8 /** 0.2*/), center: CGPoint(x:0.5, y:0.0))
-         //comerioNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:comerioNode.size.width/2 * 0.7 , height:comerioNode.size.height/2 ), center: CGPoint(x:-1.2, y:0.5))
-         //comerioNode.physicsBody = SKPhysicsBody(circleOfRadius:comerioNode.size.width/2 * 0.4 , center: CGPoint(x:-1.2, y:0.5))
+         comerioNode.position = CGPoint(x:332.36, y:194.87)
+         comerioNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:comerioNode.size.width/2 * 1.50 , height:comerioNode.size.height/2 * 0.8 /** 0.2*/), center: CGPoint(x:-0.5, y:0.0))
          comerioNode.physicsBody?.isDynamic = false
          comerioNode.name = "Comerío"
          return  comerioNode
-     }
+     }*/
+    
+    func comerioBezierPathToSKSpriteNode(bpComerio: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 332.36, y: 194.87)
+        let name = "Comerío"
+        
+        let spriteNode = createMapNode(
+            from: bpComerio,
+            position: position,
+            name: name
+        )
+        
+        // Add Comerío-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.50, height: spriteNode.size.height/2 * 0.8 /* or 0.2? */), center: CGPoint(x: -0.5, y: 0.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.29, height: spriteNode.size.height/2 * 0.8 /* or 0.2? */), center: CGPoint(x: -1.0, y: 0.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/10.0), center: CGPoint(x: -4.5, y: -8.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/10.0), center: CGPoint(x: -0.5, y: -12.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 12.0, y: -1.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.3, height: spriteNode.size.height/5.0), center: CGPoint(x: 3.0, y: 10.3))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func coamoBezierPathToSKSpriteNode(bpCoamo: UIBezierPath)-> SKSpriteNode{
+     /*func coamoBezierPathToSKSpriteNode(bpCoamo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCoamo.cgPath)
          let coamoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         coamoNode.position = CGPoint(x:296.54, y:158.24)
-         //coamoNode.zPosition = 0//FOR LABEL TO BE LEGIBLE(BARRANQUITAS)
-         coamoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:coamoNode.size.width/2 , height:coamoNode.size.height/2 ), center: CGPoint(x:4.7, y:0.5))
+         coamoNode.position = CGPoint(x:296.99, y:158.23)
+         coamoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:coamoNode.size.width/2 , height:coamoNode.size.height/2 ), center: CGPoint(x:-4.7, y:-0.5))
          //coamoNode.physicsBody = SKPhysicsBody(circleOfRadius:coamoNode.size.width/2 * 0.4 , center: CGPoint(x:1.7, y:0.5))
          coamoNode.physicsBody?.isDynamic = false
          coamoNode.name = "Coamo"
          return  coamoNode
-     }
+     }*/
+    
+    func coamoBezierPathToSKSpriteNode(bpCoamo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 296.99, y: 158.23)
+        let name = "Coamo"
+        
+        let spriteNode = createMapNode(
+            from: bpCoamo,
+            position: position,
+            name: name
+        )
+        
+        // Add Coamo-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.4), center: CGPoint(x: -4.7, y: 2.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.87, height: spriteNode.size.height/1.3), center: CGPoint(x: -6.2, y: 1.8))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/2.5), center: CGPoint(x: 10.5, y: -4.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/3.5), center: CGPoint(x: 15.0, y: -4.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/10.0), center: CGPoint(x: 20.5, y: -4.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0, height: spriteNode.size.height/12.0), center: CGPoint(x: 5.0, y: -18.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        
+        return spriteNode
+    }
      
-     func naranjitoBezierPathToSKSpriteNode(bpNaranjito: UIBezierPath)-> SKSpriteNode{
+     /*func naranjitoBezierPathToSKSpriteNode(bpNaranjito: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpNaranjito.cgPath)
          let naranjitoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         naranjitoNode.position = CGPoint(x:321.28, y:212.61)
-         //naranjitoNode.zPosition = 1
-         naranjitoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:naranjitoNode.size.width/2 * 1.33, height:naranjitoNode.size.height/2 * 1.38), center: CGPoint(x:-3.5, y:-0.5))
+         naranjitoNode.position = CGPoint(x:321.73, y:212.61)
+         naranjitoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:naranjitoNode.size.width/2 * 1.33, height:naranjitoNode.size.height/2 * 1.38), center: CGPoint(x:3.5, y:0.5))
          //naranjitoNode.physicsBody = SKPhysicsBody(circleOfRadius:naranjitoNode.size.width/2 * 0.4 , center: CGPoint(x:-1.5, y:0.5))
          naranjitoNode.physicsBody?.isDynamic = false
          naranjitoNode.name = "Naranjito"
          return  naranjitoNode
-     }
+     }*/
+    
+    func naranjitoBezierPathToSKSpriteNode(bpNaranjito: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 321.73, y: 212.61)
+        let name = "Naranjito"
+        
+        let spriteNode = createMapNode(
+            from: bpNaranjito,
+            position: position,
+            name: name
+        )
+        
+        // Add Naranjito-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.33, height: spriteNode.size.height/2 * 1.38), center: CGPoint(x: 3.5, y: 0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.0, height: spriteNode.size.height/1.35), center: CGPoint(x: 2.0, y: 0.8))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.0, height: spriteNode.size.height/2.0), center: CGPoint(x: 11.6, y: 3.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.5, height: spriteNode.size.height/4.5), center: CGPoint(x: -7.2, y: -9.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/9.2), center: CGPoint(x: -11.0, y: -11.1))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4/*, physicsBody5*/])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        
+        return spriteNode
+    }
      
-     func aibonitoBezierPathToSKSpriteNode(bpAibonito: UIBezierPath)-> SKSpriteNode{
+     /*func aibonitoBezierPathToSKSpriteNode(bpAibonito: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpAibonito.cgPath)
          let aibonitoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         aibonitoNode.position = CGPoint(x:318.76, y:167.44)
-         //aibonitoNode.zPosition = 1
-         aibonitoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aibonitoNode.size.width/2 * 1.2, height:aibonitoNode.size.height/2 /** 0.2*/), center: CGPoint(x:-2.0, y:-0.5))
-         //aibonitoNode.physicsBody = SKPhysicsBody(circleOfRadius:aibonitoNode.size.width/2 * 0.4 , center: CGPoint(x:-2.0, y:-0.5))
+         aibonitoNode.position = CGPoint(x:319.22, y:167.44)
+         aibonitoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aibonitoNode.size.width/2 * 1.2, height:aibonitoNode.size.height/2 /** 0.2*/), center: CGPoint(x:2.0, y:0.5))
          aibonitoNode.physicsBody?.isDynamic = false
          aibonitoNode.name = "Aibonito"
          return  aibonitoNode
-     }
+     }*/
+    
+    func aibonitoBezierPathToSKSpriteNode(bpAibonito: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 319.22, y: 167.44)
+        let name = "Aibonito"
+        
+        let spriteNode = createMapNode(
+            from: bpAibonito,
+            position: position,
+            name: name
+        )
+        
+        // Add Aibonito-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/1.5 /* or * 0.2? */), center: CGPoint(x: 3.0, y: 1.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.5 /* or * 0.2? */), center: CGPoint(x: 3.3, y: 1.9))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/3.0 /* or * 0.2? */), center: CGPoint(x: -11.0, y: 2.8))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/2.0 /* or * 0.2? */), center: CGPoint(x: -7.0, y: 2.8))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.3, height: spriteNode.size.height/6.2 /* or * 0.2? */), center: CGPoint(x: 4.2, y: -11.8))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.5, height: spriteNode.size.height/5.5 /* or * 0.2? */), center: CGPoint(x: 12.3, y: 2.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.2, height: spriteNode.size.height/2 /* or * 0.2? */), center: CGPoint(x: 2.0, y: 0.5))
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/7, center: CGPoint(x: 4.0, y: -10.0))
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/8.5, center: CGPoint(x: 8.0, y: 10.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func salinasBezierPathToSKSpriteNode(bpSalinas: UIBezierPath)-> SKSpriteNode{
+     /*func salinasBezierPathToSKSpriteNode(bpSalinas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpSalinas.cgPath)
          let salinasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         salinasNode.position = CGPoint(x:322.58, y:132.2)
-         //salinasNode.zPosition = 1
-         salinasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:salinasNode.size.width/2, height:salinasNode.size.height/2), center: CGPoint(x:0.0, y:-0.5))
-         //salinasNode.physicsBody = SKPhysicsBody(circleOfRadius:salinasNode.size.width/2 * 0.4 , center: CGPoint(x:0.0, y:-0.5))
+         salinasNode.position = CGPoint(x:323.03, y:132.19)
+         salinasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:salinasNode.size.width/2, height:salinasNode.size.height/2), center: CGPoint(x:0.0, y:0.5))
          salinasNode.physicsBody?.isDynamic = false
          salinasNode.name = "Salinas"
          return  salinasNode
-     }
+     }*/
+    
+    func salinasBezierPathToSKSpriteNode(bpSalinas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 323.03, y: 132.19)
+        let name = "Salinas"
+        
+        let spriteNode = createMapNode(
+            from: bpSalinas,
+            position: position,
+            name: name
+        )
+        
+        // Add Salinas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2), center: CGPoint(x: 0.0, y: 0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.5), center: CGPoint(x: 0.0, y: -3.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5, height: spriteNode.size.height/2.8), center: CGPoint(x: -15.0, y: -1.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5, height: spriteNode.size.height/4.5), center: CGPoint(x: -18.5, y: -1.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/8.0), center: CGPoint(x: -22.0, y: -4.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/9.0), center: CGPoint(x: 14.9, y: 8.0))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/9.0), center: CGPoint(x: 18.0, y: 9.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/13.0), center: CGPoint(x: 21.5, y: 11.5))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/17), center: CGPoint(x: 2.8, y: 16.8))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/9), center: CGPoint(x: 7.0, y: 22.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func cayeyBezierPathToSKSpriteNode(bpCayey: UIBezierPath)-> SKSpriteNode{
+     /*func cayeyBezierPathToSKSpriteNode(bpCayey: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCayey.cgPath)
          let cayeyNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         cayeyNode.position = CGPoint(x:353.68, y:160.28)
-         //cayeyNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius:cayeyNode.size.width/2 * 0.28, center: CGPoint(x:15.5, y:-2.5))//top lft
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.28, center: CGPoint(x: 3.5, y: -3.0))//top right
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.35, center: CGPoint(x: 8.0, y: 5.0))//bottom
-         let physicsBody4 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.19, center: CGPoint(x: -6.5, y: -5.0))//deeper appendix
-         let physicsBody5 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.19, center: CGPoint(x: -13.5, y: -8.0))//outer appendix
+         cayeyNode.position = CGPoint(x:354.14, y:160.28)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius:cayeyNode.size.width/2 * 0.28, center: CGPoint(x:-15.5, y:2.5))//top lft
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.28, center: CGPoint(x: -3.5, y: 3.0))//top right
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.35, center: CGPoint(x: -8.0, y: -5.0))//bottom
+         let physicsBody4 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.19, center: CGPoint(x: 6.5, y: 5.0))//deeper appendix
+         let physicsBody5 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.19, center: CGPoint(x: 13.5, y: 8.0))//outer appendix
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
          cayeyNode.physicsBody = compoundBody
-         //cayeyNode.physicsBody = SKPhysicsBody(circleOfRadius:cayeyNode.size.width/2 * 0.26 , center: CGPoint(x:7.5, y:2.5))
          cayeyNode.physicsBody?.isDynamic = false
          cayeyNode.name = "Cayey"
          return  cayeyNode
-     }
+     }*/
+    
+    func cayeyBezierPathToSKSpriteNode(bpCayey: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 354.14, y: 160.28)
+        let name = "Cayey"
+        
+        let spriteNode = createMapNode(
+            from: bpCayey,
+            position: position,
+            name: name
+        )
+        
+        // Add Cayey-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -15.5, y: 2.5)) // top left
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -3.5, y: 3.0)) // top right
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -7.0, y: -7.0)) // bottom
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.19, center: CGPoint(x: 6.5, y: 5.0)) // deeper appendix
+        let physicsBody5 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.19, center: CGPoint(x: 13.5, y: 8.0)) // outer appendix
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/1.6), center: CGPoint(x: -7.0, y: -2.0))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/13), center: CGPoint(x: -0.5, y: -16.3))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5, height: spriteNode.size.height/2.2), center: CGPoint(x: -19.2, y: 0.7))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25.5, height: spriteNode.size.height/6.5), center: CGPoint(x: -22.3, y: 1.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/7), center: CGPoint(x: 19.5, y: 3.0))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.5, height: spriteNode.size.height/3), center: CGPoint(x: 5.5, y: 4.0))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5, height: spriteNode.size.height/2.5), center: CGPoint(x: 12.5, y: 9.0))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.5, height: spriteNode.size.height/3), center: CGPoint(x: 16.0, y: 7.5))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.5, height: spriteNode.size.height/3.5), center: CGPoint(x: 9.0, y: 6.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
 
      
-     func cidraBezierPathToSKSpriteNode(bpCidra: UIBezierPath)-> SKSpriteNode{
+     /*func cidraBezierPathToSKSpriteNode(bpCidra: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCidra.cgPath)
          let cidraNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         cidraNode.position = CGPoint(x:345.38, y:182.58)
-         //cidraNode.zPosition = 1
-         cidraNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:cidraNode.size.width/2 * 1.1 , height:cidraNode.size.height/2 * 1.0 ), center: CGPoint(x:-3.5, y:3.5))
-         //cidraNode.physicsBody = SKPhysicsBody(circleOfRadius:cidraNode.size.width/2 * 0.30 , center: CGPoint(x:-3.5, y:2.0))
+         cidraNode.position = CGPoint(x:345.83, y:182.58)
+         cidraNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:cidraNode.size.width/2 * 1.1 , height:cidraNode.size.height/2 * 1.0 ), center: CGPoint(x:3.5, y:-3.5))
          cidraNode.physicsBody?.isDynamic = false
          cidraNode.name = "Cidra"
          return  cidraNode
-     }
+     }*/
+    
+    func cidraBezierPathToSKSpriteNode(bpCidra: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 345.83, y: 182.58)
+        let name = "Cidra"
+        
+        let spriteNode = createMapNode(
+            from: bpCidra,
+            position: position,
+            name: name
+        )
+        
+        // Add Cidra-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.1, height: spriteNode.size.height/2 * 1.0), center: CGPoint(x: 3.5, y: -3.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6 , height: spriteNode.size.height/2 * 1.0), center: CGPoint(x: 3.5, y: -3.5))
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.0, height: spriteNode.size.height/6.5 /* or * 0.2? */), center: CGPoint(x: 18.0, y: -6.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.5, height: spriteNode.size.height/8.5 /* or * 0.2? */), center: CGPoint(x: 13.5, y: 5.6))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/4.3 /* or * 0.2? */), center: CGPoint(x: 3.5, y: 7.6))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.5, height: spriteNode.size.height/6.2 /* or * 0.2? */), center: CGPoint(x: -1.4, y: 6.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.0, height: spriteNode.size.height/3.7 /* or * 0.2? */), center: CGPoint(x: -12.0, y: -6.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func santaIsabelBezierPathToSKSpriteNode(bpSantaIsabel: UIBezierPath)-> SKSpriteNode{
+     /*func santaIsabelBezierPathToSKSpriteNode(bpSantaIsabel: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpSantaIsabel.cgPath)
          let santaIsabelNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         santaIsabelNode.position = CGPoint(x:285.59, y:125.67)
-         //santaIsabelNode.zPosition = 1
-         santaIsabelNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:santaIsabelNode.size.width/2 * 1.25 , height:santaIsabelNode.size.height/2 * 1.25 ), center: CGPoint(x:-1.5,y:-4.5))
-         //santaIsabelNode.physicsBody = SKPhysicsBody(circleOfRadius:santaIsabelNode.size.width/2 * 0.45 , center: CGPoint(x:-1.5,y:-4.5))
+         santaIsabelNode.position = CGPoint(x:286.05, y:125.67)
+         santaIsabelNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:santaIsabelNode.size.width/2 * 1.25 , height:santaIsabelNode.size.height/2 * 1.25 ), center: CGPoint(x:1.5,y:4.5))
          santaIsabelNode.physicsBody?.isDynamic = false
          santaIsabelNode.name = "Santa Isabel"
          return  santaIsabelNode
-     }
+     }*/
+    
+    func santaIsabelBezierPathToSKSpriteNode(bpSantaIsabel: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 286.05, y: 125.67)
+        let name = "Santa Isabel"
+        
+        let spriteNode = createMapNode(
+            from: bpSantaIsabel,
+            position: position,
+            name: name
+        )
+        
+        // Add Santa Isabel-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.25, height: spriteNode.size.height/2 * 1.25), center: CGPoint(x: 1.5, y: 4.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8 , height: spriteNode.size.height/2 * 1.25), center: CGPoint(x: 1.0, y: 4.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.0 , height: spriteNode.size.height/2.5), center: CGPoint(x: 11.9, y: 5.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.0 , height: spriteNode.size.height/9.0), center: CGPoint(x: 14.5, y: 9.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.0 , height: spriteNode.size.height/2.5), center: CGPoint(x: -10.0, y: 0.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.0 , height: spriteNode.size.height/7), center: CGPoint(x: -13.5, y: 0.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func vegaAltaBezierPathToSKSpriteNode(bpVegaAlta: UIBezierPath)-> SKSpriteNode{
+     /*func vegaAltaBezierPathToSKSpriteNode(bpVegaAlta: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpVegaAlta.cgPath)
          let vegaAltaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         vegaAltaNode.position = CGPoint(x:299.93, y:247.01)
-         //vegaAltaNode.zPosition = 1
-         vegaAltaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:vegaAltaNode.size.width/2 , height:vegaAltaNode.size.height/2 * 1.35), center: CGPoint(x:-1.5, y: -4.5))
+         vegaAltaNode.position = CGPoint(x:300.38, y:247)
+         vegaAltaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:vegaAltaNode.size.width/2 , height:vegaAltaNode.size.height/2 * 1.35), center: CGPoint(x:1.5, y: 4.5))
          vegaAltaNode.physicsBody?.isDynamic = false
          vegaAltaNode.name = "Vega Alta"
          return vegaAltaNode
-     }
+     }*/
+    
+    func vegaAltaBezierPathToSKSpriteNode(bpVegaAlta: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 300.38, y: 247)
+        let name = "Vega Alta"
+        
+        let spriteNode = createMapNode(
+            from: bpVegaAlta,
+            position: position,
+            name: name
+        )
+        
+        // Add Vega Alta-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: 1.5, y: 4.5))
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: 1.5, y: 4.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: 1.5, y: 4.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.7 , height: spriteNode.size.height/4.5), center: CGPoint(x: -4.8, y: -4.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.8 , height: spriteNode.size.height/4.5), center: CGPoint(x: -6.5, y: -15.3))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.7, height: spriteNode.size.height/3.5), center: CGPoint(x:7.9, y: 1.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func doradoBezierPathToSKSpriteNode(bpDorado: UIBezierPath)-> SKSpriteNode{
+     /*func doradoBezierPathToSKSpriteNode(bpDorado: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpDorado.cgPath)
          let doradoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         doradoNode.position = CGPoint(x:319.91, y:253.65)
-         //doradoNode.zPosition = 1
-         doradoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:doradoNode.size.width/2 * 0.70, height:doradoNode.size.height/2 * 2.4), center: CGPoint(x:4.5, y: -4.5))
+         doradoNode.position = CGPoint(x:320.35, y:253.65)
+         doradoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:doradoNode.size.width/2 * 0.70, height:doradoNode.size.height/2 * 2.4), center: CGPoint(x:-4.5, y: 4.5))
          doradoNode.physicsBody?.isDynamic = false
          doradoNode.name = "Dorado"
          return doradoNode
-     }
+     }*/
+    
+    func doradoBezierPathToSKSpriteNode(bpDorado: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 320.35, y: 253.65)
+        let name = "Dorado"
+        
+        let spriteNode = createMapNode(
+            from: bpDorado,
+            position: position,
+            name: name
+        )
+        
+        // Add Dorado-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.70, height: spriteNode.size.height/2 * 2.4), center: CGPoint(x: -4.5, y: 4.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/0.9), center: CGPoint(x: -4.5, y: 3.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5 , height: spriteNode.size.height/2.8), center: CGPoint(x: -11.7, y: 7.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5 , height: spriteNode.size.height/9.0), center: CGPoint(x: 5.7, y: 8.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3/*, physicsBody4*/])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func toaAltaBezierPathToSKSpriteNode(bpToaAlta: UIBezierPath)-> SKSpriteNode{
+     /*func toaAltaBezierPathToSKSpriteNode(bpToaAlta: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpToaAlta.cgPath)
          let toaAltaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         toaAltaNode.position = CGPoint(x:321.65, y:232.96)
+         toaAltaNode.position = CGPoint(x:322.09, y:232.95)
          //toaAltaNode.zPosition = 1
-         toaAltaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:toaAltaNode.size.width/2 * 1.20, height:toaAltaNode.size.height/2 ), center: CGPoint(x:-3.0,y:0.5))
-         //toaAltaNode.physicsBody = SKPhysicsBody(circleOfRadius:toaAltaNode.size.width/2 * 0.35 , center: CGPoint(x:-3.0,y:-0.5))
+         toaAltaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:toaAltaNode.size.width/2 * 1.26, height:toaAltaNode.size.height/1.8 ), center: CGPoint(x:4.0,y:-1.0))
          toaAltaNode.physicsBody?.isDynamic = false
          toaAltaNode.name = "Toa Alta"
          return  toaAltaNode
-     }
+     }*/
+    
+    func toaAltaBezierPathToSKSpriteNode(bpToaAlta: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 322.09, y: 232.95)
+        let name = "Toa Alta"
+        
+        let spriteNode = createMapNode(
+            from: bpToaAlta,
+            position: position,
+            name: name
+        )
+        
+        // Add Toa Alta-specific properties if needed
+        /*spriteNode.zPosition = 1*/
+        
+        // Add Toa Alta-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.26, height: spriteNode.size.height/1.6), center: CGPoint(x: 4.0, y: -1.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6, height: spriteNode.size.height/1.6), center: CGPoint(x: 5.0, y: -0.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5 , height: spriteNode.size.height/5.5), center: CGPoint(x: -10.5, y: 4.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5 , height: spriteNode.size.height/10.0), center: CGPoint(x: 7.0, y: 9.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3/*, physicsBody4*/])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func toaBajaBezierPathToSKSpriteNode(bpToaBaja: UIBezierPath)-> SKSpriteNode{
+     /*func toaBajaBezierPathToSKSpriteNode(bpToaBaja: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpToaBaja.cgPath)
          let toaBajaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         toaBajaNode.position = CGPoint(x:337.59, y:253.87)
-         //toaBajaNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius:toaBajaNode.size.width/2 * 0.28, center: CGPoint(x:9.5, y:5.0))//top lft
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: toaBajaNode.size.width/2 * 0.28, center: CGPoint(x: 7.5, y: 0.0))//top right
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: toaBajaNode.size.width/2 * 0.28, center: CGPoint(x: 4.0, y: 5.0))//bottom
-         let physicsBody4 = SKPhysicsBody(circleOfRadius: toaBajaNode.size.width/2 * 0.28, center: CGPoint(x: -0.5, y: -2.0))//deeper appendix
-         //let physicsBody5 = SKPhysicsBody(circleOfRadius: cayeyNode.size.width/2 * 0.19, center: CGPoint(x: -13.5, y: -8.0))//outer appendix
+         toaBajaNode.position = CGPoint(x:338.04, y:253.86)
+         toaBajaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:toaBajaNode.size.width/2.5 , height:toaBajaNode.size.height/1.2 ), center: CGPoint(x:-7.5,y:-0.5))
+         /*let physicsBody3 = SKPhysicsBody(circleOfRadius:toaBajaNode.size.width/2 * 0.28, center: CGPoint(x:-9.5, y:-5.0))//top lft
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: toaBajaNode.size.width/2 * 0.28, center: CGPoint(x: -7.5, y: 0.0))//top right
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: toaBajaNode.size.width/2 * 0.28, center: CGPoint(x: -4.0, y: -5.0))//bottom
+         let physicsBody4 = SKPhysicsBody(circleOfRadius: toaBajaNode.size.width/2 * 0.28, center: CGPoint(x: 0.5, y: 2.0))//deeper appendix
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4/*, physicsBody5*/])
-         toaBajaNode.physicsBody = compoundBody
-         //toaBajaNode.physicsBody = SKPhysicsBody(circleOfRadius:toaBajaNode.size.width/2 * 0.27 , center: CGPoint(x:5.5,y:0.5))
+         toaBajaNode.physicsBody = compoundBody*/
          toaBajaNode.physicsBody?.isDynamic = false
          toaBajaNode.name = "Toa Baja"
          return  toaBajaNode
-     }
+     }*/
+    
+    func toaBajaBezierPathToSKSpriteNode(bpToaBaja: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 338.04, y: 253.86)
+        let name = "Toa Baja"
+        
+        let spriteNode = createMapNode(
+            from: bpToaBaja,
+            position: position,
+            name: name
+        )
+        
+        // Add Toa Baja-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/1.2), center: CGPoint(x: -7.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/1.7), center: CGPoint(x: -7.7, y: -2.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0 , height: spriteNode.size.height/9), center: CGPoint(x: -0.5, y: 7.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0 , height: spriteNode.size.height/3.0), center: CGPoint(x: 4.0, y: 0.8))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3/*, physicsBody4*/])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -9.5, y: -5.0)) // top left
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -7.5, y: 0.0)) // top right
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -4.0, y: -5.0)) // bottom
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: 0.5, y: 2.0)) // deeper appendix
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4 /*, physicsBody5*/])
+        spriteNode.physicsBody = compoundBody*/
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
      
-     func bayamonBezierPathToSKSpriteNode(bpBayamon: UIBezierPath)-> SKSpriteNode{
+     /*func bayamonBezierPathToSKSpriteNode(bpBayamon: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpBayamon.cgPath)
          let bayamonNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         bayamonNode.position = CGPoint(x:346.44, y:228.92)
-         //bayamonNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: bayamonNode.size.width/2 * 0.55, center: CGPoint(x: 1.0, y: -10.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: bayamonNode.size.width/2 * 0.55, center: CGPoint(x: 1.0, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: bayamonNode.size.width/2 * 0.55, center: CGPoint(x: 1.0, y: 10.5))//bottom
+         bayamonNode.position = CGPoint(x:346.89, y:228.91)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: bayamonNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: 10.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: bayamonNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: bayamonNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: -10.5))//bottom
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          bayamonNode.physicsBody = compoundBody
-         //bayamonNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:bayamonNode.size.width/2 * 1.12, height:bayamonNode.size.height/2 * 1.3), center: CGPoint(x:1.0, y: -0.5))
          bayamonNode.physicsBody?.isDynamic = false
          bayamonNode.name = "Bayamón"
          return bayamonNode
-     }
+     }*/
+    
+    func bayamonBezierPathToSKSpriteNode(bpBayamon: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 346.89, y: 228.91)
+        let name = "Bayamón"
+        
+        let spriteNode = createMapNode(
+            from: bpBayamon,
+            position: position,
+            name: name
+        )
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.3), center: CGPoint(x:-0.5, y: 0.5))
+        // Add Bayamón-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: 10.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: -10.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.28), center: CGPoint(x:-0.5, y: 1.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10 , height: spriteNode.size.height/5), center: CGPoint(x: -9.8, y:-14))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.8 , height: spriteNode.size.height/13), center: CGPoint(x: -6.0, y: -20.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/5), center: CGPoint(x: 9.0, y:15.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
 
-     func catanoBezierPathToSKSpriteNode(bpCatano: UIBezierPath)-> SKSpriteNode{
+     /*func catanoBezierPathToSKSpriteNode(bpCatano: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpCatano.cgPath)
          let catanoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         catanoNode.position = CGPoint(x:353.41, y:256.05)
-         //catanoNode.zPosition = 2//FOR LABEL TO BE LEGIBLE
-         //let physicsBody5 = SKPhysicsBody(circleOfRadius:catanoNode.size.width/2 * 0.33 , center: CGPoint(x:1.5,y:-6.5))//top physicsBody
-         //let physicsBody4 = SKPhysicsBody(circleOfRadius:catanoNode.size.width/2 * 0.33 , center: CGPoint(x:3.5,y:-3.5))//top left
-         //let physicsBody3 = SKPhysicsBody(circleOfRadius:catanoNode.size.width/2 * 0.33 , center: CGPoint(x:-0.5,y:-3.5))//top right
-         //let physicsBody1 = SKPhysicsBody(circleOfRadius:catanoNode.size.width/2 * 0.33 , center: CGPoint(x:3.5,y:1.5))//bottom left
-         //let physicsBody2 = SKPhysicsBody(circleOfRadius:catanoNode.size.width/2 * 0.33 , center: CGPoint(x:-0.5,y:1.5))//bottom right
-         //let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-         //catanoNode.physicsBody = compoundBody
-         catanoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:catanoNode.size.width/2 * 1.50 , height:catanoNode.size.height/2 * 3.5 ), center: CGPoint(x:1.5,y:-6.4))
-         //catanoNode.physicsBody = SKPhysicsBody(circleOfRadius:catanoNode.size.width/2 * 0.33 , center: CGPoint(x:0.5,y:0.5))
+         catanoNode.position = CGPoint(x:353.86, y:256.04)
+         catanoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:catanoNode.size.width/2 * 1.50 , height:catanoNode.size.height/2 * 3.5 ), center: CGPoint(x:-1.5,y:6.0))
          catanoNode.physicsBody?.isDynamic = false
          catanoNode.name = "Cataño"
          return  catanoNode
-     }
+     }*/
+    
+    func catanoBezierPathToSKSpriteNode(bpCatano: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 353.86, y: 256.04)
+        let name = "Cataño"
+        
+        let spriteNode = createMapNode(
+            from: bpCatano,
+            position: position,
+            name: name
+        )
+        
+        // Add Cataño-specific physics body if needed
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.50, height: spriteNode.size.height/2 * 3.5), center: CGPoint(x: -1.5, y: 6.0))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func guaynaboBezierPathToSKSpriteNode(bpGuaynabo: UIBezierPath)-> SKSpriteNode{
+     /*func guaynaboBezierPathToSKSpriteNode(bpGuaynabo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpGuaynabo.cgPath)
          let guaynaboNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         guaynaboNode.position = CGPoint(x:360.92, y:233.01)
-         //guaynaboNode.zPosition = 1//FOR LABEL TO BE LEGIBLE
-         guaynaboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guaynaboNode.size.width/2 * 1.20, height:guaynaboNode.size.height/2 * 1.4), center: CGPoint(x:0.5, y: 0.5))
-         guaynaboNode.physicsBody?.isDynamic = false
+         guaynaboNode.position = CGPoint(x:361.37, y:233)
+         //guaynaboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guaynaboNode.size.width/2 * 1.20, height:guaynaboNode.size.height/2 * 1.4), center: CGPoint(x:-0.5, y: -2.5))
+         //guaynaboNode.physicsBody?.isDynamic = false
          guaynaboNode.name = "Guaynabo"
          return guaynaboNode
-     }
+     }*/
+    
+    func guaynaboBezierPathToSKSpriteNode(bpGuaynabo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 361.37, y: 233)
+        let name = "Guaynabo"
+        
+        let spriteNode = createMapNode(
+            from: bpGuaynabo,
+            position: position,
+            name: name
+        )
+        
+        // Add Guaynabo-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.20, height: spriteNode.size.height/2 * 1.4), center: CGPoint(x: -0.5, y: -2.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.65, height: spriteNode.size.height/1.75), center: CGPoint(x: -1.5, y: -7.7))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.0 , height: spriteNode.size.height/3.9), center: CGPoint(x: -1.0, y:12.7))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5 , height: spriteNode.size.height/11), center: CGPoint(x: 2.9, y:15.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/5), center: CGPoint(x: 5.5, y:-12.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func sanJuanBezierPathToSKSpriteNode(bpSanJuan: UIBezierPath)-> SKSpriteNode{
+     /*func sanJuanBezierPathToSKSpriteNode(bpSanJuan: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpSanJuan.cgPath)
          let sanJuanNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         sanJuanNode.position = CGPoint(x:375.22, y:240.17)
-         //sanJuanNode.zPosition = 0//FOR LABEL TO BE LEGIBLE(GUAYNABO)
-         sanJuanNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanJuanNode.size.width/2 * 0.67, height:sanJuanNode.size.height/2 * 1.40), center: CGPoint(x:0.5, y: 0.5))
-         //sanJuanNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanJuanNode.size.width/2 * 0.30, height:sanJuanNode.size.height/2 * 1.3), center: CGPoint(x:0.5, y: 0.5))
+         sanJuanNode.position = CGPoint(x:375.66, y:240.26)
+         sanJuanNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanJuanNode.size.width/2 * 0.67, height:sanJuanNode.size.height/2 * 1.40), center: CGPoint(x:-1.0, y: -0.5))
          sanJuanNode.physicsBody?.isDynamic = false
          sanJuanNode.name = "San Juan"
          return sanJuanNode
-     }
+     }*/
      
+    func sanJuanBezierPathToSKSpriteNode(bpSanJuan: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 375.66, y: 240.26)
+        let name = "San Juan"
+        
+        let spriteNode = createMapNode(
+            from: bpSanJuan,
+            position: position,
+            name: name
+        )
+        
+        // Add San Juan-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.67, height: spriteNode.size.height/2 * 1.40), center: CGPoint(x: -1.0, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.2, height: spriteNode.size.height/1.2), center: CGPoint(x: -1.0, y: 0.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.4 , height: spriteNode.size.height/16.3), center: CGPoint(x: 11.5, y: 5.2))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.4 , height: spriteNode.size.height/14.5), center: CGPoint(x: 10.5, y: 1.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8 , height: spriteNode.size.height/18.5), center: CGPoint(x: 8.5, y: 8.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0 , height: spriteNode.size.height/16.0), center: CGPoint(x: -10.0, y: 1.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21 , height: spriteNode.size.height/4.5), center: CGPoint(x: -8.6, y: 10.0))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.5 , height: spriteNode.size.height/11.5), center: CGPoint(x: -8.7, y: -11.0))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5 , height: spriteNode.size.height/25.5), center: CGPoint(x: -2.0, y: -22.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func caguasBezierPathToSKSpriteNode(bpCaguas: UIBezierPath)-> SKSpriteNode{
+     /*func caguasBezierPathToSKSpriteNode(bpCaguas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpCaguas.cgPath)
          let caguasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         caguasNode.position = CGPoint(x:375.56, y:191.55)
-         //caguasNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: caguasNode.size.width/2 * 0.44, center: CGPoint(x: -4.0, y: -9.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: caguasNode.size.width/2 * 0.65, center: CGPoint(x: 0.0, y: 6.0))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: caguasNode.size.width/2 * 0.33, center: CGPoint(x: -2.5, y: 19.5))//bottom
+         caguasNode.position = CGPoint(x:376.02, y:191.54)
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: caguasNode.size.width/2 * 0.44, center: CGPoint(x: 4.0, y: 9.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: caguasNode.size.width/2 * 0.65, center: CGPoint(x: 0.0, y: -6.0))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: caguasNode.size.width/2 * 0.33, center: CGPoint(x: 2.5, y: -19.5))//bottom
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
          caguasNode.physicsBody = compoundBody
-         //caguasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:caguasNode.size.width/2 * 0.80, height:caguasNode.size.height/2 * 1.3), center: CGPoint(x:-2.5, y: 0.5))
          caguasNode.physicsBody?.isDynamic = false
          caguasNode.name = "Caguas"
          return caguasNode
-     }
+     }*/
+    
+    func caguasBezierPathToSKSpriteNode(bpCaguas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 376.02, y: 191.54)
+        let name = "Caguas"
+        
+        let spriteNode = createMapNode(
+            from: bpCaguas,
+            position: position,
+            name: name
+        )
+        
+        // Add Caguas-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.44, center: CGPoint(x: 4.0, y: 9.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.65, center: CGPoint(x: 0.0, y: -6.0)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.33, center: CGPoint(x: 2.5, y: -19.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/1.2), center: CGPoint(x: 2.4, y: 0.9))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0 , height: spriteNode.size.height/3.4), center: CGPoint(x: 10.0, y: 11.0))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5 , height: spriteNode.size.height/6), center: CGPoint(x: 11.5, y: -3.0))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/4.5), center: CGPoint(x: 9.0, y: -15.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.3 , height: spriteNode.size.height/14), center: CGPoint(x: 2.8, y: -25.5))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.0, height: spriteNode.size.height/2.0), center: CGPoint(x: -4.0, y: -2.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5, height: spriteNode.size.height/2.8), center: CGPoint(x: -7.0, y: -3.5))
+        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12 , height: spriteNode.size.height/4.3), center: CGPoint(x: -10.5, y: -5.0))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/26.5), center: CGPoint(x: 5.5, y: 26.2))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
+    
+    /*func caguasBezierPathToSKSpriteNode(bpCaguas: UIBezierPath) -> SKSpriteNode {
+        let bounds = bpCaguas.bounds
+        let padding: CGFloat = 0.0
+        let size = CGSize(width: bounds.width + padding * 2, height: bounds.height + padding * 2)
+        let renderer = UIGraphicsImageRenderer(size: size)
+        
+        let image = renderer.image { context in
+            let cgContext = context.cgContext
+            // Flip only the Y-axis
+            cgContext.scaleBy(x: 1, y: -1)
+            // Adjust translation for Y-flip
+            cgContext.translateBy(x: -bounds.minX + padding, y: -bounds.maxY - padding)
+            cgContext.setFillColor(UIColor(red: 0.78, green: 0.91, blue: 0.81, alpha: 1.00).cgColor)
+            cgContext.setStrokeColor(UIColor(red: 0.81, green: 1.00, blue: 0.81, alpha: 1.00).cgColor)
+            cgContext.setLineWidth(0.5)
+            cgContext.addPath(bpCaguas.cgPath)
+            cgContext.drawPath(using: .fillStroke)
+        }
+        
+        let texture = SKTexture(image: image)
+        let spriteNode = SKSpriteNode(texture: texture)
+        spriteNode.position = CGPoint(x:376.02, y:191.54)
+        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 2.8, height: spriteNode.size.height/2 * 1.7), center: CGPoint(x: -5.5, y: -0.5))
+        spriteNode.physicsBody?.isDynamic = false*/
+        spriteNode.name = "Caguas"
+        return spriteNode
+    }*/
      
-     func carolinaBezierPathToSKSpriteNode(bpCarolina: UIBezierPath)-> SKSpriteNode{
+     /*func carolinaBezierPathToSKSpriteNode(bpCarolina: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpCarolina.cgPath)
          let carolinaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         carolinaNode.position = CGPoint(x:398.56,  y:234.17)
+         carolinaNode.position = CGPoint(x:399.01,  y:234.17)
          //carolinaNode.zPosition = 1
-         let physicsBody3 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.40, center: CGPoint(x: -3.5, y: -10.5))//top physicsBody
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.29, center: CGPoint(x: -5.5, y: -0.5))//middle
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.25, center: CGPoint(x: -9.5, y: 8.5))//bottom
-         let physicsBody4 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.17, center: CGPoint(x: -12.5, y: 16.5))
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.40, center: CGPoint(x: 3.5, y: 10.5))//top physicsBody
+         let physicsBody1 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.29, center: CGPoint(x: 5.5, y: 0.5))//middle
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.25, center: CGPoint(x: 9.5, y: -8.5))//bottom
+         let physicsBody4 = SKPhysicsBody(circleOfRadius: carolinaNode.size.width/2 * 0.17, center: CGPoint(x: 12.5, y: -16.5))
          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
          carolinaNode.physicsBody = compoundBody
          //carolinaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:carolinaNode.size.width/2 * 0.30, height:carolinaNode.size.height/2 * 0.95), center: CGPoint(x:-4.5, y: -3.0))
          carolinaNode.physicsBody?.isDynamic = false
          carolinaNode.name = "Carolina"
          return carolinaNode
-     }
+     }*/
+    
+    func carolinaBezierPathToSKSpriteNode(bpCarolina: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 399.01, y: 234.17)
+        let name = "Carolina"
+        
+        let spriteNode = createMapNode(
+            from: bpCarolina,
+            position: position,
+            name: name
+        )
+        
+        // Add Carolina-specific properties if needed
+        /*spriteNode.zPosition = 1*/
+        
+        // Add Carolina-specific physics bodies if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 3.5, y: 10.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.29, center: CGPoint(x: 5.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.25, center: CGPoint(x: 9.5, y: -8.5)) // bottom
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.17, center: CGPoint(x: 12.5, y: -16.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/10), center: CGPoint(x: 14.0, y: -22))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17 , height: spriteNode.size.height/7), center: CGPoint(x: 10.0, y: -18))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/4.5), center: CGPoint(x: 14.5, y: -12.5))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6 , height: spriteNode.size.height/8.0), center: CGPoint(x: 8.5, y: -9.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5 , height: spriteNode.size.height/8.5), center: CGPoint(x: 3.5, y: -9.0))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8 , height: spriteNode.size.height/7.5), center: CGPoint(x: 7.3, y: -1.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15 , height: spriteNode.size.height/13), center: CGPoint(x: -1.5, y: 0.0))
+        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.1 , height: spriteNode.size.height/17), center: CGPoint(x: 5.0, y: 4.5))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17 , height: spriteNode.size.height/13), center: CGPoint(x: -6.3, y: 7.0))
+        let physicsBody10 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5 , height: spriteNode.size.height/6), center: CGPoint(x: 3.3, y: 11.8))
+        let physicsBody11 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0 , height: spriteNode.size.height/20.5), center: CGPoint(x: 1.5, y: 18.5))
+        let physicsBody12 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0 , height: spriteNode.size.height/9), center: CGPoint(x:-10.5, y: 20))
+        let physicsBody13 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5 , height: spriteNode.size.height/19), center: CGPoint(x: -7.5, y: 15.0))
+        let physicsBody14 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16 , height: spriteNode.size.height/14.5), center: CGPoint(x: 13.0, y: 12.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10, physicsBody11, physicsBody12, physicsBody13, physicsBody14])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.30, height: spriteNode.size.height/2 * 0.95), center: CGPoint(x: -4.5, y: -3.0))
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        return spriteNode
+    }
      
-     func aguasBuenasBezierPathToSKSpriteNode(bpAguasBuenas: UIBezierPath)-> SKSpriteNode{
+     /*func aguasBuenasBezierPathToSKSpriteNode(bpAguasBuenas: UIBezierPath)-> SKSpriteNode{
             
             let shapeNode = SKShapeNode(path:bpAguasBuenas.cgPath)
             let aguasBuenasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-             aguasBuenasNode.position = CGPoint(x:356.56, y:202.09)
+             aguasBuenasNode.position = CGPoint(x:357.01, y:202.08)
              //aguasBuenasNode.zPosition = 1
-         aguasBuenasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aguasBuenasNode.size.width/2 * 1.2, height:aguasBuenasNode.size.height/2 * 0.8), center: CGPoint(x:0.0,y:-0.5))
-             //aguasBuenasNode.physicsBody = SKPhysicsBody(circleOfRadius:aguasBuenasNode.size.width/2 * 0.35 , center: CGPoint(x:0.0,y:0.5))
+             aguasBuenasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:aguasBuenasNode.size.width/2 * 1.2, height:aguasBuenasNode.size.height/2 * 0.8), center: CGPoint(x:0.0,y:0.5))
              aguasBuenasNode.physicsBody?.isDynamic = false
              aguasBuenasNode.name = "Aguas Buenas"
              return  aguasBuenasNode
-     }
+     }*/
+    
+    func aguasBuenasBezierPathToSKSpriteNode(bpAguasBuenas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 357.01, y: 202.08)
+        let name = "Aguas Buenas"
+        
+        let spriteNode = createMapNode(
+            from: bpAguasBuenas,
+            position: position,
+            name: name
+        )
+        
+        // Add Aguas Buenas-specific properties if needed
+        /*spriteNode.zPosition = 1*/
+        
+        // Add Aguas Buenas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.2, height: spriteNode.size.height/2 * 0.8), center: CGPoint(x: 0.0, y: 0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5 , height: spriteNode.size.height/2.5), center: CGPoint(x: -1.0, y: 1.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.7 , height: spriteNode.size.height/13.0), center: CGPoint(x: 2.0, y: -6.8))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8 , height: spriteNode.size.height/13), center: CGPoint(x: 0.5, y: -9.8))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5 , height: spriteNode.size.height/12), center: CGPoint(x: -2.3, y: -13.0))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0 , height: spriteNode.size.height/13.5), center: CGPoint(x: -8.5, y: -6.8))
+        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0 , height: spriteNode.size.height/13.0), center: CGPoint(x: -15.0, y: 2.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5 , height: spriteNode.size.height/2), center: CGPoint(x: 12.0, y: 5.0))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/4.5), center: CGPoint(x: 14.5, y: 9.5))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16 , height: spriteNode.size.height/8.5), center: CGPoint(x: 9.5, y: 9.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-     func trujilloAltoBezierPathToSKSpriteNode(bpTrujilloAlto: UIBezierPath)-> SKSpriteNode{
+     /*func trujilloAltoBezierPathToSKSpriteNode(bpTrujilloAlto: UIBezierPath)-> SKSpriteNode{
             
-            let shapeNode = SKShapeNode(path:bpTrujilloAlto.cgPath)
-            let trujilloAltoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-             trujilloAltoNode.position = CGPoint(x:393.83, y:226.67)
-             //trujilloAltoNode.zPosition = 1
-            let physicsBody1 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.40, center: CGPoint(x: 4.5, y: -5.5))//top physicsBody
-            let physicsBody2 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.35, center: CGPoint(x: 5.5, y: 2.5))//middle
-            let physicsBody3 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.40, center: CGPoint(x:0.5, y: 1.5))//bottom
-            //let physicsBody4 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.40, center: CGPoint(x:-3.5, y: -8.5))//bottom
-            let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3/*, physicsBody48*/])
-            trujilloAltoNode.physicsBody = compoundBody
-             //trujilloAltoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:trujilloAltoNode.size.width/2 , height:trujilloAltoNode.size.height/2), center: CGPoint(x:4.0,y:0.5))
-             //trujilloAltoNode.physicsBody = SKPhysicsBody(circleOfRadius:trujilloAltoNode.size.width/2 * 0.40 , center: CGPoint(x:4.0,y:0.5))
-             trujilloAltoNode.physicsBody?.isDynamic = false
-             trujilloAltoNode.name = "Trujillo Alto"
+         let shapeNode = SKShapeNode(path:bpTrujilloAlto.cgPath)
+         let trujilloAltoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
+         trujilloAltoNode.position = CGPoint(x:394.28, y:226.66)
+         trujilloAltoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:trujilloAltoNode.size.width/2.4 , height:trujilloAltoNode.size.height/1.3), center: CGPoint(x:-5.5,y:1.5))
+         /*let physicsBody1 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.40, center: CGPoint(x: -4.5, y: 5.5))//top physicsBody
+         let physicsBody2 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.35, center: CGPoint(x: -5.5, y: -2.5))//middle
+         let physicsBody3 = SKPhysicsBody(circleOfRadius: trujilloAltoNode.size.width/2 * 0.40, center: CGPoint(x:-0.5, y: -1.5))//bottom
+         let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3/*, physicsBody48*/])
+         trujilloAltoNode.physicsBody = compoundBody*/
+         trujilloAltoNode.physicsBody?.isDynamic = false
+         trujilloAltoNode.name = "Trujillo Alto"
              return  trujilloAltoNode
-        }
+        }*/
+    
+    func trujilloAltoBezierPathToSKSpriteNode(bpTrujilloAlto: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 394.28, y: 226.66)
+        let name = "Trujillo Alto"
+        
+        let spriteNode = createMapNode(
+            from: bpTrujilloAlto,
+            position: position,
+            name: name
+        )
+        
+        // Add Trujillo Alto-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/1.3), center: CGPoint(x: -5.5, y: 1.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.6, height: spriteNode.size.height/1.4), center: CGPoint(x: -6.5, y: 1.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.5, height: spriteNode.size.height/1.75), center: CGPoint(x: 0.5, y: 0.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0, height: spriteNode.size.height/2.2), center: CGPoint(x: 3.2, y: -1.2))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.0, height: spriteNode.size.height/5.0), center: CGPoint(x: 5.5, y: -4.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/5.0), center: CGPoint(x: 10.0, y: -9.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -4.5, y: 5.5)) // top physicsBody
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -5.5, y: -2.5)) // middle
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -0.5, y: -1.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3 /*, physicsBody48*/])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        
+        return spriteNode
+    }
      
-       func loizaBezierPathToSKSpriteNode(bpLoiza: UIBezierPath)-> SKSpriteNode{
+       /*func loizaBezierPathToSKSpriteNode(bpLoiza: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpLoiza.cgPath)
          let loizaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         loizaNode.zRotation = 0.00//0.10
-         loizaNode.setScale(0.5750)//setScale(0.59)
-         loizaNode.position = CGPoint(x:414.60, y:250)//(x:414.55, y:249.48)
-         //loizaNode.zPosition = 1
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: loizaNode.size.width/2 * 0.32, center: CGPoint(x: 15.0, y: 3.0))//left
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: loizaNode.size.width/2 * 0.32, center: CGPoint(x:4.0, y: 6.0))//middle
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: loizaNode.size.width/2 * 0.32, center: CGPoint(x:-7.5, y: 10.5))//right
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        loizaNode.physicsBody = compoundBody
-         //loizaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:loizaNode.size.width/2 , height:loizaNode.size.height/2 ), center: CGPoint(x:8.0, y:2.5))
+         //loizaNode.zRotation = 0.00//0.10
+         //loizaNode.setScale(0.5750)//setScale(0.59)
+           loizaNode.position = CGPoint(x:415.49, y:250.07)//(x:414.55, y:249.48)
+           let physicsBody1 = SKPhysicsBody(circleOfRadius: loizaNode.size.width/2 * 0.40, center: CGPoint(x: 14.0, y: 5.0))//left
+           let physicsBody2 = SKPhysicsBody(circleOfRadius: loizaNode.size.width/2 * 0.40, center: CGPoint(x:0.5, y: 7.5))//middle
+           let physicsBody3 = SKPhysicsBody(circleOfRadius: loizaNode.size.width/2 * 0.40, center: CGPoint(x:-13.5, y:13.5))//right
+           let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+           loizaNode.physicsBody = compoundBody
          loizaNode.physicsBody?.isDynamic = false
          loizaNode.name = "Loíza"
          return loizaNode
-     }
+     }*/
+    
+    func loizaBezierPathToSKSpriteNode(bpLoiza: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 415.49, y: 250.07)
+        let name = "Loíza"
+        
+        let spriteNode = createMapNode(
+            from: bpLoiza,
+            position: position,
+            name: name
+        )
+        
+        // Add Loíza-specific properties if needed
+        /*spriteNode.zRotation = 0.00 // or 0.10? */
+        /*spriteNode.setScale(0.5750) // or 0.59? */
+        // Alternative position: CGPoint(x: 414.55, y: 249.48)
+        
+        // Add Loíza-specific physics body if needed
+        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 14.0, y: 5.0)) // left
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 0.5, y: 7.5)) // middle
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -13.5, y: 13.5)) // right
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])*/
+        let physicsBody1 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/1.25), center: CGPoint(x: 10.5, y: 7.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/2), center: CGPoint(x: -8.0, y: 10.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/26, height: spriteNode.size.height/3), center: CGPoint(x: -0.7, y: -0.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/6.5), center: CGPoint(x: -3.5, y: 2.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/2.4), center: CGPoint(x: -18.0, y: 11.5))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.5, height: spriteNode.size.height/3.1), center: CGPoint(x: 12.3, y: -6.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
     
      
-       func canovanasBezierPathToSKSpriteNode(bpCanovanas: UIBezierPath)-> SKSpriteNode{
+       /*func canovanasBezierPathToSKSpriteNode(bpCanovanas: UIBezierPath)-> SKSpriteNode{
           
          let shapeNode = SKShapeNode(path: bpCanovanas.cgPath)
          let canovanasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         canovanasNode.position = CGPoint(x:422.51, y:225.63)
-         //canovanasNode.zPosition = 1
-        //let physicsBody3 = SKPhysicsBody(circleOfRadius: canovanasNode.size.width/2 * 0.45, center: CGPoint(x: 2.5, y: -13.5))//top physicsBody
-        //let physicsBody1 = SKPhysicsBody(circleOfRadius: canovanasNode.size.width/2 * 0.36, center: CGPoint(x: 1.5, y: -3.5))//middle
-        //let physicsBody2 = SKPhysicsBody(circleOfRadius: canovanasNode.size.width/2 * 0.36, center: CGPoint(x: 0.5, y: 5.5))//bottom
-        //let physicsBody4 = SKPhysicsBody(circleOfRadius: canovanasNode.size.width/2 * 0.40, center: CGPoint(x: 0.5, y: 14.5))//bottom
-        //let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
-         //canovanasNode.physicsBody = compoundBody
-         canovanasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:canovanasNode.size.width/2 * 0.75, height:canovanasNode.size.height/2 * 1.6), center: CGPoint(x:1.5, y: 0.5))
+         canovanasNode.position = CGPoint(x:422.96, y:225.63)
+         canovanasNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:canovanasNode.size.width/2 * 0.75, height:canovanasNode.size.height/2 * 1.6), center: CGPoint(x:-1.5, y: -0.5))
          canovanasNode.physicsBody?.isDynamic = false
          canovanasNode.name = "Canóvanas"
          return canovanasNode
-     }
+     }*/
+    
+    func canovanasBezierPathToSKSpriteNode(bpCanovanas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 422.96, y: 225.63)
+        let name = "Canóvanas"
+        
+        let spriteNode = createMapNode(
+            from: bpCanovanas,
+            position: position,
+            name: name
+        )
+        
+        // Add Canóvanas-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.75, height: spriteNode.size.height/2 * 1.6), center: CGPoint(x: -1.5, y: -0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.15), center: CGPoint(x: -2.0, y: 0.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16 , height: spriteNode.size.height/5.8), center: CGPoint(x: -8.0, y:7.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18 , height: spriteNode.size.height/4.0), center: CGPoint(x: 4.0, y:-7.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5 , height: spriteNode.size.height/18), center: CGPoint(x: -9.5, y:17.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4 , height: spriteNode.size.height/8.0), center: CGPoint(x:6.5, y:-17.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-       func rioGrandeBezierPathToSKSpriteNode(bpRioGrande: UIBezierPath)-> SKSpriteNode{
+       /*func rioGrandeBezierPathToSKSpriteNode(bpRioGrande: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpRioGrande.cgPath)
          let rioGrandeNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         rioGrandeNode.position = CGPoint(x:441.51, y:229.61)
-          //rioGrandeNode.zPosition = 1
-           rioGrandeNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:rioGrandeNode.size.width/2 * 1.15, height:rioGrandeNode.size.height/2 * 1.15), center: CGPoint(x:1.0, y:0.0))
-         //rioGrandeNode.physicsBody = SKPhysicsBody(circleOfRadius: rioGrandeNode.size.width/2 * 0.55 , center: CGPoint(x:1.0, y:0.0))
+         rioGrandeNode.position = CGPoint(x:442.06, y:229.61)
+         rioGrandeNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:rioGrandeNode.size.width/2 * 1.15, height:rioGrandeNode.size.height/2 * 1.15), center: CGPoint(x:-1.0, y:0.0))
          rioGrandeNode.physicsBody?.isDynamic = false
          rioGrandeNode.name = "Rio Grande"
          return  rioGrandeNode
-     }
+     }*/
+    
+    func rioGrandeBezierPathToSKSpriteNode(bpRioGrande: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 442.06, y: 229.61)
+        let name = "Rio Grande"
+        
+        let spriteNode = createMapNode(
+            from: bpRioGrande,
+            position: position,
+            name: name
+        )
+        
+        // Add Rio Grande-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.15, height: spriteNode.size.height/2 * 1.15), center: CGPoint(x: -1.0, y: 0.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.5), center: CGPoint(x: 0.0, y: 0.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10 , height: spriteNode.size.height/16), center: CGPoint(x: 11.5, y:-16.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18 , height: spriteNode.size.height/5), center: CGPoint(x: 13.5, y:-4.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.0 , height: spriteNode.size.height/3.5), center: CGPoint(x: -14.3, y:2.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/26.0 , height: spriteNode.size.height/4.5), center: CGPoint(x: -13.1, y:-10.0))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5 , height: spriteNode.size.height/15), center: CGPoint(x: -4.7, y:-18.5))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.7 , height: spriteNode.size.height/33), center: CGPoint(x: -4.9, y:-15.7))
+        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8 , height: spriteNode.size.height/23), center: CGPoint(x: 0.5, y:16.0))
+        let physicsBody9 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/15), center: CGPoint(x: -4.0, y:19.0))
+        let physicsBody10 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10 , height: spriteNode.size.height/14.5), center: CGPoint(x: 14.0, y:11.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func luquilloBezierPathToSKSpriteNode(bpLuquillo: UIBezierPath)-> SKSpriteNode{
+      /*func luquilloBezierPathToSKSpriteNode(bpLuquillo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpLuquillo.cgPath)
          let luquilloNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         luquilloNode.position = CGPoint(x:464.64, y:227.19)
-         //luquilloNode.zPosition = 1
-        let physicsBody1 = SKPhysicsBody(circleOfRadius:luquilloNode.size.width/2 * 0.38, center: CGPoint(x:2.5, y:5.0))//top lft
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: luquilloNode.size.width/2 * 0.40, center: CGPoint(x: 4.5, y:-4.5))//top right
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: luquilloNode.size.width/2 * 0.40, center: CGPoint(x:-4.5, y:-2.5))//bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-          luquilloNode.physicsBody = compoundBody
-         //luquilloNode.physicsBody = SKPhysicsBody(circleOfRadius: luquilloNode.size.width/2 * 0.4 , center: CGPoint(x:0.0, y:-1.5))
-         luquilloNode.physicsBody?.isDynamic = false
-         luquilloNode.name = "Luquillo"
+         luquilloNode.position = CGPoint(x:467.08, y:227.19)
+          luquilloNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:luquilloNode.size.width/1.6, height:luquilloNode.size.height/1.5), center: CGPoint(x:-1.5, y:5.5))
+          /*let physicsBody1 = SKPhysicsBody(circleOfRadius:luquilloNode.size.width/2 * 0.38, center: CGPoint(x:-2.5, y:-5.0))//top lft
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: luquilloNode.size.width/2 * 0.40, center: CGPoint(x: -4.5, y:4.5))//top right
+          let physicsBody3 = SKPhysicsBody(circleOfRadius: luquilloNode.size.width/2 * 0.40, center: CGPoint(x:4.5, y:2.5))//bottom
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+          luquilloNode.physicsBody = compoundBody*/
+          luquilloNode.physicsBody?.isDynamic = false
+          luquilloNode.name = "Luquillo"
          return  luquilloNode
-     }
+     }*/
+    
+    func luquilloBezierPathToSKSpriteNode(bpLuquillo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 467.08, y: 227.19)
+        let name = "Luquillo"
+        
+        let spriteNode = createMapNode(
+            from: bpLuquillo,
+            position: position,
+            name: name
+        )
+        
+        // Add Luquillo-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6, height: spriteNode.size.height/1.5), center: CGPoint(x: -1.5, y: 5.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6, height: spriteNode.size.height/1.5), center: CGPoint(x: 0.0, y: 5.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19 , height: spriteNode.size.height/3.5), center: CGPoint(x: 10.3, y:3.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.0 , height: spriteNode.size.height/4.5), center: CGPoint(x: -11.0, y:7.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.6 , height: spriteNode.size.height/8), center: CGPoint(x: -5.8, y:-10.5))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.2 , height: spriteNode.size.height/11.5), center: CGPoint(x:-2.5, y:-6.3))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.38, center: CGPoint(x: -2.5, y: -5.0)) // top left
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -4.5, y: 4.5)) // top right
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 4.5, y: 2.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        
+        return spriteNode
+    }
      
-      func fajardoBezierPathToSKSpriteNode(bpFajardo: UIBezierPath)-> SKSpriteNode{
+      /*func fajardoBezierPathToSKSpriteNode(bpFajardo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpFajardo.cgPath)
          let fajardoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         fajardoNode.position = CGPoint(x:486.08, y:225.53)
-         //fajardoNode.zPosition = 1
-          
-          let physicsBody1 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.15, center: CGPoint(x: 8.0, y: 3.5))//top right
-          let physicsBody2 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.14, center: CGPoint(x: 13.0, y: 9.0))//bottom
-          let physicsBody3 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.18, center: CGPoint(x:3.5, y: 7.0))//deeper appendix
-          let physicsBody4 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.27, center: CGPoint(x:0.5, y:-5.0))//outer appendix
+         fajardoNode.position = CGPoint(x:488.52, y:225.53)
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.15, center: CGPoint(x: -8.0, y: -3.5))//top right
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.14, center: CGPoint(x: -13.0, y: -9.0))//bottom
+          let physicsBody3 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.18, center: CGPoint(x:-3.5, y: -7.0))//deeper appendix
+          let physicsBody4 = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.27, center: CGPoint(x:-0.5, y:5.0))//outer appendix
           let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
           fajardoNode.physicsBody = compoundBody
-         //fajardoNode.physicsBody = SKPhysicsBody(circleOfRadius: fajardoNode.size.width/2 * 0.15 , center: CGPoint(x:5.0, y:3.5))
          fajardoNode.physicsBody?.isDynamic = false
          fajardoNode.name = "Fajardo"
          return  fajardoNode
-     }
+     }*/
+    
+    func fajardoBezierPathToSKSpriteNode(bpFajardo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 488.52, y: 225.53)
+        let name = "Fajardo"
+        
+        let spriteNode = createMapNode(
+            from: bpFajardo,
+            position: position,
+            name: name
+        )
+        
+        // Add Fajardo-specific physics body if needed
+        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.15, center: CGPoint(x: -8.0, y: -3.5)) // top right
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.14, center: CGPoint(x: -13.0, y: -9.0)) // bottom
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.18, center: CGPoint(x: -3.5, y: -7.0)) // deeper appendix
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.27, center: CGPoint(x: -0.5, y: 5.0)) // outer appendix
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.3), center: CGPoint(x: 1.5, y: 2.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/33 , height: spriteNode.size.height/2.4), center: CGPoint(x: -10.5, y:-8.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17 , height: spriteNode.size.height/3.8), center: CGPoint(x: -14.3, y:-8.0))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0 , height: spriteNode.size.height/3.8), center: CGPoint(x: -19.0, y:-12.5))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5 , height: spriteNode.size.height/8.0), center: CGPoint(x: -24.0, y:-14.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func ceibaBezierPathToSKSpriteNode(bpCeiba: UIBezierPath)-> SKSpriteNode{
+      /*func ceibaBezierPathToSKSpriteNode(bpCeiba: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpCeiba.cgPath)
          let ceibaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         ceibaNode.position = CGPoint(x:477.79, y:201.27)
-         //ceibaNode.zPosition = 1//FOR LABEL TO BE LEGIBLE
-         //let physicsBody1 = SKPhysicsBody(circleOfRadius: ceibaNode.size.width/2 * 0.15 , center: CGPoint(x:-4.5, y:-5.5))//top left
-         //let physicsBody2 = SKPhysicsBody(circleOfRadius: ceibaNode.size.width/2 * 0.15 , center: CGPoint(x:-4.5, y:2.5))//bottom left
-         //let physicsBody3 = SKPhysicsBody(circleOfRadius: ceibaNode.size.width/2 * 0.17 , center: CGPoint(x:-11.5, y:-3.5))//top right
-         //let physicsBody4 = SKPhysicsBody(circleOfRadius: ceibaNode.size.width/2 * 0.17 , center: CGPoint(x:-11.5, y:3.5))//bottom right
-        // let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
-         //ceibaNode.physicsBody = compoundBody
-          ceibaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:ceibaNode.size.width/2 * 1.20  , height:ceibaNode.size.height/2 * 1.05 ), center: CGPoint(x:-13.5, y:-2.0))
-         //ceibaNode.physicsBody = SKPhysicsBody(circleOfRadius: ceibaNode.size.width/2 * 0.15 , center: CGPoint(x:-3.5, y:-1.5))
+         ceibaNode.position = CGPoint(x:480.24, y:201.27)
+         ceibaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:ceibaNode.size.width/2 * 1.20  , height:ceibaNode.size.height/2 * 1.05 ), center: CGPoint(x:13.5, y:2.0))
          ceibaNode.physicsBody?.isDynamic = false
          ceibaNode.name = "Ceiba"
          return  ceibaNode
-     }
+     }*/
+    
+    func ceibaBezierPathToSKSpriteNode(bpCeiba: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 480.24, y: 201.27)
+        let name = "Ceiba"
+        
+        let spriteNode = createMapNode(
+            from: bpCeiba,
+            position: position,
+            name: name
+        )
+        
+        // Add Ceiba-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.20, height: spriteNode.size.height/2 * 1.05), center: CGPoint(x: 13.5, y: 2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.1, height: spriteNode.size.height/1.25), center: CGPoint(x: 15.5, y: -1.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/22.5, height: spriteNode.size.height/1.8), center: CGPoint(x: 1.0, y: 1.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/24, height: spriteNode.size.height/2.3), center: CGPoint(x: -2.0, y: 1.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21, height: spriteNode.size.height/3.9), center: CGPoint(x: -6.0, y: 6.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5 , height: spriteNode.size.height/9.5), center: CGPoint(x: -13.5, y:4.5))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/24, height: spriteNode.size.height/3.9), center: CGPoint(x: -20.5, y: 9.0))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/28, height: spriteNode.size.height/5), center: CGPoint(x: -23.0, y: 10.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func guraboBezierPathToSKSpriteNode(bpGurabo: UIBezierPath)-> SKSpriteNode{
+      /*func guraboBezierPathToSKSpriteNode(bpGurabo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpGurabo.cgPath)
          let guraboNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         guraboNode.position = CGPoint(x:398.05, y:204.61)
-         //guraboNode.zPosition = 1
-         guraboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guraboNode.size.width/2, height:guraboNode.size.height/2), center: CGPoint(x:1.0, y:-2.0))
-         //guraboNode.physicsBody = SKPhysicsBody(circleOfRadius: guraboNode.size.width/2 * 0.45 , center: CGPoint(x:-1.0, y:-2.0))
+         guraboNode.position = CGPoint(x:398.45, y:204.6)
+         guraboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guraboNode.size.width/2, height:guraboNode.size.height/2), center: CGPoint(x:-1.0, y:2.0))
          guraboNode.physicsBody?.isDynamic = false
          guraboNode.name = "Gurabo"
          return  guraboNode
-     }
+     }*/
+    
+    func guraboBezierPathToSKSpriteNode(bpGurabo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 398.45, y: 204.6)
+        let name = "Gurabo"
+        
+        let spriteNode = createMapNode(
+            from: bpGurabo,
+            position: position,
+            name: name
+        )
+        
+        // Add Gurabo-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2), center: CGPoint(x: -1.0, y: 2.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2), center: CGPoint(x: -1.0, y: 2.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20, height: spriteNode.size.height/3.8), center: CGPoint(x: 8.3, y: 3.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17, height: spriteNode.size.height/8.5), center: CGPoint(x: 11.0, y: 3.8))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.3, height: spriteNode.size.height/14), center: CGPoint(x: -5.5, y: -9.5))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/18), center: CGPoint(x: -0.5, y: -7))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/11.0), center: CGPoint(x: -3.3, y: 11.7))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7, height: spriteNode.size.height/6.0), center: CGPoint(x: -12, y: 10))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func juncosBezierPathToSKSpriteNode(bpJuncos: UIBezierPath)-> SKSpriteNode{
+      /*func juncosBezierPathToSKSpriteNode(bpJuncos: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpJuncos.cgPath)
          let juncosNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         juncosNode.position = CGPoint(x:417.56, y:189.66)
-         //juncosNode.zPosition = 1
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.35, center: CGPoint(x: 2.0, y: -1.5))//top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.35, center: CGPoint(x: 8.5, y: -4.5))//middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.35, center: CGPoint(x:5.0, y: -11.0))//bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.40, center: CGPoint(x:-3.5, y: -8.5))//bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody2, physicsBody1, physicsBody3, physicsBody4])
-         juncosNode.physicsBody = compoundBody
-         //juncosNode.physicsBody = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.4 , center: CGPoint(x:3.0, y:-7.5))
+         juncosNode.position = CGPoint(x:418.02, y:189.65)
+          juncosNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:juncosNode.size.width - 14, height:juncosNode.size.height - 22), center: CGPoint(x:-2.5, y:7.0))
+          /*let physicsBody3 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.35, center: CGPoint(x: -2.0, y: 1.5))//top physicsBody
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.35, center: CGPoint(x: -8.5, y: 4.5))//middle
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.35, center: CGPoint(x:-5.0, y: 11.0))//bottom
+          let physicsBody4 = SKPhysicsBody(circleOfRadius: juncosNode.size.width/2 * 0.40, center: CGPoint(x:3.5, y: 8.5))//bottom
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody2, physicsBody1, physicsBody3, physicsBody4])
+         juncosNode.physicsBody = compoundBody*/
          juncosNode.physicsBody?.isDynamic = false
          juncosNode.name = "Juncos"
          return  juncosNode
-     }
+     }*/
+    
+    func juncosBezierPathToSKSpriteNode(bpJuncos: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 418.02, y: 189.65)
+        let name = "Juncos"
+        
+        let spriteNode = createMapNode(
+            from: bpJuncos,
+            position: position,
+            name: name
+        )
+        
+        // Add Juncos-specific physics bodies if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width - 14, height: spriteNode.size.height - 22), center: CGPoint(x: -2.5, y: 7.0))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.65, height: spriteNode.size.height/2.7), center: CGPoint(x: -3.0, y: 7.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11, height: spriteNode.size.height/4.0), center: CGPoint(x: 7.6, y: 8.9))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11, height: spriteNode.size.height/9.3), center: CGPoint(x: 11.1, y: 11.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/12.5), center: CGPoint(x: -5.0, y: 16.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/4), center: CGPoint(x: -5.5, y: -10.0))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/5.5), center: CGPoint(x: -2.0, y: -3.5))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/8.0), center: CGPoint(x: -5.0, y: -2.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -2.0, y: 1.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -8.5, y: 4.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -5.0, y: 11.0)) // bottom
+        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 3.5, y: 8.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody2, physicsBody1, physicsBody3, physicsBody4])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false*/
+        
+        
+        return spriteNode
+    }
      
-      func sanLorenzoBezierPathToSKSpriteNode(bpSanLorenzo: UIBezierPath)-> SKSpriteNode{
+      /*func sanLorenzoBezierPathToSKSpriteNode(bpSanLorenzo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpSanLorenzo.cgPath)
          let sanLorenzoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         sanLorenzoNode.position = CGPoint(x:394.13, y:174.38)
-         //sanLorenzoNode.zPosition = 1
-          sanLorenzoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanLorenzoNode.size.width/2 , height:sanLorenzoNode.size.height/2 * 1.10 ), center: CGPoint(x:-6.0, y:2.5))
-         //sanLorenzoNode.physicsBody = SKPhysicsBody(circleOfRadius: sanLorenzoNode.size.width/2 * 0.45 , center: CGPoint(x:-3.0, y:2.5))
+         sanLorenzoNode.position = CGPoint(x:394.59, y:174.37)
+         sanLorenzoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:sanLorenzoNode.size.width/2 , height:sanLorenzoNode.size.height/2 * 1.10 ), center: CGPoint(x:6.0, y:-2.5))
          sanLorenzoNode.physicsBody?.isDynamic = false
          sanLorenzoNode.name = "San Lorenzo"
          return  sanLorenzoNode
-     }
+     }*/
+    
+    func sanLorenzoBezierPathToSKSpriteNode(bpSanLorenzo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 394.59, y: 174.37)
+        let name = "San Lorenzo"
+        
+        let spriteNode = createMapNode(
+            from: bpSanLorenzo,
+            position: position,
+            name: name
+        )
+        
+        // Add San Lorenzo-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.10), center: CGPoint(x: 6.0, y: -2.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/1.5), center: CGPoint(x: 6.0, y: -1.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/1.5), center: CGPoint(x: -5.0, y: -6.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/33, height: spriteNode.size.height/2.3), center: CGPoint(x: -7.6, y: -5.0))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.5, height: spriteNode.size.height/6), center: CGPoint(x: -10.0, y: -10.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11, height: spriteNode.size.height/19.0), center: CGPoint(x: -13.5, y: -12.0))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/9.5), center: CGPoint(x: 5, y: 16.0))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/17.5), center: CGPoint(x: 7, y: 20.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func guayamaBezierPathToSKSpriteNode(bpGuayama: UIBezierPath)-> SKSpriteNode{
+      /*func guayamaBezierPathToSKSpriteNode(bpGuayama: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpGuayama.cgPath)
          let guayamaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         guayamaNode.position = CGPoint(x:354.67, y:135.15)
-         //guayamaNode.zPosition = 1
-          guayamaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guayamaNode.size.width/2 * 1.0, height:guayamaNode.size.height/2 * 0.75), center: CGPoint(x:0.5, y:4.5))
-         //guayamaNode.physicsBody = SKPhysicsBody(circleOfRadius:guayamaNode.size.width/2 * 0.4 , center: CGPoint(x:-0.5, y:4.5))
+         guayamaNode.position = CGPoint(x:355.12, y:135.15)
+         guayamaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:guayamaNode.size.width/2 * 1.0, height:guayamaNode.size.height/2 * 0.75), center: CGPoint(x:-0.5, y:-4.5))
          guayamaNode.physicsBody?.isDynamic = false
          guayamaNode.name = "Guayama"
          return  guayamaNode
-     }
+     }*/
+    
+    func guayamaBezierPathToSKSpriteNode(bpGuayama: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 355.12, y: 135.15)
+        let name = "Guayama"
+        
+        let spriteNode = createMapNode(
+            from: bpGuayama,
+            position: position,
+            name: name
+        )
+        
+        // Add Guayama-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.0, height: spriteNode.size.height/2 * 0.75), center: CGPoint(x: -0.5, y: -4.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.0, height: spriteNode.size.height/1.9), center: CGPoint(x: -0.5, y: -8.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/2.0), center: CGPoint(x: -15.5, y: -12.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/4), center: CGPoint(x: 13.5, y: -10.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.5, height: spriteNode.size.height/16), center: CGPoint(x: -6.5, y: 7.5))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.9, height: spriteNode.size.height/17.0), center: CGPoint(x: 10.0, y: 19.5))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/17.5), center: CGPoint(x: 14.0, y: 23.5))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.3, height: spriteNode.size.height/5.0), center: CGPoint(x: 8.0, y: 11.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func arroyoBezierPathToSKSpriteNode(bpArroyo: UIBezierPath)-> SKSpriteNode{
+      /*func arroyoBezierPathToSKSpriteNode(bpArroyo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpArroyo.cgPath)
          let arroyoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         arroyoNode.position = CGPoint(x:375.68, y:130.08)
-         //arroyoNode.zPosition = 1
-        //arroyoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:arroyoNode.size.width/2 * 0.70, height:arroyoNode.size.height/2 * 1.5), center: CGPoint(x:0.5, y:0.5))
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: arroyoNode.size.width/2 * 0.50, center: CGPoint(x: 2.5, y: -6.5))//top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: arroyoNode.size.width/2 * 0.50, center: CGPoint(x: -0.5, y: -0.5))//middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: arroyoNode.size.width/2 * 0.50, center: CGPoint(x: -3.5, y: 6.5))//bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        arroyoNode.physicsBody = compoundBody
+         arroyoNode.position = CGPoint(x:376.13, y:130.08)
+          let physicsBody3 = SKPhysicsBody(circleOfRadius: arroyoNode.size.width/2 * 0.55, center: CGPoint(x: -2.5, y: 6.5))//top physicsBody
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: arroyoNode.size.width/2 * 0.50, center: CGPoint(x: 0.5, y: 0.5))//middle
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: arroyoNode.size.width/2 * 0.60, center: CGPoint(x: 3.5, y: -6.5))//bottom
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+          arroyoNode.physicsBody = compoundBody
         arroyoNode.physicsBody?.isDynamic = false
         arroyoNode.name = "Arroyo"
         return arroyoNode
-     }
+     }*/
+    
+    func arroyoBezierPathToSKSpriteNode(bpArroyo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 376.13, y: 130.08)
+        let name = "Arroyo"
+        
+        let spriteNode = createMapNode(
+            from: bpArroyo,
+            position: position,
+            name: name
+        )
+        
+        // Add Arroyo-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -2.5, y: 6.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.50, center: CGPoint(x: 0.5, y: 0.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 3.5, y: -6.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/4.0), center: CGPoint(x: -2.0, y: 7.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/8.0), center: CGPoint(x: 0.0, y: 1.3))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/2.3), center: CGPoint(x: 2.5, y: -6.8))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func patillasBezierPathToSKSpriteNode(bpPatillas: UIBezierPath)-> SKSpriteNode{
+      /*func patillasBezierPathToSKSpriteNode(bpPatillas: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpPatillas.cgPath)
          let patillasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         patillasNode.position = CGPoint(x:391.39,  y:142.16)
-         //patillasNode.zPosition = 1
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: patillasNode.size.width/2 * 0.27, center: CGPoint(x: 11.5, y: -6.5))//top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: patillasNode.size.width/2 * 0.27, center: CGPoint(x: 4.5, y: 1.5))//middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: patillasNode.size.width/2 * 0.30, center: CGPoint(x: -2.5, y: 10.5))//bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-          patillasNode.physicsBody = compoundBody
-         //patillasNode.physicsBody = SKPhysicsBody(circleOfRadius:patillasNode.size.width/2 * 0.25 , center: CGPoint(x:3.0, y:3.0))
+         patillasNode.position = CGPoint(x:391.84,  y:142.16)
+          let physicsBody3 = SKPhysicsBody(circleOfRadius: patillasNode.size.width/2 * 0.27, center: CGPoint(x: -11.5, y: 6.5))//top physicsBody
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: patillasNode.size.width/2 * 0.27, center: CGPoint(x: -4.5, y: -1.5))//middle
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: patillasNode.size.width/2 * 0.30, center: CGPoint(x: 2.5, y: -10.5))//bottom
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+            patillasNode.physicsBody = compoundBody
          patillasNode.physicsBody?.isDynamic = false
          patillasNode.name = "Patillas"
          return patillasNode
-     }
+     }*/
+    
+    func patillasBezierPathToSKSpriteNode(bpPatillas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 391.84, y: 142.16)
+        let name = "Patillas"
+        
+        let spriteNode = createMapNode(
+            from: bpPatillas,
+            position: position,
+            name: name
+        )
+        
+        // Add Patillas-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.27, center: CGPoint(x: -11.5, y: 6.5)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.27, center: CGPoint(x: -4.5, y: -1.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 2.5, y: -10.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/5), center: CGPoint(x: 0.6, y: -8.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/5.5), center: CGPoint(x: -22.5, y: 3.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/4), center: CGPoint(x: -19.5, y: 5.0))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.2, height: spriteNode.size.height/6.5), center: CGPoint(x: -11.0, y: 14.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.2, height: spriteNode.size.height/8), center: CGPoint(x: -9.5, y: 7.8))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/33, height: spriteNode.size.height/3.5), center: CGPoint(x: -17.0, y: 6.5))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/8.5), center: CGPoint(x: -6.0, y: 2.3))
+        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.3, height: spriteNode.size.height/20.5), center: CGPoint(x: -3.5, y: -2.1))
+        let physicsBody9 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/9), center: CGPoint(x: 8.5, y: -18))
+        let physicsBody10 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/17.5), center: CGPoint(x: 5.0, y: -13.7))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func maunaboBezierPathToSKSpriteNode(bpMaunabo: UIBezierPath)-> SKSpriteNode{
+      /*func maunaboBezierPathToSKSpriteNode(bpMaunabo: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path: bpMaunabo.cgPath)
          let maunaboNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         maunaboNode.position = CGPoint(x:412.87,  y:137.01)
-         //maunaboNode.zPosition = 1
-        let physicsBody0 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.20, center: CGPoint(x:12.5, y: -5.5))//deepest body
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.20, center: CGPoint(x: 8.5, y: -3.5))
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.33, center: CGPoint(x:2.0, y: 2.0))
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.38, center: CGPoint(x:-7.0, y: 5.5))//outer body
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody0, physicsBody1, physicsBody2, physicsBody3])
-        maunaboNode.physicsBody = compoundBody
-         //maunaboNode.physicsBody = SKPhysicsBody(circleOfRadius:maunaboNode.size.width/2 * 0.25 , center: CGPoint(x:-1.0, y:3.0))
+         maunaboNode.position = CGPoint(x:413.33,  y:137.01)
+          let physicsBody0 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.20, center: CGPoint(x:-12.5, y: 5.5))//deepest body
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.20, center: CGPoint(x: -8.5, y: 3.5))
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.33, center: CGPoint(x:-2.0, y: -2.0))
+          let physicsBody3 = SKPhysicsBody(circleOfRadius: maunaboNode.size.width/2 * 0.38, center: CGPoint(x:7.0, y: -5.5))//outer body
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody0, physicsBody1, physicsBody2, physicsBody3])
+          maunaboNode.physicsBody = compoundBody
          maunaboNode.physicsBody?.isDynamic = false
          maunaboNode.name = "Maunabo"
          return maunaboNode
-     }
+     }*/
+    
+    func maunaboBezierPathToSKSpriteNode(bpMaunabo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 413.33, y: 137.01)
+        let name = "Maunabo"
+        
+        let spriteNode = createMapNode(
+            from: bpMaunabo,
+            position: position,
+            name: name
+        )
+        
+        // Add Maunabo-specific physics body if needed
+        /*let physicsBody0 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: -12.5, y: 5.5)) // deepest body
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: -8.5, y: 3.5))
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.33, center: CGPoint(x: -2.0, y: -2.0))
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.38, center: CGPoint(x: 7.0, y: -5.5)) // outer body
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody0, physicsBody1, physicsBody2, physicsBody3])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.8), center: CGPoint(x: 1.5, y: -3.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15 , height: spriteNode.size.height/2.2), center: CGPoint(x: -7.0, y:-0.3))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5 , height: spriteNode.size.height/2.9), center: CGPoint(x: 12.8, y:-5.0))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5 , height: spriteNode.size.height/3.8), center: CGPoint(x: -12.5, y:5.0))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/5.0), center: CGPoint(x: -17.0, y:8.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func yabucoaBezierPathToSKSpriteNode(bpYabucoa: UIBezierPath)-> SKSpriteNode{
+      /*func yabucoaBezierPathToSKSpriteNode(bpYabucoa: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpYabucoa.cgPath)
          let yabucoaNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         yabucoaNode.position = CGPoint(x:417.44, y:150.51)
-         //yabucoaNode.zPosition = 1
-          yabucoaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:yabucoaNode.size.width/2, height:yabucoaNode.size.height/2 * 0.80), center: CGPoint(x:-4.5, y:-0.5))
-         //yabucoaNode.physicsBody = SKPhysicsBody(circleOfRadius:yabucoaNode.size.width/2 * 0.3 , center: CGPoint(x:-5.0, y:-0.5))
+         yabucoaNode.position = CGPoint(x:417.9, y:150.5)
+         yabucoaNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:yabucoaNode.size.width/2, height:yabucoaNode.size.height/2 * 0.80), center: CGPoint(x:4.5, y:0.5))
          yabucoaNode.physicsBody?.isDynamic = false
          yabucoaNode.name = "Yabucoa"
          return  yabucoaNode
-     }
+     }*/
+    
+    func yabucoaBezierPathToSKSpriteNode(bpYabucoa: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 417.9, y: 150.5)
+        let name = "Yabucoa"
+        
+        let spriteNode = createMapNode(
+            from: bpYabucoa,
+            position: position,
+            name: name
+        )
+        
+        // Add Yabucoa-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 0.80), center: CGPoint(x: 4.5, y: 0.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.0, y: 3.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/2.25), center: CGPoint(x: -7.5, y:-0.4))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18 , height: spriteNode.size.height/3), center: CGPoint(x: -11.5, y:0.0))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14 , height: spriteNode.size.height/3.6), center: CGPoint(x: -16.5, y:0.8))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/4.0), center: CGPoint(x: -21.0, y:1.5))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/40 , height: spriteNode.size.height/4.0), center: CGPoint(x: -24.0, y:1.5))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25 , height: spriteNode.size.height/9.0), center: CGPoint(x: -27.0, y:0.5))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/1.4), center: CGPoint(x: 7.0, y: 0.0))
+        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/1.2), center: CGPoint(x: 12.5, y: 0.0))
+        let physicsBody10 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18, height: spriteNode.size.height/1.65), center: CGPoint(x: 17.0, y: -4.5))
+        let physicsBody11 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18, height: spriteNode.size.height/15), center: CGPoint(x: 26.0, y: -1.5))
+        let physicsBody12 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/5), center: CGPoint(x: 21.5, y: 0.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10, physicsBody11, physicsBody12])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func lasPiedrasBezierPathToSKSpriteNode(bpLasPiedras: UIBezierPath)-> SKSpriteNode{
+      /*func lasPiedrasBezierPathToSKSpriteNode(bpLasPiedras: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpLasPiedras.cgPath)
          let lasPiedrasNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         lasPiedrasNode.position = CGPoint(x:425.65, y:186.86)
-         //lasPiedrasNode.zPosition = 1
-         //lasPiedrasNode.physicsBody = SKPhysicsBody(circleOfRadius:lasPiedrasNode.size.width/2 * 0.4 , center: CGPoint(x:-1.5, y:0.5))
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: lasPiedrasNode.size.width/2 * 0.30, center: CGPoint(x: -6.5, y: -7.0))//top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: lasPiedrasNode.size.width/2 * 0.38, center: CGPoint(x: -2.5, y: 0.5))//middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: lasPiedrasNode.size.width/2 * 0.4, center: CGPoint(x: 3.5, y: 10.5))//bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-          lasPiedrasNode.physicsBody = compoundBody
+         lasPiedrasNode.position = CGPoint(x:426.11, y:186.85)
+          let physicsBody3 = SKPhysicsBody(circleOfRadius: lasPiedrasNode.size.width/2 * 0.30, center: CGPoint(x: 7.5, y: 11.0))//top physicsBody
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: lasPiedrasNode.size.width/2 * 0.42, center: CGPoint(x: 5.0, y: 1.5))//middle
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: lasPiedrasNode.size.width/2 * 0.45, center: CGPoint(x: -3.0, y: -7.5))//bottom
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+            lasPiedrasNode.physicsBody = compoundBody
          lasPiedrasNode.physicsBody?.isDynamic = false
          lasPiedrasNode.name = "Las Piedras"
          return  lasPiedrasNode
-     }
+     }*/
+    
+    func lasPiedrasBezierPathToSKSpriteNode(bpLasPiedras: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 426.11, y: 186.85)
+        let name = "Las Piedras"
+        
+        let spriteNode = createMapNode(
+            from: bpLasPiedras,
+            position: position,
+            name: name
+        )
+        
+        // Add Las Piedras-specific physics body if needed
+        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 7.5, y: 11.0)) // top physicsBody
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.42, center: CGPoint(x: 5.0, y: 1.5)) // middle
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.45, center: CGPoint(x: -3.0, y: -7.5)) // bottom
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
+        spriteNode.physicsBody = compoundBody*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/6.1), center: CGPoint(x: -8.0, y: -16.5))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.5, height: spriteNode.size.height/12.0), center: CGPoint(x: 0.4, y: -15.0))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/6.5), center: CGPoint(x: -2.0, y: -8.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/6.5), center: CGPoint(x: -9.0, y: -8.5))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/9.0), center: CGPoint(x: 2.0, y: -1.5))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/11.0), center: CGPoint(x: 5.0, y:4.0))
+        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8, height: spriteNode.size.height/11.5), center: CGPoint(x: 7.0, y:9.0))
+        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 9.0, y:14.0))
+        let physicsBody9 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/14.0), center: CGPoint(x: 11.0, y:19.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-      func humacaoBezierPathToSKSpriteNode(bpHumacao: UIBezierPath)-> SKSpriteNode{
+      /*func humacaoBezierPathToSKSpriteNode(bpHumacao: UIBezierPath)-> SKSpriteNode{
 
          let shapeNode = SKShapeNode(path:bpHumacao.cgPath)
          let humacaoNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         humacaoNode.position = CGPoint(x:444.15, y:170.3)
-         //humacaoNode.zPosition = 1
-         let physicsBody1 = SKPhysicsBody(circleOfRadius: humacaoNode.size.width/2 * 0.45, center: CGPoint(x: -1.5, y: -7.0))//top physicsBody
-         let physicsBody2 = SKPhysicsBody(circleOfRadius: humacaoNode.size.width/2 * 0.45, center: CGPoint(x: 3.0, y: 2.5))//middle
-         //let physicsBody3 = SKPhysicsBody(circleOfRadius: humacaoNode.size.width/2 * 0.25, center: CGPoint(x: -0.5, y: 13.5))//bottom
-         let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
-         humacaoNode.physicsBody = compoundBody
-          //humacaoNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:humacaoNode.size.width/2 , height:humacaoNode.size.height/2 * 1.30), center: CGPoint(x:-5.5, y:-2.5))
-         //humacaoNode.physicsBody = SKPhysicsBody(circleOfRadius:humacaoNode.size.width/2 * 0.4 , center: CGPoint(x:1.5, y:-2.5))
+         humacaoNode.position = CGPoint(x:444.61, y:170.29)
+          let physicsBody1 = SKPhysicsBody(circleOfRadius: humacaoNode.size.width/2 * 0.45, center: CGPoint(x: 1.5, y: 7.0))//top physicsBody
+          let physicsBody2 = SKPhysicsBody(circleOfRadius: humacaoNode.size.width/2 * 0.45, center: CGPoint(x: -3.0, y: -2.5))//middle
+          let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
+          humacaoNode.physicsBody = compoundBody
          humacaoNode.physicsBody?.isDynamic = false
          humacaoNode.name = "Humacao"
          return  humacaoNode
-     }
+     }*/
+    
+    func humacaoBezierPathToSKSpriteNode(bpHumacao: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 444.61, y: 170.29)
+        let name = "Humacao"
+        
+        let spriteNode = createMapNode(
+            from: bpHumacao,
+            position: position,
+            name: name
+        )
+        
+        // Add Humacao-specific physics body if needed
+        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.45, center: CGPoint(x: 1.5, y: 7.0)) // top physicsBody
+        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.45, center: CGPoint(x: -3.0, y: -2.5)) // middle
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])*/
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/1.23), center: CGPoint(x: 1.3, y: 1.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/1.7), center: CGPoint(x: -8.5, y: -1.5))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/2.5), center: CGPoint(x: -12.5, y: 2.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/10), center: CGPoint(x: -17.0, y: -3.5))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/13), center: CGPoint(x: 0.0, y: -17.6))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.2, height: spriteNode.size.height/5.7), center: CGPoint(x: 13.5, y: 7.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-       func naguaboBezierPathToSKSpriteNode(bpNaguabo: UIBezierPath)-> SKSpriteNode{
+       /*func naguaboBezierPathToSKSpriteNode(bpNaguabo: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpNaguabo.cgPath)
          let naguaboNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         naguaboNode.position = CGPoint(x:459.97, y:197.89)
-         //naguaboNode.zPosition = 0//FOR LABEL TO BE LEGIBLE(CEIBA)
-           naguaboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:naguaboNode.size.width/2 * 1.30 , height:naguaboNode.size.height/2 * 0.90), center: CGPoint(x:2.5, y:1.5))
-         //naguaboNode.physicsBody = SKPhysicsBody(circleOfRadius:naguaboNode.size.width/2 * 0.35 , center: CGPoint(x:2.5, y:1.5))
+         naguaboNode.position = CGPoint(x:460.43, y:197.88)
+         naguaboNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:naguaboNode.size.width/2 * 1.30 , height:naguaboNode.size.height/2 * 0.90), center: CGPoint(x:-2.5, y:-1.5))
          naguaboNode.physicsBody?.isDynamic = false
          naguaboNode.name = "Naguabo"
          return  naguaboNode
-     }
+     }*/
+    
+    func naguaboBezierPathToSKSpriteNode(bpNaguabo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 460.43, y: 197.88)
+        let name = "Naguabo"
+        
+        let spriteNode = createMapNode(
+            from: bpNaguabo,
+            position: position,
+            name: name
+        )
+        
+        // Add Naguabo-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 0.90), center: CGPoint(x: -2.5, y: -1.5))
+        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/2.6), center: CGPoint(x: -2.5, y: -2.0))
+        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/4.2), center: CGPoint(x: -21.1, y: -3.9))
+        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/4.5), center: CGPoint(x: -14.0, y: 9.5))
+        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/19), center: CGPoint(x: -12.5, y: 14.8))
+        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.5, height: spriteNode.size.height/6.0), center: CGPoint(x: -6.5, y: 8.5))
+        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/23, height: spriteNode.size.height/10), center: CGPoint(x: -3.4, y: 7.5))
+        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/6.0), center: CGPoint(x: 4.2, y: -12.5))
+        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/4.5), center: CGPoint(x: 18.3, y: -7.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
+        spriteNode.physicsBody = compoundBody
+        spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
-       func viequesBezierPathToSKSpriteNode(bpVieques: UIBezierPath)-> SKSpriteNode{
+       /*func viequesBezierPathToSKSpriteNode(bpVieques: UIBezierPath)-> SKSpriteNode{
          
          let shapeNode = SKShapeNode(path:bpVieques.cgPath)
          let viequesNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
-         viequesNode.position = CGPoint(x:512, y:95)//(x:582.85, y:154.19)
-         //viequesNode.zPosition = 1
-         viequesNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:viequesNode.size.width/2, height:viequesNode.size.height/2), center: CGPoint(x:39, y: -10.0))
+         viequesNode.position = CGPoint(x:475, y:105)//(x:582.85, y:154.19)CGPoint(x:512, y:95)
+           viequesNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:viequesNode.size.width, height:viequesNode.size.height), center: CGPoint(x:0.5, y: 0.5))
          viequesNode.physicsBody?.isDynamic = false
          viequesNode.name = "Vieques"
          return viequesNode
-     }
+     }*/
+    
+    func viequesBezierPathToSKSpriteNode(bpVieques: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 475, y: 105)
+        let name = "Vieques"
+        
+        let spriteNode = createMapNode(
+            from: bpVieques,
+            position: position,
+            name: name
+        )
+        
+        // Add Vieques-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width, height: spriteNode.size.height), center: CGPoint(x: 0.5, y: 0.5))
+        //spriteNode.physicsBody?.isDynamic = false
+       
+        
+        // Alternative positions: CGPoint(x: 582.85, y: 154.19), CGPoint(x: 512, y: 95)
+        
+        return spriteNode
+    }
 
-       func culebraBezierPathToSKSpriteNode(bpCulebra: UIBezierPath)-> SKSpriteNode{
+       /*func culebraBezierPathToSKSpriteNode(bpCulebra: UIBezierPath)-> SKSpriteNode{
             
          let shapeNode = SKShapeNode(path:bpCulebra.cgPath)
          let culebraNode: SKSpriteNode = ToSkShapeNodeAndDefaultProperties(nodeShape:shapeNode)
          culebraNode.position = CGPoint(x:493, y:141.5)
-         //culebraNode.zPosition = 1
-           culebraNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:culebraNode.size.width/2 * 1.7 , height:culebraNode.size.height/2 * 2.1), center: CGPoint(x:-3.5, y:0.0))
-         //culebraNode.physicsBody = SKPhysicsBody(circleOfRadius:culebraNode.size.width/2 * 0.40 , center: CGPoint(x:-1.5, y:1.5))
+         culebraNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width:culebraNode.size.width/2 * 1.7 , height:culebraNode.size.height/2 * 2.1), center: CGPoint(x:3.5, y:0.0))
          culebraNode.physicsBody?.isDynamic = false
          culebraNode.name = "Culebra"
          return  culebraNode
-     }
+     }*/
+    
+    func culebraBezierPathToSKSpriteNode(bpCulebra: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 493, y: 141.5)
+        let name = "Culebra"
+        
+        let spriteNode = createMapNode(
+            from: bpCulebra,
+            position: position,
+            name: name
+        )
+        
+        // Add Culebra-specific physics body if needed
+        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.7, height: spriteNode.size.height/2 * 2.1), center: CGPoint(x: 3.5, y: 0.0))
+        //spriteNode.physicsBody?.isDynamic = false
+        
+        
+        return spriteNode
+    }
      
      
       //THE NODE BELOW WAS THE FORMER RECTANGLE AROUND ALL ISLANDS, INSTEAD IM USING AS RECTANGLE THE NODE THAT MANAGE THE GESTURES AS ITS DIMENSIONS ARE THE SAME.

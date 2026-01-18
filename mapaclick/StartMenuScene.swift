@@ -198,12 +198,12 @@ class StartMenuScene: SKScene {
                  //print("Set scaling and positioning mainMenuObjects for Small screenSize: iPad 6Gen, Mini(5gen), Mini(6gen)")
                 setMainMenuObjectsScaleAndIndepRenderingPositioningForiPadsSmallAndMediumScreenSizes()
                 
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+        case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Set scaling and positioning mainMenuObjects for Medium screenSize:iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, Air(4gen), PRO11(3gen), 9Gen, Air(5gen), 10Gen, Pro11(4gen)")
                 setMainMenuObjectsScaleAndIndepRenderingPositioningForiPadsSmallAndMediumScreenSizes()
                 mapaClickBanner.setScale(1.42)//overriding for bigger device screen
             
-            case (750.0, 1334), (1080, 2340 ),(1125, 2436 ), (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0), (1170.0, 2532.0), (1179.0, 2556.0), (1284.0, 2778.0), (1290.0, 2796.0) :
+            case (750.0, 1334), (1080, 2340 ),(1125, 2436 ), (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0), (1170.0, 2532.0), (1179.0, 2556.0), (1284.0, 2778.0), (1290.0, 2796.0) ://PRORTIONS TESTED OK FOR (1242.0, 2208.0), (828.0, 1792.0),(1242.0, 2688.0)/iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5)
                 //print("Entering setMainMenuObjects For All iPhone screenSizes: iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS , 11PRO, 8plus, XR, 11, XSMax, 11ProMax, 12, 12Pro, 13, 13Pro, 14, 14Pro, 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
                 setMainMenuObjectsScaleAndIndepRenderingPositioningForiPhoneAllScreenSizes()
                 
@@ -439,7 +439,7 @@ class StartMenuScene: SKScene {
                 //print("Entering set Volver Button for: iPad 6Gen, Mini(5gen), Mini(6gen) ")
                 setVolverRedButtonScaleAndIndepRenderingPositioningForiPadsAllScreenSizes()
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering set Volver Button for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setVolverRedButtonScaleAndIndepRenderingPositioningForiPadsAllScreenSizes()
            
@@ -551,7 +551,7 @@ class StartMenuScene: SKScene {
                     setBestTimesObjectsScaleAndIndepRenderingPositioningForiPadsSmallMiniAndMediumScreenSizes()
                 }
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering set bestTimesRectangle for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setBestTimesObjectsScaleAndIndepRenderingPositioningForiPadsSmallMiniAndMediumScreenSizes()
             
@@ -687,7 +687,7 @@ class StartMenuScene: SKScene {
                 //print("Entering set InstruccionesObjects for: iPad 6Gen, Mini(5gen), Mini(6gen) ")
                 setInstruccionesScaleAndIndepRenderingPositioningForiPadsAllSizes()
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering set InstruccionesObjects for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen)")
                 setInstruccionesScaleAndIndepRenderingPositioningForiPadsAllSizes()
            
@@ -848,7 +848,7 @@ class StartMenuScene: SKScene {
                 setOpcionesScaleAndIndepRenderingPositioningForiPadsSmallScreenSizes()
             
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering set opcionesObjects for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setOpcionesScaleAndIndepRenderingPositioningForiPadsMediumScreenSizes()
             
@@ -1066,7 +1066,7 @@ class StartMenuScene: SKScene {
                  //print("Entering setCreditsPositioningAndScaling for smallScreenSizes: iPad 6Gen, Mini(5gen), Mini(6gen)")
                 setCreditsPositioningForiPadsSmallAndMediumScreenSizes()
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering setCreditsPositioningAndScaling for MediumScreenSizes: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setCreditsPositioningForiPadsSmallAndMediumScreenSizes()
             
@@ -1275,7 +1275,7 @@ class StartMenuScene: SKScene {
                     setMapOrderScaleAndIndepRenderingPositioningForiPadsMiniAndMediumScreenSizes()
                     //print("mini")
                 }
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering set mapOrder objects for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setMapOrderScaleAndIndepRenderingPositioningForiPadsMiniAndMediumScreenSizes()
             
@@ -1500,7 +1500,7 @@ class StartMenuScene: SKScene {
                     //print("mini2")
                 }
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering set gameModeSelection objects for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 setGameModeSelectionScaleAndIndepRenderingPositioningForiPadsMiniAndMediumScreenSizes()
             
@@ -1593,7 +1593,7 @@ class StartMenuScene: SKScene {
                 //print("Entering scaleAndRepositionMapaclickBanner for iPads Small screenSize: iPad 6Gen, Mini(5gen), Mini(6gen)")
                 iPadSmallAndMediumScreenSizesBannerScaleAndPositioning()
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering scaleAndRepositionMapaclickBanner for iPads Medium screenSize:iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) ")
                 iPadSmallAndMediumScreenSizesBannerScaleAndPositioning()
             
@@ -1790,7 +1790,7 @@ class StartMenuScene: SKScene {
                 //print("Entering scaleMapaclickBannerToOriginalSizeAndOriginalPosition(Back to Main menu) for iPads Small screenSize: iPad 6Gen, Mini(5gen), Mini(6gen)")
                 scaleMapaclickBannerToOriginalSizeAndOriginalPositioniPadsSmallScreenSizes()
             
-            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0):
+            case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
                 //print("Entering scaleMapaclickBannerToOriginalSizeAndOriginalPosition(Back to Main menu) for iPads Medium screenSize: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen)")
                 scaleMapaclickBannerToOriginalSizeAndOriginalPositioniPadsMediumScreenSizes()
             
