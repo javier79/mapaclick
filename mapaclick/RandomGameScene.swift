@@ -202,7 +202,7 @@ class RandomGameScene: SKScene{
         }
         
         // FOR TESTING ONLY - REMOVE BEFORE RELEASE
-        //TutorialManager.resetTutorialCount()
+        TutorialManager.resetTutorialCount()
         
         // Show tutorial if needed (max 3 times)
         if TutorialManager.shouldShowTutorial() {

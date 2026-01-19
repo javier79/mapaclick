@@ -10,6 +10,12 @@ import SpriteKit
 
 class TutorialOverlay {
     
+    // MARK: - Shared SKView for texture generation
+        private static let textureGeneratorView: SKView = {
+            let view = SKView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            return view
+        }()
+    
     // Tutorial steps
     enum TutorialStep {
         case tapRegion
@@ -302,8 +308,7 @@ class TutorialOverlay {
         shapeNode.strokeColor = UIColor(red: 0.6471, green: 0.8431, blue: 0.9098, alpha: 1.0)
         shapeNode.lineWidth = 2.5
         
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
+        let texture = TutorialOverlay.textureGeneratorView.texture(from: shapeNode)!
         let spriteNode = SKSpriteNode(texture: texture)
         spriteNode.position = CGPoint(x: width / 2, y: height / 2)
         
@@ -325,8 +330,7 @@ class TutorialOverlay {
         shapeNode.strokeColor = strokeColor
         shapeNode.lineWidth = lineWidth
         
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
+        let texture = TutorialOverlay.textureGeneratorView.texture(from: shapeNode)!
         let spriteNode = SKSpriteNode(texture: texture)
         
         return spriteNode

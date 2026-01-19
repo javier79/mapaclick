@@ -4,11 +4,19 @@
 //
 //  Created by javier pizarro on 9/25/23.
 //
+//  UPDATED: Uses a single shared SKView instance for texture generation
+//
 
 import Foundation
 import SpriteKit
 
 class GameOverObjects{
+    
+    // MARK: - Shared SKView for texture generation
+    private static let textureGeneratorView: SKView = {
+        let view = SKView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+        return view
+    }()
     
     
     func endGameRectangleBezierPathToSKSpriteNode(bpEndGameRectangle: UIBezierPath)-> SKSpriteNode{//Big island frame properties
@@ -17,8 +25,7 @@ class GameOverObjects{
         shapeNode.strokeColor = UIColor.init(red: 0.6471, green: 0.8431, blue: 0.9098, alpha: 1.0)/*init(red: 0.9098, green: 0.7412, blue: 0.051, alpha: 1.0)*/
         shapeNode.fillColor = UIColor.init(red: 0.2392, green: 0.698, blue: 1, alpha: 1.0)/*(red: 0.1255, green: 0.451, blue: 0.5961, alpha: 1.0)*/
         shapeNode.lineWidth = 4.0
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
+        let texture = GameOverObjects.textureGeneratorView.texture(from: shapeNode)!
         let rectangleNode = SKSpriteNode(texture: texture)
         //rectangleNode.position = CGPoint(x:280, y:190)
         return  rectangleNode
@@ -54,8 +61,7 @@ class GameOverObjects{
         shapeNode.strokeColor = UIColor.init(red: 0.6471, green: 0.8431, blue: 0.9098, alpha: 1.0)/*(red: 0.9373, green: 0.9608, blue: 0.9686, alpha: 1.0)*//*(red: 0.9098, green: 0.7412, blue: 0.051, alpha: 1.0)*///(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
         shapeNode.fillColor = UIColor.init(red: 0.2588, green: 0.7608, blue: 1, alpha: 1.0)/*(red: 0.9765, green: 0.4118, blue: 0.0549, alpha: 1.0)*/
         shapeNode.lineWidth = 2.5
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
+        let texture = GameOverObjects.textureGeneratorView.texture(from: shapeNode)!
         let button = SKSpriteNode(texture: texture)
         //rectangleNode.position = CGPoint(x:280, y:190)
         setEndGameRectangleMapButtonAndLabels(button:button)
@@ -128,8 +134,7 @@ class GameOverObjects{
         shapeNode.strokeColor = UIColor.init(red: 0.6471, green: 0.8431, blue: 0.9098, alpha: 1.0)//(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
         shapeNode.fillColor = UIColor.init(red: 0.1529, green: 0.8824, blue: 0.8078, alpha: 1.0)
         shapeNode.lineWidth = 2.5
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
+        let texture = GameOverObjects.textureGeneratorView.texture(from: shapeNode)!
         let button = SKSpriteNode(texture: texture)
         //rectangleNode.position = CGPoint(x:280, y:190)
         setEndGameRectangleJugarOtraButtonAndLabels(button:button)
@@ -202,8 +207,7 @@ class GameOverObjects{
         shapeNode.strokeColor = UIColor.init(red: 0.6471, green: 0.8431, blue: 0.9098, alpha: 1.0)//(red: 0.97, green: 0.56, blue: 0.12, alpha: 1.00)//(red: 1.00, green: 0.40, blue: 0.00, alpha: 1.00)//c1d3c8
         shapeNode.fillColor = UIColor.init(red: 0.8941, green: 0.5765, blue: 0.5765, alpha: 1.0)
         shapeNode.lineWidth = 2.5
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
+        let texture = GameOverObjects.textureGeneratorView.texture(from: shapeNode)!
         let button = SKSpriteNode(texture: texture)
         //rectangleNode.position = CGPoint(x:280, y:190)
         setEndGameRectangleSalirButtonAndLabels(button:button)
@@ -271,8 +275,7 @@ class GameOverObjects{
        shapeNode.strokeColor = UIColor.init(red: 0.6471, green: 0.9451, blue: 0.9137, alpha: 1.0)
        shapeNode.fillColor = UIColor.init(red: 0.498, green: 0.7373, blue: 0.8235, alpha: 1.0)
        //Shapenode To SKSpriteNode
-       let view = SKView(frame: UIScreen.main.bounds)
-       let texture = view.texture(from: shapeNode)!
+       let texture = GameOverObjects.textureGeneratorView.texture(from: shapeNode)!
        let redButton = SKSpriteNode(texture: texture)
         
        setResultadosButton(buttonResultadosSKSpriteNode:redButton)
@@ -308,3 +311,4 @@ class GameOverObjects{
         return label
     }
 }
+

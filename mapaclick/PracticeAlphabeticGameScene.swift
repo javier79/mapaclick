@@ -186,7 +186,7 @@ class PracticeAlphabeticGameScene: SKScene{
         }
         
         // FOR TESTING ONLY - REMOVE BEFORE RELEASE
-                //TutorialManager.resetTutorialCount()
+                TutorialManager.resetTutorialCount()
                 //print("Tutorial count reset for testing")
         
         // Show tutorial if needed

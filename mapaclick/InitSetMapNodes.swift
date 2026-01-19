@@ -10,6 +10,8 @@ import Foundation
 
 class InitSetMapNodes{
     
+    private static let textureGeneratorView: SKView = SKView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+    
      func initSetcontainerNodeAndChildren()->SKNode{
          let containerSKNode = SKNode()
          //containerSKNode.yScale = -1.0
@@ -1058,8 +1060,7 @@ class InitSetMapNodes{
          nodeShape.fillColor = UIColor.init(red: 0.78, green: 0.91, blue: 0.81, alpha: 1.00)//#C6E7CE/*(red: 0.9647, green: 0.9647, blue: 0.9647, alpha: 1.0)//f6f6f6*/
          nodeShape.strokeColor = UIColor.init(red: 0.81, green: 1.00, blue: 0.81, alpha: 1.00)//#CEFFCE/*(red: 0.80, green: 1.00, blue: 0.73, alpha: 1.00)*//*(red: 0.88, green: 0.80, blue: 0.59, alpha: 1.00)*//*(red: 0.99, green: 0.91, blue: 0.84, alpha: 1.00)//#FDE8D7*//*(red: 0.7569, green: 0.8275, blue: 0.7843, alpha: 1.0)//c1d3c8*/
          nodeShape.lineWidth = 0.5
-         let view = SKView(frame: UIScreen.main.bounds)
-         let texture = view.texture(from: nodeShape)!
+         let texture = InitSetMapNodes.textureGeneratorView.texture(from: nodeShape)!
          let skSpriteNode = SKSpriteNode(texture: texture)
          //skSpriteNode.xScale = -1.0
          //skSpriteNode.zRotation = 9.44
@@ -4444,8 +4445,7 @@ class InitSetMapNodes{
          }
          //shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)//c1d3c8
          shapeNode.lineWidth = 2.5
-         let view = SKView(frame: UIScreen.main.bounds)
-         let texture = view.texture(from: shapeNode)!
+         let texture = InitSetMapNodes.textureGeneratorView.texture(from: shapeNode)!
          let rectangleViequesNode = SKSpriteNode(texture: texture)
          rectangleViequesNode.position = CGPoint(x:473, y:103.5)
          return  rectangleViequesNode
@@ -4464,8 +4464,7 @@ class InitSetMapNodes{
           }
          //shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)
          shapeNode.lineWidth = 2.5
-         let view = SKView(frame: UIScreen.main.bounds)
-         let texture = view.texture(from: shapeNode)!
+          let texture = InitSetMapNodes.textureGeneratorView.texture(from: shapeNode)!
          let rectangleCulebraNode = SKSpriteNode(texture: texture)
          rectangleCulebraNode.position = CGPoint(x:493.5, y:141.1)
          return  rectangleCulebraNode

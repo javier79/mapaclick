@@ -11,6 +11,12 @@ import SpriteKit
 
 class StartMenuMethods{
     
+    // MARK: - Shared SKView for texture generation
+        private static let textureGeneratorView: SKView = {
+            let view = SKView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
+            return view
+        }()
+    
     /*func redButtonBpDrawToSKSpriteNode()->SKSpriteNode{
         
         //Drawing
@@ -1021,12 +1027,18 @@ class StartMenuMethods{
       return label
     }
     
-    func shapeNodeToSpriteNodeTexture(nodeShape:SKShapeNode)->SKSpriteNode{
+    /*func shapeNodeToSpriteNodeTexture(nodeShape:SKShapeNode)->SKSpriteNode{
         let view = SKView(frame: UIScreen.main.bounds)
         let texture = view.texture(from: nodeShape)!
         let textureAsSKSpriteNode = SKSpriteNode(texture: texture)
         return textureAsSKSpriteNode
-    }
+    }*/
+    
+    func shapeNodeToSpriteNodeTexture(nodeShape:SKShapeNode)->SKSpriteNode{
+            let texture = StartMenuMethods.textureGeneratorView.texture(from: nodeShape)!
+            let textureAsSKSpriteNode = SKSpriteNode(texture: texture)
+            return textureAsSKSpriteNode
+        }
     
     func setGreenButton()->SKSpriteNode{
         //Drawing
