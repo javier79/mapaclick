@@ -217,7 +217,7 @@ class AlphabeticGameScene: SKScene{
         }
         
         // FOR TESTING ONLY - REMOVE BEFORE RELEASE
-                TutorialManager.resetTutorialCount()
+                //TutorialManager.resetTutorialCount()
                 //print("Tutorial count reset for testing")
         
         if TutorialManager.shouldShowTutorial() {
@@ -1613,7 +1613,7 @@ class AlphabeticGameScene: SKScene{
                
            case "Ponce":
                setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
-               locationNameLabel.position = CGPoint(x: -2.8, y: 3.5)
+               locationNameLabel.position = CGPoint(x: 0.0, y: -6.5)
 
                
            case "Orocovis":
@@ -1975,8 +1975,8 @@ class AlphabeticGameScene: SKScene{
                setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
                firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
                secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-               firstLineLabel.position = CGPoint(x:2.5, y:-0.5)
-               secondLineLabel.position = CGPoint(x:2.5, y:-7.0)
+               firstLineLabel.position = CGPoint(x:2.5, y:-6.5)
+               secondLineLabel.position = CGPoint(x:2.5, y:-14.0)
 
               
           case "Sabana Grande" :

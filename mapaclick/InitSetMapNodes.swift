@@ -10,8 +10,6 @@ import Foundation
 
 class InitSetMapNodes{
     
-    private static let textureGeneratorView: SKView = SKView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-    
      func initSetcontainerNodeAndChildren()->SKNode{
          let containerSKNode = SKNode()
          //containerSKNode.yScale = -1.0
@@ -385,7 +383,7 @@ class InitSetMapNodes{
              
          case "Ponce":
              setOneLineMunicipioNameLabel(Oneline:locationNameLabel)//Attributes are set for label
-             locationNameLabel.position = CGPoint(x: -2.8, y: 3.5)
+             locationNameLabel.position = CGPoint(x: 0.0, y: -6.5)
 
              
          case "Orocovis":
@@ -747,8 +745,8 @@ class InitSetMapNodes{
              setTwoLineMunicipioNameLabels(labelLineFirst:firstLineLabel, labelLineSecond:secondLineLabel)
              firstLineLabel.text = splitTextIntoFields(theText:locationNameLabel.text!)
              secondLineLabel.text = splitTextIntoFieldsTwo(theText:locationNameLabel.text!)
-             firstLineLabel.position = CGPoint(x:2.5, y:-0.5)
-             secondLineLabel.position = CGPoint(x:2.5, y:-7.0)
+             firstLineLabel.position = CGPoint(x:2.5, y:-6.5)
+             secondLineLabel.position = CGPoint(x:2.5, y:-14.0)
 
             
         case "Sabana Grande" :
@@ -1060,7 +1058,8 @@ class InitSetMapNodes{
          nodeShape.fillColor = UIColor.init(red: 0.78, green: 0.91, blue: 0.81, alpha: 1.00)//#C6E7CE/*(red: 0.9647, green: 0.9647, blue: 0.9647, alpha: 1.0)//f6f6f6*/
          nodeShape.strokeColor = UIColor.init(red: 0.81, green: 1.00, blue: 0.81, alpha: 1.00)//#CEFFCE/*(red: 0.80, green: 1.00, blue: 0.73, alpha: 1.00)*//*(red: 0.88, green: 0.80, blue: 0.59, alpha: 1.00)*//*(red: 0.99, green: 0.91, blue: 0.84, alpha: 1.00)//#FDE8D7*//*(red: 0.7569, green: 0.8275, blue: 0.7843, alpha: 1.0)//c1d3c8*/
          nodeShape.lineWidth = 0.5
-         let texture = InitSetMapNodes.textureGeneratorView.texture(from: nodeShape)!
+         let view = SKView(frame: UIScreen.main.bounds)
+         let texture = view.texture(from: nodeShape)!
          let skSpriteNode = SKSpriteNode(texture: texture)
          //skSpriteNode.xScale = -1.0
          //skSpriteNode.zRotation = 9.44
@@ -1094,6 +1093,12 @@ class InitSetMapNodes{
         let spriteNode = SKSpriteNode(texture: texture)
         spriteNode.position = position
         spriteNode.name = name
+        
+        // Create texture-based physics body that matches the exact shape of the municipality
+        // alphaThreshold: pixels with alpha > 0.5 are considered part of the physics body
+        spriteNode.physicsBody = SKPhysicsBody(texture: texture, alphaThreshold: 0.5, size: spriteNode.size)
+        spriteNode.physicsBody?.isDynamic = false
+        
         return spriteNode
     }
 
@@ -1138,7 +1143,7 @@ class InitSetMapNodes{
     }*/
     
     func caboRojoBezierPathToSKSpriteNode(bpCaboRojo: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 80, y: 143)
+        let position = CGPoint(x: 80, y: 145.1)//CGPoint(x: 80, y: 143)ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Cabo Rojo"
         
         let spriteNode = createMapNode(
@@ -1147,20 +1152,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Compound circular physics bodies
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: 7.0)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -1.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -13.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width  , height: spriteNode.size.height/1.5 ), center: CGPoint(x: -4.0, y: -7.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width  , height: spriteNode.size.height/1.5 ), center: CGPoint(x: -4.0, y: -7.5)) // top physicsBody
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4  , height: spriteNode.size.height/6 ), center: CGPoint(x: -3.5, y: 25.5)) // middle
-        //let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 0.5, y: -13.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1208,6 +1200,21 @@ class InitSetMapNodes{
         return spriteNode
     }*/
     
+    /*func hormiguerosBezierPathToSKSpriteNode(bphormigueros: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 90.16, y: 168.58)
+        let name = "Hormigueros"
+        
+        let spriteNode = createMapNode(
+            from: bphormigueros,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func hormiguerosBezierPathToSKSpriteNode(bphormigueros: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 90.16, y: 168.58)
         let name = "Hormigueros"
@@ -1218,10 +1225,12 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Rectangular physics body
-        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.7 , height: spriteNode.size.height/2 * 1.9), center: CGPoint(x: 1.0, y: 0.0))
+        // Custom rectangle physics body for better hit detection
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(
+            width: spriteNode.size.width * 0.85,
+            height: spriteNode.size.height * 0.85
+        ), center: CGPoint(x: 0, y: 0))
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -1272,17 +1281,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Rectangular physics body
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.2, height: spriteNode.size.height/1.6), center: CGPoint(x: -4.0, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.8), center: CGPoint(x: -4.0, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/3), center: CGPoint(x: 15.1, y: -3.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/7), center: CGPoint(x: 20.5, y: -5.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8, height: spriteNode.size.height/7), center: CGPoint(x: -15.5, y: 13.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/14), center: CGPoint(x: -8.0, y: -13.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1313,25 +1312,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Compound circular physics bodies
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -8.0, y: 2.5)) // left
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: 7.5, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: 18, y: 0.5)) // right
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: 2.5, y: 0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.08, height: spriteNode.size.height/2.6), center: CGPoint(x: 0.5, y: 1.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.9, height: spriteNode.size.height/12), center: CGPoint(x: 8.1, y: -5.2))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/8.5), center: CGPoint(x: 2.5, y: -8.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/12.5), center: CGPoint(x: 10.5, y: -8.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/6), center: CGPoint(x: -4.5, y: 7.8))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/7), center: CGPoint(x: -11.5, y: 7.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/6), center: CGPoint(x: 4.5, y: 8.0))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5, height: spriteNode.size.height/10.5), center: CGPoint(x: 14.0, y: 7.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1395,6 +1376,21 @@ class InitSetMapNodes{
         return spriteNode
     }*/
     
+    /*func rinconBezierPathToSKSpriteNode(bpRincon: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 60.98, y: 226.43)
+        let name = "Rincón"
+        
+        let spriteNode = createMapNode(
+            from: bpRincon,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func rinconBezierPathToSKSpriteNode(bpRincon: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 60.98, y: 226.43)
         let name = "Rincón"
@@ -1405,21 +1401,13 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Compound circular physics bodies
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -9.5, y: 5.5)) // top physicsBody
+        // Custom compound physics body with 3 circles following the curved shape
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -9.5, y: 5.5)) // top
         let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -7.5, y: -0.5)) // middle
         let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/3, center: CGPoint(x: -4.0, y: -5.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/8, center: CGPoint(x: 5.0, y: -4.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.0, height: spriteNode.size.height/3.8), center: CGPoint(x:-3.5, y: -4.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/9.5), center: CGPoint(x: -6.5, y: 0.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/8), center: CGPoint(x: -8.0, y: -9.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/3.3), center: CGPoint(x: -8.5, y: 6.3))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
-        spriteNode.physicsBody = compoundBody
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -1478,17 +1466,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Compound circular physics bodies
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.75, height: spriteNode.size.height/2), center: CGPoint(x: 3.0, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.70, height: spriteNode.size.height/2), center: CGPoint(x: 3.5, y: -0.5))//SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.65, height: spriteNode.size.height/2), center: CGPoint(x: 4.0, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.0, height: spriteNode.size.height/2.6), center: CGPoint(x: -9.6, y: 0.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/6.0), center: CGPoint(x: 2.0, y: 10.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/8.0), center: CGPoint(x: 2.5, y: -10.4))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 10.0, y: -10.4))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-       
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1547,19 +1525,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Compound circular physics bodies
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.74, height: spriteNode.size.height/1.5), center: CGPoint(x: -4.8, y: 7.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.74, height: spriteNode.size.height/1.5), center: CGPoint(x: -7.0, y: 7.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.0, height: spriteNode.size.height/7.0), center: CGPoint(x: -8.0, y: -13.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/17.0), center: CGPoint(x: -8.0, y: -9.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.0, height: spriteNode.size.height/25.0), center: CGPoint(x: -8.0, y: -6.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 12.0, y: 6.0))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.0, height: spriteNode.size.height/3.3), center: CGPoint(x: 8.0, y: 4.3))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.0, height: spriteNode.size.height/2.45), center: CGPoint(x: 5.8, y: 6.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1614,25 +1580,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Isabela-specific physics bodies if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 0.5, y: 10.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: 2.5, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 4.5, y: -8.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/1.2), center: CGPoint(x: 4.5, y: 2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.2), center: CGPoint(x: 4.5, y: 2.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.0, height: spriteNode.size.height/1.5), center: CGPoint(x: -6.0, y: 5.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25.0, height: spriteNode.size.height/1.8), center: CGPoint(x: -9.0, y: 8.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/40.0, height: spriteNode.size.height/2.5), center: CGPoint(x: -11.5, y: 14.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/5.5), center: CGPoint(x: -16.0, y: 15.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5, height: spriteNode.size.height/9.0), center: CGPoint(x: 18.0, y: -16.3))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/35.0, height: spriteNode.size.height/2.5), center: CGPoint(x: 14.1, y: -9.0))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/35.0, height: spriteNode.size.height/3.5), center: CGPoint(x: 16.5, y: -7.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1658,19 +1606,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Moca-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.33, height: spriteNode.size.height/2 * 1.32), center: CGPoint(x: 0.0, y: -3.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/2 * 1.32), center: CGPoint(x: 0.5, y: -3.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 4.5, y: 16.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/10.5), center: CGPoint(x: -1.0, y: 14.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/1.9), center: CGPoint(x: -10.5, y: -5.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17, height: spriteNode.size.height/3.8), center: CGPoint(x: 11.0, y: 3.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/23.8), center: CGPoint(x: 4.5, y: -19.1))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/11), center: CGPoint(x: 10.2, y: -15))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1696,17 +1632,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add San Sebastián-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.25, height: spriteNode.size.height/1.5), center: CGPoint(x: -0.5, y: 1.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.25, height: spriteNode.size.height/1.6), center: CGPoint(x: -0.5, y: 1.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/14.5), center: CGPoint(x: -7.0, y: 16.4))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6, height: spriteNode.size.height/8.5), center: CGPoint(x: 13.0, y: -15.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/9.0), center: CGPoint(x: 12.3, y: 16.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/22, height: spriteNode.size.height/5.3), center: CGPoint(x: 18.5, y: 7.2))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1732,19 +1658,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Las Marías-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.42, height: spriteNode.size.height/2 * 1.20), center: CGPoint(x: 4.4, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.55), center: CGPoint(x: -3.5, y: 1.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/2), center: CGPoint(x: 14.5, y: -2.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/9), center: CGPoint(x: -20.5, y: 4.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.5, height: spriteNode.size.height/2.5), center: CGPoint(x: -15.0, y: 2.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5, height: spriteNode.size.height/9.5), center: CGPoint(x: -4.7, y: -10.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/9.5), center: CGPoint(x: 10.0, y: 7.7))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/13.0), center: CGPoint(x: 20.0, y: -12.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6,physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1774,23 +1688,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Maricao-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -12.0, y: 0.5)) // left
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: 2.5, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.23, center: CGPoint(x: 15.0, y: -2.0)) // right
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8, height: spriteNode.size.height/1.33), center: CGPoint(x: -8.5, y: 0.68))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/2.8), center: CGPoint(x: -16.3, y: 1.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/5), center: CGPoint(x: -23.0, y: 1.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/1.6), center: CGPoint(x: 0.2, y: 0.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.0, height: spriteNode.size.height/2.1), center: CGPoint(x: 11.5, y: -0.8))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14, height: spriteNode.size.height/1.8), center: CGPoint(x: 20.5, y: -2.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody3, physicsBody1, physicsBody2, physicsBody4, physicsBody5, physicsBody6 ])
-        spriteNode.physicsBody = compoundBody
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7 , height: spriteNode.size.height/2.0), center: CGPoint(x: 3.0, y: -1.0))
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1816,16 +1714,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add San Germán-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/1.5), center: CGPoint(x: 2.5, y: -2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/1.5), center: CGPoint(x: 2.5, y: -2.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/8.0), center: CGPoint(x: -3.0, y: 13.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/4.0), center: CGPoint(x: -13.0, y: -8.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/16.0), center: CGPoint(x: 8.0, y: 11.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3, physicsBody4 ])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1851,15 +1740,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Sabana Grande-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.05, height: spriteNode.size.height/1.3), center: CGPoint(x: -3.5, y: 1.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.05, height: spriteNode.size.height/1.3), center: CGPoint(x: -3.5, y: 1.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 6.0, y :-15.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/5.2), center: CGPoint(x: 6.4, y :-9.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3 ])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1890,26 +1771,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Yauco-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 2.5, y: 10.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.57, center: CGPoint(x: 0.0, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 2.0, y: -8.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.21, center: CGPoint(x: 3.5, y: -17.5))
-        let physicsBody5 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 7.5, y: 18.5))
-        let physicsBody6 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.37, center: CGPoint(x: -7.5, y: 15.5))
-        let physicsBody7 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.21, center: CGPoint(x: -10.5, y: 5.5))
-        let physicsBody8 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.21, center: CGPoint(x: 2.5, y: -25.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
-        spriteNode.physicsBody = compoundBody*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.25, height: spriteNode.size.height/3.4), center: CGPoint(x: -0.5, y: 13.0)) // top physicsBody
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.1, height: spriteNode.size.height/4.5), center: CGPoint(x: 1.5, y: -4.0)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.8, height: spriteNode.size.height/4), center: CGPoint(x: 2.5, y: -19.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0, height: spriteNode.size.height/8.0), center: CGPoint(x: -9.5, y :-0.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/11.0), center: CGPoint(x: 6.5, y :25.8))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1926,7 +1788,7 @@ class InitSetMapNodes{
      }*/
     
     func lajasBezierPathToSKSpriteNode(bpLajas: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 112.06, y: 130.6)
+        let position = CGPoint(x: 112.06, y: 132.3)//CGPoint(x: 112.06, y: 130.6) ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Lajas"
         
         let spriteNode = createMapNode(
@@ -1935,14 +1797,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Lajas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.5, y: 2.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.5, y: 2.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5, height: spriteNode.size.height/3.0), center: CGPoint(x: 18.0, y:4.0)) // middle
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -1968,15 +1823,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Guánica-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.4), center: CGPoint(x: 0.5, y: 0.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/1.4), center: CGPoint(x: 1.5, y: -2.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5, height: spriteNode.size.height/4.0), center: CGPoint(x: -13.0, y:-7.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/9.4), center: CGPoint(x: 0.6, y:10.6))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2002,17 +1849,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Guayanilla-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.65, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: 1.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.65, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: 1.5, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/3), center: CGPoint(x: -6.0, y: -3.5)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.4, height: spriteNode.size.height/4.8), center: CGPoint(x: -8.0, y: -19.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/15.8), center: CGPoint(x: 2.7, y: 23.2))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 11.0, y: -4.9))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2040,23 +1877,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Adjuntas-specific properties if needed
-        /*spriteNode.yScale = -1.0
-        spriteNode.zRotation = 9.44*/
-        
-        // Add Adjuntas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: 0.5, y: -1.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width * 0.68, height: spriteNode.size.height/2), center: CGPoint(x: 0.5, y: -1.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/3.0), center: CGPoint(x: -19.0, y: 6.0)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5, height: spriteNode.size.height/5.5), center: CGPoint(x: -8.5, y: 13.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5, height: spriteNode.size.height/6.0), center: CGPoint(x: 2.5, y: -15.3))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/14.0), center: CGPoint(x: 14.0, y: -13.0))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.5, height: spriteNode.size.height/4.0), center: CGPoint(x: 18.5, y: -4.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.5, height: spriteNode.size.height/6.5), center: CGPoint(x: -18.0, y: -4.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2084,15 +1905,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Lares-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 1.40), center: CGPoint(x: -0.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: -0.5, y: 0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.2, height: spriteNode.size.height/11.5), center: CGPoint(x: 5.0, y: -25.3)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/2.0), center: CGPoint(x: -10.5, y:0.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2109,7 +1922,7 @@ class InitSetMapNodes{
      }*/
     
     func penuelasBezierPathToSKSpriteNode(bpPenuelas: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 196.5, y: 145.2)
+        let position = CGPoint(x: 196.5, y: 146)//CGPoint(x: 196.5, y: 145.2) ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Peñuelas"
         
         let spriteNode = createMapNode(
@@ -2118,16 +1931,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Peñuelas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.45), center: CGPoint(x: 2.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.45), center: CGPoint(x: 2.5, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.9, height: spriteNode.size.height/3.5), center: CGPoint(x: -7.5, y: 9.5)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4, height: spriteNode.size.height/10.5), center: CGPoint(x: 4.8, y: 20.0)) // bottom
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/3.5), center: CGPoint(x: 10.5, y: 9.8))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4/*, physicsBody5, physicsBody6*/])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2144,7 +1948,7 @@ class InitSetMapNodes{
      }*/
     
     func ponceBezierPathToSKSpriteNode(bpPonce: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 228.8, y: 138.85)
+        let position = CGPoint(x: 226, y: 150.0)//CGPoint(x: 228.8, y: 138.85)ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Ponce"
         
         let spriteNode = createMapNode(
@@ -2153,18 +1957,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Ponce-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.15, height: spriteNode.size.height/2), center: CGPoint(x: -3.5, y: 7.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.65, height: spriteNode.size.height/1.8), center: CGPoint(x: -4.5, y: 6.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.0, height: spriteNode.size.height/6.0), center: CGPoint(x: 14.0, y: 6.5)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/9.5), center: CGPoint(x: 3.5, y: 34.0)) // bottom
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8, height: spriteNode.size.height/17.5), center: CGPoint(x: -10.0, y: 32.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/34, height: spriteNode.size.height/4.0), center: CGPoint(x: -22.0, y: -5.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/5.0), center: CGPoint(x: 15.0, y: -10.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2190,21 +1983,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Utuado-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 ), center: CGPoint(x: 1.5, y: 6.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2.2 ), center: CGPoint(x: 1.5, y: 6.5)) // top physicsBody
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/2.4), center: CGPoint(x: -31, y: 7.5)) // middle
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/3.0), center: CGPoint(x: -21.8, y: 10.0)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0, height: spriteNode.size.height/8), center: CGPoint(x: 10.0, y: -22.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7, height: spriteNode.size.height/6), center: CGPoint(x: 26.5, y: 14.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/7.5), center: CGPoint(x: 23.5, y: 5.0))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/13.5), center: CGPoint(x: -10.5, y: 23.7))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.8, height: spriteNode.size.height/8), center: CGPoint(x: 9.5, y: -14.5))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0, height: spriteNode.size.height/25), center: CGPoint(x: 7.5, y: -8.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2230,18 +2009,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Jayuya-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/2 * 1.10), center: CGPoint(x: 0.5, y: -5.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/2 * 1.10), center: CGPoint(x: 0.5, y: -5.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.5, height: spriteNode.size.height/2.4), center: CGPoint(x: 11.2, y:-11.0)) // middle
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.3, height: spriteNode.size.height/2.4), center: CGPoint(x: -9.5, y: -10.7)) // bottom
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0, height: spriteNode.size.height/5.0), center: CGPoint(x: -13.8, y: -16.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4, height: spriteNode.size.height/6), center: CGPoint(x: 3.5, y: 12.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/11.5), center: CGPoint(x: 6.5, y: 18.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2,physicsBody3, physicsBody4, physicsBody5, physicsBody6 ])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2258,7 +2026,7 @@ class InitSetMapNodes{
      }*/
     
     func juanaDiazBezierPathToSKSpriteNode(bpJuanaDiaz: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 258.66, y: 141.89)
+        let position = CGPoint(x: 258.66, y: 149.1)//CGPoint(x: 258.66, y: 141.89)ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Juana Díaz"
         
         let spriteNode = createMapNode(
@@ -2267,15 +2035,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Juana Díaz-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.26, height: spriteNode.size.height/2 * 0.75), center: CGPoint(x: 2.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5 , height: spriteNode.size.height/2 * 0.75), center: CGPoint(x: 2.5, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/3.5), center: CGPoint(x: -13.0, y: 22.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5, height: spriteNode.size.height/20.5), center: CGPoint(x: 0.8, y: 14.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3 ])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2301,15 +2061,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Quebradillas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 1.70), center: CGPoint(x: 1.0, y: 1.2))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/1.5), center: CGPoint(x: 2.5, y: 4.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/6.0), center: CGPoint(x: 6.0, y: -12.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/3.0), center: CGPoint(x: -5.3, y: 10.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2339,19 +2091,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Camuy-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: -3.5, y: 13.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.64, center: CGPoint(x: -1.5, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.68, center: CGPoint(x: 0.5, y: -8.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.1), center: CGPoint(x: -2.5, y:2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.1), center: CGPoint(x: -2.5, y:2.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/3.5), center: CGPoint(x: 8.5, y:-11.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2377,14 +2117,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Hatillo-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/1.1), center: CGPoint(x: 2.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/1.1), center: CGPoint(x: 2.5, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/2), center: CGPoint(x: -5.2, y:11.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2410,15 +2143,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Arecibo-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.2, height: spriteNode.size.height/2 * 1.3), center: CGPoint(x: -1.0, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.1, height: spriteNode.size.height/1.35), center: CGPoint(x: -1.0, y: 3.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/9.5), center: CGPoint(x: -3.0, y:-20.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5, height: spriteNode.size.height/13.0), center: CGPoint(x: 13.0, y:-19.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-       
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2444,10 +2169,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Barceloneta-specific physics body if needed
-        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.40, height: spriteNode.size.height/2 * 1.80), center: CGPoint(x: 0.5, y: 7.5))
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2473,10 +2195,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Florida-specific physics body if needed
-        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.700, height: spriteNode.size.height/2 * 1.60), center: CGPoint(x: 0.0, y: 0.8))
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2503,14 +2222,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Manatí-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.25, height: spriteNode.size.height/2 * 1.25), center: CGPoint(x: 1.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.3), center: CGPoint(x: 1.0, y: 2.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/9.5), center: CGPoint(x: -9.5, y:-16.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2536,15 +2248,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Vega Baja-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.28, height: spriteNode.size.height/2 * 1.30), center: CGPoint(x: -0.5, y: 2.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.5, y: 4.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.4, height: spriteNode.size.height/2.6), center: CGPoint(x: 10.4, y: 11.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9, height: spriteNode.size.height/6.0), center: CGPoint(x: 4.6, y:-16.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2570,15 +2274,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Villalba-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.3, height: spriteNode.size.height/1.4), center: CGPoint(x: 0.5, y: -2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.6, height: spriteNode.size.height/1.15), center: CGPoint(x: 6.0, y: 0.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.9, height: spriteNode.size.height/1.5), center: CGPoint(x: -4.7, y: 0.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/1.65), center: CGPoint(x: -11.6, y: -2.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2604,18 +2300,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Orocovis-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2), center: CGPoint(x: 4.0, y: -2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.45, height: spriteNode.size.height/2.2), center: CGPoint(x: 2.4, y: -2.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.5, height: spriteNode.size.height/3.5), center: CGPoint(x: 24.0, y: 0.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6, height: spriteNode.size.height/9.9), center: CGPoint(x: 17.0, y:10.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/17.6), center: CGPoint(x:9.0, y:9.6))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.2, height: spriteNode.size.height/18), center: CGPoint(x:11.4, y:-14))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.1, height: spriteNode.size.height/18.5), center: CGPoint(x:-12.0, y:-13.9))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2641,20 +2326,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Ciales-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 0.70), center: CGPoint(x: 5.5, y: 10.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/2 * 0.70), center: CGPoint(x: 6.0, y: 10.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/2.3), center: CGPoint(x:2.0, y: -15.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.0, height: spriteNode.size.height/5.5), center: CGPoint(x:-3.0, y: -6.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/20.0), center: CGPoint(x:18.0, y: -2.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/12.5), center: CGPoint(x:11.0, y: 24.6))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/15.5), center: CGPoint(x:-15.5, y: 18.6))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/7.0), center: CGPoint(x:-9.0, y: 16.5))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21, height: spriteNode.size.height/6.5), center: CGPoint(x:19.8, y: 15.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2680,17 +2352,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Morovis-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.55, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: -1.0, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8 , height: spriteNode.size.height/1.3), center: CGPoint(x: -2.5, y: 0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/2.5), center: CGPoint(x:8.0, y: 0.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.0, height: spriteNode.size.height/6.5), center: CGPoint(x:-12, y: 11.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.5, height: spriteNode.size.height/6.0), center: CGPoint(x:-11.9, y: -8.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/15.7), center: CGPoint(x:-6.0, y: -14.8))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2717,17 +2379,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Corozal-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/2 * 1.2), center: CGPoint(x: 1.0, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/2.3), center: CGPoint(x: 1.0, y: -0.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/5.0), center: CGPoint(x:3.0, y: 12.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.3, height: spriteNode.size.height/5.5), center: CGPoint(x:-3.5, y: -13.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.2, height: spriteNode.size.height/8.5), center: CGPoint(x:4.5, y: -11.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/8.5), center: CGPoint(x:-12.0, y: -6.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2754,17 +2406,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Barranquitas-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.1, height: spriteNode.size.height/2 * 1.2), center: CGPoint(x: -0.5, y: 1.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.1, height: spriteNode.size.height/1.5), center: CGPoint(x: -0.5, y: 1.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/4.0), center: CGPoint(x:-13.8, y: -5.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6, height: spriteNode.size.height/8.5), center: CGPoint(x:13.3, y: -6.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/9.5), center: CGPoint(x:-1.5, y: -10.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2790,17 +2432,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Comerío-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.50, height: spriteNode.size.height/2 * 0.8 /* or 0.2? */), center: CGPoint(x: -0.5, y: 0.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.29, height: spriteNode.size.height/2 * 0.8 /* or 0.2? */), center: CGPoint(x: -1.0, y: 0.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/10.0), center: CGPoint(x: -4.5, y: -8.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/10.0), center: CGPoint(x: -0.5, y: -12.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 12.0, y: -1.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.3, height: spriteNode.size.height/5.0), center: CGPoint(x: 3.0, y: 10.3))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2827,18 +2459,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Coamo-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.4), center: CGPoint(x: -4.7, y: 2.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.87, height: spriteNode.size.height/1.3), center: CGPoint(x: -6.2, y: 1.8))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/2.5), center: CGPoint(x: 10.5, y: -4.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15, height: spriteNode.size.height/3.5), center: CGPoint(x: 15.0, y: -4.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/10.0), center: CGPoint(x: 20.5, y: -4.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0, height: spriteNode.size.height/12.0), center: CGPoint(x: 5.0, y: -18.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2865,17 +2486,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Naranjito-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.33, height: spriteNode.size.height/2 * 1.38), center: CGPoint(x: 3.5, y: 0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.0, height: spriteNode.size.height/1.35), center: CGPoint(x: 2.0, y: 0.8))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.0, height: spriteNode.size.height/2.0), center: CGPoint(x: 11.6, y: 3.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.5, height: spriteNode.size.height/4.5), center: CGPoint(x: -7.2, y: -9.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/9.2), center: CGPoint(x: -11.0, y: -11.1))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4/*, physicsBody5*/])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2901,24 +2512,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Aibonito-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/1.5 /* or * 0.2? */), center: CGPoint(x: 3.0, y: 1.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.5 /* or * 0.2? */), center: CGPoint(x: 3.3, y: 1.9))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/3.0 /* or * 0.2? */), center: CGPoint(x: -11.0, y: 2.8))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/2.0 /* or * 0.2? */), center: CGPoint(x: -7.0, y: 2.8))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.3, height: spriteNode.size.height/6.2 /* or * 0.2? */), center: CGPoint(x: 4.2, y: -11.8))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.5, height: spriteNode.size.height/5.5 /* or * 0.2? */), center: CGPoint(x: 12.3, y: 2.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        /*let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.2, height: spriteNode.size.height/2 /* or * 0.2? */), center: CGPoint(x: 2.0, y: 0.5))
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/7, center: CGPoint(x: 4.0, y: -10.0))
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/8.5, center: CGPoint(x: 8.0, y: 10.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2935,7 +2529,7 @@ class InitSetMapNodes{
      }*/
     
     func salinasBezierPathToSKSpriteNode(bpSalinas: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 323.03, y: 132.19)
+        let position = CGPoint(x: 323.03, y: 134)//CGPoint(x: 323.03, y: 132.19) ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Salinas"
         
         let spriteNode = createMapNode(
@@ -2944,21 +2538,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Salinas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2), center: CGPoint(x: 0.0, y: 0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.5), center: CGPoint(x: 0.0, y: -3.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5, height: spriteNode.size.height/2.8), center: CGPoint(x: -15.0, y: -1.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5, height: spriteNode.size.height/4.5), center: CGPoint(x: -18.5, y: -1.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/8.0), center: CGPoint(x: -22.0, y: -4.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/9.0), center: CGPoint(x: 14.9, y: 8.0))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/9.0), center: CGPoint(x: 18.0, y: 9.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21.0, height: spriteNode.size.height/13.0), center: CGPoint(x: 21.5, y: 11.5))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/17), center: CGPoint(x: 2.8, y: 16.8))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/9), center: CGPoint(x: 7.0, y: 22.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -2990,27 +2570,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Cayey-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -15.5, y: 2.5)) // top left
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -3.5, y: 3.0)) // top right
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -7.0, y: -7.0)) // bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.19, center: CGPoint(x: 6.5, y: 5.0)) // deeper appendix
-        let physicsBody5 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.19, center: CGPoint(x: 13.5, y: 8.0)) // outer appendix
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4, physicsBody5])*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/1.6), center: CGPoint(x: -7.0, y: -2.0))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/13), center: CGPoint(x: -0.5, y: -16.3))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5, height: spriteNode.size.height/2.2), center: CGPoint(x: -19.2, y: 0.7))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25.5, height: spriteNode.size.height/6.5), center: CGPoint(x: -22.3, y: 1.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/7), center: CGPoint(x: 19.5, y: 3.0))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.5, height: spriteNode.size.height/3), center: CGPoint(x: 5.5, y: 4.0))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5, height: spriteNode.size.height/2.5), center: CGPoint(x: 12.5, y: 9.0))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.5, height: spriteNode.size.height/3), center: CGPoint(x: 16.0, y: 7.5))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20.5, height: spriteNode.size.height/3.5), center: CGPoint(x: 9.0, y: 6.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3038,18 +2598,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Cidra-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.1, height: spriteNode.size.height/2 * 1.0), center: CGPoint(x: 3.5, y: -3.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6 , height: spriteNode.size.height/2 * 1.0), center: CGPoint(x: 3.5, y: -3.5))
-        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.0, height: spriteNode.size.height/6.5 /* or * 0.2? */), center: CGPoint(x: 18.0, y: -6.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.5, height: spriteNode.size.height/8.5 /* or * 0.2? */), center: CGPoint(x: 13.5, y: 5.6))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/4.3 /* or * 0.2? */), center: CGPoint(x: 3.5, y: 7.6))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.5, height: spriteNode.size.height/6.2 /* or * 0.2? */), center: CGPoint(x: -1.4, y: 6.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.0, height: spriteNode.size.height/3.7 /* or * 0.2? */), center: CGPoint(x: -12.0, y: -6.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3066,7 +2615,7 @@ class InitSetMapNodes{
      }*/
     
     func santaIsabelBezierPathToSKSpriteNode(bpSantaIsabel: UIBezierPath) -> SKSpriteNode {
-        let position = CGPoint(x: 286.05, y: 125.67)
+        let position = CGPoint(x: 286.05, y: 128)//let position = CGPoint(x: 286.05, y: 125.67) ORIGINAL POSITIONING WITHOUT BEZIERPATH MODIFICATION(MOST ISLANDS/ATOLLS COMMENTED) FOR PHYSICSBODY TO FIT
         let name = "Santa Isabel"
         
         let spriteNode = createMapNode(
@@ -3075,17 +2624,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Santa Isabel-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.25, height: spriteNode.size.height/2 * 1.25), center: CGPoint(x: 1.5, y: 4.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8 , height: spriteNode.size.height/2 * 1.25), center: CGPoint(x: 1.0, y: 4.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.0 , height: spriteNode.size.height/2.5), center: CGPoint(x: 11.9, y: 5.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.0 , height: spriteNode.size.height/9.0), center: CGPoint(x: 14.5, y: 9.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.0 , height: spriteNode.size.height/2.5), center: CGPoint(x: -10.0, y: 0.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.0 , height: spriteNode.size.height/7), center: CGPoint(x: -13.5, y: 0.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3101,6 +2640,41 @@ class InitSetMapNodes{
          return vegaAltaNode
      }*/
     
+    /*func vegaAltaBezierPathToSKSpriteNode(bpVegaAlta: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 300.38, y: 247)
+        let name = "Vega Alta"
+        
+        let spriteNode = createMapNode(
+            from: bpVegaAlta,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
+    /*func vegaAltaBezierPathToSKSpriteNode(bpVegaAlta: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 300.38, y: 247)
+        let name = "Vega Alta"
+        
+        let spriteNode = createMapNode(
+            from: bpVegaAlta,
+            position: position,
+            name: name
+        )
+        
+        // Simple rectangle physics body
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(
+            width: spriteNode.size.width/2,
+            height: spriteNode.size.height/2 * 1.35
+        ), center: CGPoint(x: 1.5, y: 4.5))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        return spriteNode
+    }*/
+    
     func vegaAltaBezierPathToSKSpriteNode(bpVegaAlta: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 300.38, y: 247)
         let name = "Vega Alta"
@@ -3111,17 +2685,14 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Vega Alta-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: 1.5, y: 4.5))
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: 1.5, y: 4.5))
+        // Compound physics body with 4 rectangles
         let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/2 * 1.35), center: CGPoint(x: 1.5, y: 4.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.7 , height: spriteNode.size.height/4.5), center: CGPoint(x: -4.8, y: -4.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.8 , height: spriteNode.size.height/4.5), center: CGPoint(x: -6.5, y: -15.3))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.7, height: spriteNode.size.height/3.5), center: CGPoint(x:7.9, y: 1.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
+        let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.7, height: spriteNode.size.height/4.5), center: CGPoint(x: -4.8, y: -4.5))
+        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.8, height: spriteNode.size.height/4.5), center: CGPoint(x: -6.5, y: -15.3))
+        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.7, height: spriteNode.size.height/3.5), center: CGPoint(x: 7.9, y: 1.0))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -3147,15 +2718,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Dorado-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.70, height: spriteNode.size.height/2 * 2.4), center: CGPoint(x: -4.5, y: 4.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/0.9), center: CGPoint(x: -4.5, y: 3.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5 , height: spriteNode.size.height/2.8), center: CGPoint(x: -11.7, y: 7.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5 , height: spriteNode.size.height/9.0), center: CGPoint(x: 5.7, y: 8.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3/*, physicsBody4*/])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3182,18 +2745,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Toa Alta-specific properties if needed
-        /*spriteNode.zPosition = 1*/
-        
-        // Add Toa Alta-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.26, height: spriteNode.size.height/1.6), center: CGPoint(x: 4.0, y: -1.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6, height: spriteNode.size.height/1.6), center: CGPoint(x: 5.0, y: -0.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5 , height: spriteNode.size.height/5.5), center: CGPoint(x: -10.5, y: 4.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5 , height: spriteNode.size.height/10.0), center: CGPoint(x: 7.0, y: 9.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3/*, physicsBody4*/])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3225,23 +2777,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Toa Baja-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/1.2), center: CGPoint(x: -7.5, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/1.7), center: CGPoint(x: -7.7, y: -2.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0 , height: spriteNode.size.height/9), center: CGPoint(x: -0.5, y: 7.5))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0 , height: spriteNode.size.height/3.0), center: CGPoint(x: 4.0, y: 0.8))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3/*, physicsBody4*/])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -9.5, y: -5.0)) // top left
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -7.5, y: 0.0)) // top right
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: -4.0, y: -5.0)) // bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.28, center: CGPoint(x: 0.5, y: 2.0)) // deeper appendix
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4 /*, physicsBody5*/])
-        spriteNode.physicsBody = compoundBody*/
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3271,21 +2807,8 @@ class InitSetMapNodes{
             position: position,
             name: name
         )
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.3), center: CGPoint(x:-0.5, y: 0.5))
-        // Add Bayamón-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: 10.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -1.0, y: -10.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/1.28), center: CGPoint(x:-0.5, y: 1.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10 , height: spriteNode.size.height/5), center: CGPoint(x: -9.8, y:-14))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.8 , height: spriteNode.size.height/13), center: CGPoint(x: -6.0, y: -20.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/5), center: CGPoint(x: 9.0, y:15.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
         
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3302,6 +2825,21 @@ class InitSetMapNodes{
          return  catanoNode
      }*/
     
+    /*func catanoBezierPathToSKSpriteNode(bpCatano: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 353.86, y: 256.04)
+        let name = "Cataño"
+        
+        let spriteNode = createMapNode(
+            from: bpCatano,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func catanoBezierPathToSKSpriteNode(bpCatano: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 353.86, y: 256.04)
         let name = "Cataño"
@@ -3312,10 +2850,12 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Cataño-specific physics body if needed
-        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.50, height: spriteNode.size.height/2 * 3.5), center: CGPoint(x: -1.5, y: 6.0))
+        // Custom rectangle physics body for better hit detection
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(
+            width: spriteNode.size.width/2 * 1.50,
+            height: spriteNode.size.height/2 * 3.5
+        ), center: CGPoint(x: -1.5, y: 6.0))
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -3331,6 +2871,21 @@ class InitSetMapNodes{
          return guaynaboNode
      }*/
     
+    /*func guaynaboBezierPathToSKSpriteNode(bpGuaynabo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 361.37, y: 233)
+        let name = "Guaynabo"
+        
+        let spriteNode = createMapNode(
+            from: bpGuaynabo,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func guaynaboBezierPathToSKSpriteNode(bpGuaynabo: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 361.37, y: 233)
         let name = "Guaynabo"
@@ -3341,16 +2896,14 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Guaynabo-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.20, height: spriteNode.size.height/2 * 1.4), center: CGPoint(x: -0.5, y: -2.5))
+        // Compound physics body with 4 rectangles for better hit detection
         let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.65, height: spriteNode.size.height/1.75), center: CGPoint(x: -1.5, y: -7.7))
         let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.0 , height: spriteNode.size.height/3.9), center: CGPoint(x: -1.0, y:12.7))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5 , height: spriteNode.size.height/11), center: CGPoint(x: 2.9, y:15.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/5), center: CGPoint(x: 5.5, y:-12.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4])
+        //let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5 , height: spriteNode.size.height/11), center: CGPoint(x: 2.9, y:15.0))
+        //let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/5), center: CGPoint(x: 5.5, y:-12.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2 /*physicsBody3, physicsBody4*/])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -3376,20 +2929,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add San Juan-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.67, height: spriteNode.size.height/2 * 1.40), center: CGPoint(x: -1.0, y: -0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.2, height: spriteNode.size.height/1.2), center: CGPoint(x: -1.0, y: 0.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.4 , height: spriteNode.size.height/16.3), center: CGPoint(x: 11.5, y: 5.2))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.4 , height: spriteNode.size.height/14.5), center: CGPoint(x: 10.5, y: 1.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8 , height: spriteNode.size.height/18.5), center: CGPoint(x: 8.5, y: 8.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0 , height: spriteNode.size.height/16.0), center: CGPoint(x: -10.0, y: 1.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21 , height: spriteNode.size.height/4.5), center: CGPoint(x: -8.6, y: 10.0))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.5 , height: spriteNode.size.height/11.5), center: CGPoint(x: -8.7, y: -11.0))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5 , height: spriteNode.size.height/25.5), center: CGPoint(x: -2.0, y: -22.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3419,24 +2959,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Caguas-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.44, center: CGPoint(x: 4.0, y: 9.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.65, center: CGPoint(x: 0.0, y: -6.0)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.33, center: CGPoint(x: 2.5, y: -19.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/1.2), center: CGPoint(x: 2.4, y: 0.9))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0 , height: spriteNode.size.height/3.4), center: CGPoint(x: 10.0, y: 11.0))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5 , height: spriteNode.size.height/6), center: CGPoint(x: 11.5, y: -3.0))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/4.5), center: CGPoint(x: 9.0, y: -15.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.3 , height: spriteNode.size.height/14), center: CGPoint(x: 2.8, y: -25.5))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.0, height: spriteNode.size.height/2.0), center: CGPoint(x: -4.0, y: -2.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5, height: spriteNode.size.height/2.8), center: CGPoint(x: -7.0, y: -3.5))
-        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12 , height: spriteNode.size.height/4.3), center: CGPoint(x: -10.5, y: -5.0))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.0, height: spriteNode.size.height/26.5), center: CGPoint(x: 5.5, y: 26.2))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3497,37 +3020,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Carolina-specific properties if needed
-        /*spriteNode.zPosition = 1*/
-        
-        // Add Carolina-specific physics bodies if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 3.5, y: 10.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.29, center: CGPoint(x: 5.5, y: 0.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.25, center: CGPoint(x: 9.5, y: -8.5)) // bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.17, center: CGPoint(x: 12.5, y: -16.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])
-        spriteNode.physicsBody = compoundBody*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10, height: spriteNode.size.height/10), center: CGPoint(x: 14.0, y: -22))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17 , height: spriteNode.size.height/7), center: CGPoint(x: 10.0, y: -18))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/4.5), center: CGPoint(x: 14.5, y: -12.5))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6 , height: spriteNode.size.height/8.0), center: CGPoint(x: 8.5, y: -9.5))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5 , height: spriteNode.size.height/8.5), center: CGPoint(x: 3.5, y: -9.0))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8 , height: spriteNode.size.height/7.5), center: CGPoint(x: 7.3, y: -1.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15 , height: spriteNode.size.height/13), center: CGPoint(x: -1.5, y: 0.0))
-        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.1 , height: spriteNode.size.height/17), center: CGPoint(x: 5.0, y: 4.5))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17 , height: spriteNode.size.height/13), center: CGPoint(x: -6.3, y: 7.0))
-        let physicsBody10 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5 , height: spriteNode.size.height/6), center: CGPoint(x: 3.3, y: 11.8))
-        let physicsBody11 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0 , height: spriteNode.size.height/20.5), center: CGPoint(x: 1.5, y: 18.5))
-        let physicsBody12 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.0 , height: spriteNode.size.height/9), center: CGPoint(x:-10.5, y: 20))
-        let physicsBody13 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5 , height: spriteNode.size.height/19), center: CGPoint(x: -7.5, y: 15.0))
-        let physicsBody14 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16 , height: spriteNode.size.height/14.5), center: CGPoint(x: 13.0, y: 12.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10, physicsBody11, physicsBody12, physicsBody13, physicsBody14])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        
-        /*spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.30, height: spriteNode.size.height/2 * 0.95), center: CGPoint(x: -4.5, y: -3.0))
-        spriteNode.physicsBody?.isDynamic = false*/
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3554,24 +3047,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Aguas Buenas-specific properties if needed
-        /*spriteNode.zPosition = 1*/
-        
-        // Add Aguas Buenas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.2, height: spriteNode.size.height/2 * 0.8), center: CGPoint(x: 0.0, y: 0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5 , height: spriteNode.size.height/2.5), center: CGPoint(x: -1.0, y: 1.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.7 , height: spriteNode.size.height/13.0), center: CGPoint(x: 2.0, y: -6.8))
-        let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8 , height: spriteNode.size.height/13), center: CGPoint(x: 0.5, y: -9.8))
-        let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.5 , height: spriteNode.size.height/12), center: CGPoint(x: -2.3, y: -13.0))
-        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0 , height: spriteNode.size.height/13.5), center: CGPoint(x: -8.5, y: -6.8))
-        let physicsBody6 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10.0 , height: spriteNode.size.height/13.0), center: CGPoint(x: -15.0, y: 2.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19.5 , height: spriteNode.size.height/2), center: CGPoint(x: 12.0, y: 5.0))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/4.5), center: CGPoint(x: 14.5, y: 9.5))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16 , height: spriteNode.size.height/8.5), center: CGPoint(x: 9.5, y: 9.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3602,25 +3078,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Trujillo Alto-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/1.3), center: CGPoint(x: -5.5, y: 1.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.6, height: spriteNode.size.height/1.4), center: CGPoint(x: -6.5, y: 1.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.5, height: spriteNode.size.height/1.75), center: CGPoint(x: 0.5, y: 0.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0, height: spriteNode.size.height/2.2), center: CGPoint(x: 3.2, y: -1.2))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.0, height: spriteNode.size.height/5.0), center: CGPoint(x: 5.5, y: -4.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/5.0), center: CGPoint(x: 10.0, y: -9.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-
-        spriteNode.physicsBody?.isDynamic = false
-        
-        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -4.5, y: 5.5)) // top physicsBody
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -5.5, y: -2.5)) // middle
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -0.5, y: -1.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3 /*, physicsBody48*/])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false*/
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3642,6 +3100,21 @@ class InitSetMapNodes{
          return loizaNode
      }*/
     
+    /*func loizaBezierPathToSKSpriteNode(bpLoiza: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 415.49, y: 250.07)
+        let name = "Loíza"
+        
+        let spriteNode = createMapNode(
+            from: bpLoiza,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func loizaBezierPathToSKSpriteNode(bpLoiza: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 415.49, y: 250.07)
         let name = "Loíza"
@@ -3652,26 +3125,13 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Loíza-specific properties if needed
-        /*spriteNode.zRotation = 0.00 // or 0.10? */
-        /*spriteNode.setScale(0.5750) // or 0.59? */
-        // Alternative position: CGPoint(x: 414.55, y: 249.48)
-        
-        // Add Loíza-specific physics body if needed
-        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 14.0, y: 5.0)) // left
+        // Compound physics body with 3 circles following the shape
+        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 14.0, y: 5.0)) // left
         let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 0.5, y: 7.5)) // middle
         let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -13.5, y: 13.5)) // right
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])*/
-        let physicsBody1 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/1.25), center: CGPoint(x: 10.5, y: 7.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/2), center: CGPoint(x: -8.0, y: 10.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/26, height: spriteNode.size.height/3), center: CGPoint(x: -0.7, y: -0.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/6.5), center: CGPoint(x: -3.5, y: 2.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/2.4), center: CGPoint(x: -18.0, y: 11.5))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14.5, height: spriteNode.size.height/3.1), center: CGPoint(x: 12.3, y: -6.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -3688,6 +3148,41 @@ class InitSetMapNodes{
          return canovanasNode
      }*/
     
+    /*func canovanasBezierPathToSKSpriteNode(bpCanovanas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 422.96, y: 225.63)
+        let name = "Canóvanas"
+        
+        let spriteNode = createMapNode(
+            from: bpCanovanas,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
+        /*func canovanasBezierPathToSKSpriteNode(bpCanovanas: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 422.96, y: 225.63)
+        let name = "Canóvanas"
+        
+        let spriteNode = createMapNode(
+            from: bpCanovanas,
+            position: position,
+            name: name
+        )
+        
+        // Custom rectangle physics body for better hit detection
+        spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(
+            width: spriteNode.size.width/2 * 0.75,
+            height: spriteNode.size.height/2 * 1.6
+        ), center: CGPoint(x: -1.5, y: -0.5))
+        spriteNode.physicsBody?.isDynamic = false
+        
+        return spriteNode
+    }*/
+    
     func canovanasBezierPathToSKSpriteNode(bpCanovanas: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 422.96, y: 225.63)
         let name = "Canóvanas"
@@ -3698,17 +3193,15 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Canóvanas-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 0.75, height: spriteNode.size.height/2 * 1.6), center: CGPoint(x: -1.5, y: -0.5))
+        // Custom compound physics body with 5 rectangles for better hit detection
         let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.15), center: CGPoint(x: -2.0, y: 0.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16 , height: spriteNode.size.height/5.8), center: CGPoint(x: -8.0, y:7.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18 , height: spriteNode.size.height/4.0), center: CGPoint(x: 4.0, y:-7.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5 , height: spriteNode.size.height/18), center: CGPoint(x: -9.5, y:17.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4 , height: spriteNode.size.height/8.0), center: CGPoint(x:6.5, y:-17.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
+        //let physicsBody2 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/5.8), center: CGPoint(x: -8.0, y: 7.5))
+        //let physicsBody3 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.5, height: spriteNode.size.height/18), center: CGPoint(x: -9.5, y: 17.0))
+        //let physicsBody4 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18, height: spriteNode.size.height/4.0), center: CGPoint(x: 4.0, y: -7.5))
+        let physicsBody5 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4, height: spriteNode.size.height/8.0), center: CGPoint(x: 6.5, y: -17.5))
+        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, /*physicsBody2, physicsBody3, physicsBody4,*/ physicsBody5])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -3734,22 +3227,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Rio Grande-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.15, height: spriteNode.size.height/2 * 1.15), center: CGPoint(x: -1.0, y: 0.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.5, height: spriteNode.size.height/1.5), center: CGPoint(x: 0.0, y: 0.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10 , height: spriteNode.size.height/16), center: CGPoint(x: 11.5, y:-16.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18 , height: spriteNode.size.height/5), center: CGPoint(x: 13.5, y:-4.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13.0 , height: spriteNode.size.height/3.5), center: CGPoint(x: -14.3, y:2.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/26.0 , height: spriteNode.size.height/4.5), center: CGPoint(x: -13.1, y:-10.0))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/8.5 , height: spriteNode.size.height/15), center: CGPoint(x: -4.7, y:-18.5))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.7 , height: spriteNode.size.height/33), center: CGPoint(x: -4.9, y:-15.7))
-        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8 , height: spriteNode.size.height/23), center: CGPoint(x: 0.5, y:16.0))
-        let physicsBody9 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9 , height: spriteNode.size.height/15), center: CGPoint(x: -4.0, y:19.0))
-        let physicsBody10 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/10 , height: spriteNode.size.height/14.5), center: CGPoint(x: 14.0, y:11.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3780,24 +3258,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Luquillo-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6, height: spriteNode.size.height/1.5), center: CGPoint(x: -1.5, y: 5.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.6, height: spriteNode.size.height/1.5), center: CGPoint(x: 0.0, y: 5.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19 , height: spriteNode.size.height/3.5), center: CGPoint(x: 10.3, y:3.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.0 , height: spriteNode.size.height/4.5), center: CGPoint(x: -11.0, y:7.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.6 , height: spriteNode.size.height/8), center: CGPoint(x: -5.8, y:-10.5))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.2 , height: spriteNode.size.height/11.5), center: CGPoint(x:-2.5, y:-6.3))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.38, center: CGPoint(x: -2.5, y: -5.0)) // top left
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: -4.5, y: 4.5)) // top right
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 4.5, y: 2.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false*/
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3828,21 +3289,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Fajardo-specific physics body if needed
-        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.15, center: CGPoint(x: -8.0, y: -3.5)) // top right
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.14, center: CGPoint(x: -13.0, y: -9.0)) // bottom
-        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.18, center: CGPoint(x: -3.5, y: -7.0)) // deeper appendix
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.27, center: CGPoint(x: -0.5, y: 5.0)) // outer appendix
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3, physicsBody4])*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/1.3), center: CGPoint(x: 1.5, y: 2.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/33 , height: spriteNode.size.height/2.4), center: CGPoint(x: -10.5, y:-8.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17 , height: spriteNode.size.height/3.8), center: CGPoint(x: -14.3, y:-8.0))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.0 , height: spriteNode.size.height/3.8), center: CGPoint(x: -19.0, y:-12.5))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17.5 , height: spriteNode.size.height/8.0), center: CGPoint(x: -24.0, y:-14.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3868,19 +3315,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Ceiba-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.20, height: spriteNode.size.height/2 * 1.05), center: CGPoint(x: 13.5, y: 2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.1, height: spriteNode.size.height/1.25), center: CGPoint(x: 15.5, y: -1.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/22.5, height: spriteNode.size.height/1.8), center: CGPoint(x: 1.0, y: 1.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/24, height: spriteNode.size.height/2.3), center: CGPoint(x: -2.0, y: 1.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/21, height: spriteNode.size.height/3.9), center: CGPoint(x: -6.0, y: 6.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5 , height: spriteNode.size.height/9.5), center: CGPoint(x: -13.5, y:4.5))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/24, height: spriteNode.size.height/3.9), center: CGPoint(x: -20.5, y: 9.0))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/28, height: spriteNode.size.height/5), center: CGPoint(x: -23.0, y: 10.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3906,19 +3341,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Gurabo-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2), center: CGPoint(x: -1.0, y: 2.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2), center: CGPoint(x: -1.0, y: 2.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20, height: spriteNode.size.height/3.8), center: CGPoint(x: 8.3, y: 3.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/17, height: spriteNode.size.height/8.5), center: CGPoint(x: 11.0, y: 3.8))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.3, height: spriteNode.size.height/14), center: CGPoint(x: -5.5, y: -9.5))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.9, height: spriteNode.size.height/18), center: CGPoint(x: -0.5, y: -7))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/11.0), center: CGPoint(x: -3.3, y: 11.7))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7, height: spriteNode.size.height/6.0), center: CGPoint(x: -12, y: 10))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3950,27 +3373,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Juncos-specific physics bodies if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width - 14, height: spriteNode.size.height - 22), center: CGPoint(x: -2.5, y: 7.0))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.65, height: spriteNode.size.height/2.7), center: CGPoint(x: -3.0, y: 7.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11, height: spriteNode.size.height/4.0), center: CGPoint(x: 7.6, y: 8.9))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11, height: spriteNode.size.height/9.3), center: CGPoint(x: 11.1, y: 11.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/12.5), center: CGPoint(x: -5.0, y: 16.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/4), center: CGPoint(x: -5.5, y: -10.0))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/5.5), center: CGPoint(x: -2.0, y: -3.5))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11.5, height: spriteNode.size.height/8.0), center: CGPoint(x: -5.0, y: -2.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -2.0, y: 1.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -8.5, y: 4.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.35, center: CGPoint(x: -5.0, y: 11.0)) // bottom
-        let physicsBody4 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.40, center: CGPoint(x: 3.5, y: 8.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody2, physicsBody1, physicsBody3, physicsBody4])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false*/
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -3996,19 +3399,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add San Lorenzo-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 1.10), center: CGPoint(x: 6.0, y: -2.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/1.5), center: CGPoint(x: 6.0, y: -1.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/1.5), center: CGPoint(x: -5.0, y: -6.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/33, height: spriteNode.size.height/2.3), center: CGPoint(x: -7.6, y: -5.0))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/15.5, height: spriteNode.size.height/6), center: CGPoint(x: -10.0, y: -10.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/11, height: spriteNode.size.height/19.0), center: CGPoint(x: -13.5, y: -12.0))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/9.5), center: CGPoint(x: 5, y: 16.0))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.0, height: spriteNode.size.height/17.5), center: CGPoint(x: 7, y: 20.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4034,19 +3425,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Guayama-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.0, height: spriteNode.size.height/2 * 0.75), center: CGPoint(x: -0.5, y: -4.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.0, height: spriteNode.size.height/1.9), center: CGPoint(x: -0.5, y: -8.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.5, height: spriteNode.size.height/2.0), center: CGPoint(x: -15.5, y: -12.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/4), center: CGPoint(x: 13.5, y: -10.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16.5, height: spriteNode.size.height/16), center: CGPoint(x: -6.5, y: 7.5))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.9, height: spriteNode.size.height/17.0), center: CGPoint(x: 10.0, y: 19.5))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.5, height: spriteNode.size.height/17.5), center: CGPoint(x: 14.0, y: 23.5))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.3, height: spriteNode.size.height/5.0), center: CGPoint(x: 8.0, y: 11.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4066,6 +3445,21 @@ class InitSetMapNodes{
         return arroyoNode
      }*/
     
+    /*func arroyoBezierPathToSKSpriteNode(bpArroyo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 376.13, y: 130.08)
+        let name = "Arroyo"
+        
+        let spriteNode = createMapNode(
+            from: bpArroyo,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func arroyoBezierPathToSKSpriteNode(bpArroyo: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 376.13, y: 130.08)
         let name = "Arroyo"
@@ -4076,19 +3470,13 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Arroyo-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -2.5, y: 6.5)) // top physicsBody
+        // Custom compound physics body with 3 circles following the shape
+        let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.55, center: CGPoint(x: -2.5, y: 6.5)) // top
         let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.50, center: CGPoint(x: 0.5, y: 0.5)) // middle
         let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.60, center: CGPoint(x: 3.5, y: -6.5)) // bottom
         let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/4.0), center: CGPoint(x: -2.0, y: 7.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.5, height: spriteNode.size.height/8.0), center: CGPoint(x: 0.0, y: 1.3))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/2.3), center: CGPoint(x: 2.5, y: -6.8))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -4118,25 +3506,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Patillas-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.27, center: CGPoint(x: -11.5, y: 6.5)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.27, center: CGPoint(x: -4.5, y: -1.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 2.5, y: -10.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.3, height: spriteNode.size.height/5), center: CGPoint(x: 0.6, y: -8.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/5.5), center: CGPoint(x: -22.5, y: 3.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/4), center: CGPoint(x: -19.5, y: 5.0))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.2, height: spriteNode.size.height/6.5), center: CGPoint(x: -11.0, y: 14.0))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.2, height: spriteNode.size.height/8), center: CGPoint(x: -9.5, y: 7.8))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/33, height: spriteNode.size.height/3.5), center: CGPoint(x: -17.0, y: 6.5))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/8.5), center: CGPoint(x: -6.0, y: 2.3))
-        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.3, height: spriteNode.size.height/20.5), center: CGPoint(x: -3.5, y: -2.1))
-        let physicsBody9 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.7, height: spriteNode.size.height/9), center: CGPoint(x: 8.5, y: -18))
-        let physicsBody10 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/17.5), center: CGPoint(x: 5.0, y: -13.7))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4157,6 +3527,21 @@ class InitSetMapNodes{
          return maunaboNode
      }*/
     
+    /*func maunaboBezierPathToSKSpriteNode(bpMaunabo: UIBezierPath) -> SKSpriteNode {
+        let position = CGPoint(x: 413.33, y: 137.01)
+        let name = "Maunabo"
+        
+        let spriteNode = createMapNode(
+            from: bpMaunabo,
+            position: position,
+            name: name
+        )
+        
+        // Physics body is now automatically created by createMapNode using texture-based detection
+        
+        return spriteNode
+    }*/
+    
     func maunaboBezierPathToSKSpriteNode(bpMaunabo: UIBezierPath) -> SKSpriteNode {
         let position = CGPoint(x: 413.33, y: 137.01)
         let name = "Maunabo"
@@ -4167,7 +3552,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Maunabo-specific physics body if needed
+        // Custom compound physics body with multiple circles for better hit detection
         /*let physicsBody0 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: -12.5, y: 5.5)) // deepest body
         let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.20, center: CGPoint(x: -8.5, y: 3.5))
         let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.33, center: CGPoint(x: -2.0, y: -2.0))
@@ -4181,7 +3566,6 @@ class InitSetMapNodes{
         let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5])
         spriteNode.physicsBody = compoundBody
         spriteNode.physicsBody?.isDynamic = false
-        
         
         return spriteNode
     }
@@ -4207,24 +3591,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Yabucoa-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2, height: spriteNode.size.height/2 * 0.80), center: CGPoint(x: 4.5, y: 0.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/7.5, height: spriteNode.size.height/1.4), center: CGPoint(x: -1.0, y: 3.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/2.25), center: CGPoint(x: -7.5, y:-0.4))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18 , height: spriteNode.size.height/3), center: CGPoint(x: -11.5, y:0.0))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/14 , height: spriteNode.size.height/3.6), center: CGPoint(x: -16.5, y:0.8))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/20 , height: spriteNode.size.height/4.0), center: CGPoint(x: -21.0, y:1.5))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/40 , height: spriteNode.size.height/4.0), center: CGPoint(x: -24.0, y:1.5))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25 , height: spriteNode.size.height/9.0), center: CGPoint(x: -27.0, y:0.5))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/1.4), center: CGPoint(x: 7.0, y: 0.0))
-        let physicsBody9 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/1.2), center: CGPoint(x: 12.5, y: 0.0))
-        let physicsBody10 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18, height: spriteNode.size.height/1.65), center: CGPoint(x: 17.0, y: -4.5))
-        let physicsBody11 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18, height: spriteNode.size.height/15), center: CGPoint(x: 26.0, y: -1.5))
-        let physicsBody12 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/19, height: spriteNode.size.height/5), center: CGPoint(x: 21.5, y: 0.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9, physicsBody10, physicsBody11, physicsBody12])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4254,25 +3621,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Las Piedras-specific physics body if needed
-        /*let physicsBody3 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.30, center: CGPoint(x: 7.5, y: 11.0)) // top physicsBody
-        let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.42, center: CGPoint(x: 5.0, y: 1.5)) // middle
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.45, center: CGPoint(x: -3.0, y: -7.5)) // bottom
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2, physicsBody3])
-        spriteNode.physicsBody = compoundBody*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/6.1), center: CGPoint(x: -8.0, y: -16.5))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12.5, height: spriteNode.size.height/12.0), center: CGPoint(x: 0.4, y: -15.0))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3, height: spriteNode.size.height/6.5), center: CGPoint(x: -2.0, y: -8.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/6.5), center: CGPoint(x: -9.0, y: -8.5))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.8, height: spriteNode.size.height/9.0), center: CGPoint(x: 2.0, y: -1.5))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.0, height: spriteNode.size.height/11.0), center: CGPoint(x: 5.0, y:4.0))
-        let physicsBody7 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/3.8, height: spriteNode.size.height/11.5), center: CGPoint(x: 7.0, y:9.0))
-        let physicsBody8 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/10.0), center: CGPoint(x: 9.0, y:14.0))
-        let physicsBody9 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/6.0, height: spriteNode.size.height/14.0), center: CGPoint(x: 11.0, y:19.0))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8, physicsBody9])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4301,20 +3650,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Humacao-specific physics body if needed
-        /*let physicsBody1 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.45, center: CGPoint(x: 1.5, y: 7.0)) // top physicsBody
-        let physicsBody2 = SKPhysicsBody(circleOfRadius: spriteNode.size.width/2 * 0.45, center: CGPoint(x: -3.0, y: -2.5)) // middle
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1, physicsBody2])*/
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.8, height: spriteNode.size.height/1.23), center: CGPoint(x: 1.3, y: 1.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/16, height: spriteNode.size.height/1.7), center: CGPoint(x: -8.5, y: -1.5))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/2.5), center: CGPoint(x: -12.5, y: 2.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/10), center: CGPoint(x: -17.0, y: -3.5))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/13, height: spriteNode.size.height/13), center: CGPoint(x: 0.0, y: -17.6))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/5.2, height: spriteNode.size.height/5.7), center: CGPoint(x: 13.5, y: 7.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4340,20 +3676,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Naguabo-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.30, height: spriteNode.size.height/2 * 0.90), center: CGPoint(x: -2.5, y: -1.5))
-        let physicsBody1 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/1.4, height: spriteNode.size.height/2.6), center: CGPoint(x: -2.5, y: -2.0))
-        let physicsBody2 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/25, height: spriteNode.size.height/4.2), center: CGPoint(x: -21.1, y: -3.9))
-        let physicsBody3 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/4.5, height: spriteNode.size.height/4.5), center: CGPoint(x: -14.0, y: 9.5))
-        let physicsBody4 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/12, height: spriteNode.size.height/19), center: CGPoint(x: -12.5, y: 14.8))
-        let physicsBody5 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/18.5, height: spriteNode.size.height/6.0), center: CGPoint(x: -6.5, y: 8.5))
-        let physicsBody6 =  SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/23, height: spriteNode.size.height/10), center: CGPoint(x: -3.4, y: 7.5))
-        let physicsBody7 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2.4, height: spriteNode.size.height/6.0), center: CGPoint(x: 4.2, y: -12.5))
-        let physicsBody8 = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/9.0, height: spriteNode.size.height/4.5), center: CGPoint(x: 18.3, y: -7.5))
-        let compoundBody = SKPhysicsBody(bodies: [physicsBody1 ,physicsBody2, physicsBody3, physicsBody4, physicsBody5, physicsBody6, physicsBody7, physicsBody8])
-        spriteNode.physicsBody = compoundBody
-        spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4379,12 +3702,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Vieques-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width, height: spriteNode.size.height), center: CGPoint(x: 0.5, y: 0.5))
-        //spriteNode.physicsBody?.isDynamic = false
-       
-        
-        // Alternative positions: CGPoint(x: 582.85, y: 154.19), CGPoint(x: 512, y: 95)
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4410,10 +3728,7 @@ class InitSetMapNodes{
             name: name
         )
         
-        // Add Culebra-specific physics body if needed
-        //spriteNode.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: spriteNode.size.width/2 * 1.7, height: spriteNode.size.height/2 * 2.1), center: CGPoint(x: 3.5, y: 0.0))
-        //spriteNode.physicsBody?.isDynamic = false
-        
+        // Physics body is now automatically created by createMapNode using texture-based detection
         
         return spriteNode
     }
@@ -4445,7 +3760,8 @@ class InitSetMapNodes{
          }
          //shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)//c1d3c8
          shapeNode.lineWidth = 2.5
-         let texture = InitSetMapNodes.textureGeneratorView.texture(from: shapeNode)!
+         let view = SKView(frame: UIScreen.main.bounds)
+         let texture = view.texture(from: shapeNode)!
          let rectangleViequesNode = SKSpriteNode(texture: texture)
          rectangleViequesNode.position = CGPoint(x:473, y:103.5)
          return  rectangleViequesNode
@@ -4464,11 +3780,13 @@ class InitSetMapNodes{
           }
          //shapeNode.strokeColor = UIColor.init(red: 1, green: 0.8824, blue: 0.5804, alpha: 1.0)
          shapeNode.lineWidth = 2.5
-          let texture = InitSetMapNodes.textureGeneratorView.texture(from: shapeNode)!
+         let view = SKView(frame: UIScreen.main.bounds)
+         let texture = view.texture(from: shapeNode)!
          let rectangleCulebraNode = SKSpriteNode(texture: texture)
          rectangleCulebraNode.position = CGPoint(x:493.5, y:141.1)
          return  rectangleCulebraNode
      }
     
 }
+
 

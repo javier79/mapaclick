@@ -194,7 +194,7 @@ class PracticeRandomGameScene: SKScene{
         }
         
         // FOR TESTING ONLY - REMOVE BEFORE RELEASE
-        TutorialManager.resetTutorialCount()
+        //TutorialManager.resetTutorialCount()
 
         // Show tutorial if needed
         if TutorialManager.shouldShowTutorial() {

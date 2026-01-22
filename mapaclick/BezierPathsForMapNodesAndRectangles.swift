@@ -89,7 +89,7 @@ class BezierPathsForMapNodesAndRectangles{
 
    func caboRojoDrawBezierPath() -> UIBezierPath{
        let pRCRPath = UIBezierPath()
-       pRCRPath.move(to: CGPoint(x: 15.87, y: -33.66))
+       /*pRCRPath.move(to: CGPoint(x: 15.87, y: -33.66))
        pRCRPath.addLine(to: CGPoint(x: 15.72, y: -33.66))
        pRCRPath.addLine(to: CGPoint(x: 15.72, y: -33.74))
        pRCRPath.addLine(to: CGPoint(x: 15.57, y: -33.74))
@@ -242,7 +242,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRCRPath.addLine(to: CGPoint(x: 15.95, y: -33.74))
        pRCRPath.addLine(to: CGPoint(x: 15.87, y: -33.74))
        pRCRPath.addLine(to: CGPoint(x: 15.87, y: -33.66))
-       pRCRPath.close()
+       pRCRPath.close()*/
        pRCRPath.move(to: CGPoint(x: -6.81, y: 35.94))
        pRCRPath.addLine(to: CGPoint(x: -7.03, y: 35.94))
        pRCRPath.addLine(to: CGPoint(x: -7.03, y: 35.86))
@@ -5389,7 +5389,7 @@ class BezierPathsForMapNodesAndRectangles{
    
    func lajasDrawBezierPath() -> UIBezierPath{
        let pRLJPath = UIBezierPath()
-       pRLJPath.move(to: CGPoint(x: -16.11, y: -18.43))
+       /*pRLJPath.move(to: CGPoint(x: -16.11, y: -18.43))
        pRLJPath.addLine(to: CGPoint(x: -16.26, y: -18.43))
        pRLJPath.addLine(to: CGPoint(x: -16.26, y: -18.59))
        pRLJPath.addLine(to: CGPoint(x: -16.19, y: -18.59))
@@ -5414,8 +5414,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRLJPath.addLine(to: CGPoint(x: -15.59, y: -18.51))
        pRLJPath.addLine(to: CGPoint(x: -16.11, y: -18.51))
        pRLJPath.addLine(to: CGPoint(x: -16.11, y: -18.43))
-       pRLJPath.close()
-       pRLJPath.move(to: CGPoint(x: 5.23, y: -17.25))
+       pRLJPath.close()*/
+       /*pRLJPath.move(to: CGPoint(x: 5.23, y: -17.25))
        pRLJPath.addLine(to: CGPoint(x: 4.85, y: -17.25))
        pRLJPath.addLine(to: CGPoint(x: 4.85, y: -17.33))
        pRLJPath.addLine(to: CGPoint(x: 4.55, y: -17.33))
@@ -5430,8 +5430,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRLJPath.addLine(to: CGPoint(x: 5.45, y: -17.33))
        pRLJPath.addLine(to: CGPoint(x: 5.23, y: -17.33))
        pRLJPath.addLine(to: CGPoint(x: 5.23, y: -17.25))
-       pRLJPath.close()
-       pRLJPath.move(to: CGPoint(x: -3.53, y: -16.93))
+       pRLJPath.close()*/
+       /*pRLJPath.move(to: CGPoint(x: -3.53, y: -16.93))
        pRLJPath.addLine(to: CGPoint(x: -3.83, y: -16.93))
        pRLJPath.addLine(to: CGPoint(x: -3.83, y: -17.02))
        pRLJPath.addLine(to: CGPoint(x: -3.91, y: -17.02))
@@ -5450,8 +5450,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRLJPath.addLine(to: CGPoint(x: -3.31, y: -17.02))
        pRLJPath.addLine(to: CGPoint(x: -3.53, y: -17.02))
        pRLJPath.addLine(to: CGPoint(x: -3.53, y: -16.93))
-       pRLJPath.close()
-       pRLJPath.move(to: CGPoint(x: -0.69, y: -16.38))
+       pRLJPath.close()*/
+       /*pRLJPath.move(to: CGPoint(x: -0.69, y: -16.38))
        pRLJPath.addLine(to: CGPoint(x: -0.99, y: -16.38))
        pRLJPath.addLine(to: CGPoint(x: -0.99, y: -16.46))
        pRLJPath.addLine(to: CGPoint(x: -1.06, y: -16.46))
@@ -5470,8 +5470,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRLJPath.addLine(to: CGPoint(x: -0.61, y: -16.46))
        pRLJPath.addLine(to: CGPoint(x: -0.69, y: -16.46))
        pRLJPath.addLine(to: CGPoint(x: -0.69, y: -16.38))
-       pRLJPath.close()
-       pRLJPath.move(to: CGPoint(x: 9.57, y: -14.73))
+       pRLJPath.close()*/
+       /*pRLJPath.move(to: CGPoint(x: 9.57, y: -14.73))
        pRLJPath.addLine(to: CGPoint(x: 9.34, y: -14.73))
        pRLJPath.addLine(to: CGPoint(x: 9.34, y: -15.12))
        pRLJPath.addLine(to: CGPoint(x: 9.42, y: -15.12))
@@ -5540,8 +5540,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRLJPath.addLine(to: CGPoint(x: 9.64, y: -14.9))
        pRLJPath.addLine(to: CGPoint(x: 9.57, y: -14.9))
        pRLJPath.addLine(to: CGPoint(x: 9.57, y: -14.73))
-       pRLJPath.close()
-       pRLJPath.move(to: CGPoint(x: 13.91, y: -13.47))
+       pRLJPath.close()*/
+       /*pRLJPath.move(to: CGPoint(x: 13.91, y: -13.47))
        pRLJPath.addLine(to: CGPoint(x: 13.83, y: -13.47))
        pRLJPath.addLine(to: CGPoint(x: 13.83, y: -13.55))
        pRLJPath.addLine(to: CGPoint(x: 13.01, y: -13.55))
@@ -5652,7 +5652,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRLJPath.addLine(to: CGPoint(x: 14.13, y: -13.55))
        pRLJPath.addLine(to: CGPoint(x: 13.91, y: -13.55))
        pRLJPath.addLine(to: CGPoint(x: 13.91, y: -13.47))
-       pRLJPath.close()
+       pRLJPath.close()*/
        pRLJPath.move(to: CGPoint(x: 0.43, y: -10.17))
        pRLJPath.addLine(to: CGPoint(x: 0.58, y: -10.17))
        pRLJPath.addLine(to: CGPoint(x: 0.58, y: -10.09))
@@ -8248,7 +8248,7 @@ class BezierPathsForMapNodesAndRectangles{
    
    func ponceDrawBezierPath() -> UIBezierPath{
        let pRPOPath = UIBezierPath()
-       pRPOPath.move(to: CGPoint(x: 20.32, y: -41))
+       /*pRPOPath.move(to: CGPoint(x: 20.32, y: -41))
        pRPOPath.addLine(to: CGPoint(x: 20.32, y: -40.92))
        pRPOPath.addLine(to: CGPoint(x: 20.39, y: -40.92))
        pRPOPath.addLine(to: CGPoint(x: 20.39, y: -40.84))
@@ -8449,8 +8449,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRPOPath.addLine(to: CGPoint(x: 20.09, y: -40.84))
        pRPOPath.addLine(to: CGPoint(x: 20.09, y: -41))
        pRPOPath.addLine(to: CGPoint(x: 20.32, y: -41))
-       pRPOPath.close()
-       pRPOPath.move(to: CGPoint(x: -20.48, y: -20.78))
+       pRPOPath.close()*/
+       /*pRPOPath.move(to: CGPoint(x: -20.48, y: -20.78))
        pRPOPath.addLine(to: CGPoint(x: -20.63, y: -20.78))
        pRPOPath.addLine(to: CGPoint(x: -20.63, y: -20.86))
        pRPOPath.addLine(to: CGPoint(x: -20.78, y: -20.86))
@@ -8487,7 +8487,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRPOPath.addLine(to: CGPoint(x: -20.33, y: -20.86))
        pRPOPath.addLine(to: CGPoint(x: -20.48, y: -20.86))
        pRPOPath.addLine(to: CGPoint(x: -20.48, y: -20.78))
-       pRPOPath.close()
+       pRPOPath.close()*/
        pRPOPath.move(to: CGPoint(x: 13.73, y: -18.57))
        pRPOPath.addLine(to: CGPoint(x: 13.88, y: -18.57))
        pRPOPath.addLine(to: CGPoint(x: 13.88, y: -18.49))
@@ -9199,7 +9199,7 @@ class BezierPathsForMapNodesAndRectangles{
 
    func penuelasDrawBezierPath() -> UIBezierPath{
        let pRPNPath = UIBezierPath()
-       pRPNPath.move(to: CGPoint(x: -7.66, y: -23.34))
+       /*pRPNPath.move(to: CGPoint(x: -7.66, y: -23.34))
        pRPNPath.addLine(to: CGPoint(x: -7.96, y: -23.34))
        pRPNPath.addLine(to: CGPoint(x: -7.96, y: -23.42))
        pRPNPath.addLine(to: CGPoint(x: -8.18, y: -23.42))
@@ -9230,8 +9230,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRPNPath.addLine(to: CGPoint(x: -7.21, y: -23.42))
        pRPNPath.addLine(to: CGPoint(x: -7.66, y: -23.42))
        pRPNPath.addLine(to: CGPoint(x: -7.66, y: -23.34))
-       pRPNPath.close()
-       pRPNPath.move(to: CGPoint(x: -2.04, y: -21.92))
+       pRPNPath.close()*/
+       /*pRPNPath.move(to: CGPoint(x: -2.04, y: -21.92))
        pRPNPath.addLine(to: CGPoint(x: -2.42, y: -21.92))
        pRPNPath.addLine(to: CGPoint(x: -2.42, y: -22))
        pRPNPath.addLine(to: CGPoint(x: -2.57, y: -22))
@@ -9274,7 +9274,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRPNPath.addLine(to: CGPoint(x: -1.89, y: -22))
        pRPNPath.addLine(to: CGPoint(x: -2.04, y: -22))
        pRPNPath.addLine(to: CGPoint(x: -2.04, y: -21.92))
-       pRPNPath.close()
+       pRPNPath.close()*/
        pRPNPath.move(to: CGPoint(x: -6.83, y: -20.74))
        pRPNPath.addLine(to: CGPoint(x: -6.91, y: -20.74))
        pRPNPath.addLine(to: CGPoint(x: -6.91, y: -20.82))
@@ -10205,7 +10205,7 @@ class BezierPathsForMapNodesAndRectangles{
    func juanaDiazDrawBezierPath() -> UIBezierPath{
 
        let pRJDPath = UIBezierPath()
-       pRJDPath.move(to: CGPoint(x: 9.85, y: -29.72))
+       /*pRJDPath.move(to: CGPoint(x: 9.85, y: -29.72))
        pRJDPath.addLine(to: CGPoint(x: 9.18, y: -29.72))
        pRJDPath.addLine(to: CGPoint(x: 9.18, y: -30.03))
        pRJDPath.addLine(to: CGPoint(x: 9.25, y: -30.03))
@@ -10266,7 +10266,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRJDPath.addLine(to: CGPoint(x: 10, y: -29.79))
        pRJDPath.addLine(to: CGPoint(x: 9.85, y: -29.79))
        pRJDPath.addLine(to: CGPoint(x: 9.85, y: -29.72))
-       pRJDPath.close()
+       pRJDPath.close()*/
        pRJDPath.move(to: CGPoint(x: -14.47, y: 32.62))
        pRJDPath.addLine(to: CGPoint(x: -15.96, y: 32.34))
        pRJDPath.addLine(to: CGPoint(x: -16.95, y: 30.85))
@@ -13730,7 +13730,7 @@ class BezierPathsForMapNodesAndRectangles{
    
    func salinasDrawBezierPath() -> UIBezierPath{
        let pRSAPath = UIBezierPath()
-       pRSAPath.move(to: CGPoint(x: 0.94, y: -23.48))
+       /*pRSAPath.move(to: CGPoint(x: 0.94, y: -23.48))
        pRSAPath.addLine(to: CGPoint(x: 0.57, y: -23.48))
        pRSAPath.addLine(to: CGPoint(x: 0.57, y: -23.56))
        pRSAPath.addLine(to: CGPoint(x: 0.34, y: -23.56))
@@ -13903,8 +13903,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRSAPath.addLine(to: CGPoint(x: 1.09, y: -23.56))
        pRSAPath.addLine(to: CGPoint(x: 0.94, y: -23.56))
        pRSAPath.addLine(to: CGPoint(x: 0.94, y: -23.48))
-       pRSAPath.close()
-       pRSAPath.move(to: CGPoint(x: -2.05, y: -22.14))
+       pRSAPath.close()*/
+       /*pRSAPath.move(to: CGPoint(x: -2.05, y: -22.14))
        pRSAPath.addLine(to: CGPoint(x: -2.43, y: -22.14))
        pRSAPath.addLine(to: CGPoint(x: -2.43, y: -22.22))
        pRSAPath.addLine(to: CGPoint(x: -2.5, y: -22.22))
@@ -13951,7 +13951,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRSAPath.addLine(to: CGPoint(x: -1.9, y: -22.22))
        pRSAPath.addLine(to: CGPoint(x: -2.05, y: -22.22))
        pRSAPath.addLine(to: CGPoint(x: -2.05, y: -22.14))
-       pRSAPath.close()
+       pRSAPath.close()*/
        pRSAPath.move(to: CGPoint(x: -9.99, y: -19.15))
        pRSAPath.addLine(to: CGPoint(x: -10.21, y: -19.15))
        pRSAPath.addLine(to: CGPoint(x: -10.21, y: -19.23))
@@ -15072,7 +15072,7 @@ class BezierPathsForMapNodesAndRectangles{
 
    func santaIsabelDrawBezierPath() -> UIBezierPath{
        let pRSIPath = UIBezierPath()
-       pRSIPath.move(to: CGPoint(x: 1.62, y: -16.64))
+       /*pRSIPath.move(to: CGPoint(x: 1.62, y: -16.64))
        pRSIPath.addLine(to: CGPoint(x: 1.25, y: -16.64))
        pRSIPath.addLine(to: CGPoint(x: 1.25, y: -16.71))
        pRSIPath.addLine(to: CGPoint(x: 1.17, y: -16.71))
@@ -15097,8 +15097,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRSIPath.addLine(to: CGPoint(x: 1.7, y: -16.72))
        pRSIPath.addLine(to: CGPoint(x: 1.62, y: -16.72))
        pRSIPath.addLine(to: CGPoint(x: 1.62, y: -16.64))
-       pRSIPath.close()
-       pRSIPath.move(to: CGPoint(x: 2.52, y: -16.4))
+       pRSIPath.close()*/
+       /*pRSIPath.move(to: CGPoint(x: 2.52, y: -16.4))
        pRSIPath.addLine(to: CGPoint(x: 2.22, y: -16.4))
        pRSIPath.addLine(to: CGPoint(x: 2.22, y: -16.48))
        pRSIPath.addLine(to: CGPoint(x: 2.15, y: -16.48))
@@ -15133,8 +15133,8 @@ class BezierPathsForMapNodesAndRectangles{
        pRSIPath.addLine(to: CGPoint(x: 2.6, y: -16.48))
        pRSIPath.addLine(to: CGPoint(x: 2.52, y: -16.48))
        pRSIPath.addLine(to: CGPoint(x: 2.52, y: -16.4))
-       pRSIPath.close()
-       pRSIPath.move(to: CGPoint(x: 7.39, y: -14.35))
+       pRSIPath.close()*/
+       /*pRSIPath.move(to: CGPoint(x: 7.39, y: -14.35))
        pRSIPath.addLine(to: CGPoint(x: 6.94, y: -14.35))
        pRSIPath.addLine(to: CGPoint(x: 6.94, y: -14.43))
        pRSIPath.addLine(to: CGPoint(x: 6.71, y: -14.43))
@@ -15171,7 +15171,7 @@ class BezierPathsForMapNodesAndRectangles{
        pRSIPath.addLine(to: CGPoint(x: 7.46, y: -14.43))
        pRSIPath.addLine(to: CGPoint(x: 7.39, y: -14.43))
        pRSIPath.addLine(to: CGPoint(x: 7.39, y: -14.35))
-       pRSIPath.close()
+       pRSIPath.close()*/
        pRSIPath.move(to: CGPoint(x: -9.48, y: 17.51))
        pRSIPath.addLine(to: CGPoint(x: -9.48, y: 16.02))
        pRSIPath.addLine(to: CGPoint(x: -9.22, y: 14.27))
