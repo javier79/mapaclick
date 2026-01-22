@@ -1540,7 +1540,7 @@ class PracticeRandomGameScene: SKScene{
         //self.removeAllChildren()
         
         let gameOverScene = GameOverScene(size: self.size)
-        let transition = SKTransition.fade(withDuration: 2.0)//withDuration: 1.5)
+        let transition = SKTransition.fade(withDuration: 1.5)//withDuration: 1.5)
     
         self.view?.presentScene(gameOverScene, transition: transition)/*si anado una transicion con 1.0 segundos o hasta 0.5 permite que el ultimo mnicipio se cambie de color antes de cambiar la vista pero ocurre cierto laggin que de cierta forma interfiere con el ritmo que llevaba el juego y afecta un poco la experiencia pero puedo volver a tratar mas adelante ajustando esto hasta dar con la experiencia que busco*/
     }
@@ -1616,15 +1616,25 @@ class PracticeRandomGameScene: SKScene{
             municipios_names_array.remove(at:randomIndex)//removes element identified that is at index(remember taht this variable updates in the following block))
             
         }
-            
-        //Este else statement va a ejecutar solo cuando currentIndex y countIndex == 0
+        
+        //CLAUDE ELSE STATEMENT TO OPTIMIZE GAME TO GAMEOVERSCENE TRANSITION
         else{
+            getSecondsAndMinutes()//gets seconds and minutes to be used for time record function at gameOverScene
+            // Use an action to delay setting completedGame, allowing the correct sound to play
+            let waitAction = SKAction.wait(forDuration: 0.00001)
+            let completeAction = SKAction.run {
+            PracticeRandomGameScene.completedGame = true
+            }
+            self.run(SKAction.sequence([waitAction, completeAction]))
+        }
+        //ORIGINAL ELSE STATEMENT
+        //Este else statement va a ejecutar solo cuando currentIndex y countIndex == 0
+        /*else{
             //self.removeAllActions()//It catches the last correctSound in order for transition to gameOverScene to flow smoother with less laggin
             getSecondsAndMinutes()
             PracticeRandomGameScene.completedGame = true//Se actualiza la variable completedGame para detener el reloj
-            
 
-        }
+        }*/
     }
     
     func setNewMunicipioNameToLookUp(){

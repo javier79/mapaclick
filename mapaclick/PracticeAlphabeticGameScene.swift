@@ -1374,7 +1374,7 @@ class PracticeAlphabeticGameScene: SKScene{
         //self.removeAllChildren()
         
         let gameOverScene = GameOverScene(size: self.size)
-        let transition = SKTransition.fade(withDuration: 2.0)//withDuration: 1.5)
+        let transition = SKTransition.fade(withDuration: 1.5)//withDuration: 1.5)
 
         self.view?.presentScene(gameOverScene, transition: transition)/*si anado una transicion con 1.0 segundos o hasta 0.5 permite que el ultimo mnicipio se cambie de color antes de cambiar la vista pero ocurre cierto laggin que de cierta forma interfiere con el ritmo que llevaba el juego y afecta un poco la experiencia pero puedo volver a tratar mas adelante ajustando esto hasta dar con la experiencia que busco*/
     }
@@ -1455,12 +1455,25 @@ class PracticeAlphabeticGameScene: SKScene{
         }
             
         /**following statement will execute when currentIndex and countOfIndexes equals 0 meaning that last element have been identified and prepare the game to move to gameOverScene*/
+        
+        //CLAUDE ELSE STATEMENT TO OPTIMIZE GAME TO GAMEOVERSCENE TRANSITION
         else{
+            getSecondsAndMinutes()//gets seconds and minutes to be used for time record function at gameOverScene
+            // Use an action to delay setting completedGame, allowing the correct sound to play
+            let waitAction = SKAction.wait(forDuration: 0.00001)
+            let completeAction = SKAction.run {
+                PracticeAlphabeticGameScene.completedGame = true
+            }
+            self.run(SKAction.sequence([waitAction, completeAction]))
+        }
+        
+        //ORIGINAL ELSE BLOCK
+        /*else{
             //musicPlayer.stop()
             //self.removeAllActions()//It catches the last correctSound in order for transition to gameOverScene to flow smoother with less laggin
             getSecondsAndMinutes()//gets seconds and minutes to be used for time record function at gameOverScene
             PracticeAlphabeticGameScene.completedGame = true//variable updates to stop the timer and execute the transition to gameOverScene (gameOverScene TRANSITION EXECUTES AT UPDATE FUNCTION)
-        }
+        }*/
         /**the following condition is true when var countOfIndexes == 1(meaning there are two elements left 0 and 1) and currentIndex value is 0 or first index of array, where is the second to last element(penultimo elemento), that at this point have been already removed in the block above. But due countOfIndexes updates in the following iteration, to the effect of the present iteration there are two elements left and this allows for this condition to evaluate to true in order to toguether with the removing second to last element(in the previous block) its also removed the skipButton on this block. WHAT IS IMPORTANT TO ACKNOWLEDGE IS THAT THE REMOTION OF SECOND TO LAST(PENULTIMO) ELEMENT AND SKIPBUTTON HAPPENS IN THE SAME ITERATION*/
         if  countOfIndexes == 1 && currentIndex == 0 && municipios_names_array.endIndex-1 == 0 {
          //print("skip button out")
@@ -1468,6 +1481,7 @@ class PracticeAlphabeticGameScene: SKScene{
         }
         
     }
+
     
     
     /**following function pass text attributes for the next municipio name to look up and adjust the background size for the label(municipioNameLabel) */
