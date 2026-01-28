@@ -230,9 +230,10 @@ class StartMenuMethods{
         shapeNode.strokeColor = UIColor.init(red: 0.2, green: 1, blue: 0.8745, alpha: 1.0)//UIColor.init(red: 0.5686, green: 1, blue: 0.8745, alpha: 1.0)
         shapeNode.fillColor = UIColor(red: 0.25, green: 0.57, blue: 0.59, alpha: 1.00)//UIColor(red: 0.74, green: 0.64, blue: 0.50, alpha: 1.00)//UIColor(red: 0.85, green: 0.87, blue: 0.69, alpha: 1.00)//UIColor(red: 0.70, green: 0.78, blue: 0.73, alpha: 1.00)//UIColor.init(red: 0.2314, green: 0.3412, blue: 0.4078, alpha: 1.0) /* #3b5768 */
         shapeNode.lineWidth = 2.0
-        let view = SKView(frame: UIScreen.main.bounds)
-        let texture = view.texture(from: shapeNode)!
-        let rectangleNode = SKSpriteNode(texture: texture)
+        let rectangleNode = shapeNodeToSpriteNodeTexture(nodeShape: shapeNode)
+        //let view = SKView(frame: UIScreen.main.bounds)
+        //let texture = view.texture(from: shapeNode)!
+        //let rectangleNode = SKSpriteNode(texture: texture)
         //rectangleNode.position = CGPoint(x:325, y:190)
         rectangleNode.name = "bestTimesRectangleBpToSKSpritenode"
         return  rectangleNode

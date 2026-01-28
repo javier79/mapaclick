@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         
         //skView.showsFPS = true//frame per seconds indicator
         //skView.showsPhysics = true//enables the usage of SKPhysicsBody properties,without this SKPhysicsBody will not work
-        skView.showsNodeCount = true
+        //skView.showsNodeCount = true
         //skView.presentScene(startMenu)//present scene on a skView    }
         skView.presentScene(startMenu)
     }
