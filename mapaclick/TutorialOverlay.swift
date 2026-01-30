@@ -173,9 +173,9 @@ class TutorialOverlay {
                                   controlPanel?.childNode(withName: "//MunicipiosNameBackgroundFour")
         
         // Debug prints - AFTER the searches
-        print("Timer found: \(String(describing: timerBackground))")
-        print("Control panel found: \(String(describing: controlPanel?.name))")
-        print("MunicipioNameBackground found: \(String(describing: municipioNameBackground?.name))")
+        debugPrint("Timer found: \(String(describing: timerBackground))")
+        debugPrint("Control panel found: \(String(describing: controlPanel?.name))")
+        debugPrint("MunicipioNameBackground found: \(String(describing: municipioNameBackground?.name))")
     }
     
     /// Create semi-transparent dim layer with spotlight hole
@@ -368,7 +368,7 @@ class TutorialOverlay {
             // Highlight skip button with tight rectangular glow
             if let skip = skipButton {
                 let skipPosition = scene.convert(skip.position, from: skip.parent ?? scene)
-                print("timerBackground: \(String(describing: timerBackground))")
+                debugPrint("timerBackground: \(String(describing: timerBackground))")
                 // Create spotlight hole in dim layer
                 let fullRect = CGRect(x: 0, y: 0, width: scene.size.width, height: scene.size.height)
                 let path = UIBezierPath(rect: fullRect)
@@ -650,7 +650,7 @@ class TutorialOverlay {
                     verticalPadding = 6
                     cornerRadius = 22
                 } else if isSmallPhone {
-                    //print("Inside isSmallPhne")
+                    //debugPrint("Inside isSmallPhne")
                     horizontalPadding = 1
                     verticalPadding = 0
                     cornerRadius = 18

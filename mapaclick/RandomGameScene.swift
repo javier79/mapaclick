@@ -75,7 +75,8 @@ class RandomGameScene: SKScene{
     let correctSound = SKAction.playSoundFileNamed("351566__bertrof__game-sound-correct-organic-violin", waitForCompletion: false)
     let incorrectSound = SKAction.playSoundFileNamed("351565__bertrof__game-sound-incorrect-organic-violin", waitForCompletion: false)
     //static var backgroundMusic = SKAudioNode(fileNamed: "predited.mp3")
-    var musicPlayer = AVAudioPlayer()//audio player
+    //var musicPlayer = AVAudioPlayer()//audio player
+    var musicPlayer: AVAudioPlayer?//Claude suggested
     let musicURL:URL? = Bundle.main.url(forResource:"predited", withExtension:"mp3")//reference to PR Himn
     
     var skipButtonPressed = false//flow control var allows to apply alpha animation to skipbuttom on Touches end
@@ -114,45 +115,45 @@ class RandomGameScene: SKScene{
         //municipioNameLabel = labelForMunicipioNamesRandomGame(NameMunicipioLabel: municipioNameLabel)
         
         //The following block reads device screen size in points, based on screen size a function will execute to asign scaling and positioning attributes
-        print("Screen size: \(screenSize)")
+        debugPrint("Screen size: \(screenSize)")
         switch (screenSize.width, screenSize.height) {
             
             case (2048.0, 2732.0):
-                 print("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3)")
+                 debugPrint("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3)")
                  setScaleAndIndepRenderingPositioningForIpadsLargeScreenSizes()
            
             case (1536.0, 2048.0),(1488.0, 2266.0) :
-                 print("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6)")
+                 debugPrint("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6)")
                  setScaleAndIndepRenderingPositioningForIpadsSmallScreenSizes()
             
         case (1668.0, 2224.0), (1668.0, 2388.0), (1620.0, 2160.0),(1640.0, 2360.0), (1668.0, 2420.0):
-                print("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad Pro 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5")
+                debugPrint("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad Pro 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5")
                 setScaleAndIndepRenderingPositioningForIpadsMediumScreenSizes()
             
             case (750.0, 1334), (1080, 2340),(1125.0, 2436.0) ://PROPORTIONS LOOKS OK
-                print("iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5)")
+                debugPrint("iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5)")
                 setScaleAndIndepRenderingPositioningForSmallScreenSizes()
             
             case (1242.0, 2208.0), (828.0, 1792.0),(1242.0, 2688.0) ://PROPORTIONS COULD BE BETTER(PROPORTION FIXED AS SEPT 10 2025)
-                print("iPhone 8plus, iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5)")
+                debugPrint("iPhone 8plus, iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5)")
                 //setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes()
                 setScaleAndIndepRenderingPositioningForMediumLargeScreenSizesTwo()
             
            case (1170.0, 2532.0), (1179.0, 2556.0)://Possible template to edit for iPhone 16 Pro PROPORTIONS COULD BE BETTER(PROPORTION FIXED AS SEPT 12 2025)
-                print("iPhone 12(18.5), iPhone 12Pro(18.5), iPhone 13(18.5), iPhone 13 Pro(18.5), iPhone 14(18.5), iPhone 14 Pro(18.5), iPhone 15(18.6), iPhone 15 Pro(18.6), iPhone 16(18.6), iPhone 16e(18.6)")
+                debugPrint("iPhone 12(18.5), iPhone 12Pro(18.5), iPhone 13(18.5), iPhone 13 Pro(18.5), iPhone 14(18.5), iPhone 14 Pro(18.5), iPhone 15(18.6), iPhone 15 Pro(18.6), iPhone 16(18.6), iPhone 16e(18.6)")
                 //setScaleAndIndepRenderingPositioningForLargeScreenSizes()
                 setScaleAndIndepRenderingPositioningForLargeScreenSizesTwo()
             
            case (1284.0, 2778.0), (1290.0, 2796.0)://Possible template to edit for iPhone 16 Pro Max(PROPORTION FIXED AS SEPT 13 2025)
-                print("iPhone 12ProMax(18.5), iPhone 13 Pro Max(18.5), iPhone 14 plus(18.5), iPhone 14 ProMax(18.5), iPhone 15 plus(18.6), iPhone 15 ProMax(18.6), iPhone 16 Plus(18.6)")
+                debugPrint("iPhone 12ProMax(18.5), iPhone 13 Pro Max(18.5), iPhone 14 plus(18.5), iPhone 14 ProMax(18.5), iPhone 15 plus(18.6), iPhone 15 ProMax(18.6), iPhone 16 Plus(18.6)")
                 setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes()
             
            case (1206.0, 2622.0)/*, (1320.0, 2868.0)*/:
-            print("iPhone 16 Pro(18.6), iPhone 17, iPhone 17 Pro")
+            debugPrint("iPhone 16 Pro(18.6), iPhone 17, iPhone 17 Pro")
             setScaleAndIndepRenderingPositioningForiPhone16Pro()
             
             case  (1320.0, 2868.0):
-            print("iPhone 16 ProMAX(18.6), iPhone 17 ProMax")
+            debugPrint("iPhone 16 ProMAX(18.6), iPhone 17 ProMax")
             setScaleAndIndepRenderingPositioningForiPhone16ProMax()
         
             default:
@@ -214,8 +215,8 @@ class RandomGameScene: SKScene{
     
     //Execute attributes for scaling and positioning based on device screen size
     /*func setScaleAndIndepRenderingPositioningForIpadsLargeScreenSizes(){
-        //print("Set StartScene gamePlay objts scaling and positioning for: iPads Pro12.9(3gen), Pro12.9(4gen), Pro12.9(5gen), Pro12.9(6gen) IpadsLargeScreenSizes scaling and positioning func")
-        //print("Ipads Large Screen Sizes")
+        //debugPrint("Set StartScene gamePlay objts scaling and positioning for: iPads Pro12.9(3gen), Pro12.9(4gen), Pro12.9(5gen), Pro12.9(6gen) IpadsLargeScreenSizes scaling and positioning func")
+        //debugPrint("Ipads Large Screen Sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)
         //mapRectangleGestureMGMT.setScale(1.90)//1.38
         mapRectangleGestureMGMT.setScale(2.4)//1.38
@@ -243,7 +244,7 @@ class RandomGameScene: SKScene{
     }*/
     
     func setScaleAndIndepRenderingPositioningForIpadsLargeScreenSizes(){
-        print("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3) enters scaling and positioning function")
+        debugPrint("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3) enters scaling and positioning function")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*2.00*/)
         //mapRectangleGestureMGMT.setScale(1.90)//1.38
         mapRectangleGestureMGMT.setScale(2.4)//1.38
@@ -276,7 +277,7 @@ class RandomGameScene: SKScene{
     
     //Execute attributes for scaling and positioning based on device screen size
     func setScaleAndIndepRenderingPositioningForIpadsSmallScreenSizes(){
-        print("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) enters scaling and positioning function")
+        debugPrint("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) enters scaling and positioning function")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)
         //mapRectangleGestureMGMT.setScale(1.90)//1.38
         mapRectangleGestureMGMT.setScale(1.85)//1.38
@@ -309,7 +310,7 @@ class RandomGameScene: SKScene{
     
     //Execute attributes for scaling and positioning based on device screen size
     func setScaleAndIndepRenderingPositioningForIpadsMediumScreenSizes(){
-        print("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 enters scaling and positioning function")
+        debugPrint("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 enters scaling and positioning function")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)
         //mapRectangleGestureMGMT.setScale(1.90)//1.38
         mapRectangleGestureMGMT.setScale(2.1)//1.85
@@ -342,8 +343,8 @@ class RandomGameScene: SKScene{
     
     //Execute attributes for scaling and positioning based on device screen size
     /*func setScaleAndIndepRenderingPositioningForIpadsMediumScreenSizes(){
-        //print("Set StartScene gamePlay objts scaling and positioning for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) entering iPad Medium size scaling and positioning func")
-        //print("Ipads Medium Screen Sizes")
+        //debugPrint("Set StartScene gamePlay objts scaling and positioning for: iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen) entering iPad Medium size scaling and positioning func")
+        //debugPrint("Ipads Medium Screen Sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)
         //mapRectangleGestureMGMT.setScale(1.90)//1.38
         mapRectangleGestureMGMT.setScale(1.85)//1.38
@@ -371,7 +372,7 @@ class RandomGameScene: SKScene{
     }*/
     //Execute attributes for scaling and positioning based on device screen size
     func setScaleAndIndepRenderingPositioningForSmallScreenSizes(){
-        print("Default Settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) enter scaling and positioning func")
+        debugPrint("Default Settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) enter scaling and positioning func")
         
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.33)//1.38
@@ -392,8 +393,8 @@ class RandomGameScene: SKScene{
     }
     //Execute attributes for scaling and positioning based on device screen size
     /*func setScaleAndIndepRenderingPositioningForMediumLargeScreenSizes(){
-        //print("Set StartScene gamePlay objts scaling and positioning for: iPhone 8plus, XR, 11, XSMax, 11ProMax enter MediumLargeScreenSizes scaling and positioning func")
-        //print("iPhone medium-large screen sizes")
+        //debugPrint("Set StartScene gamePlay objts scaling and positioning for: iPhone 8plus, XR, 11, XSMax, 11ProMax enter MediumLargeScreenSizes scaling and positioning func")
+        //debugPrint("iPhone medium-large screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.906/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.33)//1.38
         
@@ -409,8 +410,8 @@ class RandomGameScene: SKScene{
     }*/
     
     func setScaleAndIndepRenderingPositioningForMediumLargeScreenSizesTwo(){
-        print("iPhone 8plus, iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5) enters scaling and positioning func")
-        //print("iPhone medium-large screen sizes")
+        debugPrint("iPhone 8plus, iPhone XR(18.5), iPhone 11(18.5), iPhoneXS Max(18.5), iPhone 11 ProMax(18.5) enters scaling and positioning func")
+        //debugPrint("iPhone medium-large screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.716/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.45)//1.33
         
@@ -433,8 +434,8 @@ class RandomGameScene: SKScene{
     //Execute attributes for scaling and positioning based on device screen size
     /*func setScaleAndIndepRenderingPositioningForLargeScreenSizes(){
      
-        //print("Set StartScene gamePlay objts scaling and positioning for: iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro enter LargeScreenSizes scaling and positioning func")
-        //print("iPhone large screen sizes")
+        //debugPrint("Set StartScene gamePlay objts scaling and positioning for: iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro enter LargeScreenSizes scaling and positioning func")
+        //debugPrint("iPhone large screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.811/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.33)//1.38
         
@@ -450,9 +451,9 @@ class RandomGameScene: SKScene{
     }*/
     
     func setScaleAndIndepRenderingPositioningForLargeScreenSizesTwo(){
-        print("iPhone 12(18.5), iPhone 12Pro(18.5), iPhone 13(18.5), iPhone 13 Pro(18.5), iPhone 14(18.5), iPhone 14 Pro(18.5), iPhone 15(18.6), iPhone 15 Pro(18.6), iPhone 16(18.6), iPhone 16e enters scaling and positioning func")
-        //print("Set StartScene gamePlay objts scaling and positioning for: iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro enter LargeScreenSizes scaling and positioning func")
-        //print("iPhone large screen sizes")
+        debugPrint("iPhone 12(18.5), iPhone 12Pro(18.5), iPhone 13(18.5), iPhone 13 Pro(18.5), iPhone 14(18.5), iPhone 14 Pro(18.5), iPhone 15(18.6), iPhone 15 Pro(18.6), iPhone 16(18.6), iPhone 16e enters scaling and positioning func")
+        //debugPrint("Set StartScene gamePlay objts scaling and positioning for: iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro enter LargeScreenSizes scaling and positioning func")
+        //debugPrint("iPhone large screen sizes")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.67/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.37)//1.38
         
@@ -475,7 +476,7 @@ class RandomGameScene: SKScene{
     
     //Execute attributes for scaling and positioning based on device screen size
     func setScaleAndIndepRenderingPositioningForXtraLargeScreenSizes(){
-        print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus enters scaling and positioning func")
+        debugPrint("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus enters scaling and positioning func")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.5)//1.38
         
@@ -496,7 +497,7 @@ class RandomGameScene: SKScene{
     }
     
     func setScaleAndIndepRenderingPositioningForiPhone16Pro(){
-        print("iPhone 16 PRO(18.6), iPhone 17, iPhone 17 PRO enters scaling and positioning func")
+        debugPrint("iPhone 16 PRO(18.6), iPhone 17, iPhone 17 PRO enters scaling and positioning func")
         
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.37)//1.38
@@ -519,7 +520,7 @@ class RandomGameScene: SKScene{
     }
     
     func setScaleAndIndepRenderingPositioningForiPhone16ProMax(){
-        print("iPhone 16 PROMAX, iPhone 17 ProMax  enters scaling and positioning func")
+        debugPrint("iPhone 16 PROMAX, iPhone 17 ProMax  enters scaling and positioning func")
         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.765/*1.8*/)
         mapRectangleGestureMGMT.setScale(1.5)//1.38
         
@@ -623,8 +624,8 @@ class RandomGameScene: SKScene{
                         setNewMunicipioNameToLookUp()
                         /**add one to number of municipios located*/
                         addToScoreCountWriteToLabel()
-                        print("Inside Physics Correct")
-                        print(spritenode.name!)
+                        debugPrint("Inside Physics Correct")
+                        debugPrint(spritenode.name!)
                         return
                         
                     }
@@ -644,8 +645,8 @@ class RandomGameScene: SKScene{
                     //else statement will execute whenever a wrong municipio node is touched
                     else{
                         playIncorrectSound()
-                        print("Inside Physics Fail")
-                        print(touchedNode?.node?.name! as Any)
+                        debugPrint("Inside Physics Fail")
+                        debugPrint(touchedNode?.node?.name! as Any)
                         return fail = true//variable updates to apply 3 seconds penalty at timer function
                     }
                 }
@@ -655,7 +656,7 @@ class RandomGameScene: SKScene{
                 
                 else if (touchedNode == nil){
                   
-                    print("inside touchesNode == nil")
+                    debugPrint("inside touchesNode == nil")
                     
                     
                     
@@ -687,7 +688,7 @@ class RandomGameScene: SKScene{
                         addToScoreCountWriteToLabel()
                         return
                     }*/
-                    //print(touchedNodes)
+                    //debugPrint(touchedNodes)
                     
                     
                     /*if (touchedNodes.contains(where: { $0.name == controlPanelSKSpriteNode.name }))  {
@@ -703,23 +704,23 @@ class RandomGameScene: SKScene{
                                 removeIdentifiedElementEvaluateCompleteGameAndSkipButtonRemoval()
                                 setNewMunicipioNameToLookUp()
                                 addToScoreCountWriteToLabel()
-                                print("Inside Nodes Correct")
-                                print("Tapped node: \(spriteNode.name ?? "Unnamed")") // Debug info
+                                debugPrint("Inside Nodes Correct")
+                                debugPrint("Tapped node: \(spriteNode.name ?? "Unnamed")") // Debug info
                                 return
                             }
                     
                     if ((touchedNodes.first(where: { $0.name != municipioNameLabel.text }) as? SKSpriteNode) != nil) && (touchedNodes.first(where: { $0.parent == containerNode }) != nil) || ((touchedNodes.first(where: { $0.name == mapRectangleBackground.name })) != nil){
-                        print("end")
+                        debugPrint("end")
                         // Handle incorrect touch
                         playIncorrectSound()
-                        print("Inside Nodes Fail")
-                        print("Tapped node: \(touchedNodes.first?.name ?? "Unnamed")")
+                        debugPrint("Inside Nodes Fail")
+                        debugPrint("Tapped node: \(touchedNodes.first?.name ?? "Unnamed")")
                         fail = true // Apply penalty
                         return
                     }
                     
                     /*if ((touchedNodes.first(where: { $0.name == mapRectangleGestureMGMT.name }) as? SKSpriteNode) != nil) && ((touchedNodes.first(where: { $0.parent != containerNode })  as? SKSpriteNode) != nil) && ((touchedNodes.first(where: { $0.parent != mapRectangleGestureMGMT })  as? SKSpriteNode) != nil){
-                        print("test")
+                        debugPrint("test")
                         // Handle incorrect touch
                         playIncorrectSound()
                         fail = true // Apply penalty
@@ -727,17 +728,17 @@ class RandomGameScene: SKScene{
                     }*/
                     
                    /*if touchedNodes.contains(where: { $0.name == backgroundNode.name })  {
-                        print("BG2")
+                        debugPrint("BG2")
                        return // Ignore the touch if it's on the control panel or the background
                    }*/
                     /*if ((touchedNodes.first(where: { $0.name == mapRectangleBackground.name })) != nil) {
-                        print("white background")
+                        debugPrint("white background")
                         return // Exit the function after handling the tap
                     }*/
                     
                    
                     if ((touchedNodes.first(where: { $0.name == backgroundNode.name })) != nil) {
-                        print("inside firt")
+                        debugPrint("inside firt")
                         return // Exit the function after handling the tap
                     }
                     
@@ -746,7 +747,7 @@ class RandomGameScene: SKScene{
                     }
                     
                         
-                        /*print("second end")
+                        /*debugPrint("second end")
                         // Handle incorrect touch
                         playIncorrectSound()
                         fail = true // Apply penalty*/
@@ -811,7 +812,7 @@ class RandomGameScene: SKScene{
         
         //The following block limits the scaling(Zoom effect) from 2.4(default size) and no larger than 3.0 for devices Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5)
         if screenSize.width == 2048.0 && screenSize.height == 2732.0{
-            //print("iPad Pro12.9 entering handlePinch func")
+            //debugPrint("iPad Pro12.9 entering handlePinch func")
             if mapRectangleGestureMGMT.xScale * sender.scale < 2.4 {
                 sender.scale = 2.4 / mapRectangleGestureMGMT.xScale
             } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
@@ -823,11 +824,11 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3) scaling is limited")
+            debugPrint("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3) scaling is limited")
         }
         //The following block limits the scaling(Zoom effect) from 1.85(default size) and no larger than 3.0 for device iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen)
         else if screenSize.width == 1668.0 && screenSize.height == 2224.0  || screenSize.width == 1668.0 && screenSize.height == 2388.0 || screenSize.width == 1620.0 && screenSize.height == 2160.0 || screenSize.width == 1640.0 && screenSize.height == 2360.0 ||  screenSize.width == 1668.0 && screenSize.height == 2420.0{
-            //print("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen) entering handlePinch func")
+            //debugPrint("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen) entering handlePinch func")
             if mapRectangleGestureMGMT.xScale * sender.scale < 2.1 {
                 sender.scale = 2.1 / mapRectangleGestureMGMT.xScale
             } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
@@ -839,11 +840,11 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 scaling is limited")
+            debugPrint("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 scaling is limited")
         }
         
         else if screenSize.width == 1536.0 && screenSize.height == 2048.0 || screenSize.width == 1488.0 && screenSize.height == 2266.0 {
-            //print("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen) entering handlePinch func")
+            //debugPrint("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen) entering handlePinch func")
             if mapRectangleGestureMGMT.xScale * sender.scale < 1.85 {
                 sender.scale = 1.85 / mapRectangleGestureMGMT.xScale
             } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
@@ -855,7 +856,7 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) scaling is limited")
+            debugPrint("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) scaling is limited")
         }
         
         else if screenSize.width == 1242.0 && screenSize.height == 2288.0 || screenSize.width == 828.0 && screenSize.height == 1792.0 || screenSize.width == 1242.0 && screenSize.height == 2688.0{
@@ -871,7 +872,7 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPhone Xr(18.6), 11(18.6), Xs Max(18.6), 11 Pro Max(18.6) scaling is limited")
+            debugPrint("iPhone Xr(18.6), 11(18.6), Xs Max(18.6), 11 Pro Max(18.6) scaling is limited")
         }
         
         else if screenSize.width == 1170.0 && screenSize.height == 2532.0 || screenSize.width == 1179.0 && screenSize.height == 2556.0{
@@ -887,7 +888,7 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16, iPhone 16e scaling is limited")
+            debugPrint("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16, iPhone 16e scaling is limited")
         }
         
         else if screenSize.width == 1284.0 && screenSize.height == 2778.0 || screenSize.width == 1290.0 && screenSize.height == 2796.0{
@@ -903,7 +904,7 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus scaling is limited")
+            debugPrint("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus scaling is limited")
         }
         
         else if screenSize.width == 1206.0 && screenSize.height == 2622.0 /*|| screenSize.width == 1179.0 && screenSize.height == 2556.0*/{
@@ -919,7 +920,7 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPhone 16 PRO, iPhone 17, iPhone 17 PRO scaling is limited")
+            debugPrint("iPhone 16 PRO, iPhone 17, iPhone 17 PRO scaling is limited")
         }
         
         else if screenSize.width == 1320.0 && screenSize.height == 2868.0 {
@@ -935,12 +936,12 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
             sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("iPhone 16 ProMAX, iPhone 17 ProMAX scaling is limited")
+            debugPrint("iPhone 16 ProMAX, iPhone 17 ProMAX scaling is limited")
         }
         
         //The following block limits the scaling(Zoom effect) from 1.33(default size) and no larger than 3.0 for device
         else{
-            //print("iPhone entering handlePinch func")
+            //debugPrint("iPhone entering handlePinch func")
             if mapRectangleGestureMGMT.xScale * sender.scale < 1.33 {
                 sender.scale = 1.33 / mapRectangleGestureMGMT.xScale
             } else if mapRectangleGestureMGMT.xScale * sender.scale > 3.0 {
@@ -952,7 +953,7 @@ class RandomGameScene: SKScene{
             } else if mapRectangleGestureMGMT.yScale * sender.scale > 3.0 {
                 sender.scale = 3.0 / mapRectangleGestureMGMT.yScale
             }
-            print("Default settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) scaling is limited")
+            debugPrint("Default settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) scaling is limited")
         }
         
         //Set scaling action
@@ -966,56 +967,56 @@ class RandomGameScene: SKScene{
             if screenSize.width == 2048.0 && screenSize.height == 2732.0{
                 if mapRectangleGestureMGMT.xScale > 2.4 && mapRectangleGestureMGMT.yScale > 2.4 {
                     isScaled = true
-                    print("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3)  is scaled")
+                    debugPrint("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3)  is scaled")
                 }
             }
             
             else if screenSize.width == 1668.0 && screenSize.height == 2224.0 || screenSize.width == 1668.0 && screenSize.height == 2388.0 || screenSize.width == 1620.0 && screenSize.height == 2160.0 || screenSize.width == 1640.0 && screenSize.height == 2360.0 || screenSize.width == 1668.0 && screenSize.height == 2420.0 {
                 if mapRectangleGestureMGMT.xScale > 2.1 && mapRectangleGestureMGMT.yScale > 2.1{
                     isScaled = true
-                    print("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 is scaled")
+                    debugPrint("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 is scaled")
                 }
             }
             
             else if screenSize.width == 1536.0 && screenSize.height == 2048.0 || screenSize.width == 1488.0 && screenSize.height == 2266.0  {
                 if mapRectangleGestureMGMT.xScale > 1.85 && mapRectangleGestureMGMT.yScale > 1.85{
                     isScaled = true
-                    print("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) is scaled")
+                    debugPrint("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) is scaled")
                 }
             }
             
             else if screenSize.width == 1242.0 && screenSize.height == 2288.0 || screenSize.width == 828.0 && screenSize.height == 1792.0 || screenSize.width == 1242.0 && screenSize.height == 2688.0{
                 if mapRectangleGestureMGMT.xScale > 1.45 && mapRectangleGestureMGMT.yScale > 1.45{
                     isScaled = true
-                    print("iPhone Xr(18.6), 11(18.6), Xs Max(18.6), 11 Pro Max(18.6) is Scaled")
+                    debugPrint("iPhone Xr(18.6), 11(18.6), Xs Max(18.6), 11 Pro Max(18.6) is Scaled")
                 }
             }
             
             else if screenSize.width == 1170.0 && screenSize.height == 2532.0 || screenSize.width == 1179.0 && screenSize.height == 2556.0 {
                 if mapRectangleGestureMGMT.xScale > 1.37 && mapRectangleGestureMGMT.yScale > 1.37{
                     isScaled = true
-                    print("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16, iPhone 16e is Scaled")
+                    debugPrint("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16, iPhone 16e is Scaled")
                 }
             }
             
             else if screenSize.width == 1284.0 && screenSize.height == 2778.0 || screenSize.width == 1290.0 && screenSize.height == 2796.0 {
                 if mapRectangleGestureMGMT.xScale > 1.5 && mapRectangleGestureMGMT.yScale > 1.5{
                     isScaled = true
-                    print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is Scaled")
+                    debugPrint("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is Scaled")
                 }
             }
             
             else if screenSize.width == 1206.0 && screenSize.height == 2622.0 /*|| screenSize.width == 1179.0 && screenSize.height == 2556.0*/ {
                 if mapRectangleGestureMGMT.xScale > 1.37 && mapRectangleGestureMGMT.yScale > 1.37{
                     isScaled = true
-                    print("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is Scaled")
+                    debugPrint("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is Scaled")
                 }
             }
             
             else if screenSize.width == 1320.0 && screenSize.height == 2868.0 {
                 if mapRectangleGestureMGMT.xScale > 1.5 && mapRectangleGestureMGMT.yScale > 1.5{
                     isScaled = true
-                    print("iPhone 16 ProMax, iPhone 17 ProMax is Scaled")
+                    debugPrint("iPhone 16 ProMax, iPhone 17 ProMax is Scaled")
                 }
             }
             
@@ -1023,90 +1024,90 @@ class RandomGameScene: SKScene{
             else{
                 if mapRectangleGestureMGMT.xScale > 1.33 && mapRectangleGestureMGMT.yScale > 1.33 {
                     isScaled = true
-                    print("Default settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) is scaled")
+                    debugPrint("Default settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) is scaled")
                 }
             }
             
             
             let tolerance: CGFloat = 0.001
             
-            //print("Last Screen size: \(screenSize)")
+            //debugPrint("Last Screen size: \(screenSize)")
             switch (screenSize.width, screenSize.height) {
              // checking if the absolute difference between the current scaling factor and the target scaling factor is smaller than the tolerance value. If it is, it means that the scaling factor is very close to the target value, indicating that the node has been scaled back to the normal size
                 case (2048.0, 2732.0):
-                     //print("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5)")
+                     //debugPrint("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5)")
                      if abs(mapRectangleGestureMGMT.xScale - 2.4) < tolerance && abs(mapRectangleGestureMGMT.yScale - 2.4) < tolerance {
                         isScaled = false
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                        print("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3) is back to original position")
+                        debugPrint("Pro12.9 3gen(18.5), Pro12.9 4gen(18.5), Pro12.9 5gen(18.5), Pro12.9 6gen(18.5), iPad Air 13inch(6th gen M2, M3) is back to original position")
                     }
                
               
             case (1668.0, 2224.0), (1668.0,2388.0), (1620.0, 2160.0), (1640.0, 2360.0), (1668.0, 2420.0):
-                    //print("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen)")
+                    //debugPrint("iPad Pro 10.5, Pro11(1gen), Air(3gen), 7Gen, Pro11(2gen), 8Gen, 9Gen, Air(4gen), PRO11(3gen), Air(5gen), 10Gen, Pro11(4gen), iPad 6Gen, Mini(5gen), Mini(6gen)")
                 if abs(mapRectangleGestureMGMT.xScale - 2.1) < tolerance && abs(mapRectangleGestureMGMT.yScale - 2.1) < tolerance {
                         isScaled = false
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 is back to original position")
+                    debugPrint("iPad Air 11inch(M2 18.6), iPad Air 11inch(M3 18.6), iPad Pro 11inch(1st-4th gen 18.6), iPad 11 inch(M4 18.6), iPad Air(3rd gen 18.6), iPad Air(4th-5th gen 18.6), iPad(7th-9th gen 18.6), Ipad 10th Gen(18.6), iPad A16(11 Gen 18.6), iPad Pro 10.5 is back to original position")
                     }
                 
             case (1536.0, 2048.0), (1488.0, 2266.0):
                 if abs(mapRectangleGestureMGMT.xScale - 1.85) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.85) < tolerance {
                     isScaled = false
                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 2.00/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) back to original position")
+                    debugPrint("iPad 6Gen, iPad Mini(5gen 18.6), iPad Mini(6gen 18.6), iPad Mini(A17Pro 18.6) back to original position")
                 }
                     
                 /*case (750.0, 1334), (1080, 2340 ),(1125, 2436 ) :
-                    //print("iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO")
+                    //debugPrint("iPhoneSE3, SE2, 8, mini12, mini13, iPhone X, XS ,11PRO")
                     if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                         isScaled = false
                         mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                        print("Default Settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) back to original position")
+                        debugPrint("Default Settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) back to original position")
                     }*/
                 
             case (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0 ) :
-                //print("iPhone 8plus, XR, 11, XSMax, 11ProMax")
+                //debugPrint("iPhone 8plus, XR, 11, XSMax, 11ProMax")
                 if abs(mapRectangleGestureMGMT.xScale - 1.45) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.45) < tolerance {
                     isScaled = false
                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.716/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPhone Xr, 11, Xs Max, 11 Pro Max is back to original position")
+                    debugPrint("iPhone Xr, 11, Xs Max, 11 Pro Max is back to original position")
                 }
                     
                 
                 
             case (1170.0, 2532.0), (1179.0, 2556.0):
-                 //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
+                 //debugPrint("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
                  if abs(mapRectangleGestureMGMT.xScale - 1.37) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.37) < tolerance {
                     isScaled = false
                      mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.67/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16, iPhone 16e is back to original position")
+                    debugPrint("iPhone 12, iPhone 12Pro, iPhone 13, iPhone 13 Pro, iPhone 14, iPhone 14 Pro, iPhone 15, iPhone 15 Pro, iPhone 16, iPhone 16e is back to original position")
                 }
                     
                 
                 
             case (1284.0, 2778.0), (1290.0, 2796.0):
-                 //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
+                 //debugPrint("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
                  if abs(mapRectangleGestureMGMT.xScale - 1.5) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.5) < tolerance {
                     isScaled = false
                      mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is back to original position")
+                    debugPrint("iPhone 12ProMax, iPhone 13 Pro Max, iPhone 14 plus, iPhone 14 ProMax, iPhone 15 plus, iPhone 15 ProMax, iPhone 16 Plus is back to original position")
                 }
                 
             case (1206.0, 2622.0):
-                 //print("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
+                 //debugPrint("iPhone 12, 12Pro, 13, 13Pro, 14, 14Pro")
                  if abs(mapRectangleGestureMGMT.xScale - 1.37) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.37) < tolerance {
                     isScaled = false
                      mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.72/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is back to original position")
+                    debugPrint("iPhone 16 PRO, iPhone 17, iPhone 17 PRO is back to original position")
                 }
                 
             case (1320.0, 2868.0):
-                 //print("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
+                 //debugPrint("iPhone 12ProMax, 13ProMax, 14plus, 13Pro, 14ProMax")
                  if abs(mapRectangleGestureMGMT.xScale - 1.5) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.5) < tolerance {
                     isScaled = false
                      mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.765/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("iPhone 16 ProMax, iPhone 17 ProMax is back to original position")
+                    debugPrint("iPhone 16 ProMax, iPhone 17 ProMax is back to original position")
                 }
                     
                     
@@ -1114,7 +1115,7 @@ class RandomGameScene: SKScene{
                     if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                     isScaled = false
                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                        print("Default Settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) back to original position")
+                        debugPrint("Default Settings and iPhoneSE(second gen 18.5), iPhoneSE(third gen 18.5), 8, iPhone 12 mini(18.5), iPhone 13 mini(18.5), iPhone X, iPhone XS(18.5) ,iPhone 11 PRO(18.5) back to original position")
                     }
                     break
                 
@@ -1125,7 +1126,7 @@ class RandomGameScene: SKScene{
                 if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                 isScaled = false
                 mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                print("scaled back to normal")
+                debugPrint("scaled back to normal")
                 }
             }
             
@@ -1133,28 +1134,28 @@ class RandomGameScene: SKScene{
                 if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                     isScaled = false
                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.906/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("scaled back to normal")
+                    debugPrint("scaled back to normal")
                 }
             }
             else if screenSize.width == 1170 && screenSize.height == 2532 || screenSize.width == 1179 && screenSize.height == 2556{
                 if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                     isScaled = false
                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.811/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("scaled back to normal")
+                    debugPrint("scaled back to normal")
                 }
             }
             else if screenSize.width == 1284 && screenSize.height == 2778 || screenSize.width == 1290 && screenSize.height == 2796{
                 if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                     isScaled = false
                     mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.96/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                    print("scaled back to normal")
+                    debugPrint("scaled back to normal")
                 }
             }
             else{
                 if abs(mapRectangleGestureMGMT.xScale - 1.33) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.33) < tolerance {
                 isScaled = false
                 mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.755/*1.8*/)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                print("scaled back to normal")
+                debugPrint("scaled back to normal")
                 }
             }*/
         }
@@ -1185,14 +1186,14 @@ class RandomGameScene: SKScene{
           
               if mapRectangleGestureMGMT.xScale > 1.0 && mapRectangleGestureMGMT.yScale > 1.0 {
                   isScaled = true
-                  print("scaled bigger")
+                  debugPrint("scaled bigger")
               }
               let tolerance: CGFloat = 0.001
 
               if abs(mapRectangleGestureMGMT.xScale - 1.0) < tolerance && abs(mapRectangleGestureMGMT.yScale - 1.0) < tolerance {
                   isScaled = false
                   mapRectangleGestureMGMT.position = CGPoint(x:self.size.width / 2, y:self.size.height / 1.8)//Whenever node is scaled back to default size the node is repositioned at default position or center
-                  print("scaled back to normal")
+                  debugPrint("scaled back to normal")
               }
           }
       }*/
@@ -1262,18 +1263,31 @@ class RandomGameScene: SKScene{
         }
     }
     
-    func initMusic() {
+    /*func initMusic() {
         guard let url = musicURL else { return }
         
         do{
             musicPlayer = try AVAudioPlayer(contentsOf: url)/*exe what is inside url**/
         }catch{
-            print("error")
+            debugPrint("error")
             }
         
         musicPlayer.numberOfLoops = -1/*negative numbers will make it loop continuously until stopped*/
         musicPlayer.prepareToPlay()//ready to play musicPlayer
         musicPlayer.play()//
+    }*/
+    //Claude suggested for memory leaks mitigation
+    func initMusic() {
+        guard let url = musicURL else { return }
+        
+        do {
+            musicPlayer = try AVAudioPlayer(contentsOf: url)
+            musicPlayer?.numberOfLoops = -1
+            musicPlayer?.prepareToPlay()
+            musicPlayer?.play()
+        } catch {
+            debugPrint("Error initializing audio: \(error)")
+        }
     }
     
     func showTutorial() {
@@ -1285,14 +1299,14 @@ class RandomGameScene: SKScene{
         
         // Set completion callback
         tutorialOverlay?.onComplete = { [weak self] in
-            print("Tutorial completed")
+            debugPrint("Tutorial completed")
             self?.isTutorialActive = false
             self?.tutorialOverlay = nil
         }
         
         // Set skip callback
         tutorialOverlay?.onSkip = { [weak self] in
-            print("Tutorial skipped")
+            debugPrint("Tutorial skipped")
             self?.isTutorialActive = false
             self?.tutorialOverlay = nil
         }
@@ -1389,7 +1403,7 @@ class RandomGameScene: SKScene{
     
     func addPenaltyToSeconds(){
         //let penalty = 3
-        //print("inside")
+        //debugPrint("inside")
         seconds = seconds + penalty
     }
     
@@ -1399,7 +1413,7 @@ class RandomGameScene: SKScene{
     }
     
     func addSkipButtonPenaltyToSeconds(){
-        //print("15 more seconds")
+        //debugPrint("15 more seconds")
         seconds = seconds + skipButtonPenalty
     }
     
@@ -1423,7 +1437,7 @@ class RandomGameScene: SKScene{
         "0\(seconds)" : "\(seconds)"
         labelTimer.text = "\(secondsText)"
         //timerBackground.size = labelTimer.frame.size//size para el background del timer para acomodar 00
-        //print("rendertime = 0")//Esta linea es solo para indicar al programador cuando se ejecuta este bloque
+        //debugPrint("rendertime = 0")//Esta linea es solo para indicar al programador cuando se ejecuta este bloque
     }
     
     func goToGameOverScene(){
@@ -1434,7 +1448,7 @@ class RandomGameScene: SKScene{
         //musicPlayer.stop()
         //self.removeAllActions()
         //self.removeAllChildren()
-        
+        musicPlayer?.stop() //Claude suggested
         let gameOverScene = GameOverScene(size: self.size)
         let transition = SKTransition.fade(withDuration: 1.5)//withDuration: 1.5)
     
@@ -2181,7 +2195,7 @@ class RandomGameScene: SKScene{
         
         //If condition is true means that two elemens are left in array, it removes skipButton due second to last(penultimo elemento) element is about to be removed next
         if countOfIndexes == 1  {
-            //print("skip button out")
+            //debugPrint("skip button out")
             skipButton.removeFromParent()
         }
 
@@ -2215,10 +2229,10 @@ class RandomGameScene: SKScene{
     
     func setNewMunicipioNameToLookUp(){
         let countOfIndexes = municipios_names_array.count - 1
-        //print(countOfIndexes)
+        //debugPrint(countOfIndexes)
         //loop keeps next skipped municipio name from repeating, meaning any time you press skip it will return a different municipio, and not the same one.
         if pressSKipButton == true{
-            //print("inside while")
+            //debugPrint("inside while")
             repeat{
                 randomIndex = Int.random(in:0...countOfIndexes)
             }
@@ -2437,10 +2451,11 @@ class RandomGameScene: SKScene{
         //skipButtonPressed = true
         pressSKipButton = true
         setNewMunicipioNameToLookUp()
-        //print("Skip Button touched")
+        //debugPrint("Skip Button touched")
     }
     
     func goToStartMenu(){
+        musicPlayer?.stop() //Claude suggested
         let startMenuScene = StartMenuScene(size: self.size)//definitio
         //let transition = SKTransition.doorsOpenVertical(withDuration: 1.5)
         self.view?.presentScene(startMenuScene)/*present scene and execut transitions*/
