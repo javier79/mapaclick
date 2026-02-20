@@ -48,6 +48,25 @@ class StartMenuMethods{
             
     }*/
     
+    func removeAdsButtonBpDrawToSKSpriteNode()->SKSpriteNode{
+        var path = UIBezierPath()
+        path.move(to: CGPoint(x: 0.0, y: 0.0))
+        path.addLine(to: CGPoint(x: 0.0, y:18))
+        path.addLine(to: CGPoint(x:125 , y:18))
+        path.addLine(to: CGPoint(x:125, y: 0.0))
+        path.close()
+          
+        path = UIBezierPath(roundedRect:path.bounds,cornerRadius: 4.5)
+        let shapeNode = SKShapeNode(path:path.cgPath)
+        shapeNode.lineWidth = 0.5
+        shapeNode.strokeColor = UIColor.init(red: 0.6157, green: 0.9098, blue: 0.851, alpha: 1.0)
+        shapeNode.fillColor = UIColor.init(red: 0.6157, green: 0.9098, blue: 0.851, alpha: 1.0)
+        var button:SKSpriteNode = shapeNodeToSpriteNodeTexture(nodeShape:shapeNode)
+        button = initSetButtonPhysicsBody(objectButton: button)
+         
+        return button
+    }
+    
     
     func mainMenuSetLabelDefaults()-> SKLabelNode{
         let label = SKLabelNode()
@@ -1133,4 +1152,92 @@ class StartMenuMethods{
         
         return objectButton
     }
+    
+    // MARK: - Puerto Rican Flag
+    func createPuertoRicanFlagSpriteNode(width: CGFloat = 80) -> SKSpriteNode {
+        let height = width * (2.0 / 3.0)
+        let stripeHeight = height / 5.0
+        let flagNode = SKNode()
+        
+        // 5 Horizontal Stripes (Red and White alternating)
+        for i in 0..<5 {
+            let stripePath = UIBezierPath(rect: CGRect(
+                x: -width / 2,
+                y: -height / 2 + stripeHeight * CGFloat(i),
+                width: width,
+                height: stripeHeight
+            ))
+            let stripeNode = SKShapeNode(path: stripePath.cgPath)
+            stripeNode.fillColor = (i % 2 == 0)
+                ? UIColor(red: 0.70, green: 0.13, blue: 0.20, alpha: 1.0)
+                : .white
+            stripeNode.strokeColor = .clear
+            stripeNode.lineWidth = 0
+            flagNode.addChild(stripeNode)
+        }
+        
+        // Blue Triangle
+        let triWidth = width * 0.45
+        let trianglePath = UIBezierPath()
+        trianglePath.move(to: CGPoint(x: -width / 2, y: -height / 2))
+        trianglePath.addLine(to: CGPoint(x: -width / 2 + triWidth, y: 0))
+        trianglePath.addLine(to: CGPoint(x: -width / 2, y: height / 2))
+        trianglePath.close()
+        
+        let triangleNode = SKShapeNode(path: trianglePath.cgPath)
+        triangleNode.fillColor = UIColor(red: 0.53, green: 0.75, blue: 0.93, alpha: 1.0)
+        triangleNode.strokeColor = .clear
+        triangleNode.lineWidth = 0
+        triangleNode.zPosition = 1
+        flagNode.addChild(triangleNode)
+        
+        // White Star
+        let starNode = SKShapeNode(path: createStarPath(
+            center: CGPoint(x: -width / 2 + triWidth * 0.38, y: 0),
+            radius: height * 0.18,
+            innerRadius: height * 0.08,
+            points: 5
+        ).cgPath)
+        starNode.fillColor = .white
+        starNode.strokeColor = .clear
+        starNode.lineWidth = 0
+        starNode.zPosition = 2
+        flagNode.addChild(starNode)
+        
+        // Convert SKNode with ShapeNodes to a single SKSpriteNode texture
+        let shapeContainer = SKShapeNode()
+        for child in flagNode.children {
+            child.removeFromParent()
+            shapeContainer.addChild(child)
+        }
+        
+        let texture = StartMenuMethods.textureGeneratorView.texture(from: shapeContainer, crop: CGRect(
+            x: -width / 2, y: -height / 2, width: width, height: height
+        ))!
+        let flagSprite = SKSpriteNode(texture: texture)
+        flagSprite.name = "puertoRicanFlag"
+        return flagSprite
+    }
+
+    private func createStarPath(center: CGPoint, radius: CGFloat, innerRadius: CGFloat, points: Int) -> UIBezierPath {
+        let path = UIBezierPath()
+        let angleIncrement = CGFloat.pi / CGFloat(points)
+        let startAngle = -CGFloat.pi / 2
+        
+        for i in 0..<(points * 2) {
+            let angle = startAngle + angleIncrement * CGFloat(i)
+            let r = (i % 2 == 0) ? radius : innerRadius
+            let x = center.x + r * cos(angle)
+            let y = center.y + r * sin(angle)
+            
+            if i == 0 {
+                path.move(to: CGPoint(x: x, y: y))
+            } else {
+                path.addLine(to: CGPoint(x: x, y: y))
+            }
+        }
+        path.close()
+        return path
+    }
+    
 }

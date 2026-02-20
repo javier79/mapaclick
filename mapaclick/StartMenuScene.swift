@@ -14,6 +14,9 @@ import AVFoundation
 class StartMenuScene: SKScene {
     /*ATTENTION IT MIGHT HAPPEN THAT AN OBJECT VAR NAME MAY REFERENCE A COLOR(An error of mine when i code the game EX:redButtonOne) AND SUCH OBJECT MAY HAVE ANOTHER COLOR DUE ESTETIC,
     THIS WAS A MISTAKE ON MY PART TO REFERENCE COLORS AS PART OF OBJECTS/VAR NAMES, BELOW IN COMMENTS I DETAIL OBJECTS WHICH NAMES HAVE CHANGED*/
+    
+    let puertoRicanFlag: SKSpriteNode = StartMenuMethods().createPuertoRicanFlagSpriteNode(width: 70)
+    
     let buttonGreen:SKSpriteNode = StartMenuMethods().setGreenButton()//green button on main menu
     let redButtonOne:SKSpriteNode = StartMenuMethods().initMainMenuRedButtons()//green button "Mejores Tiempos"
     let redButtonTwo:SKSpriteNode = StartMenuMethods().initMainMenuRedButtons()//green button "instrucciones"
@@ -103,6 +106,11 @@ class StartMenuScene: SKScene {
     let screenSize = UIScreen.main.nativeBounds
     
     let mapaClickBanner: SKSpriteNode = StartMenuMethods().setMapaClickBanner()
+    //Ads Logic
+    let removeAdsButton: SKSpriteNode = StartMenuMethods().removeAdsButtonBpDrawToSKSpriteNode()
+    let removeAdsButtonLabel: SKLabelNode = StartMenuMethods().mainMenuSetLabelDefaults()
+    let restorePurchasesButton: SKSpriteNode = StartMenuMethods().removeAdsButtonBpDrawToSKSpriteNode()
+    let restorePurchasesButtonLabel: SKLabelNode = StartMenuMethods().mainMenuSetLabelDefaults()
     
     override func didMove(to view: SKView){
         
@@ -133,6 +141,15 @@ class StartMenuScene: SKScene {
         let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapFrom(_:)))
         tapRecognizer.numberOfTapsRequired = 1
         self.view!.addGestureRecognizer(tapRecognizer)
+        
+        // Show banner ad
+        let waitForBanner = SKAction.wait(forDuration: 0.5)
+        let showBanner = SKAction.run { [weak self] in
+            if let viewController = self?.view?.window?.rootViewController {
+                AdManager.shared.showBanner(in: viewController)
+            }
+        }
+        self.run(SKAction.sequence([waitForBanner, showBanner]))
 
     }
     
@@ -186,6 +203,10 @@ class StartMenuScene: SKScene {
         addChildSKLabelNodeToParentSKSPriteNode(parent:redButtonThree,children:redButtonThreeLabel)
         addChildSKSpriteNodeToParentSKSPriteNode(parent:buttonGreen,children:redButtonThree)
         
+        // Puerto Rican Flag
+        puertoRicanFlag.position = CGPoint(x: 0.5, y: 65) // above the JUGAR button
+        addChildSKSpriteNodeToParentSKSPriteNode(parent: buttonGreen, children: puertoRicanFlag)
+        
         debugPrint("Screen size: \(screenSize)")
         //Following code adjust MainMenuObjects positioning and scaling according to screen size
         switch (screenSize.width, screenSize.height) {
@@ -229,6 +250,7 @@ class StartMenuScene: SKScene {
     func setMainMenuObjectsScaleAndIndepRenderingPositioningForiPadsLargeScreenSizes(){
         mapaClickBanner.setScale(1.8)
         mapaClickBanner.position = CGPoint(x: 0.5, y:325)
+        puertoRicanFlag.position = CGPoint(x: 0.5, y: 125)//80 horizon
         buttonGreen.setScale(1.6)//1.53 1.6
         buttonGreen.position = CGPoint(x:self.size.width/2, y:self.size.height/2 + 30)
     }
@@ -237,6 +259,7 @@ class StartMenuScene: SKScene {
     func setMainMenuObjectsScaleAndIndepRenderingPositioningForiPadsSmallAndMediumScreenSizes(){
         mapaClickBanner.setScale(1.3)
         mapaClickBanner.position = CGPoint(x: 0.5, y:240)
+        puertoRicanFlag.position = CGPoint(x: 0.5, y: 95)
         buttonGreen.setScale(1.43)//1.4
         buttonGreen.position = CGPoint(x:self.size.width/2, y:self.size.height/2 + 30)
     }
@@ -854,6 +877,27 @@ class StartMenuScene: SKScene {
         addChildSKLabelNodeToParentSKSPriteNode(parent: creditosButton, children: creditButtonLabel)
         //creditosButton.addChild(creditButtonLabel)
         
+        removeAdsButton.name = "removeAdsButton"
+        removeAdsButton.position = CGPoint(x:0.5,y:-85.5)
+        addChildSKSpriteNodeToParentSKLabelNode(parent:opcionesAudioLabel,children:removeAdsButton)
+
+        removeAdsButtonLabel.name = "removeAdsButtonLabel"
+        removeAdsButtonLabel.text = "Eliminar Anuncios"
+        removeAdsButtonLabel.position = CGPoint(x:0.5,y:-5.5)
+        removeAdsButtonLabel.fontSize = 12.5
+        addChildSKLabelNodeToParentSKSPriteNode(parent: removeAdsButton, children: removeAdsButtonLabel)
+
+        restorePurchasesButton.name = "restorePurchasesButton"
+        restorePurchasesButton.position = CGPoint(x:0.5,y:-106)
+        addChildSKSpriteNodeToParentSKLabelNode(parent:opcionesAudioLabel,children:restorePurchasesButton)
+
+        restorePurchasesButtonLabel.name = "restorePurchasesButtonLabel"
+        restorePurchasesButtonLabel.text = "Restaurar Compra"
+        restorePurchasesButtonLabel.position = CGPoint(x:0.5,y:-5.5)
+        restorePurchasesButtonLabel.fontSize = 12.5
+        addChildSKLabelNodeToParentSKSPriteNode(parent: restorePurchasesButton, children: restorePurchasesButtonLabel)
+        
+        
         //Following code adjust Opciones positioning and scaling according to screen size
         switch (screenSize.width, screenSize.height) {
             
@@ -891,6 +935,8 @@ class StartMenuScene: SKScene {
                 setOpcionesScaleAndIndepRenderingPositioningForAlliPhoneScreenSizes()
             break
         }
+        print("removeAdsButton physics body: \(String(describing: removeAdsButton.physicsBody))")
+        print("removeAdsButton name: \(String(describing: removeAdsButton.name))")
     }
     
     func setOpcionesScaleAndIndepRenderingPositioningForiPadsSmallScreenSizes(){
@@ -1595,6 +1641,7 @@ class StartMenuScene: SKScene {
     
     //Function scales(smaller) Banner and repositions it to the lower right of the screen when entering bestTimes, Instrucciones, opciones, credits, mapOrder and gameModeSelection screens
     func scaleAndRepositionMapaclickBanner(){
+        mapaClickBanner.isHidden = true
         //debugPrint("Screen size: \(screenSize)")
         switch (screenSize.width, screenSize.height) {
             case (750.0, 1334), (1080, 2340 ),(1125, 2436 ), (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0), (1170.0, 2532.0), (1179.0, 2556.0), (1284.0, 2778.0), (1290.0, 2796.0):
@@ -1711,6 +1758,15 @@ class StartMenuScene: SKScene {
                 addChildSKSpriteNodeToParentSKSPriteNode(parent:opcionesCheckboxTwo,children:opcionesCheckmarkTwo)
                 //opcionesCheckboxTwo.addChild(opcionesCheckmarkTwo)
             }
+            
+            if StoreManager.isAdRemovalPurchased() {
+                removeAdsButton.isHidden = true
+                //restorePurchasesButton.isHidden = true
+            } else {
+                removeAdsButton.isHidden = false
+                //restorePurchasesButton.isHidden = false
+            }
+            
             /** opciones is the label parent on opciones screen*/
             addChildSKLabelNodeToself(children: opcionesAudioLabel)
             addChildSKSPriteNodeToself(children: returnVolverRedButton)
@@ -1793,7 +1849,7 @@ class StartMenuScene: SKScene {
     }
     //Function scales(bigger) Banner and repositions it to the top center of the screen when returning to main menu
     func scaleMapaclickBannerToOriginalSizeAndOriginalPosition(){
-        
+        mapaClickBanner.isHidden = false
         //debugPrint("Screen size: \(screenSize)")
         switch (screenSize.width, screenSize.height) {
             case (750.0, 1334), (1080, 2340 ),(1125, 2436 ), (1242.0, 2208.0), (828.0, 1792.0 ),(1242.0, 2688.0), (1170.0, 2532.0), (1179.0, 2556.0), (1284.0, 2778.0), (1290.0, 2796.0):
@@ -2093,6 +2149,7 @@ class StartMenuScene: SKScene {
         if (gameModeSelectionGreenButton.name == nodeTouched.node?.name){
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Alfabético (Alphabetic)"{
                 musicPlayer?.stop()// ADD THIS from Claude to close music player on transitions
+                AdManager.shared.removeBanner()
                 let alphabeticGameScene = AlphabeticGameScene(size: self.size)
                 //self.removeAllActions()
                 //self.removeAllChildren()
@@ -2100,6 +2157,7 @@ class StartMenuScene: SKScene {
             }
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Al Azar (Random)"{
                 musicPlayer?.stop()  // ADD THIS from Claude to close music player on transitions
+                AdManager.shared.removeBanner()
                 let randomGame = RandomGameScene(size: self.size)
                 //self.removeAllActions()
                 //self.removeFromParent()
@@ -2112,6 +2170,7 @@ class StartMenuScene: SKScene {
             /**Selection for practiceAlphabeticGame*/
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Alfabético (Alphabetic)"{
                 musicPlayer?.stop()  // ADD THIS from Claude to close music player on transitions
+                AdManager.shared.removeBanner()
                 StartMenuScene.playPracticeAlphabeticGame = true
                 let practiceAlphabeticGame = PracticeAlphabeticGameScene(size: self.size)
                 //self.removeAllActions()
@@ -2121,6 +2180,7 @@ class StartMenuScene: SKScene {
             /**Selection for practiceRandomGame*/
             if dropDownArrowLabel.text == "Puerto Rico" && dropDownArrowLabelTwo.text == "Al Azar (Random)"{
                 musicPlayer?.stop()  // ADD THIS from Claude to close music player on transitions
+                AdManager.shared.removeBanner()
                 StartMenuScene.playPracticeRandomGame = true
                 let practiceRandomGame = PracticeRandomGameScene(size: self.size)
                 //self.removeAllActions()
@@ -2166,6 +2226,7 @@ class StartMenuScene: SKScene {
         /**creditosButton when pressed wil navigate the user to creditos screen(view)*/
         else if (creditosButton.name == nodeTouched.node?.name){
             opcionesAudioLabel.removeFromParent()
+            AdManager.shared.hideBanner()
             if creditsContainerChildrenNotInitSet == true{
                 initSetcreditsContainerChildren()
                 creditsContainerChildrenNotInitSet = false
@@ -2175,6 +2236,24 @@ class StartMenuScene: SKScene {
             addChildSKNodeToself(children: creditsContainerTwo)
             //self.addChild(creditsContainerTwo)
         }
+        
+        else if (removeAdsButton.name == nodeTouched.node?.name){
+            StoreManager.shared.onPurchaseComplete = { [weak self] in
+                self?.removeAdsButton.isHidden = true
+            }
+            StoreManager.shared.onPurchaseFailed = { errorMessage in
+                print("Purchase failed: \(errorMessage)")
+            }
+            StoreManager.shared.purchaseRemoveAds()
+        }
+        
+        else if (restorePurchasesButton.name == nodeTouched.node?.name){
+            StoreManager.shared.onPurchaseComplete = { [weak self] in
+                self?.removeAdsButton.isHidden = true
+            }
+            StoreManager.shared.restorePurchases()
+        }
+        
         /**Manages touch evaluation for returnVolver button when it display in opciones view*/
         else if (returnVolverRedButton.name == nodeTouched.node?.name /*&& opcionesAudioLabel.parent != nil*/){
             returnVolverRedButton.removeFromParent()
@@ -2189,6 +2268,7 @@ class StartMenuScene: SKScene {
         if (returnVolverRedButton.name == nodeTouched.node?.name /*&& creditsContainer.parent != nil*/){
             creditsContainer.removeFromParent()
             creditsContainerTwo.removeFromParent()
+            AdManager.shared.showBannerAgain()
             addChildSKLabelNodeToself(children: opcionesAudioLabel)
             //self.addChild(opcionesAudioLabel)
         }

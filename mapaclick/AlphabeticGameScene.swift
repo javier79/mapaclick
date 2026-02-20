@@ -77,6 +77,8 @@ class AlphabeticGameScene: SKScene{
     
     var isScaled = false
     
+    var isAdShowing: Bool = false//Ads Logic
+    
     let screenSize = UIScreen.main.nativeBounds
     
     /*let minX = CGFloat(0)
@@ -86,6 +88,9 @@ class AlphabeticGameScene: SKScene{
     
          
     override func didMove(to view: SKView){
+        NotificationCenter.default.addObserver(self, selector: #selector(adWillShow), name: AdManager.adWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adDismissed), name: AdManager.adDismissedNotification, object: nil)
+
         backgroundNode = gameSceneObjects.createSceneBackground(scene: self)
         
         //self.name = "alphabeticgame"
@@ -173,7 +178,8 @@ class AlphabeticGameScene: SKScene{
         mapRectangleBackground.size = mapRectangleGestureMGMT.size
         mapRectangleBackground.position = mapRectangleGestureMGMT.position
         mapRectangleBackground.name = "mapRectangleBackground"
-                
+        
+        
         
         /**Following objects are related to goldBackground SKSPriteNode*/
         //addChildSKSpriteNodeToParentself(children:containerSKSPriteNode)
@@ -194,7 +200,6 @@ class AlphabeticGameScene: SKScene{
         addChildSKLabelNodeToParentSKSpriteNode(parent: timerBackgroundTwo, children: labelTimer)
         addChildSKSpriteNodeToParentself(children: timerBackgroundTwo)
         //addChildSKNodeToParentself(children: containerNode)
-        
         
         
         //set an call hand gesture recognizers
@@ -224,7 +229,49 @@ class AlphabeticGameScene: SKScene{
         if TutorialManager.shouldShowTutorial() {
                     showTutorial()
                 }
+        //Ads Logic
+        if !TutorialManager.shouldShowTutorial() {
+            showAdIfNeeded()
+        }
+        
     }
+    //Ads Logic
+    @objc func adWillShow() {
+        isAdShowing = true
+        print("adWillShow called - isAdShowing is now: \(isAdShowing)")
+        musicPlayer?.pause()
+    }
+    //Ads Logic
+    @objc func adDismissed() {
+        isAdShowing = false
+        print("adDismissed called - isAdShowing is now: \(isAdShowing)")
+        musicPlayer?.play()
+    }
+    
+    //Ads Logic
+    /*func showAdIfNeeded() {
+        let waitAction = SKAction.wait(forDuration: 0.1)
+        let showAction = SKAction.run {
+            AdManager.shared.showInterstitialForGameStart()
+        }
+        self.run(SKAction.sequence([waitAction, showAction]))
+    }*/
+    
+    func showAdIfNeeded() {
+        let waitAction = SKAction.wait(forDuration: 0.1)
+        let showAction = SKAction.run { [weak self] in
+            AdManager.shared.showInterstitialForGameStart()
+            // If no interstitial was shown, show a banner at top instead
+            if !AdManager.shared.lastGameStartShowedAd {
+                if let viewController = self?.view?.window?.rootViewController {
+                    AdManager.shared.showBannerAtTop(in: viewController)
+                }
+            }
+        }
+        self.run(SKAction.sequence([waitAction, showAction]))
+    }
+    
+    
     //Execute attributes for scaling and positioning based on device screen size
     /*func setScaleAndIndepRenderingPositioningForIpadsLargeScreenSizes(){
         //debugPrint("Set StartScene gamePlay objts scaling and positioning for: iPads Pro12.9(3gen), Pro12.9(4gen), Pro12.9(5gen), Pro12.9(6gen) IpadsLargeScreenSizes scaling and positioning func")
@@ -1384,7 +1431,11 @@ class AlphabeticGameScene: SKScene{
     override public func update(_ currentTime: TimeInterval) {/*Function execute every second, for timer functionality*/
         
         // Don't run timer during tutorial
-        if isTutorialActive {
+        /*if isTutorialActive {
+            return
+        }*/
+        
+        if isTutorialActive || isAdShowing {
             return
         }
         
@@ -1508,18 +1559,11 @@ class AlphabeticGameScene: SKScene{
     }
     
     func goToGameOverScene(){
-        //musicPlayer.stop()
-        
-        //StartScene.secondsGameOver = seconds
-        //StartScene.minutesGameOver = minutes
-        //musicPlayer.stop()
-        //self.removeAllActions()
-        //self.removeAllChildren()
-        musicPlayer?.stop()  // ADD THIS, suggested by Claude to stop music before transitioning
+        musicPlayer?.stop()
+        AdManager.shared.removeBanner()
         let gameOverScene = GameOverScene(size: self.size)
-        let transition = SKTransition.fade(withDuration: 1.5)//withDuration: 1.5)
-    
-        self.view?.presentScene(gameOverScene, transition: transition)/*si anado una transicion con 1.0 segundos o hasta 0.5 permite que el ultimo mnicipio se cambie de color antes de cambiar la vista pero ocurre cierto laggin que de cierta forma interfiere con el ritmo que llevaba el juego y afecta un poco la experiencia pero puedo volver a tratar mas adelante ajustando esto hasta dar con la experiencia que busco*/
+        let transition = SKTransition.fade(withDuration: 1.5)
+        self.view?.presentScene(gameOverScene, transition: transition)
     }
     //Function gets seconds and minutes to be evaluated at gameOverScene
     func getSecondsAndMinutes(){
@@ -2360,10 +2404,10 @@ class AlphabeticGameScene: SKScene{
     
     //transition to StartMenu Scene when exit button is pressed
     func goToStartMenu(){
-        musicPlayer?.stop()  // ADD THIS, suggested by Claude to stop music before transitioning
-        let startMenuScene = StartMenuScene(size: self.size)//definitio
-        //let transition = SKTransition.doorsOpenVertical(withDuration: 1.5)
-        self.view?.presentScene(startMenuScene)/*present scene and execut transitions*/
+        musicPlayer?.stop()
+        AdManager.shared.removeBanner()
+        let startMenuScene = StartMenuScene(size: self.size)
+        self.view?.presentScene(startMenuScene)
     }
     
     func playIncorrectSound(){

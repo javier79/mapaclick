@@ -36,6 +36,9 @@ class GameOverScene: SKScene{
     let screenSize = UIScreen.main.nativeBounds
     
     override func didMove(to view: SKView) {
+        NotificationCenter.default.addObserver(self, selector: #selector(adWillShow), name: AdManager.adWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adDismissed), name: AdManager.adDismissedNotification, object: nil)
+
         //PracticeAlphabeticGame.completedGame = true
         
         if StartMenuScene.gamePlaySoundOn == true{
@@ -130,9 +133,9 @@ class GameOverScene: SKScene{
         // Add the gesture recognizer to the scene's view
         self.view!.addGestureRecognizer(panGestureRecognizer)
         
-        let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapFrom(_:)))
-        tapRecognizer.numberOfTapsRequired = 1
-        self.view!.addGestureRecognizer(tapRecognizer)
+        ///let tapRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapFrom(_:)))
+        ///tapRecognizer.numberOfTapsRequired = 1
+        ///self.view!.addGestureRecognizer(tapRecognizer)
         
         
         //musicURL = Bundle.main.url(forResource:"predited", withExtension:"mp3")
@@ -140,6 +143,54 @@ class GameOverScene: SKScene{
             //self.addChild(StartScene.backgroundMusic)
             initMusic()
         }
+        
+        self.isUserInteractionEnabled = false
+        showGameOverAd()
+        AdManager.shared.markFirstGameCompleted()
+    }
+    
+    @objc func adWillShow() {
+        musicPlayer?.pause()
+    }
+
+    @objc func adDismissed() {
+        self.isUserInteractionEnabled = true
+        enableTouchInteraction()
+        if StartMenuScene.backgroundMusicOn == true {
+            musicPlayer?.play()
+        }
+    }
+
+    /*func showGameOverAd() {
+        let waitAction = SKAction.wait(forDuration: 1.0)
+        let showAction = SKAction.run { [weak self] in
+            if AdManager.shared.hasAdReady() {
+                AdManager.shared.showInterstitialForGameOver()
+            } else {
+                self?.isUserInteractionEnabled = true
+                self?.enableTouchInteraction()
+            }
+        }
+        self.run(SKAction.sequence([waitAction, showAction]))
+    }*/
+    
+    func showGameOverAd() {
+        if AdManager.shared.hasAdReady() {
+            let waitAction = SKAction.wait(forDuration: 1.0)
+            let showAction = SKAction.run {
+                AdManager.shared.showInterstitialForGameOver()
+            }
+            self.run(SKAction.sequence([waitAction, showAction]))
+        } else {
+            self.isUserInteractionEnabled = true
+            enableTouchInteraction()
+        }
+    }
+
+    func enableTouchInteraction() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTapFrom(_:)))
+        tapRecognizer.numberOfTapsRequired = 1
+        self.view?.addGestureRecognizer(tapRecognizer)
     }
     
     func setScaleAndIndepRenderingPositioningForIpadsLargeScreenSizes(){

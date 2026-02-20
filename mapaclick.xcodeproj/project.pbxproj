@@ -13,9 +13,12 @@
 		8D00A3192ABCA56F00566008 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A3172ABCA56F00566008 /* Main.storyboard */; };
 		8D00A31B2ABCA57100566008 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31A2ABCA57100566008 /* Assets.xcassets */; };
 		8D00A31E2ABCA57100566008 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D00A31C2ABCA57100566008 /* LaunchScreen.storyboard */; };
+		8D085F9D2F3CFCCB00557C8D /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 8D085F9C2F3CFCCB00557C8D /* GoogleMobileAds */; };
+		8D085FA32F3D101D00557C8D /* AdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D085FA22F3D101D00557C8D /* AdManager.swift */; };
 		8D1035332F0C392100BEB669 /* TutorialManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1035312F0C392100BEB669 /* TutorialManager.swift */; };
 		8D1035342F0C392100BEB669 /* TutorialOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1035322F0C392100BEB669 /* TutorialOverlay.swift */; };
 		8D90B36C2F2C0AAC005FFF62 /* DebugHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D90B36B2F2C0A8B005FFF62 /* DebugHelper.swift */; };
+		8DABC4A52F44CA4100F4FC11 /* StoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DABC4A42F44CA2D00F4FC11 /* StoreManager.swift */; };
 		8DAC25B52AC2094E000C6C04 /* Guiton Sketch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */; };
 		8DAC25B72AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */; };
 		8DAC25B92AC2097B000C6C04 /* predited.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 8DAC25B82AC2097B000C6C04 /* predited.mp3 */; };
@@ -43,9 +46,11 @@
 		8D00A31A2ABCA57100566008 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8D00A31D2ABCA57100566008 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8D00A31F2ABCA57100566008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8D085FA22F3D101D00557C8D /* AdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdManager.swift; sourceTree = "<group>"; };
 		8D1035312F0C392100BEB669 /* TutorialManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialManager.swift; sourceTree = "<group>"; };
 		8D1035322F0C392100BEB669 /* TutorialOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialOverlay.swift; sourceTree = "<group>"; };
 		8D90B36B2F2C0A8B005FFF62 /* DebugHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugHelper.swift; sourceTree = "<group>"; };
+		8DABC4A42F44CA2D00F4FC11 /* StoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreManager.swift; sourceTree = "<group>"; };
 		8DAC25B42AC2094E000C6C04 /* Guiton Sketch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "Guiton Sketch.mp3"; path = "../../test_grounds/test_grounds/Guiton Sketch.mp3"; sourceTree = "<group>"; };
 		8DAC25B62AC20966000C6C04 /* cartoon_success_fanfair 1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "cartoon_success_fanfair 1.mp3"; path = "../../test_grounds/test_grounds/cartoon_success_fanfair 1.mp3"; sourceTree = "<group>"; };
 		8DAC25B82AC2097B000C6C04 /* predited.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = predited.mp3; path = ../../test_grounds/test_grounds/predited.mp3; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D085F9D2F3CFCCB00557C8D /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +100,8 @@
 		8D00A3102ABCA56F00566008 /* mapaclick */ = {
 			isa = PBXGroup;
 			children = (
+				8DABC4A42F44CA2D00F4FC11 /* StoreManager.swift */,
+				8D085FA22F3D101D00557C8D /* AdManager.swift */,
 				8D90B36B2F2C0A8B005FFF62 /* DebugHelper.swift */,
 				8D1035312F0C392100BEB669 /* TutorialManager.swift */,
 				8D1035322F0C392100BEB669 /* TutorialOverlay.swift */,
@@ -168,6 +176,9 @@
 				Base,
 			);
 			mainGroup = 8D00A3052ABCA56F00566008;
+			packageReferences = (
+				8D085F9B2F3CFCCB00557C8D /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = 8D00A30F2ABCA56F00566008 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -200,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D085FA32F3D101D00557C8D /* AdManager.swift in Sources */,
 				8DAC25D72AC32AB8000C6C04 /* PracticeRandomGameScene.swift in Sources */,
 				8DAC25CF2AC230F7000C6C04 /* GameOverScene.swift in Sources */,
 				8DAC25C12AC20D89000C6C04 /* StartMenuScene.swift in Sources */,
@@ -209,6 +221,7 @@
 				8D90B36C2F2C0AAC005FFF62 /* DebugHelper.swift in Sources */,
 				8DAC25C92AC21BCB000C6C04 /* GameSceneObjects.swift in Sources */,
 				8D00A3162ABCA56F00566008 /* ViewController.swift in Sources */,
+				8DABC4A52F44CA4100F4FC11 /* StoreManager.swift in Sources */,
 				8DAC25D32AC3261C000C6C04 /* RandomGameScene.swift in Sources */,
 				8DAC25D52AC32888000C6C04 /* PracticeAlphabeticGameScene.swift in Sources */,
 				8DAC25C72AC21750000C6C04 /* AlphabeticGameScene.swift in Sources */,
@@ -385,7 +398,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.javierpizarro.mapaclick;
 				PRODUCT_NAME = Mapaclick;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -416,7 +429,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 2.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.javierpizarro.mapaclick;
 				PRODUCT_NAME = Mapaclick;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -447,6 +460,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8D085F9B2F3CFCCB00557C8D /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8D085F9C2F3CFCCB00557C8D /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8D085F9B2F3CFCCB00557C8D /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8D00A3062ABCA56F00566008 /* Project object */;
 }
